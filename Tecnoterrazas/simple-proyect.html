@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TL - Cortina de Cristal y Pérgolas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#111f38',   /* Azul marino profundo original */
+                            medium: '#1a2d4d',
+                            accent: '#488ada', /* Azul más suave para botones */
+                            lightbg: '#f8f9fc' /* Fondo gris muy tenue para el formulario */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Ajuste para inputs autofill */
+        input:-webkit-autofill,
+        textarea:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px #f8f9fc inset !important;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 bg-white">
+
+    <!-- Navegación -->
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex justify-between h-24 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <div class="flex items-center space-x-2 text-brand-dark">
+                        <span class="text-3xl font-bold tracking-tighter">T</span>
+                        <div class="flex flex-col space-y-1">
+                            <div class="w-4 h-0.5 bg-brand-accent"></div>
+                            <div class="w-4 h-0.5 bg-brand-accent"></div>
+                        </div>
+                        <span class="text-3xl font-bold tracking-tighter">L</span>
+                    </div>
+                </div>
+
+                <!-- Enlaces Menú -->
+                <div
+                    class="hidden lg:flex space-x-10 text-[11px] font-medium uppercase tracking-[0.15em] text-gray-500">
+                    <a href="#" class="hover:text-brand-accent transition">Inicio</a>
+                    <a href="#" class="hover:text-brand-accent transition">Empresa</a>
+                    <a href="#" class="hover:text-brand-accent transition">Oferta</a>
+                    <a href="#" class="hover:text-brand-accent transition">Obras</a>
+                    <a href="#" class="hover:text-brand-accent transition">Presupuesto</a>
+                    <a href="#" class="hover:text-brand-accent transition">Contacto</a>
+                    <a href="#" class="hover:text-brand-accent transition">Materiales</a>
+                </div>
+
+                <!-- Botón -->
+                <div class="hidden md:block">
+                    <a href="#contacto"
+                        class="bg-brand-accent hover:bg-blue-500 text-white px-7 py-3 rounded-sm text-[10px] font-semibold tracking-widest uppercase transition">
+                        Pedir Presupuesto
+                    </a>
+                </div>
+
+                <!-- Menú Hamburguesa (Móvil) -->
+                <div class="lg:hidden flex items-center">
+                    <button class="text-brand-dark hover:text-brand-accent focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Slider Section -->
+    <section class="relative w-full overflow-hidden bg-gray-100">
+        <div class="flex flex-col md:flex-row h-[50vh] md:h-[65vh]">
+            <div class="w-full md:w-1/2 h-full relative border-r-4 border-white">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+                    alt="Pérgola exterior en proceso" class="w-full h-full object-cover">
+                <button
+                    class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white transition shadow-lg z-10">
+                    <i class="fas fa-chevron-left text-gray-500 text-sm"></i>
+                </button>
+            </div>
+            <div class="w-full md:w-1/2 h-full relative">
+                <img src="https://images.unsplash.com/photo-1600607687940-4e7a6a353689?auto=format&fit=crop&q=80&w=1200"
+                    alt="Cortina de cristal terminada" class="w-full h-full object-cover">
+                <button
+                    class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/90 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white transition shadow-lg z-10">
+                    <i class="fas fa-chevron-right text-gray-500 text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido del Proyecto -->
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20">
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            <!-- Texto Descriptivo -->
+            <div class="lg:w-[65%]">
+                <h1 class="text-3xl md:text-4xl text-gray-800 leading-snug mb-10">
+                    <span class="font-light uppercase">Cortina de Cristal Corredera con</span><br>
+                    <span class="font-normal">Pérgola Bioclimática</span>
+                </h1>
+                <div class="space-y-6 text-gray-500 leading-loose text-[13.5px] font-light">
+                    <p>Tras este proyecto se llevó a cabo un estudio sobre las necesidades actuales de los residentes de
+                        la vivienda siempre dadas las dimensiones del espacio para ofrecer la mejor solución técnica y
+                        funcional. Un resultado estético único y totalmente personalizado.</p>
+                    <p>El diseño se basó en el aprovechamiento de los exteriores sin límites verticales, se consiguió
+                        una transparencia total sin marcos internos, manteniendo una conexión fluida entre el interior y
+                        el exterior.</p>
+                    <p>Como complemento, se ha incorporado una pérgola bioclimática de última generación, equipada con
+                        lamas orientables que permiten regular la entrada de luz solar y la ventilación natural de forma
+                        eficiente y sencilla. Este sistema otorga un aislamiento de los elementos externos, protegiendo
+                        contra las condiciones climáticas adversas.</p>
+                    <p>Para mayor comodidad se ha integrado un sistema de iluminación LED de alta eficiencia y bajo
+                        consumo, para crear un ambiente cálido y confortable durante las horas nocturnas, haciendo de
+                        este espacio un lugar ideal tanto para el descanso como para reuniones sociales.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar Detalles -->
+            <div class="lg:w-[35%]">
+                <div class="bg-brand-dark text-white p-12 h-full flex flex-col shadow-sm">
+                    <h2 class="text-[10px] font-medium uppercase tracking-[0.2em] mb-12 border-b border-white/20 pb-4">
+                        Detalles del Proyecto</h2>
+                    <div class="space-y-10 flex-grow">
+                        <div>
+                            <span class="block text-[10px] uppercase text-gray-400 tracking-widest mb-2">Cliente</span>
+                            <span class="text-[15px] font-light uppercase tracking-wide">Particular</span>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[10px] uppercase text-gray-400 tracking-widest mb-2">Ubicación</span>
+                            <span class="text-[15px] font-light uppercase tracking-wide">Valencia</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] uppercase text-gray-400 tracking-widest mb-2">Año</span>
+                            <span class="text-[15px] font-light uppercase tracking-wide">2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características Iconos -->
+    <section class="border-t border-gray-100 py-16">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div
+                class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center divide-x divide-transparent md:divide-gray-100">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-wrench text-2xl text-gray-600 mb-5"></i>
+                    <span class="text-[9px] uppercase text-gray-400 tracking-widest mb-1.5">Servicio</span>
+                    <span class="text-[13px] font-normal uppercase text-gray-800">Instalación</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-clock text-2xl text-gray-600 mb-5"></i>
+                    <span class="text-[9px] uppercase text-gray-400 tracking-widest mb-1.5">Tiempo de ejecución</span>
+                    <span class="text-[13px] font-normal uppercase text-gray-800">4 Semanas</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-ruler-combined text-2xl text-gray-600 mb-5"></i>
+                    <span class="text-[9px] uppercase text-gray-400 tracking-widest mb-1.5">Metros Cuadrados</span>
+                    <span class="text-[13px] font-normal uppercase text-gray-800">50 M2</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-map-marker-alt text-2xl text-gray-600 mb-5"></i>
+                    <span class="text-[9px] uppercase text-gray-400 tracking-widest mb-1.5">Ubicación</span>
+                    <span class="text-[13px] font-normal uppercase text-gray-800">Valencia</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-cog text-2xl text-gray-600 mb-5"></i>
+                    <span class="text-[9px] uppercase text-gray-400 tracking-widest mb-1.5">Tipo</span>
+                    <span class="text-[13px] font-normal uppercase text-gray-800">Cortina</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Formulario y Mapa -->
+    <section id="contacto" class="flex flex-col lg:flex-row">
+        <!-- Formulario -->
+        <div class="w-full lg:w-1/2 p-10 lg:p-24 bg-brand-lightbg flex items-center justify-center">
+            <div class="w-full max-w-lg">
+                <h2 class="text-[32px] font-light text-brand-dark mb-3">Solicita tu presupuesto</h2>
+                <p class="text-gray-500 font-light text-[13px] mb-12">Sin compromiso. Le responderemos en menos de 24
+                    horas laborables.</p>
+
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="relative">
+                            <label class="block text-[10px] uppercase text-brand-dark font-semibold mb-1">Nombre</label>
+                            <input type="text" placeholder="Iker Casillas"
+                                class="w-full border-b border-gray-300 py-2 text-[13px] focus:border-brand-accent outline-none bg-transparent transition-colors font-light text-gray-700">
+                        </div>
+                        <div class="relative">
+                            <label class="block text-[10px] uppercase text-brand-dark font-semibold mb-1">Email</label>
+                            <input type="email" placeholder="hola@ejemplo.com"
+                                class="w-full border-b border-gray-300 py-2 text-[13px] focus:border-brand-accent outline-none bg-transparent transition-colors font-light text-gray-700">
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-[10px] uppercase text-brand-dark font-semibold mb-1">Teléfono</label>
+                        <input type="text" placeholder="+34 000 000 000"
+                            class="w-full border-b border-gray-300 py-2 text-[13px] focus:border-brand-accent outline-none bg-transparent transition-colors font-light text-gray-700">
+                    </div>
+                    <div class="relative">
+                        <label class="block text-[10px] uppercase text-brand-dark font-semibold mb-1">Comentario /
+                            Mensaje</label>
+                        <textarea rows="3" placeholder="Háblanos un poco sobre tu proyecto..."
+                            class="w-full border-b border-gray-300 py-2 text-[13px] focus:border-brand-accent outline-none bg-transparent resize-none transition-colors font-light text-gray-700"></textarea>
+                    </div>
+
+                    <div class="flex items-center space-x-3 text-[12px] text-gray-500 font-light mt-4">
+                        <input type="checkbox" id="privacy"
+                            class="h-4 w-4 rounded-sm border-gray-300 text-brand-dark focus:ring-brand-dark cursor-pointer">
+                        <label for="privacy" class="cursor-pointer">He leído y acepto la <a href="#"
+                                class="text-brand-accent hover:underline">Política de Privacidad</a></label>
+                    </div>
+
+                    <button
+                        class="w-full bg-brand-dark hover:bg-brand-medium text-white font-medium py-4 rounded-sm transition uppercase tracking-[0.2em] text-[11px] mt-8">
+                        Solicitar Presupuesto Ahora
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Info de Contacto / Imagen -->
+        <div class="w-full lg:w-1/2 relative min-h-[500px] flex items-center justify-center">
+            <div class="absolute inset-0 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1513584684374-8bdb7489feef?auto=format&fit=crop&q=80&w=1200"
+                    alt="Sillas y mesas en terraza exterior" class="w-full h-full object-cover">
+                <!-- Capa azul marino translúcida imitando el diseño -->
+                <div class="absolute inset-0 bg-[#111f38]/85 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-[#111f38]/40"></div>
+            </div>
+
+            <div class="relative z-10 text-white text-center px-6 w-full max-w-md">
+                <h3 class="text-[32px] font-light mb-16">Estamos en Valencia</h3>
+
+                <div class="space-y-10 text-left">
+                    <div class="flex items-start space-x-5">
+                        <i class="fas fa-map-marker-alt text-white text-xl mt-1 opacity-80"></i>
+                        <div>
+                            <p class="font-normal uppercase text-[12px] tracking-widest mb-1">Calle Poniente 13B - 46014
+                            </p>
+                            <p class="text-gray-300 text-[13px] font-light">Sedaví, Valencia</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-5">
+                        <i class="far fa-envelope text-white text-xl mt-1 opacity-80"></i>
+                        <div>
+                            <p class="font-normal text-[12px] tracking-widest mt-1">info@tl-estructuras.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-5">
+                        <i class="fas fa-phone-alt text-white text-xl mt-1 opacity-80"></i>
+                        <div>
+                            <p class="font-normal text-[14px] tracking-widest mt-1">622 334 231</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-24 pb-8">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16 mb-20">
+                <!-- Columna 1: Logo y Redes -->
+                <div class="flex flex-col h-full">
+                    <div class="flex items-center space-x-2 text-white mb-6">
+                        <span class="text-4xl font-bold tracking-tighter">T</span>
+                        <div class="flex flex-col space-y-1.5">
+                            <div class="w-5 h-0.5 bg-white"></div>
+                            <div class="w-5 h-0.5 bg-white"></div>
+                        </div>
+                        <span class="text-4xl font-bold tracking-tighter">L</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-relaxed font-light mb-8 max-w-[220px]">
+                        Soluciones arquitectónicas en vidrio y aluminio para espacios exteriores e interiores.
+                    </p>
+                    <div class="mt-auto flex space-x-3">
+                        <a href="#"
+                            class="w-8 h-8 border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand-dark transition text-[13px]">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand-dark transition text-[13px]">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Enlaces -->
+                <div>
+                    <h4 class="text-[10px] font-medium uppercase tracking-[0.2em] mb-8 text-gray-400">Enlaces</h4>
+                    <ul class="space-y-4 text-[12px] font-light text-gray-300">
+                        <li><a href="#" class="hover:text-white transition">Inicio</a></li>
+                        <li><a href="#" class="hover:text-white transition">Empresa</a></li>
+                        <li><a href="#" class="hover:text-white transition">Obras</a></li>
+                        <li><a href="#" class="hover:text-white transition">Presupuesto</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Servicios -->
+                <div>
+                    <h4 class="text-[10px] font-medium uppercase tracking-[0.2em] mb-8 text-gray-400">Servicios</h4>
+                    <ul class="space-y-4 text-[12px] font-light text-gray-300">
+                        <li><a href="#" class="hover:text-white transition">Cortinas de Cristal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pérgolas Bioclimáticas</a></li>
+                        <li><a href="#" class="hover:text-white transition">Techos Móviles</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cerramientos de Aluminio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Contacto directo -->
+                <div>
+                    <h4 class="text-[10px] font-medium uppercase tracking-[0.2em] mb-8 text-gray-400">Contacto</h4>
+                    <ul class="space-y-4 text-[12px] font-light text-gray-300 mb-8">
+                        <li>Calle Poniente 13B<br>46014 Sedaví, Valencia</li>
+                        <li class="font-normal mt-4">622 334 231</li>
+                    </ul>
+                    <a href="#contacto"
+                        class="inline-block border border-white/20 px-6 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-brand-dark transition">
+                        Pedir Presupuesto
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div
+                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 font-light tracking-wider">
+                <p>&copy; 2024 TL Estructuras. Todos los derechos reservados.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 uppercase">
+                    <a href="#" class="hover:text-gray-300 transition">Política de cookies</a>
+                    <a href="#" class="hover:text-gray-300 transition">Privacidad</a>
+                    <a href="#" class="hover:text-gray-300 transition">Legal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

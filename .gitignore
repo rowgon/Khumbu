@@ -1,0 +1,10 @@
+# PHP .gitignore
+vendor/
+composer.lock
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
+*.bak
