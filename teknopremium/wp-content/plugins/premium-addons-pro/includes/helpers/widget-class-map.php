@@ -1,0 +1,35 @@
+<?php
+
+$class_map = array(
+    'premium-behance'           => 'PremiumAddonsPro\Widgets\Premium_Behance',
+    'premium-charts'            => 'PremiumAddonsPro\Widgets\Premium_Charts',
+    'premium-color-transition'  => 'PremiumAddonsPro\Widgets\Premium_Color_Transition',
+    'premium-content-toggle'    => 'PremiumAddonsPro\Widgets\Premium_Content_Toggle',
+    'premium-divider'           => 'PremiumAddonsPro\Widgets\Premium_Divider',
+    'premium-facebook-feed'     => 'PremiumAddonsPro\Widgets\Premium_Facebook_Feed',
+    'premium-facebook-reviews'  => 'PremiumAddonsPro\Widgets\Premium_Facebook_Reviews',
+    'premium-flipbox'           => 'PremiumAddonsPro\Widgets\Premium_Flipbox',
+    'premium-google-reviews'    => 'PremiumAddonsPro\Widgets\Premium_Google_Reviews',
+    'premium-hscroll'           => 'PremiumAddonsPro\Widgets\Premium_Hscroll',
+    'premium-iconbox'           => 'PremiumAddonsPro\Widgets\Premium_Iconbox',
+    'premium-ihover'            => 'PremiumAddonsPro\Widgets\Premium_Ihover',
+    'premium-image-accordion'   => 'PremiumAddonsPro\Widgets\Premium_Image_Accordion',
+    'premium-image-comparison'  => 'PremiumAddonsPro\Widgets\Premium_Image_Comparison',
+    'premium-image-hotspots'    => 'PremiumAddonsPro\Widgets\Premium_Image_Hotspots',
+    'premium-img-layers'        => 'PremiumAddonsPro\Widgets\Premium_Img_Layers',
+    'premium-instagram-feed'    => 'PremiumAddonsPro\Widgets\Premium_Instagram_Feed',
+    'premium-magic-section'     => 'PremiumAddonsPro\Widgets\Premium_Magic_Section',
+    'premium-multi-scroll'      => 'PremiumAddonsPro\Widgets\Premium_Multi_Scroll',
+    'premium-notbar'            => 'PremiumAddonsPro\Widgets\Premium_Notbar',
+    'premium-prev-img'          => 'PremiumAddonsPro\Widgets\Premium_Prev_Img',
+    'premium-site-logo'         => 'PremiumAddonsPro\Widgets\Premium_Site_Logo',
+    'premium-smart-post-listing'=> 'PremiumAddonsPro\Widgets\Premium_Smart_Post_Listing',
+    'premium-tabs'              => 'PremiumAddonsPro\Widgets\Premium_Tabs',
+    'premium-tables'            => 'PremiumAddonsPro\Widgets\Premium_Tables',
+    'premium-twitter-feed'      => 'PremiumAddonsPro\Widgets\Premium_Twitter_Feed',
+    'premium-unfold'            => 'PremiumAddonsPro\Widgets\Premium_Unfold',
+    'premium-whatsapp-chat'     => 'PremiumAddonsPro\Widgets\Premium_Whatsapp_Chat',
+    'premium-yelp-reviews'      => 'PremiumAddonsPro\Widgets\Premium_Yelp_Reviews',
+);
+
+return $class_map;

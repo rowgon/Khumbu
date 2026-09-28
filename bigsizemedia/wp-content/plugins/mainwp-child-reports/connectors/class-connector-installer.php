@@ -1,0 +1,904 @@
+<?php
+/** Installer Connector. */
+
+namespace WP_MainWP_Stream;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
+/**
+ * Class Connector_Installer
+ *
+ * @package WP_MainWP_Stream
+ *
+ * @uses \WP_MainWP_Stream\Connector
+ */
+class Connector_Installer extends Connector {
+
+	/** @var string Connector slug. */
+	public $name = 'installer';
+
+	/** @var array Actions registered for this connector. */
+	public $actions = array(
+		'upgrader_pre_install', // use to the current version of all plugins, before they are upgraded ( Net-Concept - Xavier NUEL )
+		'upgrader_process_complete', // plugins::installed | themes::installed
+		'activate_plugin', // plugins::activated
+		'deactivate_plugin', // plugins::deactivated
+		'switch_theme', // themes::activated
+		'delete_site_transient_update_themes', // themes::deleted
+		'pre_option_uninstall_plugins', // plugins::deleted
+		'deleted_plugin',
+		// 'pre_set_site_transient_update_plugins',
+		'_core_updated_successfully',
+		'mainwp_child_installPluginTheme',
+		'mainwp_child_plugin_action',
+		'mainwp_child_theme_action',
+        'pre_auto_update',
+		'automatic_updates_complete',
+	);
+
+	/** @var array Old plugins array. */
+	public $current_plugins_info = array();
+
+	public $current_themes_info = array();
+
+	/**
+     * @var string WordPress version captured before a core auto-update starts.
+     */
+	public $current_wordpress_version = '';
+
+	/** @var bool Register connector in the WP Frontend. */
+	public $register_frontend = false;
+
+	public $register_cron = true;
+
+	public $register_cli = true;
+
+	/**
+	 * Return translated connector label.
+	 *
+	 * @return string Translated connector label.
+	 */
+	public function get_label() {
+		return esc_html__( 'Installer', 'mainwp-child-reports' );
+	}
+
+	/**
+	 * Return translated action labels.
+	 *
+	 * @return array Action label translations.
+	 */
+	public function get_action_labels() {
+		return array(
+			'installed'   => esc_html__( 'Installed', 'mainwp-child-reports' ),
+			'activated'   => esc_html__( 'Activated', 'mainwp-child-reports' ),
+			'deactivated' => esc_html__( 'Deactivated', 'mainwp-child-reports' ),
+			'deleted'     => esc_html__( 'Deleted', 'mainwp-child-reports' ),
+			'updated'     => esc_html__( 'Updated', 'mainwp-child-reports' ),
+		);
+	}
+
+	/**
+	 * Return translated context labels.
+	 *
+	 * @return array Context label translations.
+	 */
+	public function get_context_labels() {
+		return array(
+			'plugins'   => esc_html__( 'Plugins', 'mainwp-child-reports' ),
+			'themes'    => esc_html__( 'Themes', 'mainwp-child-reports' ),
+			'wordpress' => esc_html__( 'WordPress', 'mainwp-child-reports' ),
+		);
+	}
+
+	/**
+	 * Normalize a theme reference into a stylesheet slug.
+	 *
+	 * @param mixed $theme Theme slug or WP_Theme instance.
+	 *
+	 * @return string|null
+	 */
+	private function normalize_theme_slug( $theme ) {
+		if ( $theme instanceof \WP_Theme ) {
+			$theme = $theme->get_stylesheet();
+		}
+
+		if ( is_scalar( $theme ) ) {
+			$theme = (string) $theme;
+		}
+
+		if ( ! is_string( $theme ) || '' === $theme ) {
+			return null;
+		}
+
+		return $theme;
+	}
+
+	/**
+	 * Add action links to Stream drop row in admin list screen.
+	 *
+	 * @filter wp_mainwp_stream_action_links_{connector}.
+	 *
+	 * @param  array  $links     Previous links registered.
+	 * @param  object $record    Stream record.
+	 *
+	 * @return array             Action links.
+	 */
+	public function action_links( $links, $record ) {
+		if ( 'WordPress' === $record->context && 'updated' === $record->action ) {
+
+            $wp_ver = wp_mainwp_stream_get_wordpress_version();
+
+			$version = $record->get_meta( 'new_version', true );
+
+			if ( $version === $wp_ver ) {
+				$links[ esc_html__( 'About', 'mainwp-child-reports' ) ] = admin_url( 'about.php?updated' );
+			}
+
+			$links[ esc_html__( 'View Release Notes', 'mainwp-child-reports' ) ] = esc_url( sprintf( 'http://codex.wordpress.org/Version_%s', $version ) );
+		}
+
+		return $links;
+	}
+
+	/**
+	 * Register log data.
+	 *
+	 * @uses \WP_MainWP_Stream\Connector::register()
+	 */
+	public function register() {
+		parent::register();
+		add_filter( 'upgrader_pre_install', array( $this, 'upgrader_pre_install' ), 10, 2 );
+		add_action( 'load-update-core.php', array( $this, 'callback_load_update_core_php' ) );
+	}
+
+	/**
+	 * Capture the installed WordPress version before an automatic core update starts.
+	 *
+	 * @param string $type Update type.
+	 * @return void
+	 */
+	public function callback_pre_auto_update( $type ) {
+		if ( 'core' !== $type ) {
+			return;
+		}
+
+		$this->current_wordpress_version = wp_mainwp_stream_get_wordpress_version();
+	}
+
+	/**
+	 * Capture the installed WordPress version before a manual core update starts.
+	 *
+	 * @return void
+	 */
+	public function callback_load_update_core_php() {
+		$action = isset( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '';
+
+		if ( ! in_array( $action, array( 'do-core-upgrade', 'do-core-reinstall' ), true ) ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['upgrade'] ) ) {
+			return;
+		}
+
+		$this->current_wordpress_version = wp_mainwp_stream_get_wordpress_version();
+	}
+
+	public function upgrader_pre_install() {
+
+		if ( empty( $this->current_themes_info ) ) {
+			$this->current_themes_info = array();
+
+			if ( ! function_exists( '\wp_get_themes' ) ) {
+				require_once ABSPATH . '/wp-admin/includes/theme.php';
+			}
+
+			$themes = wp_get_themes();
+
+			if ( is_array( $themes ) ) {
+				$theme_name  = wp_get_theme()->get( 'Name' );
+				$parent_name = '';
+				$parent      = wp_get_theme()->parent();
+				if ( $parent ) {
+					$parent_name = $parent->get( 'Name' );
+				}
+				foreach ( $themes as $theme ) {
+
+					$_slug = $theme->get_stylesheet();
+					if ( isset( $this->current_themes_info[ $_slug ] ) ) {
+						continue;
+					}
+
+					$out                  = array();
+					$out['name']          = $theme->get( 'Name' );
+					$out['title']         = $theme->display( 'Name', true, false );
+					$out['version']       = $theme->display( 'Version', true, false );
+					$out['active']        = ( $theme->get( 'Name' ) === $theme_name ) ? 1 : 0;
+					$out['slug']          = $_slug;
+					$out['parent_active'] = ( $parent_name == $out['name'] ) ? 1 : 0;
+
+					$this->current_themes_info[ $_slug ] = $out;
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Wrapper method for calling get_plugins().
+	 *
+	 * @return array Installed plugins.
+	 */
+	public function get_plugins() {
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+
+		return get_plugins();
+	}
+
+	/**
+	 * Log plugin installations.
+	 *
+	 * @action transition_post_status.
+	 *
+	 * @param \WP_Upgrader $upgrader WP_Upgrader class object.
+	 * @param array        $extra Extra attributes array.
+	 *
+	 * @return bool Return TRUE|FALSE.
+	 */
+	public function callback_upgrader_process_complete( $upgrader, $extra ) {
+		$logs    = array();
+		$success = ! is_wp_error( $upgrader->skin->result );
+		$error   = null;
+
+		if ( ! $success ) {
+			$errors = $upgrader->skin->result->errors;
+
+			list( $error ) = reset( $errors );
+		}
+
+		// This would have failed down the road anyway.
+		if ( ! isset( $extra['type'] ) ) {
+			return false;
+		}
+
+		$type   = $extra['type'];
+		$action = $extra['action'];
+
+		if ( ! in_array( $type, array( 'plugin', 'theme' ), true ) ) {
+			return false;
+		}
+
+		if ( 'install' === $action ) {
+			if ( 'plugin' === $type ) {
+				$path = $upgrader->plugin_info();
+
+				if ( ! $path ) {
+					return false;
+				}
+
+				$data    = get_plugin_data( $upgrader->skin->result['local_destination'] . '/' . $path );
+				$slug    = $upgrader->result['destination_name'];
+				$name    = $data['Name'];
+				$version = $data['Version'];
+			} else { // theme
+				$slug = $this->normalize_theme_slug( $upgrader->theme_info() );
+
+				if ( ! $slug ) {
+					return false;
+				}
+
+				wp_clean_themes_cache();
+
+				$theme   = wp_get_theme( $slug );
+				$name    = $theme->name;
+				$version = $theme->version;
+			}
+
+			$action = 'installed';
+			// translators: Placeholders refer to a plugin/theme type, a plugin/theme name, and a plugin/theme version (e.g. "plugin", "Stream", "4.2").
+			$message = _x(
+				'Installed %1$s: %2$s %3$s',
+				'Plugin/theme installation. 1: Type (plugin/theme), 2: Plugin/theme name, 3: Plugin/theme version',
+				'mainwp-child-reports'
+			);
+
+			$logs[] = compact( 'slug', 'name', 'version', 'message', 'action' );
+		} elseif ( 'update' === $action ) {
+
+			if ( is_object( $upgrader ) && property_exists( $upgrader, 'skin' ) && 'Automatic_Upgrader_Skin' == get_class( $upgrader->skin ) ) {
+				return false;
+			}
+
+			$action = 'updated';
+			// translators: Placeholders refer to a plugin/theme type, a plugin/theme name, and a plugin/theme version (e.g. "plugin", "Stream", "4.2").
+			$message = _x(
+				'Updated %1$s: %2$s %3$s',
+				'Plugin/theme update. 1: Type (plugin/theme), 2: Plugin/theme name, 3: Plugin/theme version',
+				'mainwp-child-reports'
+			);
+
+			if ( 'plugin' === $type ) {
+				if ( isset( $extra['bulk'] ) && true === $extra['bulk'] ) {
+					$slugs = $extra['plugins'];
+				} else {
+					$slugs = array( $upgrader->skin->plugin );
+				}
+
+				// $_plugins = $this->get_plugins();
+
+				foreach ( $slugs as $slug ) {
+					$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $slug );
+					$name        = $plugin_data['Name'];
+					$version     = $plugin_data['Version'];
+					// $old_version = $_plugins[ $slug ]['Version'];
+
+					// ( Net-Concept - Xavier NUEL ) : get old versions.
+					if ( isset( $this->current_plugins_info[ $slug ] ) ) {
+						$old_version = $this->current_plugins_info[ $slug ]['Version'];
+					} else {
+						// $old_version = ''; // Hummm... will this happen ?
+						$old_version = $upgrader->skin->plugin_info['Version']; // to fix old version
+					}
+
+					if ( version_compare( $version, $old_version, '>' ) ) {
+						$logs[] = compact( 'slug', 'name', 'old_version', 'version', 'message', 'action' );
+					}
+
+					// $logs[] = compact( 'slug', 'name', 'old_version', 'version', 'message', 'action' );
+				}
+			} else { // theme
+				if ( isset( $extra['bulk'] ) && true === $extra['bulk'] ) {
+					$slugs = $extra['themes'];
+				} else {
+					$slugs = array( $upgrader->skin->theme );
+				}
+
+				foreach ( $slugs as $slug ) {
+					$theme      = wp_get_theme( $slug );
+					$stylesheet = $theme['Stylesheet Dir'] . '/style.css';
+					$theme_data = get_file_data(
+						$stylesheet,
+						array(
+							'Version' => 'Version',
+						)
+					);
+					$name       = $theme['Name'];
+
+					$old_version = '';
+
+					if ( isset( $this->current_themes_info[ $slug ] ) ) {
+						$old_theme = $this->current_themes_info[ $slug ];
+
+						if ( isset( $old_theme['version'] ) ) {
+							$old_version = $old_theme['version'];
+						}
+					} else {
+						$old_version = ! empty( $upgrader->skin ) && ! empty( $upgrader->skin->theme_info ) ? $upgrader->skin->theme_info->get( 'Version' ) : ''; // to fix old version  //$theme['Version'];
+					}
+					// $old_version = $theme['Version'];
+					$version = $theme_data['Version'];
+
+					if ( ! empty( $old_version ) && version_compare( $version, $old_version, '>' ) ) {
+						$logs[] = compact( 'slug', 'name', 'old_version', 'version', 'message', 'action' );
+					}
+				}
+			}
+		} else {
+			return false;
+		}
+
+		$context = $type . 's';
+
+		foreach ( $logs as $log ) {
+			$name        = isset( $log['name'] ) ? $log['name'] : null;
+			$version     = isset( $log['version'] ) ? $log['version'] : null;
+			$slug        = isset( $log['slug'] ) ? $log['slug'] : null;
+			$old_version = isset( $log['old_version'] ) ? $log['old_version'] : null;
+			$message     = isset( $log['message'] ) ? $log['message'] : null;
+			$action      = isset( $log['action'] ) ? $log['action'] : null;
+			$log_args    = compact( 'type', 'name', 'version', 'slug', 'success', 'error', 'old_version' );
+
+			if ( null === $slug || '' === $slug ) {
+				unset( $log_args['slug'] );
+			}
+
+			$this->log(
+				$message,
+				$log_args,
+				null,
+				$context,
+				$action
+			);
+		}
+
+		return true;
+	}
+
+
+	/**
+	 * Activate plugin callback.
+	 *
+	 * @param string                             $slug Plugin slug.
+	 * @param $network_wide Check if network wide.
+	 */
+	public function callback_activate_plugin( $slug, $network_wide ) {
+		$_plugins     = $this->get_plugins();
+		$name         = $_plugins[ $slug ]['Name'];
+		$network_wide = $network_wide ? esc_html__( 'network wide', 'mainwp-child-reports' ) : null;
+
+		if ( empty( $name ) ) {
+			return;
+		}
+
+		$this->log(
+			// translators: Placeholders refer to a plugin name, and whether it is on a single site or network wide (e.g. "Stream", "network wide") (a single site results in a blank string)
+			_x(
+				'"%1$s" plugin activated %2$s',
+				'1: Plugin name, 2: Single site or network wide',
+				'mainwp-child-reports'
+			),
+			compact( 'name', 'network_wide', 'slug' ),
+			null,
+			'plugins',
+			'activated'
+		);
+	}
+
+	/** Decativate plugin callback.
+	 *
+	 * @param string                             $slug Plugin slug.
+	 * @param $network_wide Check if network wide.
+	 */
+	public function callback_deactivate_plugin( $slug, $network_wide ) {
+		$_plugins     = $this->get_plugins();
+		$name         = $_plugins[ $slug ]['Name'];
+		$network_wide = $network_wide ? esc_html__( 'network wide', 'mainwp-child-reports' ) : null;
+
+		$this->log(
+			// translators: Placeholders refer to a plugin name, and whether it is on a single site or network wide (e.g. "Stream", "network wide") (a single site results in a blank string)
+			_x(
+				'"%1$s" plugin deactivated %2$s',
+				'1: Plugin name, 2: Single site or network wide',
+				'mainwp-child-reports'
+			),
+			compact( 'name', 'network_wide', 'slug' ),
+			null,
+			'plugins',
+			'deactivated'
+		);
+	}
+
+	/**
+	 * Switch theme callback.
+	 *
+	 * @param string $name Theme name.
+	 * @param string $theme Theme slug.
+	 */
+	public function callback_switch_theme( $name, $theme ) {
+		unset( $theme );
+		$this->log(
+			// translators: Placeholder refers to a theme name (e.g. "Twenty Seventeen").
+			__( '"%s" theme activated', 'mainwp-child-reports' ),
+			compact( 'name' ),
+			null,
+			'themes',
+			'activated'
+		);
+	}
+
+	/**
+	 * Update theme & transient delete callback.
+	 *
+	 * @todo Core needs a delete_theme hook
+	 */
+	public function callback_delete_site_transient_update_themes() {
+		$backtrace = debug_backtrace(); // @codingStandardsIgnoreLine This is used as a hack to determine a theme was deleted.
+		$delete_theme_call = null;
+
+		foreach ( $backtrace as $call ) {
+			if ( isset( $call['function'] ) && 'delete_theme' === $call['function'] ) {
+				$delete_theme_call = $call;
+				break;
+			}
+		}
+
+		if ( empty( $delete_theme_call ) ) {
+			return;
+		}
+
+		$name = $delete_theme_call['args'][0];
+		// @todo Can we get the name of the theme? Or has it already been eliminated
+
+		$this->log(
+			// translators: Placeholder refers to a theme name (e.g. "Twenty Seventeen").
+			__( '"%s" theme deleted', 'mainwp-child-reports' ),
+			compact( 'name' ),
+			null,
+			'themes',
+			'deleted'
+		);
+	}
+
+	/**
+	 * Uninstall plugins callback.
+	 *
+	 * @todo Core needs an uninstall_plugin hook
+	 * @todo This does not work in WP-CLI
+	 */
+	public function callback_pre_option_uninstall_plugins() {
+		if ( ! isset( $_POST['action'] ) || 'delete-plugin' !== $_POST['action'] ) {
+			return false;
+		}
+		$plugin                       = $_POST['plugin'];
+		$_plugins                     = $this->get_plugins();
+		$plugins_to_delete            = array();
+		$plugins_to_delete[ $plugin ] = isset( $_plugins[ $plugin ] ) ? $_plugins[ $plugin ] : array();
+		update_option( 'wp_mainwp_stream_plugins_to_delete', $plugins_to_delete );
+		return false;
+	}
+
+	/**
+	 * Uninstall plugins callback.
+	 *
+	 * @todo Core needs an uninstall_plugin hook
+	 * @todo This does not work in WP-CLI
+	 */
+	public function callback_deleted_plugin( $plugin_file, $deleted ) {
+		if ( $deleted ) {
+
+			if ( ! isset( $_POST['action'] ) || 'delete-plugin' !== $_POST['action'] ) {
+				return;
+			}
+			$plugins_to_delete = get_option( 'wp_mainwp_stream_plugins_to_delete' );
+			if ( ! $plugins_to_delete ) {
+				return;
+			}
+			foreach ( $plugins_to_delete as $plugin => $data ) {
+				if ( $plugin_file == $plugin ) {
+					$name         = $data['Name'];
+					$network_wide = $data['Network'] ? esc_html__( 'network wide', 'mainwp-child-reports' ) : '';
+
+					$this->log(
+						// translators: Placeholder refers to a plugin name (e.g. "Stream").
+						__( '"%s" plugin deleted', 'mainwp-child-reports' ),
+						compact( 'name', 'plugin', 'network_wide' ),
+						null,
+						'plugins',
+						'deleted'
+					);
+				}
+			}
+			delete_option( 'wp_mainwp_stream_plugins_to_delete' );
+		}
+	}
+
+	/**
+	 * Logs WordPress core upgrades
+	 *
+	 * @action automatic_updates_complete
+	 *
+	 * @param array $update_results  Update results.
+	 * @return void
+	 */
+	public function callback_automatic_updates_complete( $update_results ) {
+		if ( ! is_array( $update_results ) || empty( $update_results ) ) {
+			return;
+		}
+
+		$this->automatic_updates_complete_plugin_theme( $update_results );
+
+		if ( empty( $update_results['core'] ) || ! is_array( $update_results['core'] ) ) {
+			return;
+		}
+
+		foreach ( $update_results['core'] as $info ) {
+			if ( ! is_object( $info ) || empty( $info->item->version ) ) {
+				continue;
+			}
+
+			if ( ! isset( $info->result ) || true !== $info->result ) {
+				continue;
+			}
+
+			$old_version  = $this->current_wordpress_version;
+			$new_version  = $info->item->version;
+			$auto_updated = true;
+
+			if ( empty( $old_version ) || version_compare( $new_version, $old_version, '<=' ) ) {
+                continue;
+            }
+
+			$message = esc_html__( 'WordPress auto-updated from %1$s to %2$s', 'mainwp-child-reports' );
+
+			$this->log(
+				$message,
+				compact( 'old_version', 'new_version', 'auto_updated' ),
+				null,
+				'wordpress', // phpcs:ignore -- fix format text.
+				'updated',
+				null,
+				true // forced log - $forced_log.
+			);
+
+			$this->current_wordpress_version = '';
+		}
+	}
+
+
+	/**
+	 * Log automatic updates.
+	 *
+	 * @param array $update_results Update results.
+	 */
+	public function automatic_updates_complete_plugin_theme( $update_results ) {
+
+		if ( ! is_array( $update_results ) || empty( $update_results ) ) {
+			return;
+		}
+
+		$logs = array();
+
+		if ( ! empty( $update_results['plugin'] ) && is_array( $update_results['plugin'] ) ) {
+			foreach ( $update_results['plugin'] as $result ) {
+				if ( ! isset( $result->result ) || true !== $result->result || ! isset( $result->item ) || empty( $result->item->plugin ) ) {
+					continue;
+				}
+
+				$type         = 'plugin';
+				$action       = 'updated';
+				$auto_updated = true;
+				// translators: Placeholders refer to a plugin/theme type, a plugin/theme name, and a plugin/theme version (e.g. "plugin", "Stream", "4.2").
+				$message = _x(
+					'Updated %1$s: %2$s %3$s',
+					'Plugin/theme update. 1: Type (plugin/theme), 2: Plugin/theme name, 3: Plugin/theme version',
+					'mainwp-child-reports'
+				);
+
+				$slug        = $result->item->plugin;
+				$old_version = isset( $result->item->current_version ) ? $result->item->current_version : '';
+				$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $slug );
+				$name        = isset( $plugin_data['Name'] ) ? $plugin_data['Name'] : '';
+				$version     = isset( $plugin_data['Version'] ) ? $plugin_data['Version'] : '';
+
+				if ( ! empty( $name ) && ! empty( $version ) && ( empty( $old_version ) || version_compare( $version, $old_version, '>' ) ) ) {
+					$logs[] = compact( 'type', 'slug', 'name', 'old_version', 'version', 'message', 'action', 'auto_updated' );
+				}
+			}
+		}
+
+		if ( ! empty( $update_results['theme'] ) && is_array( $update_results['theme'] ) ) {
+			foreach ( $update_results['theme'] as $result ) {
+				if ( ! isset( $result->result ) || true !== $result->result || ! isset( $result->item ) || empty( $result->item->theme ) ) {
+					continue;
+				}
+
+				$type         = 'theme';
+				$action       = 'updated';
+				$auto_updated = true;
+				$message      = _x(
+					'Updated %1$s: %2$s %3$s',
+					'Plugin/theme update. 1: Type (plugin/theme), 2: Plugin/theme name, 3: Plugin/theme version',
+					'mainwp-child-reports'
+				);
+
+				$slug        = $result->item->theme;
+				$old_version = isset( $result->item->current_version ) ? $result->item->current_version : '';
+				$theme       = wp_get_theme( $slug );
+				$name        = $theme->get( 'Name' );
+				$version     = $theme->get( 'Version' );
+
+				if ( ! empty( $name ) && ! empty( $version ) && ( empty( $old_version ) || version_compare( $version, $old_version, '>' ) ) ) {
+					$logs[] = compact( 'type', 'slug', 'name', 'old_version', 'version', 'message', 'action', 'auto_updated' );
+				}
+			}
+		}
+
+		foreach ( $logs as $log ) {
+			$type = isset( $log['type'] ) ? $log['type'] : null;
+			if ( empty( $type ) ) {
+				continue;
+			}
+
+			$context      = $type . 's';
+			$name         = isset( $log['name'] ) ? $log['name'] : null;
+			$version      = isset( $log['version'] ) ? $log['version'] : null;
+			$slug         = isset( $log['slug'] ) ? $log['slug'] : null;
+			$old_version  = isset( $log['old_version'] ) ? $log['old_version'] : null;
+			$message      = isset( $log['message'] ) ? $log['message'] : null;
+			$action       = isset( $log['action'] ) ? $log['action'] : null;
+			$auto_updated = isset( $log['auto_updated'] ) ? $log['auto_updated'] : null;
+
+			$this->log(
+				$message,
+				compact( 'type', 'name', 'version', 'slug', 'old_version', 'auto_updated' ),
+				null,
+				$context,
+				$action,
+				null,
+				true
+			);
+		}
+	}
+
+
+	/**
+	 * Core updated successfully callback.
+	 *
+	 * @param $new_version New WordPress verison.
+	 */
+	public function callback__core_updated_successfully( $new_version ) {
+
+		/**
+		 * @global string $pagenow Current page.
+		 */
+		global $pagenow;
+
+		$old_version  = ! empty( $this->current_wordpress_version ) ? $this->current_wordpress_version : wp_mainwp_stream_get_wordpress_version();
+		$auto_updated = ( 'update-core.php' !== $pagenow );
+
+        // Check if the old version is smaller than the new version.
+        if ( version_compare( $new_version, $old_version, '<=' ) ) {
+			$this->current_wordpress_version = '';
+			return;
+		}
+
+		if ( $auto_updated ) {
+			// translators: Placeholder refers to a version number (e.g. "4.2")
+			$message = esc_html__( 'WordPress auto-updated from %1$s to %2$s', 'mainwp-child-reports' );
+		} else {
+			// translators: Placeholder refers to a version number (e.g. "4.2")
+			$message = esc_html__( 'WordPress updated from %1$s to %2$s', 'mainwp-child-reports' );
+		}
+
+		$this->log(
+			$message,
+			compact( 'old_version', 'new_version', 'auto_updated' ),
+			null,
+			'wordpress', // phpcs:ignore -- fix format text.
+			'updated'
+		);
+
+		$this->current_wordpress_version = '';
+	}
+
+	/**
+	 * Child Site install Plugin or theme callback.
+	 *
+	 * @param array $args Success message.
+	 * @return bool|void Return FALSE on failure.
+	 */
+	public function callback_mainwp_child_install_plugin_theme( $args ) {
+
+		$logs    = array();
+		$success = isset( $args['success'] ) ? $args['success'] : 0;
+		$error   = null;
+
+		if ( ! $success ) {
+			$errors = $args['errors'];
+
+		}
+
+		// This would have failed down the road anyway
+		if ( ! isset( $args['type'] ) ) {
+			return false;
+		}
+
+		$type   = $args['type'];
+		$action = $args['action'];
+
+		if ( ! in_array( $type, array( 'plugin', 'theme' ) ) ) {
+			return;
+		}
+
+		if ( 'install' === $action ) {
+			if ( 'plugin' === $type ) {
+				if ( ! isset( $args['Name'] ) || empty( $args['Name'] ) ) {
+					return;
+				}
+				$slug    = $args['slug'];
+				$name    = $args['Name'];
+				$version = $args['Version'];
+			} else { // theme
+                $raw_slug = ! empty( $args['slug'] ) ? $args['slug'] : null;
+				$slug = $this->normalize_theme_slug( $raw_slug );
+				if ( ! $slug ) {
+					return;
+				}
+				wp_clean_themes_cache();
+				$theme   = wp_get_theme( $slug );
+				$name    = $theme->name;
+				$version = $theme->version;
+			}
+			$action  = 'installed';
+			$message = _x(
+				'Installed %1$s: %2$s %3$s',
+				'Plugin/theme installation. 1: Type (plugin/theme), 2: Plugin/theme name, 3: Plugin/theme version',
+				'mainwp_child_reports'
+			);
+			$logs[]  = compact( 'slug', 'name', 'version', 'message', 'action' );
+		} else {
+			return false;
+		}
+
+		$context = $type . 's';
+
+		foreach ( $logs as $log ) {
+			$name        = isset( $log['name'] ) ? $log['name'] : null;
+			$version     = isset( $log['version'] ) ? $log['version'] : null;
+			$slug        = isset( $log['slug'] ) ? $log['slug'] : null;
+			$old_version = isset( $log['old_version'] ) ? $log['old_version'] : null;
+			$message     = isset( $log['message'] ) ? $log['message'] : null;
+			$action      = isset( $log['action'] ) ? $log['action'] : null;
+			$this->log(
+				$message,
+				compact( 'type', 'name', 'version', 'slug', 'success', 'error', 'old_version' ),
+				null,
+				$context,
+				$action
+			);
+		}
+	}
+
+
+	/**
+	 * MainWP Plugin Action callback.
+	 *
+	 * @param $args Action arguments.
+	 */
+	public function callback_mainwp_child_plugin_action( $args ) {
+		if ( ! is_array( $args ) || ! isset( $args['action'] ) ) {
+			return;
+		}
+			$action = $args['action'];
+		if ( $action == 'delete' ) {
+			$name         = $args['Name'];
+			$network_wide = '';
+			$this->log(
+				__( '"%s" plugin deleted', 'mainwp-child-reports' ),
+				compact( 'name', 'plugin' ),
+				null,
+				'plugins',
+				'deleted'
+			);
+		}
+	}
+
+	/**
+	 * MainWP Child Theme action callback.
+	 *
+	 * @param string $args MainWP Child Theme action.
+	 */
+	public function callback_mainwp_child_theme_action( $args ) {
+		if ( ! is_array( $args ) || ! isset( $args['action'] ) ) {
+			return;
+		}
+			$action = $args['action'];
+			$name   = $args['Name'];
+		if ( $action == 'delete' ) {
+			$this->log(
+				__( '"%s" theme deleted', 'mainwp-child-reports' ),
+				compact( 'name' ),
+				null,
+				'themes',
+				'deleted'
+			);
+		}
+	}
+
+	// ( Net-Concept - Xavier NUEL ) : save all plugins versions before upgrade.
+
+	/**
+	 * Upgrader pre-instaler callback.
+	 */
+	public function callback_upgrader_pre_install() {
+		if ( empty( $this->current_plugins_info ) ) {
+			$this->current_plugins_info = $this->get_plugins();
+		}
+	}
+}

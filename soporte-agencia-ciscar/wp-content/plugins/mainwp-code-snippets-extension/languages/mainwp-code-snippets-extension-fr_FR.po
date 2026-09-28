@@ -1,0 +1,349 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MainWP Code Snippets Extension\n"
+"POT-Creation-Date: 2024-11-28 18:56+0100\n"
+"PO-Revision-Date: 2024-11-28 18:56+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: mainwp-code-snippets-extension.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: class/mainwp-cs.class.php:126
+msgid ""
+"No child sites found. Please, make sure your sites are properly connected."
+msgstr ""
+"Aucun site pour enfants n'a été trouvé. Veuillez vous assurer que vos sites "
+"sont correctement connectés."
+
+#: class/mainwp-cs.class.php:196 class/mainwp-cs.class.php:244
+msgid "Cleaning Sites"
+msgstr "Nettoyage des sites"
+
+#: class/mainwp-cs.class.php:201
+msgid "Snippet ID is empty."
+msgstr "L'identifiant de l'extrait est vide."
+
+#: class/mainwp-cs.class.php:206
+msgid "Snippet not found."
+msgstr "L'extrait n'a pas été trouvé."
+
+#: class/mainwp-cs.class.php:245
+msgid "No websites found."
+msgstr "Aucun site trouvé."
+
+#: class/mainwp-cs.class.php:348
+msgid "Snippet ID empty."
+msgstr "L'identifiant de l'extrait est vide."
+
+#: class/mainwp-cs.class.php:352 class/mainwp-cs.class.php:371
+msgid "Snippet is empty."
+msgstr "L'extrait est vide."
+
+#: class/mainwp-cs.class.php:469
+msgid "Snippet has been saved."
+msgstr "L'extrait a été sauvegardé."
+
+#: class/mainwp-cs.class.php:471
+msgid "Saving snippet failed. Please, try again."
+msgstr "L'enregistrement de l'extrait a échoué. Veuillez réessayer."
+
+#: class/mainwp-cs.class.php:488
+msgid ""
+"MainWP is not responsible for the code that you run on your sites. Use this "
+"tool with extreme care and at your own risk. It is recommended that you run "
+"any code on a test site before releasing on live sites."
+msgstr ""
+"MainWP n'est pas responsable du code que vous exécutez sur vos sites. "
+"Utilisez cet outil avec une extrême prudence et à vos propres risques. Il "
+"est recommandé d'exécuter tout code sur un site de test avant de le "
+"diffuser sur des sites réels."
+
+#: class/mainwp-cs.class.php:494
+msgid "Select Sites"
+msgstr "Sélectionner établissement(s)"
+
+#: class/mainwp-cs.class.php:502
+msgid "Snippet Options"
+msgstr "Options de l'extrait"
+
+#: class/mainwp-cs.class.php:506
+msgid "Snippet Title"
+msgstr "Titre de Snippet"
+
+#: class/mainwp-cs.class.php:509
+msgid "Snippet Description"
+msgstr "Description de l'extrait"
+
+#: class/mainwp-cs.class.php:512
+msgid "Snippet Type"
+msgstr "Type d'extrait"
+
+#: class/mainwp-cs.class.php:515
+msgid "Execute on Child Sites"
+msgstr "Exécuter sur les sites enfants"
+
+#: class/mainwp-cs.class.php:519
+msgid "Return info from Child Sites"
+msgstr "Retour d'informations sur les sites pour enfants"
+
+#: class/mainwp-cs.class.php:523
+msgid "Save to wp-config.php"
+msgstr "Sauvegarder dans wp-config.php"
+
+#: class/mainwp-cs.class.php:533
+msgid "Save Snippet"
+msgstr "Enregistrer l'extrait"
+
+#: class/mainwp-cs.class.php:535
+msgid "Save & Execute Snippet"
+msgstr "Enregistrer et exécuter l'extrait"
+
+#: class/mainwp-cs.class.php:537
+msgid "New Snippet"
+msgstr "Nouvel extrait"
+
+#: class/mainwp-cs.class.php:540 class/mainwp-cs.class.php:649
+#: class/mainwp-cs.class.php:668
+msgid "Delete"
+msgstr "Supprimer"
+
+#: class/mainwp-cs.class.php:548
+msgid "Console"
+msgstr "Console"
+
+#: class/mainwp-cs.class.php:551
+msgid "Current Progress"
+msgstr "Progrès actuels"
+
+#: class/mainwp-cs.class.php:568 class/mainwp-cs.class.php:582
+msgid "Title"
+msgstr "Titre"
+
+#: class/mainwp-cs.class.php:569 class/mainwp-cs.class.php:583
+msgid "Type"
+msgstr "Type"
+
+#: class/mainwp-cs.class.php:570 class/mainwp-cs.class.php:584
+msgid "Description"
+msgstr "Description"
+
+#: class/mainwp-cs.class.php:571 class/mainwp-cs.class.php:585
+msgid "Last Edited"
+msgstr "Dernière modification"
+
+#: class/mainwp-cs.class.php:601
+msgid ""
+"You don't have any saved code snippets yet. Go to the Execute Snippets page "
+"to create and save your first snippet."
+msgstr ""
+"Vous n'avez pas encore enregistré d'extraits de code. Allez à la page "
+"Exécuter des extraits pour créer et enregistrer votre premier extrait."
+
+#: class/mainwp-cs.class.php:627
+msgid "Delete Snippet"
+msgstr "Supprimer l'extrait"
+
+#: class/mainwp-cs.class.php:632
+msgid "Keep the existing snippet on the child sites?"
+msgstr "Conserver le snippet existant sur les sites enfants ?"
+
+#: class/mainwp-cs.class.php:635
+msgid "Yes"
+msgstr "Oui"
+
+#: class/mainwp-cs.class.php:641
+msgid "No"
+msgstr "Non"
+
+#: class/mainwp-cs.class.php:662
+msgid "Executes Function"
+msgstr "Exécute la fonction"
+
+#: class/mainwp-cs.class.php:662
+msgid "Return Information"
+msgstr "Informations sur le retour"
+
+#: class/mainwp-cs.class.php:662
+msgid "Executes in wp-config.php"
+msgstr "Exécute dans wp-config.php"
+
+#: class/mainwp-cs.class.php:667
+msgid "Load"
+msgstr "Charger"
+
+#: class/mainwp-cs.class.php:696
+msgid "Execute Snippet"
+msgstr "Exécuter l'extrait"
+
+#: class/mainwp-cs.class.php:697
+msgid "Saved Snippets"
+msgstr "Snippets sauvegardés"
+
+#: js/mainwp-codesnippets.js:32
+msgid "Are you sure you want to execute this code snippet?"
+msgstr "Êtes-vous sûr de vouloir exécuter cet extrait de code ?"
+
+#: js/mainwp-codesnippets.js:44 js/mainwp-codesnippets.js:116
+msgid "Snippet title is required. Please, enter the title and try again."
+msgstr ""
+"Le titre de l'extrait est requis. Veuillez saisir le titre et réessayer."
+
+#: js/mainwp-codesnippets.js:53 js/mainwp-codesnippets.js:122
+#: js/mainwp-codesnippets.js:279
+msgid "Snippet cannot be empty. Please, enter the snippet and try again."
+msgstr "L'extrait ne peut être vide. Veuillez saisir l'extrait et réessayer."
+
+#: js/mainwp-codesnippets.js:90
+msgid "Checking if snippet already exists on child sites. Please wait..."
+msgstr ""
+"Vérifier si l'extrait existe déjà sur les sites enfants. Veuillez "
+"patienter..."
+
+#: js/mainwp-codesnippets.js:96
+msgid "No selected sites. Please select wanted child sites first."
+msgstr ""
+"Aucun site sélectionné. Veuillez d'abord sélectionner les sites pour "
+"enfants désirés."
+
+#: js/mainwp-codesnippets.js:131
+msgid "Saving snippet. Please wait..."
+msgstr "Enregistrement de l'extrait. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:150 js/mainwp-codesnippets.js:185
+msgid "Are you sure you want to delete this code snippet?"
+msgstr "Êtes-vous sûr de vouloir supprimer cet extrait de code ?"
+
+#: js/mainwp-codesnippets.js:158 js/mainwp-codesnippets.js:203
+msgid " Deleting. Please wait..."
+msgstr " Suppression. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:165 js/mainwp-codesnippets.js:208
+msgid "Snippet could not be deleted. Please, reload the page and try again."
+msgstr ""
+"L'extrait n'a pas pu être supprimé. Veuillez recharger la page et réessayer."
+
+#: js/mainwp-codesnippets.js:232
+msgid "Deleting. Please wait..."
+msgstr "Suppression. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:237
+msgid "Snippet deleted successfully."
+msgstr "L'extrait a été supprimé avec succès."
+
+#: js/mainwp-codesnippets.js:270
+msgid "Please select wanted child sites first!"
+msgstr "Veuillez d'abord sélectionner les sites pour enfants désirés !"
+
+#: js/mainwp-codesnippets.js:296
+msgid "Executing the snippet on selected sites. Please wait..."
+msgstr ""
+"Exécution du snippet sur les sites sélectionnés. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:351
+msgid "Saving the snippet. Please wait..."
+msgstr "Enregistrement de l'extrait. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:387
+msgid "Saved successfully!"
+msgstr "Enregistré avec succès!"
+
+#: js/mainwp-codesnippets.js:394
+msgid "Saving the snippet on selected sites. Please wait..."
+msgstr ""
+"Enregistrement du snippet sur les sites sélectionnés. Veuillez patienter..."
+
+#: js/mainwp-codesnippets.js:400
+msgid "No selected sites to proceed. Process completed."
+msgstr "Aucun site n'a été sélectionné. Processus terminé."
+
+#: js/mainwp-codesnippets.js:405
+msgid "Snippet saved successfully!"
+msgstr "L'extrait a été sauvegardé avec succès !"
+
+#: js/mainwp-codesnippets.js:409
+msgid "Saving process failed."
+msgstr "Le processus de sauvegarde a échoué."
+
+#: js/mainwp-codesnippets.js:452 js/mainwp-codesnippets.js:496
+msgid "Undefined error occurred. Please, try again."
+msgstr "Une erreur inconnue c'est produite."
+
+#: js/mainwp-codesnippets.js:454 js/mainwp-codesnippets.js:498
+msgid "Snippet cannot be empty."
+msgstr "L'extrait ne peut pas être vide."
+
+#: js/mainwp-codesnippets.js:461 js/mainwp-codesnippets.js:505
+msgid "Process failed. Please, try again."
+msgstr "Le processus a échoué. Veuillez réessayer."
+
+#: js/mainwp-codesnippets.js:472
+msgid "Process completed successfully."
+msgstr "Le processus s'est terminé avec succès."
+
+#: js/mainwp-codesnippets.js:511
+msgid "Snipped saved successfully!"
+msgstr "La césure a été sauvée avec succès !"
+
+#: js/mainwp-codesnippets.js:565 js/mainwp-codesnippets.js:609
+msgid "Undefined error occured. Please, try again."
+msgstr "Une erreur non définie s'est produite. Essaie à nouveau."
+
+#: js/mainwp-codesnippets.js:572 js/mainwp-codesnippets.js:616
+msgid "Saved without changes."
+msgstr "Enregistré sans modification."
+
+#: js/mainwp-codesnippets.js:631
+msgid "Process finished successfully."
+msgstr "Le processus s'est terminé avec succès."
+
+#: js/mainwp-codesnippets.js:634
+msgid "Process finished with errors"
+msgstr "Le processus s'est terminé avec des erreurs"
+
+#: mainwp-code-snippets-extension.php:173
+msgid ""
+"requires <a href=\"https://mainwp.com/\" target=\"_blank\">MainWP Dashboard "
+"Plugin</a> to be activated in order to work. Please install and activate <a "
+"href=\"https://mainwp.com/\" target=\"_blank\">MainWP Dashboard Plugin</a> "
+"first."
+msgstr ""
+"nécessite que le <a href=\"https://mainwp.com/\" target=\"_blank\">plugin "
+"MainWP Dashboard</a> soit activé pour fonctionner. Veuillez d'abord "
+"installer et activer le <a href=\"https://mainwp.com/\" "
+"target=\"_blank\">plugin MainWP Dashboard</a>."
+
+#. Plugin Name of the plugin/theme
+msgid "MainWP Code Snippets Extension"
+msgstr "Extension des extraits de code de MainWP"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://mainwp.com"
+msgstr "https://mainwp.com"
+
+#. Description of the plugin/theme
+msgid ""
+"The MainWP Code Snippets Extension is a powerful PHP platform that enables "
+"you to execute php code and scripts on your child sites and view the output "
+"on your Dashboard. Requires the MainWP Dashboard plugin."
+msgstr ""
+"L'extension Code Snippets de MainWP est une puissante plateforme PHP qui "
+"vous permet d'exécuter du code php et des scripts sur vos sites enfants et "
+"de visualiser le résultat sur votre tableau de bord. Nécessite le plugin "
+"MainWP Dashboard."
+
+#. Author of the plugin/theme
+msgid "MainWP"
+msgstr "MainWP"

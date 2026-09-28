@@ -1,0 +1,1224 @@
+<?php
+/**
+ * MainWP Logger
+ *
+ * For custom read/write logging file.
+ *
+ * @package     MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class MainWP_Logger
+ *
+ * @package MainWP\Dashboard
+ */
+class MainWP_Logger { // phpcs:ignore Generic.Classes.OpeningBraceSameLine.ContentAfterBrace -- NOSONAR.
+
+    // phpcs:disable WordPress.WP.AlternativeFunctions -- for custom read/write logging file.
+
+    const UPDATE_CHECK_LOG_PRIORITY            = 10;
+    const EXECUTION_TIME_LOG_PRIORITY          = 15;
+    const LOGS_AUTO_PURGE_LOG_PRIORITY         = 16;
+    const LOGS_REGULAR_SCHEDULE                = 18;
+    const DEBUG_UPDATES_SCHEDULE               = 19;
+    const COST_TRACKER_LOG_PRIORITY            = 20230112;
+    const API_BACKUPS_LOG_PRIORITY             = 20240130;
+    const CONNECT_LOG_PRIORITY                 = 20241001;
+    const UPTIME_CHECK_LOG_PRIORITY            = 20241017;
+    const UPTIME_NOTICE_LOG_PRIORITY           = 20241106;
+    const SITES_CHANGES_LOG_PRIORITY           = 20250417;
+    const CACHE_METRICS_LOG_PRIORITY           = 20250814;
+    const DB_QUERIES_LOG_PRIORITY              = 20250827;
+    const UNHOOKS_LOG_PRIORITY                 = 20250901;
+    const WARM_CACHE_LOG_PRIORITY              = 20250915;
+    const EXTENSION_UPDATES_CHECK_LOG_PRIORITY = 20260306;
+    const EXECUTION_SYNC_LOG_PRIORITY          = 20260316;
+    const EXECUTION_SYNC_DETAILS_LOG_PRIORITY  = 20260323;
+
+    const DISABLED = - 1;
+    const LOG      = 0;
+    const WARNING  = 1;
+    const INFO     = 2;
+    const DEBUG    = 3;
+    const NOTICE   = 4;
+
+    const LOG_COLOR     = '#999999';
+    const DEBUG_COLOR   = '#666666';
+    const INFO_COLOR    = '#276f86';
+    const NOTICE_COLOR  = '#eb7609';
+    const WARNING_COLOR = '#9f3a38';
+
+    /**
+     * Private variable to hold time start.
+     *
+     * @var int
+     */
+    private static $time_start = null;
+
+    /**
+     * Private varibale to hold the log file prefix.
+     *
+     * @var string Default 'mainwp'
+     */
+    private $logFileNamePrefix = 'mainwp';
+
+    /**
+     * Private varibale to hold the log file suffix.
+     *
+     * @var string Default '.log'
+     */
+    private $logFileNameSuffix = '.log';
+
+    /**
+     * Private varibale to hold the log file max size.
+     *
+     * @var int Default 0.5
+     */
+    private $logMaxMB = 0.5;
+
+    /**
+     * Private varibale to hold the log file date format.
+     *
+     * @var string Default 'Y-m-d H:i:s'
+     */
+    private $logDateFormat = 'Y-m-d H:i:s';
+
+    /**
+     * Private varibale to hold the log file output directory.
+     *
+     * @var mixed Default null
+     */
+    private $logDirectory = null;
+
+    /**
+     * Private varibale to hold the log file priotrity.
+     *
+     * @var string Disabled
+     */
+    private $logPriority = self::DISABLED;
+
+    /**
+     * Private varibale to hold the log Specific priotrity.
+     *
+     * @var string Disabled
+     */
+    private $logSpecific = 0;
+
+    /**
+     * Private varibale to hold the auto enable logging actions.
+     *
+     * @var array Auto enable logging.
+     */
+    private $autoEnableLoggingActions = array();
+
+
+    /**
+     * Private static varibale to hold the instance.
+     *
+     * @var mixed Default null
+     */
+    private static $instance = null;
+
+    /**
+     * Method instance()
+     *
+     * Returns new MainWP_Logger instance.
+     *
+     * @return self MainWP_Logger
+     *
+     * @uses \MainWP\Dashboard\MainWP_Logger
+     */
+    public static function instance() {
+        if ( null === static::$instance ) {
+            static::$instance = new self();
+        }
+        return static::$instance;
+    }
+
+    /**
+     * MainWP_Logger constructor.
+     *
+     * Run each time the class is called.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System_Utility::get_mainwp_dir()
+     */
+    private function __construct() {
+
+        add_action( 'init', array( $this, 'init' ) ); // Fix the issue where database tables do not exist.
+
+        $enabled  = $this->get_log_status();
+        $specific = $this->get_log_specific();
+
+        $enabled  = apply_filters( 'mainwp_log_status', $enabled );
+        $specific = apply_filters( 'mainwp_log_specific', $specific );
+
+        $this->set_log_priority( $enabled, $specific );
+
+        $this->autoEnableLoggingActions = array(
+            static::CONNECT_LOG_PRIORITY,
+        );
+        add_action( 'mainwp_module_log_record_inserted', array( $this, 'hook_module_log_record_inserted' ), 10, 2 );
+        add_filter( 'mainwp_custom_log_enabled_log_priority', array( $this, 'hook_is_enabled_log_priority' ), 10, 1 );
+    }
+
+    /**
+     * Method init.
+     */
+    public function init() {
+        $enabled = get_option( 'mainwp_actionlogs' );
+        if ( false === $enabled && ! get_transient( 'mainwp_transient_action_logs' ) ) {
+            $sites_count = MainWP_DB::instance()->get_websites_count();
+            if ( empty( $sites_count ) ) {
+                set_transient( 'mainwp_transient_action_logs', true, 2 * WEEK_IN_SECONDS );
+            }
+        }
+    }
+
+    /**
+     * Method set_log_priority()
+     *
+     * Sets the log priority.
+     *
+     * @param mixed $logPriority Log priority value.
+     * @param mixed $spec_log Specific log.
+     */
+    public function set_log_priority( $logPriority, $spec_log = 0 ) {
+        $this->logPriority = (int) $logPriority;
+        $this->logSpecific = (int) $spec_log; // 1 - specific log, 0 - not specific log.
+    }
+
+
+        /**
+         * Method enable_log_priority()
+         *
+         * Sets the log priority.
+         *
+         * @param mixed $logPriority Log priority value.
+         * @param mixed $spec_log Specific log.
+         */
+    public function enable_log_priority( $logPriority, $spec_log = 1 ) {
+        $spec_log    = $spec_log ? 1 : 0;
+        $logPriority = intval( $logPriority );
+        MainWP_Utility::update_option( 'mainwp_specific_logs', $spec_log );
+        MainWP_Utility::update_option( 'mainwp_actionlogs', $logPriority );
+        MainWP_Utility::update_option( 'mainwp_actionlogs_enabled_timestamp', time() );
+        $this->log_action( 'Action logs set to: ' . $this->get_log_text( $logPriority ), ( $spec_log ? $logPriority : static::LOG ), 2, true );
+        $this->set_log_priority( $logPriority, $spec_log );
+    }
+
+
+    /**
+     * Method get_log_status()
+     *
+     * Get log status.
+     *
+     * @return mixed $enabled log status.
+     */
+    public function get_log_status() {
+        $enabled = get_option( 'mainwp_actionlogs' );
+        if ( false === $enabled ) {
+            if ( get_transient( 'mainwp_transient_action_logs' ) ) {
+                $enabled = self::DEBUG;
+            } else {
+                $enabled = static::DISABLED;
+            }
+        }
+        return $enabled;
+    }
+
+
+    /**
+     * Method get_log_specific()
+     *
+     * Get log specific status.
+     *
+     * @return mixed $enabled log status.
+     */
+    public function get_log_specific() {
+        return get_option( 'mainwp_specific_logs', 0 );
+    }
+
+    /**
+     * Method get_log_type_info()
+     *
+     * Get log type info.
+     *
+     * @param int $type Log type value.
+     * @param int $logcolor Log color value.
+     *
+     * @return array $currentColor log color code.
+     */
+    public function get_log_type_info( $type, $logcolor ) {
+        $currentColor = '';
+        $prefix       = '';
+        if ( static::DEBUG === $type || static::DEBUG === $logcolor ) {
+            $currentColor = static::DEBUG_COLOR;
+            $prefix       = '[DEBUG]';
+        } elseif ( static::INFO === $type || static::INFO === $logcolor ) {
+            $currentColor = static::INFO_COLOR;
+            $prefix       = '[INFO]';
+        } elseif ( static::WARNING === $type || static::WARNING === $logcolor ) {
+            $currentColor = static::WARNING_COLOR;
+            $prefix       = '[WARNING]';
+        } elseif ( static::LOG === $type || static::LOG === $logcolor ) {
+            $currentColor = static::LOG_COLOR;
+            $prefix       = '[LOG]';
+        } elseif ( static::NOTICE === $type || static::NOTICE === $logcolor ) {
+            $currentColor = static::NOTICE_COLOR;
+            $prefix       = '[NOTICE]';
+        }
+        return array(
+            'log_color'  => $currentColor,
+            'log_prefix' => $prefix,
+        );
+    }
+
+    /**
+     * Method debug()
+     *
+     * Grab debug.
+     *
+     * @param string $text Debug message text.
+     *
+     * @return string Log debug message.
+     */
+    public function debug( $text ) {
+        return $this->log( $text, static::DEBUG );
+    }
+
+    /**
+     * Method info()
+     *
+     * Grab info.
+     *
+     * @param string $text Info message text.
+     *
+     * @return string Log info message.
+     */
+    public function info( $text ) {
+        return $this->log( $text, static::INFO );
+    }
+
+    /**
+     * Method warning()
+     *
+     * Grab warning information.
+     *
+     * @param string $text Warning message text.
+     *
+     * @return string Log warning message.
+     */
+    public function warning( $text ) {
+        return $this->log( $text, static::WARNING );
+    }
+
+    /**
+     * Method actions()
+     *
+     * Grab actions information.
+     *
+     * @param string $text Warning message text.
+     * @param int    $priority priority message.
+     * @param int    $log_color Set color: 0 - LOG, 1 - WARNING, 2 - INFO, 3- DEBUG.
+     * @param bool   $forced forced logging.
+     * @param int    $log_type Log type.
+     *
+     * @return string Log warning message.
+     */
+    public function log_action( $text, $priority, $log_color = 0, $forced = false, $log_type = 0 ) {
+        return $this->log( $text, $priority, $log_color, $forced, false, $log_type );
+    }
+
+
+    /**
+     * Method log_events().
+     *
+     * @param string $event_name Event name.
+     * @param string $text Log update check.
+     * @param mixed  $color Log color.
+     * @param int    $log_type Log type.
+     */
+    public function log_events( $event_name, $text = '', $color = false, $log_type = false ) {
+        $events = is_array( $event_name ) ? $event_name : explode( '|', $event_name );
+        if ( is_array( $events ) ) {
+            foreach ( $events as $event ) {
+                switch ( $event ) {
+                    case 'update-check':
+                        $this->log_action( '[Update Checks] :: ' . $text, static::UPDATE_CHECK_LOG_PRIORITY );
+                        break;
+                    case 'regular-schedule':
+                        $this->log_action( '[Regular Schedule] :: ' . $text, static::LOGS_REGULAR_SCHEDULE );
+                        break;
+                    case 'debug-updates-crons':
+                        $this->log_action( '[Debug updates crons] :: ' . $text, static::DEBUG_UPDATES_SCHEDULE );
+                        break;
+                    case 'sites-changes':
+                        $this->log_action( '[Sites Changes] :: ' . $text, static::SITES_CHANGES_LOG_PRIORITY );
+                        break;
+                    case 'cache-metrics':
+                        $this->log_action( '[MainWP Cache] :: ' . $text, static::CACHE_METRICS_LOG_PRIORITY );
+                        break;
+                    case 'db-queries':
+                        $this->log_action( '[DB Queries] :: ' . $text, static::DB_QUERIES_LOG_PRIORITY );
+                        break;
+                    case 'unhooks':
+                        $this->log_action( '[Unhooks infor] :: ' . $text, static::UNHOOKS_LOG_PRIORITY, $color );
+                        break;
+                    case 'execution-time':
+                        $this->log_action( '[Execution time] :: ' . $text, static::EXECUTION_TIME_LOG_PRIORITY, $color );
+                        break;
+                    case 'execution-sync':
+                        $this->log_action( '[Execution Sync] :: ' . $text, static::EXECUTION_SYNC_LOG_PRIORITY, $color, false, $log_type );
+                        break;
+                    case 'execution-sync-details':
+                        $this->log_action( '[Execution Sync] :: ' . $text, static::EXECUTION_SYNC_DETAILS_LOG_PRIORITY, $color, false, $log_type );
+                        break;
+                    case 'warm-cache':
+                        $this->log_action( '[Warm cache] :: ' . $text, static::WARM_CACHE_LOG_PRIORITY, $color );
+                        break;
+                    case 'extension-updates-check':
+                        $this->log_action( '[Extension Updates Check] :: ' . $text, static::EXTENSION_UPDATES_CHECK_LOG_PRIORITY, $color );
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Method log_update_check().
+     *
+     * @param string $text Log update check.
+     */
+    public function log_update_check( $text = '' ) {
+        $this->log_action( $text, static::UPDATE_CHECK_LOG_PRIORITY );
+    }
+
+    /**
+     * Method log_update_check().
+     *
+     * @param string $text Log update check.
+     */
+    public function log_uptime_check( $text = '' ) {
+        $this->log_action( $text, static::UPTIME_CHECK_LOG_PRIORITY );
+    }
+
+    /**
+     * Method log_uptime_notice().
+     *
+     * @param string $text Log update check.
+     */
+    public function log_uptime_notice( $text = '' ) {
+        $this->log_action( $text, static::UPTIME_NOTICE_LOG_PRIORITY );
+    }
+
+    /**
+     * Method debug_for_website()
+     *
+     * Grab website debug and info.
+     *
+     * @param object $website Child site object.
+     * @param string $action Performed action.
+     * @param string $message Debug message.
+     *
+     * @return mixed Website debug info.
+     *
+     * @uses  \MainWP\Dashboard\MainWP_Utility::get_nice_url()
+     */
+    public function debug_for_website( $website, $action, $message ) {
+        if ( empty( $website ) ) {
+            return $this->log( '[-] [-]  ::' . $action . ':: ' . $message, static::DEBUG );
+        }
+
+        return $this->log( '[' . $website->name . '] [' . MainWP_Utility::get_nice_url( $website->url ) . ']  ::' . $action . ':: ' . $message, static::DEBUG, 0, false, $website );
+    }
+
+    /**
+     * Method info_for_website()
+     *
+     * Grab Website Info.
+     *
+     * @param object $website Child site object.
+     * @param string $action Performed action.
+     * @param string $message Info message.
+     *
+     * @return mixed Website Info.
+     *
+     * @uses  \MainWP\Dashboard\MainWP_Utility::get_nice_url()
+     */
+    public function info_for_website( $website, $action, $message ) {
+        if ( empty( $website ) ) {
+            return $this->log( '[-] [-]  ::' . $action . ':: ' . $message, static::INFO );
+        }
+
+        return $this->log( '[' . $website->name . '] [' . MainWP_Utility::get_nice_url( $website->url ) . ']  ::' . $action . ':: ' . $message, static::INFO );
+    }
+
+    /**
+     * Method warning_for_website()
+     *
+     * Grab Website Warnings.
+     *
+     * @param object $website Child site object.
+     * @param string $action Performed action.
+     * @param string $message Warning message.
+     * @param bool   $addStackTrace Add or Don't add stack trace.
+     *
+     * @return string Website warnings.
+     */
+    public function warning_for_website( $website, $action, $message, $addStackTrace = true ) {
+        $stackTrace = '';
+        if ( $addStackTrace ) {
+            ob_start();
+            // phpcs:ignore -- for debugging.
+            debug_print_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS );
+            $stackTrace = "\n" . ob_get_clean();
+        }
+        if ( empty( $website ) ) {
+            return $this->log( '[-] [-]  :: ' . $action . ' :: ' . $message . $stackTrace, static::WARNING );
+        }
+
+        return $this->log( '[' . $website->name . '] [' . MainWP_Utility::get_nice_url( $website->url ) . ']  ::' . $action . ':: ' . $message . $stackTrace, static::WARNING );
+    }
+
+    /**
+     * Method log_to_db()
+     *
+     * Log to database.
+     *
+     * @param string $text Log record text.
+     * @param int    $priority Set priority.
+     * @param int    $log_color Set color.
+     * @param bool   $forced forced logging.
+     * @param mixed  $website website object.
+     * @param int    $log_type Log type.
+     *
+     * @return bool true|false Default is False.
+     */
+    private function log_to_db( $text, $priority, $log_color = 0, $forced = false, $website = false, $log_type = false ) {
+
+        if ( static::DISABLED === $this->logPriority ) {
+            return false;
+        }
+
+        $priority = (int) apply_filters( 'mainwp_log_to_db_priority', $priority, $website );
+
+        $do_log = false;
+
+        if ( 1 === $this->logSpecific ) { // 1 - specific log, 0 - not specific log.
+            if ( $this->logPriority === $priority ) { // specific priority number saved setting.
+                $do_log = true;
+            }
+        } elseif ( $this->logPriority >= $priority ) {
+            $do_log = true;
+        }
+
+        $do_log = apply_filters( 'mainwp_log_do_to_db', $do_log, $website );
+
+        if ( ! $forced && ! $do_log ) {
+            return false;
+        }
+
+        $text = $this->prepare_log_info( $text );
+
+        do_action( 'mainwp_before_log_data', $text, $priority, $log_color );
+
+        if ( defined( 'DOING_CRON' ) && DOING_CRON && 'CRON' !== strtoupper( substr( $text, 0, 4 ) ) ) {
+            $text = 'CRON :: ' . $text;
+        }
+
+        /**
+         * Current user global.
+         *
+         * @global string
+         */
+        global $current_user;
+
+        $user = '';
+        if ( ! empty( $current_user ) && ! empty( $current_user->user_login ) ) {
+            $user = $current_user->user_login;
+        } elseif ( defined( 'WP_CLI' ) ) {
+            $user = 'WP_CLI';
+        } elseif ( defined( 'DOING_CRON' ) ) {
+            $user = 'DOING_CRON';
+        }
+
+        $data = array();
+
+        $type = false !== $log_type ? (int) $log_type : (int) $priority;
+
+        $data['log_content'] = $text;
+        $data['log_user']    = $user;
+        $data['log_type']    = $type;
+
+        if ( is_int( $log_color ) || ctype_digit( (string) $log_color ) ) {
+            $data['log_color'] = (int) $log_color;
+        } else {
+            $hex               = sanitize_hex_color( $log_color );
+            $data['log_color'] = $hex ? $hex : '';
+        }
+
+        $data['log_timestamp'] = time();
+
+        $data = apply_filters( 'mainwp_log_to_db_data', $data );
+
+        MainWP_DB_Common::instance()->insert_action_log( $data );
+
+        return true;
+    }
+
+    /**
+     * Method hook_is_enabled_log_priority().
+     *
+     * @param int $priority Log priority.
+     *
+     * @return bool true|false True if enabled log for priority.
+     */
+    public function hook_is_enabled_log_priority( $priority ) {
+        return $this->enabled_log_priority( $priority );
+    }
+
+    /**
+     * Method enabled_log_priority()
+     *
+     * @param int $priority Set priority.
+     *
+     * @return bool true|false Default is False.
+     */
+    public function enabled_log_priority( $priority ) {
+
+        if ( static::DISABLED === $this->logPriority ) {
+            return false;
+        }
+
+        $priority = (int) apply_filters( 'mainwp_log_to_db_priority', $priority );
+        $do_log   = false;
+        if ( 1 === $this->logSpecific ) { // 1 - specific log, 0 - not specific log.
+            if ( $this->logPriority === $priority ) { // specific priority number saved setting.
+                $do_log = true;
+            }
+        } elseif ( $this->logPriority >= $priority ) {
+            $do_log = true;
+        }
+        return $do_log;
+    }
+
+    /**
+     * Method log()
+     *
+     * Create Log File.
+     *
+     * @param string $text Log record text.
+     * @param int    $priority Set priority.
+     * @param int    $log_color Set color.
+     * @param bool   $forced forced logging.
+     * @param mixed  $website Site object.
+     * @param int    $log_type Log type.
+     *
+     * @return bool true|false Default is False.
+     */
+    private function log( $text, $priority,  $log_color = 0, $forced = false, $website = false, $log_type = false ) { // phpcs:ignore -- NOSONAR - complex function.
+
+        if ( in_array( $priority, $this->autoEnableLoggingActions ) && (int) $this->logPriority !== (int) $priority ) {
+            $this->enable_log_priority( $priority, 1 );
+        }
+
+        if ( static::DISABLED === $this->logPriority ) {
+            return false;
+        }
+
+        $log_to_db = apply_filters( 'mainwp_logger_to_db', true, $website );
+
+        if ( $log_to_db ) {
+            return $this->log_to_db( $text, $priority, $log_color, $forced, $website, $log_type );
+        }
+
+        $text = $this->prepare_log_info( $text );
+
+        $do_log = false;
+        if ( 1 === $this->logSpecific ) { // 1 - specific log, 0 - not specific log.
+            if ( $this->logPriority === $priority ) { // specific priority number saved setting.
+                $do_log = true;
+            }
+        } elseif ( $this->logPriority >= $priority ) {
+            $do_log = true;
+        }
+
+        if ( $do_log ) {
+            $this->logCurrentFile = $this->get_log_file();
+            $logCurrentHandle     = fopen( $this->logCurrentFile, 'a+' );
+
+            if ( $logCurrentHandle ) {
+                $time   = gmdate( $this->logDateFormat );
+                $prefix = '[' . $this->get_log_text( $priority ) . ']';
+
+                /**
+                 * Current user global.
+                 *
+                 * @global string
+                 */
+                global $current_user;
+
+                if ( ! empty( $current_user ) && ! empty( $current_user->user_login ) ) {
+                    $prefix .= ' [administrator]';
+                }
+
+                fwrite( $logCurrentHandle, $time . ' ' . $prefix . ' ' . $text . "\n" );
+                fclose( $logCurrentHandle );
+            }
+
+            if ( filesize( $this->logCurrentFile ) > ( $this->logMaxMB * 1048576 ) ) {
+                $logCurrentHandle = fopen( $this->logCurrentFile, 'a+' );
+                if ( $logCurrentHandle ) {
+                    fseek( $logCurrentHandle, 0 );
+                    $newLogFile   = $this->logCurrentFile . '.tmp';
+                    $newLogHandle = false;
+                    $chunkSize    = filesize( $this->logCurrentFile ) - ( $this->logMaxMB * 1048576 );
+                    while ( is_resource( $logCurrentHandle ) && ! feof( $logCurrentHandle ) && ( $chunkSize > 0 ) ) {
+                        $content = fread( $logCurrentHandle, $chunkSize );
+                        if ( false === $content ) {
+                            break;
+                        }
+                        $pos = strrpos( $content, "\n" );
+                        if ( $newLogHandle ) {
+                            fwrite( $newLogHandle, $content );
+                        } elseif ( $pos ) {
+                            if ( ! $newLogHandle ) {
+                                $newLogHandle = fopen( $newLogFile, 'w+' );
+                            }
+                            fwrite( $newLogHandle, substr( $content, $pos + 1 ) );
+                        }
+                    }
+
+                    if ( is_resource( $logCurrentHandle ) ) {
+                        fclose( $logCurrentHandle );
+                    }
+
+                    if ( $newLogHandle ) {
+                        fclose( $newLogHandle );
+                        wp_delete_file( $this->logCurrentFile );
+                        if ( file_exists( $newLogFile ) ) {
+                            rename( $newLogFile, $this->logCurrentFile );
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Method prepare_log_info()
+     *
+     * Prepare log data.
+     *
+     * @param mixed $data Log data.
+     *
+     * @return mixed $data filtered data.
+     */
+    public function prepare_log_info( $data ) {
+        $patterns[0]    = '/user=([^\&]+)\&/';
+        $replacement[0] = 'user=xxxxxx&';
+        $patterns[1]    = '/alt_user=([^\&]+)\&/';
+        $replacement[1] = 'alt_user=xxxxxx&';
+        $patterns[2]    = '/\&server=([^\&]+)\&/';
+        $replacement[2] = '&server=xxxxxx&';
+        $data           = preg_replace( $patterns, $replacement, $data );
+        return $data;
+    }
+
+    /**
+     * Method prepend()
+     *
+     * Prepend content to log file.
+     *
+     * @param mixed $str Custom string.
+     * @param mixed $filename Filename.
+     */
+    public function prepend( $str, $filename ) {
+        $context = stream_context_create();
+        $fp      = fopen( $filename, 'r', 1, $context );
+        $tmpname = md5( $str ); // NOSONAR - safe for salt file name.
+        file_put_contents( $tmpname, $str );
+        file_put_contents( $tmpname, $fp, FILE_APPEND );
+        fclose( $fp );
+        wp_delete_file( $filename );
+        rename( $tmpname, $filename );
+    }
+
+    /**
+     * Method init_execution_time().
+     *
+     * @param string $time_index index for timer.
+     *
+     * Init execution time start value.
+     */
+    public function init_execution_time( $time_index = '' ) {
+        if ( null === static::$time_start || ! is_array( static::$time_start ) ) {
+            static::$time_start = array( 'start' => microtime( true ) );
+            $this->log_action( 'execution time :: init :: [start]', static::EXECUTION_TIME_LOG_PRIORITY );
+        }
+
+        if ( ! empty( $time_index ) && is_string( $time_index ) && 'start' !== $time_index ) {
+            static::$time_start[ $time_index ] = microtime( true );
+            $this->log_action( 'execution time :: init :: [' . $time_index . ']', static::EXECUTION_TIME_LOG_PRIORITY );
+        }
+    }
+
+    /**
+     * Method log_execution_time().
+     *
+     * @param string $text Log record text.
+     *
+     * Log the execution time value.
+     */
+    public function log_execution_time( $text = '' ) {
+        $exec_time = $this->get_execution_time();
+        $this->log_action( 'execution time :: ' . ( ! empty( $text ) ? (string) $text . ' :: ' : '' ) . ' [time=' . round( $exec_time, 4 ) . '](seconds)', static::EXECUTION_TIME_LOG_PRIORITY );
+    }
+
+    /**
+     * Method log_execution_sync().
+     *
+     * @param string $progress Log progress value.
+     * @param string $text Log record text.
+     * @param mixed  $website Website data, default false.
+     *
+     *  Log the execution sync time value.
+     */
+    public function log_execution_sync( $progress = '', $text = '', $website = false ) { // phpcs:ignore -- NOSONAR -complex.
+
+        if ( 1 !== $this->logSpecific || ( static::EXECUTION_SYNC_LOG_PRIORITY !== $this->logPriority && static::EXECUTION_SYNC_DETAILS_LOG_PRIORITY !== $this->logPriority ) ) { // 1 - specific log, 0 - not specific log.
+            return;
+        }
+
+        static $initialized = false;
+
+        if ( 'init' === $progress && ! $initialized ) {
+            $initialized = true;
+            MainWP_Execution_Helper::init_http_call_track();
+        }
+
+        // If the process has ended and the sync event log is not initialized, do not log.
+        if ( 'end' === $progress && ! $initialized ) {
+            return;
+        }
+
+        $text = 'init' === $progress && empty( $text ) ? 'Init' : $text;
+        $text = 'end' === $progress && empty( $text ) ? 'End' : $text;
+
+        $exec_time = $this->get_execution_time();
+        $exec_time = round( $exec_time, 4 );
+
+        if ( ! empty( $text ) ) {
+            $text = $text . ' :: ';
+        }
+
+        $id = '';
+
+        if ( ! empty( $website ) ) {
+
+            if ( is_int( $website ) || ctype_digit( $website ) ) {
+                $id = (int) $website;
+            } elseif ( is_array( $website ) && ! empty( $website['id'] ) ) {
+                $id = $website['id'];
+            } elseif ( is_object( $website ) && property_exists( $website, 'id' ) ) {
+                $id = $website->id;
+            }
+        } else {
+            $id = MainWP_System_Utility::get_current_wpid();
+        }
+
+        if ( ! empty( $id ) ) {
+            $text .= '[siteid=' . $id . '] :: ';
+        }
+
+        $log = $text . '[total runtime=' . $exec_time . '](sec)';
+
+        $mem = '';
+
+        if ( function_exists( 'memory_get_usage' ) && is_callable( 'memory_get_usage' ) ) {
+            $mem = round( memory_get_usage() / 1024 / 1024, 2 );
+        } else {
+            $mem = 'N/A';
+        }
+
+        if ( ! empty( $mem ) ) {
+            $log .= ' :: [memory usage=' . $mem . '](MB)';
+        }
+
+        if ( 'end' === $progress ) {
+            $dbusage = MainWP_Execution_Helper::get_queries_stats();
+            if ( is_array( $dbusage ) ) {
+                if ( isset( $dbusage['total_queries'] ) ) {
+                    $log .= ' :: [total queries=' . (int) $dbusage['total_queries'] . ']';
+                }
+                if ( isset( $dbusage['total_runtime'] ) ) {
+                    $log .= ' :: [total runtime queries=' . sprintf( '%.5f', $dbusage['total_runtime'] ) . '](sec)';
+                }
+            }
+
+            $callstats = MainWP_Execution_Helper::get_exec_call_stats();
+
+            $rows_details = array();
+
+            if ( is_array( $callstats ) ) {
+                if ( isset( $callstats['check_count'] ) ) {
+                    $log .= ' :: [total run check=' . (int) $callstats['check_count'] . ']';
+                }
+                if ( isset( $callstats['exec_time'] ) && is_array( $callstats['exec_time'] ) ) {
+                    foreach ( $callstats['exec_time'] as $idx => $t ) {
+                        $rows_details[] = '[check runtime=' . sprintf( '%.3f', $t ) . '](sec) :: [run desc=' . ( ! empty( $callstats['check_desc'][ $idx ] ) ? (string) $callstats['check_desc'][ $idx ] : '' ) . ']';
+                        if ( static::EXECUTION_SYNC_DETAILS_LOG_PRIORITY === $this->logPriority ) {
+                            $rows_details[] = '[run data=' . ( ! empty( $callstats['check_data'][ $idx ] ) && is_array( $callstats['check_data'][ $idx ] ) ? wp_json_encode( $callstats['check_data'][ $idx ] ) : '' ) . ']';
+                        }
+                    }
+                }
+            }
+        }
+
+        $log .= ' :: [ver=' . MainWP_System::get_mainwp_version() . ']';
+
+        $lg_type = (int) $exec_time >= 50 ? static::NOTICE : static::INFO;
+        $lg_type = (int) $exec_time >= 80 ? static::WARNING : $lg_type;
+
+        $event_name = static::EXECUTION_SYNC_DETAILS_LOG_PRIORITY === $this->logPriority ? 'execution-sync-details' : 'execution-sync';
+        $this->log_events( $event_name, $log, false, $lg_type );
+
+        if ( ! empty( $rows_details ) ) {
+            foreach ( $rows_details as $log_detail ) {
+                $this->log_events( $event_name, $log_detail, false, static::LOG );
+            }
+        }
+    }
+
+    /**
+     * Method get_execution_time().
+     *
+     * Get the execution time value.
+     *
+     * @param string $time_index Index for timer.
+     *
+     * @return int execution time.
+     */
+    private function get_execution_time( $time_index = '' ) {
+
+        if ( empty( static::$time_start ) ) {
+            return 0;
+        }
+
+        $start = 0;
+        if ( ! empty( $time_index ) ) {
+            $start = is_array( static::$time_start ) && isset( static::$time_start[ $time_index ] ) ? static::$time_start[ $time_index ] : 0;
+        }
+
+        if ( empty( $start ) ) {
+            $start = is_array( static::$time_start ) && isset( static::$time_start['start'] ) ? static::$time_start['start'] : 0;
+        }
+
+        if ( empty( $start ) ) {
+            return 0;
+        }
+        return microtime( true ) - $start; // seconds.
+    }
+
+    /**
+     * Method get_log_file()
+     *
+     * Grab Log File.
+     *
+     * @return mixed Log File.
+     */
+    public function get_log_file() {
+        if ( empty( $this->logDirectory ) ) {
+            $this->logDirectory = MainWP_System_Utility::get_mainwp_dir();
+            $this->logDirectory = $this->logDirectory[0];
+        }
+        return $this->logDirectory . $this->logFileNamePrefix . $this->logFileNameSuffix;
+    }
+
+    /**
+     * Method get_log_text()
+     *
+     * Grab what type of log entry.
+     *
+     * @param mixed $priority Set priority.
+     *
+     * @return string LOG -OR- DISABLED|DEBUG|INFO|WARNING|INFO UPDATE
+     */
+    public function get_log_text( $priority ) {
+        switch ( $priority ) {
+            case static::DISABLED:
+                return 'DISABLED';
+            case static::DEBUG:
+                return 'DEBUG';
+            case static::INFO:
+                return 'INFO';
+            case static::WARNING:
+                return 'WARNING';
+            default:
+                return 'SPEC LOG';
+        }
+    }
+
+    /**
+     * Method check_log_daily()
+     *
+     * Daily checks to clear the log file.
+     */
+    public function check_log_daily() {
+        $status = (int) $this->get_log_status();
+        if ( 0 >= $status ) {
+            return;
+        }
+
+        $today_m_y = date_i18n( 'd/m/Y' ); //phpcs:ignore -- local time.
+        // one time per day.
+        if ( get_option( 'mainwp_logger_check_daily' ) !== $today_m_y ) {
+            $num_days = apply_filters( 'mainwp_logger_keep_days', 7 );
+            MainWP_DB_Common::instance()->delete_action_log( $num_days );
+            MainWP_Utility::update_option( 'mainwp_logger_check_daily', $today_m_y );
+
+            $enabled_time = get_option( 'mainwp_actionlogs_enabled_timestamp', false );
+            if ( false === $enabled_time ) {
+                MainWP_Utility::update_option( 'mainwp_actionlogs_enabled_timestamp', time() );
+            } elseif ( $enabled_time + $num_days * DAY_IN_SECONDS < time() ) {
+                MainWP_Utility::update_option( 'mainwp_actionlogs', static::DISABLED );
+            }
+        }
+    }
+
+    /**
+     * Method clear_log_db()
+     *
+     * Clear the log file.
+     */
+    public function clear_log_db() {
+        MainWP_DB_Common::instance()->delete_action_log();
+    }
+
+    /**
+     * Method clear_log()
+     *
+     * Clear the log file.
+     */
+    public function clear_log() {
+        $logFile = $this->get_log_file();
+        wp_delete_file( $logFile );
+        $fh = fopen( $logFile, 'w' );
+        if ( false === $fh ) {
+            return;
+        }
+        fclose( $fh );
+    }
+
+    /**
+     * Method show_log_db()
+     *
+     * Grab log file and build output to screen.
+     */
+    public function show_log_db() { //phpcs:ignore -- NOSONAR - complexity.
+
+        echo '<div class="ui hidden divider"></div>';
+        echo '<div class="ui divided padded relaxed list" local-datetime="' . date( 'Y-m-d H:i:s' ) . '">'; // phpcs:ignore -- local time.
+
+        $limit = 500;
+
+        //phpcs:disable WordPress.Security.NonceVerification
+        $paged = isset( $_GET['paged'] ) ? intval( $_GET['paged'] ) : 0; //phpcs:ignore -- NOSONAR -ok.
+
+        if ( $paged <= 0 ) {
+            $paged = 0;
+        } else {
+            --$paged;
+        }
+
+        $params = array();
+
+        if ( isset( $_GET['hour'] ) && ! empty( $_GET['hour'] ) ) { // phpcs:ignore -- local time.
+            $params['hour'] = intval( $_GET['hour'] ); // phpcs:ignore -- local time.
+        } else {
+            $params['hour'] = $limit;
+        }
+
+        $order = isset( $_GET['order'] ) ? sanitize_text_field( wp_unslash( $_GET['order'] ) ) : ''; //phpcs:ignore -- NOSONAR -ok.
+
+        $total = MainWP_DB::instance()->get_var_field( MainWP_DB_Common::instance()->get_sql_log( $paged, $order, array( 'count' => true ) ) );
+
+        $rows = MainWP_DB::instance()->query( MainWP_DB_Common::instance()->get_sql_log( $paged, $order, $params ) );
+
+        $count = $rows ? MainWP_DB::num_rows( $rows ) : 0;
+
+        $show_info = '';
+
+        if ( isset( $_GET['hour'] ) ) {
+            $show_info = $count . ' latest items from a total of ' . $total;
+        } elseif ( isset( $_GET['paged'] ) ) { //phpcs:ignore -- NOSONAR -ok.
+            $from      = $limit * $paged;
+            $show_info = $count . ' items, from ' . $from . ' - ' . ( $from + $limit ) . ' of ' . $total . ' total.';
+        }
+
+        if ( ! empty( $show_info ) ) {
+            echo '<p><strong>' . esc_html__( 'Showing ', 'mainwp' ) . ':</strong> ' . $show_info; //phpcs:ignore -- NOSONAR ok.
+        }
+        //phpcs:enable WordPress.Security.NonceVerification
+
+        $start_wrapper = '<span class="ui mini label mainwp-action-log-show-more">Click to See Response</span><div class="mainwp-action-log-site-response" style="display: none;">';
+        $end_wrapper   = '</div>';
+
+        while ( $rows && ( $row  = MainWP_DB::fetch_object( $rows ) ) ) {
+            $line = $row->log_content;
+            if ( 120 * 1024 < strlen( $line ) ) {
+                $line = '[Data row too long]';
+            }
+
+            $time = gmdate( $this->logDateFormat, MainWP_Utility::get_timestamp( $row->log_timestamp ) );
+
+            $showInfo = $this->get_log_type_info( (int) $row->log_type, $row->log_color );
+
+            $currentColor = $showInfo['log_color'];
+
+            $prefix = $time . ' ' . $showInfo['log_prefix'];
+
+            $line = nl2br( htmlentities( $line ) );
+
+            if ( false !== strpos( $line, '[data-start]' ) ) {
+                $line = str_replace( '[data-start]', $start_wrapper, $line );
+                $line = str_replace( '[data-end]', $end_wrapper, $line );
+            }
+
+            echo '<div class="item" style="color:' . esc_attr( $currentColor ) . '"><div class="mainwpactionlogsline">';
+
+            echo $prefix . ' ' . $line; // phpcs:ignore WordPress.Security.EscapeOutput
+
+            echo '</div></div>';
+        }
+
+        echo '</div></div>';
+
+        echo '</div>';
+
+        ?>
+        <div class="ui large modal" id="mainwp-action-log-response-modal">
+            <i class="close icon mainwp-reload"></i>
+            <div class="header"><?php esc_html_e( 'Child Site Response', 'mainwp' ); ?></div>
+            <div class="content">
+                <div class="ui info message"><?php esc_html_e( 'To see the response in a more readable way, you can copy it and paste it into some HTML render tool, such as Codepen.io.', 'mainwp' ); ?>
+                </div>
+            </div>
+            <div class="scrolling content content-response"></div>
+            <div class="actions">
+                <button class="ui green button mainwp-response-copy-button"><?php esc_html_e( 'Copy Response', 'mainwp' ); ?></button>
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Method show_log_file()
+     *
+     * Grab log file and build output to screen.
+     */
+    public function show_log_file() { // phpcs:ignore -- NOSONAR - complex.
+        $logFile = $this->get_log_file();
+
+        if ( ! file_exists( $logFile ) ) {
+            return;
+        }
+
+        $fh = fopen( $logFile, 'r' );
+        if ( false === $fh ) {
+            return;
+        }
+
+        $previousColor            = '';
+        $fontOpen                 = false;
+        $firstLinePassedProcessed = false;
+        echo '<div class="ui hidden divider"></div>';
+        echo '<div class="ui divided padded relaxed list">';
+        while ( false !== ( $line = fgets( $fh ) ) ) {
+            $currentColor = $previousColor;
+            if ( stristr( $line, '[DEBUG]' ) ) {
+                $currentColor    = static::DEBUG_COLOR;
+                $firstLinePassed = true;
+            } elseif ( stristr( $line, '[INFO]' ) ) {
+                $currentColor    = static::INFO_COLOR;
+                $firstLinePassed = true;
+            } elseif ( stristr( $line, '[WARNING]' ) ) {
+                $currentColor    = static::WARNING_COLOR;
+                $firstLinePassed = true;
+            } elseif ( stristr( $line, '[LOG]' ) ) {
+                $currentColor    = static::LOG_COLOR;
+                $firstLinePassed = true;
+            } else {
+                $firstLinePassed = false;
+            }
+
+            if ( $firstLinePassedProcessed && ! $firstLinePassed ) {
+                echo ' <span class="ui mini label mainwp-action-log-show-more">Click to See Response</span></div><div class="mainwp-action-log-site-response" style="display: none;">';
+            }
+
+            $firstLinePassedProcessed = $firstLinePassed;
+
+            if ( $currentColor !== $previousColor ) {
+                if ( $fontOpen ) {
+                    echo '</div></div>';
+                }
+
+                echo '<div class="item" style="color:' . esc_html( $currentColor ) . '"><div class="mainwpactionlogsline">';
+                $fontOpen = true;
+            }
+
+            echo esc_html( htmlentities( $line ) );
+        }
+
+        if ( $fontOpen ) {
+            echo '</div></div>';
+        }
+
+        echo '</div>';
+
+        ?>
+        <div class="ui large modal" id="mainwp-action-log-response-modal">
+            <i class="close icon mainwp-reload"></i>
+            <div class="header"><?php esc_html_e( 'Child Site Response', 'mainwp' ); ?></div>
+            <div class="content">
+                <div class="ui info message"><?php esc_html_e( 'To see the response in a more readable way, you can copy it and paste it into some HTML render tool, such as Codepen.io.', 'mainwp' ); ?>
+                </div>
+            </div>
+            <div class="scrolling content content-response"></div>
+            <div class="actions">
+                <button class="ui green button mainwp-response-copy-button"><?php esc_html_e( 'Copy Response', 'mainwp' ); ?></button>
+            </div>
+        </div>
+        <?php
+
+        fclose( $fh );
+    }
+
+        /**
+         * Method hook_module_log_record_inserted()
+         *
+         * @param int   $record_id Log id.
+         * @param array $record Log data.
+         *
+         * @return void
+         */
+    public function hook_module_log_record_inserted( $record_id = false, $record = false ) {
+        if ( $record_id && is_array( $record ) && isset( $record['connector'] ) && isset( $record['action'] ) && isset( $record['item'] ) && isset( $record['context'] ) ) {
+            $this->log_events( 'sites-changes', 'Logging info  :: [site_id=' . ( isset( $record['site_id'] ) ? $record['site_id'] : 0 ) . '] :: [log_id=' . $record_id . '] :: [log_type_id=' . ( isset( $record['log_type_id'] ) ? $record['log_type_id'] : 0 ) . '] :: [item=' . $record['item'] . '] :: [connector=' . $record['connector'] . '] :: [context=' . $record['context'] . '] :: [action=' . $record['action'] . ']' );
+        }
+    }
+}

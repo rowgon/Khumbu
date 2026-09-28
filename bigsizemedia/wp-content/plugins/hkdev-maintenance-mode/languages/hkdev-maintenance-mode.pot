@@ -1,0 +1,511 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Maintenance Mode\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-18 12:18+0000\n"
+"PO-Revision-Date: 2024-03-18 12:18+0000\n"
+"Last-Translator: Helderk <mail@helderk.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"\n"
+
+#: class-hkdev-maintenance-mode.php:561
+msgid "Access Key"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1236
+msgid "Access Key added successfully and sent via email."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1238
+msgid "Access Key added successfully."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:406
+msgctxt "Access Key Email Message (secong line)"
+msgid "Please note that you must have cookies enabled for this to work."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:405
+#, php-format
+msgctxt "Access Key Email Message, %s = name of the website/blog"
+msgid "The following link will provide you temporary access to %s:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:404
+#, php-format
+msgctxt "Access Key Email Subject, %s = name of the website/blog"
+msgid "Access Key Link for %s"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1445 class-hkdev-maintenance-mode.php:1538
+msgid "Access Keys"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:494 class-hkdev-maintenance-mode.php:563
+msgid "Actions"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:493 class-hkdev-maintenance-mode.php:562
+msgid "Active"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:622
+msgid "Add New Access Key"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:542
+msgid "Add New IP"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:651 class-hkdev-maintenance-mode.php:670
+#: class-hkdev-maintenance-mode.php:1090
+msgctxt "Admin bar indicator"
+msgid "Maintenance OFF"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:646 class-hkdev-maintenance-mode.php:668
+#: class-hkdev-maintenance-mode.php:1097
+msgctxt "Admin bar indicator"
+msgid "Maintenance ON"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1513
+msgid ""
+"Best for when the site is temporarily taken offline for small amendments."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1511
+msgid "Best used for when the site is under development."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1329
+msgid "Code sent via email."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1307
+msgid "Copied"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:518
+msgid "Delete"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:778
+msgid "Copy"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:512 class-hkdev-maintenance-mode.php:1161
+#: class-hkdev-maintenance-mode.php:1267
+msgid "Disable"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1103 class-hkdev-maintenance-mode.php:1121
+#: class-hkdev-maintenance-mode.php:1171 class-hkdev-maintenance-mode.php:1216
+#: class-hkdev-maintenance-mode.php:1240 class-hkdev-maintenance-mode.php:1277
+#: class-hkdev-maintenance-mode.php:1330 class-hkdev-maintenance-mode.php:1336
+msgid "Dismiss this notice"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1508
+msgctxt ""
+"DO NOT TRANSLATE <strong>307 Temporary Redirect</strong> - leave exactly as "
+"is"
+msgid ""
+"We can send 2 different header types.<br>When \"Redirect\" is selected, this "
+"setting will be ignored and <strong>307 Temporary Redirect</strong> used "
+"instead."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:560
+msgid "Email"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1209
+msgid "Email address not valid"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1335
+msgid "Email sending failed. Please check your server settings"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:514 class-hkdev-maintenance-mode.php:1165
+#: class-hkdev-maintenance-mode.php:1271
+msgid "Enable"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1427
+msgid "Enable Maintenance Mode"
+msgstr ""
+
+
+#: class-hkdev-maintenance-mode.php:1633
+#, php-format
+msgid "If you enjoyed this plugin or found it useful, I'd really appreciate it if you'd %s."
+msgstr ""
+#: class-hkdev-maintenance-mode.php:618
+msgid "Enter Email:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:539
+msgid "Enter IP:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:536 class-hkdev-maintenance-mode.php:615
+msgid "Enter Name:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:331
+msgctxt "Error message adding new IP"
+msgid "Unable to add IP because of a database error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:385
+msgctxt "Error message deleting IP"
+msgid ""
+"Unable to delete IP because of a database error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:475
+msgctxt "Error message sending Access Key email"
+msgid "There was an unknown error sending the email. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:367
+msgctxt "Error message when toggle IP status"
+msgid "There was an unknown database error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:347
+msgctxt "Error message when toggle Maintenance Mode "
+msgid "There was an unknown error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1442
+msgid "Exclude Pages"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1488
+msgid "Exclude pages"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1443 class-hkdev-maintenance-mode.php:1507
+msgid "Header Type"
+msgstr ""
+
+#. Author of the plugin
+msgid "helderk"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1454 class-hkdev-maintenance-mode.php:1473
+msgid "HTML"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://helderk.com/"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1514
+msgid "If used for a long period of time, 503 can damage your Google ranking."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1482
+msgid ""
+"Insert a URL to redirect to an external page or to a static HTML page loaded "
+"on your site."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:492
+msgid "IP"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1116
+msgid "IP address not valid"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:994
+msgid "Loading more results…"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1441 class-hkdev-maintenance-mode.php:1449
+msgid "Maintenance Message"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:27
+msgctxt "Maintenance message"
+msgid ""
+"<h1>Website Under Maintenance</h1>Our Website is currently undergoing "
+"scheduled maintenance. Please check back soon."
+msgstr ""
+
+#. Name of the plugin
+#: hkdev-maintenance-mode.php:48 hkdev-maintenance-mode.php:49
+msgid "Maintenance Mode"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1465
+msgid "Message"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1453
+msgid "Message - Site style Method"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1452
+msgid "Message - wp_die() Method"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:433
+msgctxt "Message error when toggle Access Key status"
+msgid "There was an unknown database error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:413 class-hkdev-maintenance-mode.php:478
+msgctxt "Message error when unable to add Access Key"
+msgid ""
+"Unable to add Access Key because of a database error. Please reload the page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:451
+msgctxt "Message error when unable to delete Access Key"
+msgid ""
+"Unable to delete Access Key because of a database error. Please reload the "
+"page."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:491 class-hkdev-maintenance-mode.php:559
+msgid "Name"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:508 class-hkdev-maintenance-mode.php:578
+#: class-hkdev-maintenance-mode.php:1164 class-hkdev-maintenance-mode.php:1270
+msgid "No"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:606
+msgid "No Access Codes found!"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:528
+msgid "No IPs found!"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1004
+msgid "No results found"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:890
+msgctxt "Notice when settings updated"
+msgid "Settings Updated"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1462
+msgid "Overrides default site meta title."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:990
+#, php-format
+msgid "Please enter %s or more characters"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:710
+msgctxt "Plugin Settings link"
+msgid "Settings"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:982
+#, php-format
+msgctxt "Plural"
+msgid "Please delete %s characters"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:997
+#, php-format
+msgctxt "Plural"
+msgid "You can only select %s items"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1455
+msgid "Redirect"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1010
+msgid "Remove all items"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1013
+msgid "Remove item"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:469
+msgctxt "Resend Access Key Email Message (secong line)"
+msgid "Please note that you must have cookies enabled for this to work."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:468
+#, php-format
+msgctxt "Resend Access Key Email Message, %s = name of the website/blog"
+msgid "The following link will provide you temporary access to %s:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:467
+#, php-format
+msgctxt "Resend Access Key Email Subject, %s = name of the website/blog"
+msgid "Access Key Link for %s"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:588
+msgid "Resend Code"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1016
+msgid "Search"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1007
+msgid "Searching…"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1489
+msgid ""
+"Select the page(s) to be displayed normally, excluded by maintenance mode."
+msgstr ""
+
+#. Description of the plugin
+msgid "Simple Maintenance Mode for Developers"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:984
+msgctxt "Singular"
+msgid "Please delete 1 character"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:999
+msgctxt "Singular"
+msgid "You can only select 1 item"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1461
+msgid "Site Title"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1481
+msgid "Static Maintenance Page"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:978
+msgid "The results could not be loaded."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1120 class-hkdev-maintenance-mode.php:1215
+msgid "There is a problem with the information you have entered:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1102 class-hkdev-maintenance-mode.php:1170
+#: class-hkdev-maintenance-mode.php:1276
+msgid "There was a database error. Please try reload this page"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1474
+msgid ""
+"This is the HTML that will be displayed while your site is in maintenance "
+"mode."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1466
+msgid ""
+"This is the message that will be displayed while your site is in maintenance "
+"mode."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1424
+#, php-format
+msgid ""
+"This plugin is intended primarily for developers that need to allow clients "
+"to preview sites before being available to the general public.%sAny logged "
+"in user with WordPress administrator privileges will be allowed to view the "
+"site regardless of the settings below."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1525
+msgid "Unrestricted IP addresses"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1444
+msgid "Unrestricted IP's"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1550
+msgid "Update Settings"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1633
+msgid "buy me a coffee"
+msgstr ""
+
+#: hkdev-disable-rest-api.php:51
+msgid "REST API restricted to authenticated users."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1527
+msgid ""
+"Users with unrestricted IP addresses will bypass maintenance mode entirely. "
+"Using this option is useful to an entire office of clients to view the site "
+"without needing to jump through any extra hoops."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:508 class-hkdev-maintenance-mode.php:578
+#: class-hkdev-maintenance-mode.php:1160 class-hkdev-maintenance-mode.php:1266
+msgid "Yes"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1179
+msgid "You are about to delete the IP address:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1285
+msgid "You are about to delete this Access Key:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1316
+msgid "You are about to email an Access Key link to "
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1539
+msgid ""
+"You can allow users temporary access by sending them the access key. When a "
+"new key is created, a link to create the access key cookie will be emailed "
+"to the email address provided. Access can then be revoked either by "
+"disabling or deleting the key."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1450
+msgid ""
+"You have four options for how to specify what you want to show users when "
+"your site is in maintenance mode."
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1114 class-hkdev-maintenance-mode.php:1202
+msgid "You must enter a Name"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1203
+msgid "You must enter an Email"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1115
+msgid "You must enter an IP"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1526
+msgid "Your Class C is:"
+msgstr ""
+
+#: class-hkdev-maintenance-mode.php:1526
+msgid "Your IP address is:"
+msgstr ""

@@ -1,0 +1,3914 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Fluent Support\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-15 13:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.7.2; wp-6.8.1\n"
+"X-Domain: fluent-support"
+
+#: app/Modules/MCP/Tools/ManagementTools.php:395
+#, php-format
+msgid " (failed to create: %s)"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/FluentCRMWidgets.php:51
+msgid " ago"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:291
+#, php-format
+msgid " and assigned to %s"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:290
+msgid " and assigned to you"
+msgstr ""
+
+#: app/Services/Tickets/TicketService.php:91
+msgid " assign this ticket to self"
+msgstr ""
+
+#: app/Services/Tickets/TicketService.php:90
+msgid " assigned "
+msgstr ""
+
+#: app/Services/Tickets/TicketService.php:90
+msgid " in this ticket"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:398
+#: app/Services/Tickets/TicketService.php:210
+msgid " initialized this ticket"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:116
+msgid " — page %d of %d"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:395
+#, php-format
+msgid "%1$d customers deleted successfully"
+msgstr ""
+
+#. %1$d is tickets assigned, %2$d is tickets skipped.
+#: app/Http/Controllers/TicketController.php:1290
+#, php-format
+msgid "%1$d tickets assigned via agent group. %2$d skipped."
+msgstr ""
+
+#. %1$d is the number of tickets assigned, %2$s is the agent's name.
+#: app/Http/Controllers/TicketController.php:1233
+#, php-format
+msgid "%1$d tickets have been assigned to %2$s."
+msgstr ""
+
+#. %1$d is the number of skipped tickets due to mailbox restrictions.
+#: app/Http/Controllers/TicketController.php:1241
+#, php-format
+msgid ""
+"%1$d tickets were skipped due to mailbox restrictions or already being "
+"assigned."
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:154
+#, php-format
+msgid "%1$s assigned a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:153
+#, php-format
+msgid "%1$s assigned a ticket in %2$s"
+msgstr ""
+
+#. %1$s is date, %2$s is start time, %3$s is end time, %4$s is timezone.
+#: app/Services/Integrations/FluentBooking/BookingAvailabilityHelper.php:460
+#, php-format
+msgid "%1$s at %2$s - %3$s (%4$s)"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:169
+#, php-format
+msgid "%1$s closed a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:168
+#, php-format
+msgid "%1$s closed a ticket in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:144
+#: app/Modules/MCP/Tools/ManagementTools.php:884
+#, php-format
+msgid "%1$s mentioned you"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:883
+#, php-format
+msgid "%1$s mentioned you in \"%2$s\""
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:143
+#, php-format
+msgid "%1$s mentioned you in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:159
+#, php-format
+msgid "%1$s reassigned a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:158
+#, php-format
+msgid "%1$s reassigned a ticket in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:174
+#, php-format
+msgid "%1$s reopened a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:173
+#, php-format
+msgid "%1$s reopened a ticket in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:149
+#: app/Services/Notifications/NotificationFormatter.php:164
+#, php-format
+msgid "%1$s replied to a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:148
+#: app/Services/Notifications/NotificationFormatter.php:163
+#, php-format
+msgid "%1$s replied to a ticket in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:179
+#, php-format
+msgid "%1$s triggered automation"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:178
+#, php-format
+msgid "%1$s triggered automation in %2$s"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:184
+#, php-format
+msgid "%1$s updated a ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:183
+#, php-format
+msgid "%1$s updated a ticket in %2$s"
+msgstr ""
+
+#. %1$s is opening paragraph tag, %2$s is closing paragraph tag
+#: app/Services/EmailNotification/Settings.php:110
+#, php-format
+msgid ""
+"%1$sPlease login or create an account to access the Customer Support "
+"Portal%2$s [fluent_support_auth]"
+msgstr ""
+
+#. %d is meeting duration in minutes.
+#: app/Services/Integrations/FluentBooking/BookingAvailabilityHelper.php:574
+msgid "%d min"
+msgstr ""
+
+#. %d represents the number of closed tickets.
+#: app/Http/Controllers/TicketController.php:1178
+msgid "%d tickets have been closed."
+msgstr ""
+
+#. %d is the number of tickets that were deleted
+#: app/Http/Controllers/TicketController.php:1193
+msgid "%d tickets have been deleted"
+msgstr ""
+
+#. %s is the time duration (e.g., "2 hours", "3 days")
+#: app/Services/CustomerPortalService.php:47
+#: app/Services/CustomerPortalService.php:372
+#: app/Services/CustomerPortalService.php:544
+#: app/Http/Controllers/CustomerPortalController.php:101
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#. %s: The name of the property that was updated
+#: app/Http/Controllers/TicketController.php:946
+#, php-format
+msgid "%s has been updated"
+msgstr ""
+
+#: app/Modules/MCP/Helpers/MCPHelper.php:559
+#, php-format
+msgid "%s must be a positive integer"
+msgstr ""
+
+#: app/Services/Helper.php:630
+msgid "(no title)"
+msgstr ""
+
+#. %1$s is the URL to WordPress cookies documentation, %2$s is the URL to WordPress support forums
+#: app/Http/Controllers/AuthController.php:402
+#, php-format
+msgid ""
+"<strong>ERROR</strong>: Cookies are blocked due to unexpected output. For "
+"help, please see <a href=\"%1$s\">this documentation</a> or try the <a "
+"href=\"%2$s\">support forums</a>."
+msgstr ""
+
+#: app/Services/Helper.php:1106
+msgid ""
+"A cloud storage service by Google for storing, syncing, and sharing files."
+msgstr ""
+
+#: app/Services/Helper.php:1113
+msgid ""
+"A cloud-based file storage and sharing service that allows users to store "
+"files online and sync them across devices."
+msgstr ""
+
+#: app/Services/Helper.php:973
+msgid "A New Era of eCommerce with WordPress"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:579
+msgid ""
+"A password reset link was already sent to this account recently. Please "
+"check your email, including the spam folder, or try again in a few minutes."
+msgstr ""
+
+#: app/Services/Helper.php:1134
+msgid ""
+"A project management tool designed to streamline workflows and collaboration "
+"through customizable, kanban-style boards."
+msgstr ""
+
+#: app/Services/Helper.php:1029
+msgid "A robust form plugin suitable for any business"
+msgstr ""
+
+#: app/Services/Helper.php:1127
+msgid ""
+"A security service by Google designed to protect websites from bots and "
+"abuse by using challenges to distinguish between human and automated access."
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:414
+msgid "A valid customer_email is required"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:190
+msgid "A valid email is required to create a ticket"
+msgstr ""
+
+#: app/Http/Controllers/AgentGroupController.php:129
+msgid "A valid fallback group is required"
+msgstr ""
+
+#. %s is the email address
+#: app/Hooks/Handlers/EmailVerificationHandler.php:122
+#, php-format
+msgid "A verification code has been sent to %s. Please provide the code below:"
+msgstr ""
+
+#: app/Services/Helper.php:1120
+msgid ""
+"A WordPress plugin that enables the creation and management of membership "
+"sites, including content access control and subscription billing."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:251
+msgid "Accepted File Types"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:489
+msgid "Access Private Data (Customers, Agents)"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:416
+msgid ""
+"Act on multiple tickets at once — close, assign, or tag in bulk. More "
+"efficient than calling individual tools in a loop. Returns per-ticket "
+"results showing what succeeded/failed. Maximum 50 ticket IDs per call; split "
+"larger sets into multiple requests."
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:91
+#: app/Services/EmailNotification/Settings.php:456
+msgid "Action"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:734
+#, php-format
+msgid "action must be one of: %s"
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:108
+#: app/Hooks/Handlers/TwoFaHandler.php:224
+msgid "Activate your account"
+msgstr ""
+
+#: app/Services/Helper.php:122 app/Models/Traits/CustomerTrait.php:103
+msgid "Active"
+msgstr ""
+
+#: app/Modules/StatModule.php:73 app/Modules/StatModule.php:116
+#: app/Http/Controllers/ReportingController.php:442
+#: app/Services/Tickets/TicketStats.php:25
+msgid "Active Tickets"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:93 app/Hooks/Handlers/Menu.php:94
+#: app/Hooks/Handlers/Menu.php:181
+msgid "Activities"
+msgstr ""
+
+#: app/Models/Traits/ActivityTrait.php:73
+msgid "Activity settings have been updated"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:51
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:75
+msgid "Add a support ticket for contact"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:206
+msgid ""
+"Add an internal note to a ticket. Requires ticket_id and content. Internal "
+"notes are only visible to agents, not to the customer."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:205
+msgid "Add Internal Note"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:235
+msgid ""
+"Add or remove tags on a ticket. Use get-support-context to look up tag IDs, "
+"or pass add_tag_names to create-and-apply new tags in one call — a tag whose "
+"title already matches is reused, not duplicated. For tagging multiple "
+"tickets at once, use bulk-action with action=tag instead."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:234
+msgid "Add or Remove Ticket Tags"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:168
+msgid ""
+"Add this to your Claude Desktop config (Settings → Developer → Edit Config), "
+"fill in your username + application password, then restart Claude Desktop."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:183
+msgid ""
+"Add to Cursor's mcp.json, replacing the placeholder with base64 of "
+"\"username:application-password\"."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:231
+msgid "Add to FluentCRM list (optional)"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:242
+msgid "Add to Tags"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:369
+msgid ""
+"add_tag_names may not exceed %d items per request. Split into multiple calls."
+msgstr ""
+
+#: app/Models/Customer.php:52 app/Models/Traits/CustomerTrait.php:121
+#: app/Models/Traits/CustomerTrait.php:123
+#: app/Hooks/Handlers/AuthHandler.php:395
+#: app/Hooks/Handlers/AuthHandler.php:397
+msgid "Address Line 1"
+msgstr ""
+
+#: app/Models/Customer.php:53 app/Models/Traits/CustomerTrait.php:128
+#: app/Models/Traits/CustomerTrait.php:130
+#: app/Hooks/Handlers/AuthHandler.php:402
+#: app/Hooks/Handlers/AuthHandler.php:404
+msgid "Address Line 2"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:232
+msgid "Address Line One"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:236
+msgid "Address Line Two"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:380
+msgid "Agent Feedback Rating"
+msgstr ""
+
+#: app/Services/Helper.php:834
+msgid "Agent First Name"
+msgstr ""
+
+#: app/Services/Helper.php:836
+msgid "Agent Full Name"
+msgstr ""
+
+#: app/Http/Controllers/AgentGroupController.php:84
+msgid "Agent group has been created"
+msgstr ""
+
+#: app/Http/Controllers/AgentGroupController.php:172
+msgid "Agent group has been deleted and agents have been reassigned"
+msgstr ""
+
+#: app/Http/Controllers/AgentGroupController.php:116
+msgid "Agent group has been updated"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1054
+#: app/Services/MailerInbox/MailBoxService.php:260
+msgid "Agent is restricted for this mailbox ticket"
+msgstr ""
+
+#: app/Services/Helper.php:835
+msgid "Agent Last Name"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:588
+msgid "Agent Outreach Ticket (To Customer)"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:389
+msgid "Agent Time Tracking"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1251
+msgid "agent_group_id param is required"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1199
+msgid "agent_id param is required"
+msgstr ""
+
+#: app/Services/Helper.php:1368
+msgid "AI Activity settings have been updated"
+msgstr ""
+
+#: app/Modules/MCP/MCPInit.php:127
+msgid "AI agent tools for helpdesk ticket management."
+msgstr ""
+
+#: app/Services/Integrations/AI/AIProviderFactory.php:46
+msgid "AI features are disabled."
+msgstr ""
+
+#: app/Services/Helper.php:1223
+msgid "AI Integration"
+msgstr ""
+
+#: app/Services/Helper.php:1227
+msgid "AI Model Setup"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:425
+msgid "AI provider settings have been successfully disconnected."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:402
+msgid "AI settings have been successfully saved."
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:429
+#: app/Services/Notifications/NotificationCategory.php:25
+msgid "All"
+msgstr ""
+
+#: app/Services/Tickets/Importer/JSHelpdeskTickets.php:247
+msgid ""
+"All JS Helpdesk tickets and associated data have been deleted. You may now "
+"deactivate JS Helpdesk Plugin and start using Fluent Support"
+msgstr ""
+
+#: app/Services/Tickets/Importer/SupportCandyTickets.php:312
+msgid ""
+"All Support Candy Tickets and associated data have been deleted. You may now "
+"deactivate Support Candy Plugin and start using Fluent Support"
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:129
+msgid "All ticket moves to the selected Business"
+msgstr ""
+
+#: app/Services/Tickets/Importer/AwesomeSupportTickets.php:252
+msgid "All tickets have been deleted successfully"
+msgstr ""
+
+#: app/Services/Tickets/Importer/SupportCandyTickets.php:69
+#: app/Services/Tickets/Importer/JSHelpdeskTickets.php:55
+#: app/Services/Tickets/Importer/FreshDeskTickets.php:81
+#: app/Services/Tickets/Importer/ZendeskTickets.php:148
+#: app/Services/Tickets/Importer/HelpScoutTickets.php:80
+#: app/Services/Tickets/Importer/AwesomeSupportTickets.php:71
+msgid "All tickets have been imported successfully"
+msgstr ""
+
+#: app/Services/Helper.php:1085
+msgid "All-in-one payment gateway designed for WordPress"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:120
+msgid "Allow Self Notifications"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:159
+msgid "Already have an account?"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:407
+#, php-format
+msgid "An error occurred while saving the settings: %s"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:490
+msgid "An unexpected error occurred. Please try again or contact support."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:208
+msgid ""
+"Any MCP client that speaks Streamable HTTP can connect using this URL and a "
+"Basic auth header."
+msgstr ""
+
+#: app/Services/Integrations/NotificationIntegrationBase.php:68
+msgid "API Request Error"
+msgstr ""
+
+#: app/Services/Integrations/NotificationIntegrationBase.php:77
+msgid "API Response Error"
+msgstr ""
+
+#: app/Services/Helper.php:1141
+msgid "Appointment and booking management plugin for WordPress"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:473
+msgid "Approve Draft Reply"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:221
+msgid ""
+"Assign a ticket to an agent. Use get-support-context to look up agent IDs. "
+"For assigning multiple tickets at once, use bulk-action with action=assign "
+"instead."
+msgstr ""
+
+#: app/Modules/PermissionManager.php:468
+msgid "Assign Agents"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:220
+msgid "Assign Ticket to Agent"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:62
+msgid "assigned a ticket"
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:146
+msgid "Attachment download failed with HTTP status %d."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:151
+msgid "Attachment download returned an empty response."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:155
+msgid "Attachment exceeds the maximum allowed download size."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:166
+msgid "Attachment file type is not allowed."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:88
+msgid "Attachment URL is not allowed."
+msgstr ""
+
+#: app/Services/Tickets/Importer/ZendeskTickets.php:291
+msgid "Authentication failed. Please check your Zendesk credentials."
+msgstr ""
+
+#: app/Modules/MCP/Support/PermissionGate.php:50
+msgid "Authentication required to access the Fluent Support MCP server."
+msgstr ""
+
+#: app/Services/Helper.php:1203
+msgid "Auto Close Settings"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:93
+msgid ""
+"Automatic install needs a Fluent Pro plugin active. Install FluentHub "
+"manually, then reload this page to connect Fluent Support with AI agents."
+msgstr ""
+
+#: app/Services/Notifications/NotificationCategory.php:37
+msgid "Automation Triggers"
+msgstr ""
+
+#: app/Hooks/Handlers/InternalNotificationHandler.php:305
+#, php-format
+msgid "Automation workflow \"%s\" was triggered"
+msgstr ""
+
+#: app/Services/Helper.php:842
+msgid "Average Waiting"
+msgstr ""
+
+#: app/Services/Tickets/TicketStats.php:49
+msgid "Awaiting Replies"
+msgstr ""
+
+#: app/Services/Helper.php:1068
+msgid "BetterDocs"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:104
+msgid "Blocked"
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:390
+msgid "Bot ID is not set for this product."
+msgstr ""
+
+#: app/Services/Helper.php:1033
+msgid "BuddyBoss"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:17
+msgid "Bug Report"
+msgstr ""
+
+#: app/Services/Helper.php:1022
+msgid ""
+"Build and manage vibrant online communities with integrated LMS features "
+"directly within WordPress."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:415
+msgid "Bulk Ticket Action"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:107
+msgid "Business"
+msgstr ""
+
+#: app/Services/Helper.php:1078
+msgid "Business communication platform designed for privacy"
+msgstr ""
+
+#: app/Services/Helper.php:1008
+msgid "Business communication platform designed for security"
+msgstr ""
+
+#: app/Services/Helper.php:1043
+msgid "Business communication platform designed for tech"
+msgstr ""
+
+#: app/Services/Helper.php:987
+msgid "Business communication platform designed to scale"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:104 app/Hooks/Handlers/Menu.php:105
+#: app/Hooks/Handlers/Menu.php:173
+msgid "Business Inboxes"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:121
+msgid ""
+"By default, agents are not notified for their own actions. Enable this only "
+"if agents should receive notifications when they are already the normal "
+"recipient for an action they performed themselves."
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:690
+msgid "Cannot change the status of a closed ticket via update-ticket."
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:224
+msgid "Cannot reply to a closed ticket. Reopen it first, then reply."
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:344
+msgid "Chat ID already set for this ticket"
+msgstr ""
+
+#: app/Models/Customer.php:54 app/Models/Traits/CustomerTrait.php:135
+#: app/Models/Traits/CustomerTrait.php:137
+#: app/Hooks/Handlers/AuthHandler.php:409
+#: app/Hooks/Handlers/AuthHandler.php:411
+#: app/Hooks/Handlers/PrivacyHandler.php:240
+msgid "City"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:114
+msgid ""
+"Close a ticket. Optionally send a final customer-visible reply and/or an "
+"internal note in the same call. This is the simplest way to close — use it "
+"instead of reply-to-ticket when closing is the primary intent."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:113
+msgid "Close Ticket"
+msgstr ""
+
+#: app/Services/Helper.php:123 app/Services/Helper.php:840
+msgid "Closed"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:74
+msgid "closed a ticket"
+msgstr ""
+
+#: app/Modules/StatModule.php:77 app/Modules/StatModule.php:120
+#: app/Modules/StatModule.php:164
+#: app/Http/Controllers/ReportingController.php:443
+#: app/Services/Tickets/TicketStats.php:43
+msgid "Closed Tickets"
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:134
+msgid "Complete Signup"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:52
+msgid "Configuration required!"
+msgstr ""
+
+#: app/Services/FluentCRMServices.php:144
+msgid "Contact could not be found"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:116
+msgid "content cannot be empty"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:124
+msgid "Content is required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:333
+msgid "content is required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:209
+msgid "content or saved_reply_id is required"
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:505
+msgid "Conversation"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:161
+msgid "Conversation Attachments"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:157
+msgid "Conversation Content"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:165
+msgid "Conversation Created At"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:149
+msgid "Conversation ID"
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:466
+msgid "Conversation not found for this ticket."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:443
+msgid "Copy"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:445
+msgid "Copy this URL and add it to your FluentCommunity menu."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:94
+msgid "Could not create the attachment import directory."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:99
+msgid "Could not resolve the attachment import directory."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:171
+msgid "Could not save the downloaded attachment."
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:160
+msgid "Could not write the downloaded attachment."
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:90
+msgid "Count"
+msgstr ""
+
+#: app/Models/Customer.php:57 app/Models/Traits/CustomerTrait.php:156
+#: app/Models/Traits/CustomerTrait.php:157
+#: app/Hooks/Handlers/AuthHandler.php:430
+#: app/Hooks/Handlers/PrivacyHandler.php:252
+msgid "Country"
+msgstr ""
+
+#: app/Services/Helper.php:980 app/Services/Helper.php:1001
+#: app/Services/Helper.php:1099
+msgid "Course and e-learning platform built for WordPress"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:309
+msgid ""
+"Create a new saved/canned reply for reuse across tickets. Use when you "
+"notice yourself sending the same answer repeatedly. Content supports "
+"placeholders expanded automatically at send time: {{customer.first_name}}, "
+"{{customer.last_name}}, {{agent.first_name}}, {{agent.last_name}}, {{ticket."
+"title}}. Use the dot form exactly as shown — {{customer.first_name}}, not "
+"{{customer_first_name}} — unrecognized placeholders are sent to the customer "
+"as literal text."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:73
+msgid ""
+"Create a new support ticket on behalf of a customer. Requires title, content,"
+" and customer_email. Automatically creates the customer if the email is new. "
+"By default the ticket is logged on the customer's behalf (\"created by "
+"agent\") — the customer gets a notification that a ticket was opened for "
+"them. Set agent_initiated=true only when the agent is proactively reaching "
+"out to start a conversation (e.g. billing follow-up, onboarding, account "
+"review); then the content is sent to the customer as the agent's first reply "
+"instead. Use get-support-context first to get valid product_id, mailbox_id, "
+"and agent_id values."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:251
+msgid ""
+"Create a new ticket tag for categorization and reporting, without attaching "
+"it to a ticket. If a tag with the same title already exists, that existing "
+"tag is returned instead of creating a duplicate. To create and apply a tag "
+"to a ticket in one call, pass add_tag_names to tag-ticket instead."
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:80
+msgid "Create an account"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:308
+msgid "Create Saved Reply"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:72
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:50
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:74
+msgid "Create Support Ticket"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:38
+msgid "Create Support Ticket From Your Form Submission in FluentSupport"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:250
+msgid "Create Ticket Tag"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:256
+msgid "Created At"
+msgstr ""
+
+#: app/Services/Helper.php:63 app/Services/Helper.php:77
+msgid "Critical"
+msgstr ""
+
+#: app/Services/Helper.php:195
+msgid "CSV"
+msgstr ""
+
+#: app/Services/Helper.php:1168
+msgid "Custom Fields"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:305
+msgid "Custom Registration Form Field"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1781
+msgid "Customer already assigned to this ticket."
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:266
+msgid "Customer avatar reset to gravatar default"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:211
+msgid "Customer could not be created"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:170
+msgid "Customer Data"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:351
+msgid "Customer Deleted Successfully"
+msgstr ""
+
+#. %1$d: number of customers deleted
+#: app/Models/Traits/CustomerTrait.php:394
+msgid "Customer deleted successfully"
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:117
+msgid "Customer has been added"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1787
+#: app/Http/Controllers/CustomerController.php:182
+msgid "Customer has been updated"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:204
+msgid "Customer ID"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:274
+msgid "Customer not found"
+msgstr ""
+
+#: app/Modules/MCP/Tools/CustomerTools.php:110
+msgid "Customer not found. Provide customer_id, email, or name."
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:195
+msgid "Customer Other Fields"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:200
+msgid "Customer Portal"
+msgstr ""
+
+#: app/Hooks/Handlers/CustomerPortalHandler.php:44
+msgid ""
+"Customer Portal is only accessible by Customers. Looks like you are a "
+"support staff"
+msgstr ""
+
+#: app/Models/Customer.php:51
+msgid "Customer Title"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:82 app/Hooks/Handlers/Menu.php:83
+#: app/Hooks/Handlers/Menu.php:189
+msgid "Customers"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:52 app/Hooks/Handlers/Menu.php:53
+#: app/Hooks/Handlers/Menu.php:153
+msgid "Dashboard"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:403
+msgid "Default Portal Page"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:211
+msgid "Default status for new contacts"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:271
+msgid "Delete all attachments on ticket close"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:341
+msgid "Delete Saved Reply"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:162
+msgid "Delete Ticket"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:469
+msgid "Delete Tickets & Individual Responses"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:34
+#: app/Services/Tickets/CustomFieldsService.php:37
+msgid "Details about the issue"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:245
+msgid "Disable Public Ticket interaction"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:810
+msgid "Discard draft successfully"
+msgstr ""
+
+#: app/Services/Helper.php:1040
+msgid "Discord"
+msgstr ""
+
+#: app/Services/Helper.php:848
+msgid "Dislikes"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:722
+msgid "Draft has been added"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:709
+msgid "Draft has been updated"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:788
+msgid "Draft not found"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:472
+msgid "Draft Reply"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1601
+msgid "Draft response has been successfully approved."
+msgstr ""
+
+#: app/Services/Helper.php:1110
+msgid "Dropbox"
+msgstr ""
+
+#: app/Services/Helper.php:1054
+msgid "Easy Digital Downloads"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:78
+#: app/Models/Traits/CustomerTrait.php:80
+#: app/Hooks/Handlers/PrivacyHandler.php:216
+msgid "Email"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:364
+#: app/Hooks/Handlers/AuthHandler.php:451
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:178
+msgid "Email Address"
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:190
+msgid "Email address has been assigned to other customer"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:238
+msgid "Email and Password is required"
+msgstr ""
+
+#: app/Http/Requests/AgentCreateRequest.php:20
+msgid "Email is required"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:287
+#: app/Http/Controllers/AuthController.php:409
+msgid "Email or Password is not valid. Please try again"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:65
+msgid "Enable Assignment Notifications"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:76
+msgid "Enable Customer Reply Notifications"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:299
+msgid "Enable Draft Mode"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:126
+msgid "Enable Dynamic Product Selection"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:369
+msgid "Enable Fluent Booking Integration"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:279
+msgid "Enable Fluent Summary In Admin Bar"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:207
+msgid "Enable FluentCRM Integration"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:287
+#: app/Services/Notifications/NotificationSettings.php:58
+msgid "Enable Internal Notifications"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:321
+msgid "Enable Keyboard Shortcuts"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:330
+msgid "Enable Minimum Ticket Number"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:290
+#: app/Services/Notifications/NotificationSettings.php:59
+msgid ""
+"Enable the in-app notification bell, unread counts, and notification event "
+"storage for agents."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:331
+msgid ""
+"Enable this to start public ticket numbers from a custom minimum number."
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:98
+msgid "Enable Ticket Status Notifications"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:313
+msgid "Enable Two-Factor Authentication"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:87
+msgid "Enable Workflow Notifications"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:354
+msgid "Failed to create internal note"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:276
+msgid "Failed to create response"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:495
+msgid "Failed to create tag"
+msgstr ""
+
+#: app/Http/Controllers/FluentBoardsController.php:90
+msgid "Failed to create task."
+msgstr ""
+
+#. %1$d: customer ID, %2$s: error message
+#: app/Models/Traits/CustomerTrait.php:387
+#, php-format
+msgid "Failed to delete customer ID %1$d: %2$s"
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:339
+msgid "Failed to delete feedback."
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:260
+msgid "Failed to fetch chat messages."
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:301
+msgid "Failed to save feedback."
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:43
+msgid "Fallback Box cannot be the same as MailBox ID"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:18
+msgid "Feature Request"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:100
+msgid "Feed Name"
+msgstr ""
+
+#: app/Http/Controllers/UploaderController.php:282
+msgid "File content does not match the image type."
+msgstr ""
+
+#: app/Hooks/Handlers/ExternalPages.php:245
+msgid "File not found or access denied"
+msgstr ""
+
+#: app/Services/Includes/UploadService.php:41
+msgid "File upload failed"
+msgstr ""
+
+#: app/Services/Helper.php:1198
+msgid "File Upload Integrations"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:64
+#: app/Models/Traits/CustomerTrait.php:66
+#: app/Hooks/Handlers/PrivacyHandler.php:208
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:184
+msgid "First Name"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:344
+#: app/Hooks/Handlers/AuthHandler.php:346
+msgid "First name"
+msgstr ""
+
+#: app/Http/Requests/AgentCreateRequest.php:21
+msgid "First name is required"
+msgstr ""
+
+#: app/Http/Controllers/FluentBoardsController.php:16
+#: app/Http/Controllers/FluentBoardsController.php:38
+#: app/Http/Controllers/FluentBoardsController.php:62
+msgid "Fluent Boards plugin is not installed or activated."
+msgstr ""
+
+#: app/Services/Helper.php:1026
+msgid "Fluent Forms"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:577
+msgid "Fluent Forms could not be installed"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:550
+#: app/Http/Controllers/SettingsController.php:572
+msgid "Fluent Forms plugin has been installed and activated successfully"
+msgstr ""
+
+#. Name of the plugin
+#: app/Hooks/Handlers/Menu.php:41 app/Hooks/Handlers/Menu.php:42
+#: app/Modules/MCP/MCPInit.php:73 app/Modules/MCP/MCPInit.php:155
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:49
+#: app/Services/Integrations/FluentCrm/FluentCRMWidgets.php:25
+msgid "Fluent Support"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:145
+msgid "Fluent Support Conversations"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:26
+msgid "Fluent Support Conversations Exporter"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:262
+msgid "Fluent Support Custom Field"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:200
+msgid "Fluent Support Customer"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:31
+msgid "Fluent Support Customer Exporter"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:197
+msgid "Fluent Support Field"
+msgstr ""
+
+#: app/Modules/MCP/Support/PermissionGate.php:39
+msgid "Fluent Support MCP is disabled. Enable it in Settings → MCP."
+msgstr ""
+
+#: app/Modules/MCP/MCPInit.php:224
+msgid ""
+"Fluent Support MCP is enabled but no MCP adapter was found. Install "
+"FluentHub (recommended) or the MCP Adapter plugin on WordPress 6.9+."
+msgstr ""
+
+#: app/Modules/MCP/MCPInit.php:126
+msgid "Fluent Support MCP Server"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:41
+msgid "Fluent Support Personal Data Eraser"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:75
+msgid "Fluent Support Stats"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:67
+msgid "Fluent Support Tickets"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:21
+msgid "Fluent Support Tickets Exporter"
+msgstr ""
+
+#: app/Services/Helper.php:1131
+msgid "FluentBoards"
+msgstr ""
+
+#: app/Services/Helper.php:1138
+msgid "FluentBooking"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:43
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:98
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:150
+msgid "FluentBooking is not installed or active."
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:202
+msgid ""
+"FluentBooking is not installed or the ticket customer has no email address."
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:402
+msgid ""
+"FluentBot API key is not set. Add it in the FluentBot integration settings."
+msgstr ""
+
+#: app/Services/Helper.php:970
+msgid "FluentCart"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:410
+msgid "FluentCart Account Navigation"
+msgstr ""
+
+#: app/Services/Integrations/FluentCart/FluentCart.php:83
+msgid "FluentCart Purchases"
+msgstr ""
+
+#: app/Services/Helper.php:1019
+msgid "FluentCommunity"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:424
+msgid "FluentCommunity Portal"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:440
+msgid "FluentCommunity Portal URL"
+msgstr ""
+
+#: app/Services/Helper.php:1012
+msgid "FluentCRM"
+msgstr ""
+
+#: app/Services/FluentCRMServices.php:58
+msgid "FluentCRM contact lists has been updated"
+msgstr ""
+
+#: app/Services/FluentCRMServices.php:32
+msgid "FluentCRM contact tags has been updated"
+msgstr ""
+
+#: app/Services/Helper.php:1183
+msgid "FluentCRM Integration"
+msgstr ""
+
+#: app/Services/FluentCRMServices.php:134
+msgid "FluentCRM is not installed or enabled"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:513
+#: app/Http/Controllers/SettingsController.php:535
+msgid "FluentCRM plugin has been installed and activated successfully"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:107
+msgid "FluentHub installed and activated. The MCP endpoint is ready."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:108
+msgid ""
+"FluentHub was installed. Please reload this page to finish connecting the "
+"MCP endpoint."
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:54
+msgid ""
+"FluentSupport is not configured yet! Please configure your FluentSupport api "
+"first"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:86
+msgid "Forgot your password?"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:174
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:198
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:263
+msgid "Form Field"
+msgstr ""
+
+#: app/Modules/MCP/Tools/CustomerTools.php:84
+msgid "Found %d customer"
+msgid_plural "Found %d customers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/CustomerTools.php:83
+#, php-format
+msgid "Found %d customer matching '%s'"
+msgid_plural "Found %d customers matching '%s'"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:905
+msgid "Found %d mention"
+msgid_plural "Found %d mentions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:40
+msgid "Found %d saved reply"
+msgid_plural "Found %d saved replies"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:96
+#: app/Modules/MCP/Tools/TicketTools.php:115
+msgid "Found %d ticket"
+msgid_plural "Found %d tickets"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/CustomerTools.php:152
+#, php-format
+msgid "Found %d ticket for %s"
+msgid_plural "Found %d tickets for %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:961
+msgid "Found %d workflow"
+msgid_plural "Found %d workflows"
+msgstr[0] ""
+msgstr[1] ""
+
+#: app/Services/Tickets/Importer/FreshDeskTickets.php:204
+msgid "Freshdesk API URL is not allowed."
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotHelper.php:385
+msgid ""
+"General bot is disabled and no product-specific bot is configured for this "
+"product."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:266
+msgid ""
+"Get a customer's tickets by email, name, or ID — no need to search for the "
+"customer first. Email is the most reliable. Best tool when someone asks "
+"\"show me tickets from [customer]\"."
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:407
+msgid ""
+"Get activity notification to Slack Channel and keep your support team super "
+"engaged"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:400
+msgid ""
+"Get activity notification to Telegram Messenger and reply directly from "
+"Telegram inbox"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:383
+msgid "Get Agent Mentions"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:265
+msgid "Get Customer Tickets"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:56
+msgid ""
+"Get full ticket details with conversation thread, customer history "
+"(total/open tickets, first seen), previous tickets, custom fields, purchase "
+"history (WooCommerce/FluentCart), and CRM data (FluentCRM tags/lists). The "
+"thread is paginated: 50 responses per page, most recent first. Check "
+"responses_meta.has_more and increment response_page to fetch older messages. "
+"Customer name and email are included for all agents with fst_view_tickets — "
+"agents need customer context to work their queue."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:356
+msgid ""
+"Get performance analytics: first-response times, resolution times, waiting "
+"durations, per-agent performance (open tickets, closed count, avg "
+"response/resolution time), and volume trends. Use for reporting and team "
+"performance reviews. Returns human-readable durations like \"2h 30m\". "
+"waiting is split into waiting_on_agent (last_reply_by=customer — genuinely "
+"needs a reply) and waiting_on_customer (last_reply_by=agent — customer has "
+"gone idle since our reply); a blended average across both would mostly "
+"measure customer silence, not agent responsiveness. For basic ticket counts, "
+"use get-support-context instead."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:283
+msgid "Get Support Context"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:355
+msgid "Get Support Insights"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:177
+msgid ""
+"Get the activity timeline for a ticket — who did what and when. Shows ticket "
+"creation, responses, status changes, agent assignments, and closures. Use to "
+"understand ticket history without reading the full conversation."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:176
+msgid "Get Ticket Activity Log"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:55
+msgid "Get Ticket Details"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:384
+msgid ""
+"Get tickets where you have been @mentioned in internal notes or replies. "
+"Returns mention notifications with the ticket context, who mentioned you, "
+"and a content preview. Filter by read/unread status or scope to a specific "
+"ticket. Requires internal notifications to be enabled in settings."
+msgstr ""
+
+#: app/Services/Helper.php:1153 app/Hooks/Handlers/Menu.php:224
+msgid "Global Settings"
+msgstr ""
+
+#: app/Hooks/Handlers/CustomerPortalHandler.php:49
+msgid "Go to Support Admin Page"
+msgstr ""
+
+#: app/Services/Helper.php:1103
+msgid "Google Drive"
+msgstr ""
+
+#: app/Services/Helper.php:1124
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#. %s is the user's first name
+#. %s is the user's display name
+#: app/Hooks/Handlers/EmailVerificationHandler.php:97
+#: app/Hooks/Handlers/TwoFaHandler.php:212
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#: app/Modules/MCP/MCPInit.php:74
+msgid "Helpdesk ticket management abilities for Fluent Support."
+msgstr ""
+
+#. %s is the user's first name
+#: app/Http/Controllers/AuthController.php:603
+#, php-format
+msgid "Hi %s,"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://fluentsupport.com"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wpmanageninja.com"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:94
+#: app/Modules/MCP/Tools/ResponseTools.php:151
+msgid "id is required"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:608
+msgid ""
+"If you did not request to reset your password, please ignore this email."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:272
+msgid ""
+"If you enable this feature, all attachments associated with a ticket will be "
+"deleted when the ticket is closed."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:300
+msgid ""
+"If you enable this setting, any written response will be saved as a draft if "
+"an agent accidentally closes a ticket."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:390
+msgid ""
+"If you enable this setting, the agent can specify the amount of time needed "
+"to complete a ticket."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:314
+msgid ""
+"If you enable this setting, users will be required to submit a second form "
+"of authentication, such as a code sent to their email, to login."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:381
+msgid ""
+"If you enable this setting, users will have the option to provide feedback "
+"on an agent's response."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:246
+msgid ""
+"If you enable this then only logged in user can reply the tickets. Otherwise,"
+" url will be signed and intended user can reply without logging in"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:370
+msgid ""
+"If you enable this, agents can create booking links and view meeting details "
+"inside tickets."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:322
+msgid ""
+"If you enable this, agents can use keyboard shortcuts for faster actions."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:280
+msgid ""
+"If you enable this, logged in user can see the ticket summary from top nav "
+"bar."
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:115
+msgid ""
+"If you select the <b>Blocked</b> status, this customer will not be able to "
+"submit a ticket or any response."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:194
+msgid ""
+"In Codex, add a custom MCP server with Streamable HTTP transport and the "
+"Authorization header above."
+msgstr ""
+
+#: app/Services/Helper.php:1188
+msgid "Incoming Webhook"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:286
+msgid "Installation has been completed"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:19
+msgid "Integration Issues"
+msgstr ""
+
+#: app/Services/Helper.php:1218
+msgid "Integration Statuses"
+msgstr ""
+
+#: app/Modules/StatModule.php:85 app/Services/Helper.php:838
+msgid "Interactions"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:856
+msgid "Internal notifications are not enabled."
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:828
+msgid ""
+"Internal notifications are not enabled. Enable them in Fluent Support "
+"Settings > Notifications."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:372
+msgid "Invalid AI provider selected."
+msgstr ""
+
+#: app/Services/Integrations/AI/AIProviderFactory.php:30
+msgid "Invalid AI provider."
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:322
+#: app/Http/Controllers/FluentBotController.php:454
+msgid "Invalid chat_id format"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1033
+msgid "Invalid client priority."
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:625
+msgid "Invalid conversation for feedback"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1757
+#: app/Http/Controllers/TicketController.php:1777
+msgid "Invalid customer selected."
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:270
+#, php-format
+msgid "Invalid date format for '%s'"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:615
+msgid "Invalid feedback value provided"
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:606
+msgid "Invalid feedback_id"
+msgstr ""
+
+#: app/Http/Controllers/UploaderController.php:87
+msgid "Invalid file upload request."
+msgstr ""
+
+#: app/Http/Controllers/WidgetsController.php:19
+msgid "Invalid filter name"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1923
+msgid "Invalid filter type."
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:163
+msgid "Invalid form data submitted"
+msgstr ""
+
+#: app/Services/Tickets/Importer/FreshDeskTickets.php:336
+msgid ""
+"Invalid Freshdesk domain. Use a https:// URL pointing to your Freshdesk "
+"portal."
+msgstr ""
+
+#: app/Http/Controllers/UploaderController.php:273
+msgid "Invalid image file type."
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:575
+msgid "Invalid message_id"
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotAPI.php:33
+msgid "Invalid or empty response from API"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:77
+msgid ""
+"Invalid or expired cursor, or it was generated with a different "
+"sort_by/sort_type than this request"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1070
+msgid "Invalid or restricted mailbox."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1040
+msgid "Invalid product."
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:579
+msgid "Invalid reaction"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:309
+msgid "Invalid reCAPTCHA data."
+msgstr ""
+
+#: app/Http/Controllers/ChatMessageParserController.php:31
+#: app/Http/Controllers/ChatMessageParserController.php:61
+msgid "Invalid request signature."
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:241
+msgid "Invalid request submitted. Please select a ticket first"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:685
+#, php-format
+msgid "Invalid status '%s'"
+msgstr ""
+
+#: app/Hooks/Handlers/ExternalPages.php:219
+msgid "Invalid Support Portal URL"
+msgstr ""
+
+#: app/Http/Controllers/WidgetsController.php:38
+msgid "Invalid ticket ID"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1027
+msgid "Invalid ticket priority."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1021
+msgid "Invalid ticket status."
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:512
+#: app/Http/Controllers/AuthController.php:537
+msgid "Invalid username or email"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:280
+#: app/Http/Controllers/AuthController.php:299
+#: app/Http/Controllers/AuthController.php:339
+msgid "Invalid username, email address or incorrect password."
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:170
+msgid "Invalid verification code"
+msgstr ""
+
+#: app/Services/Tickets/Importer/ZendeskTickets.php:503
+msgid ""
+"Invalid Zendesk domain. Use a https:// URL pointing to your Zendesk instance."
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:25
+#: app/Services/Tickets/CustomFieldsService.php:28
+msgid "Invoice Number"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:224
+msgid "IP Address"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:86
+#: app/Models/Traits/CustomerTrait.php:88
+msgid "Job Title"
+msgstr ""
+
+#: app/Services/Helper.php:224
+msgid "JSON"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:495
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:228
+msgid "Last IP Address"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:71
+#: app/Models/Traits/CustomerTrait.php:73
+#: app/Hooks/Handlers/AuthHandler.php:350
+#: app/Hooks/Handlers/PrivacyHandler.php:212
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:188
+msgid "Last Name"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:352
+msgid "Last name"
+msgstr ""
+
+#: app/Services/Helper.php:1089
+msgid "LearnDash"
+msgstr ""
+
+#: app/Services/Helper.php:1096
+msgid "LearnPress"
+msgstr ""
+
+#: app/Services/Helper.php:1240
+msgid "License Management"
+msgstr ""
+
+#: app/Services/Helper.php:977
+msgid "LifterLMS"
+msgstr ""
+
+#: app/Services/Helper.php:847
+msgid "Likes"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:24
+msgid ""
+"List and filter support tickets. Returns ticket summaries with content "
+"preview, customer, agent, product, and tags inline — no need to call get-"
+"ticket for each. Each row carries triage signals so you can sweep a backlog "
+"page without opening tickets: last_reply_by (\"agent\" | \"customer\" | null)"
+" and response_count. last_reply_by=\"customer\" means the customer spoke "
+"last, so the ticket is awaiting an agent reply (this is the per-ticket value "
+"behind the waiting_for_reply filter); \"agent\" means we replied and the "
+"ball is in the customer's court. The original ticket message counts as the "
+"customer speaking, so a brand-new ticket with response_count=0 still "
+"resolves to last_reply_by=\"customer\" (correctly — it is awaiting an agent) "
+"rather than null; null only occurs on legacy-imported tickets with no reply "
+"history at all. On open tickets this is your \"is it waiting on us?\" signal;"
+" on closed tickets it just reflects who spoke last. response_count is the "
+"number of replies made after ticket creation (the original message and "
+"internal notes are not counted, so response_count=0 does not imply "
+"last_reply_by is null). An optional customer_summary line may be present "
+"when an integration provides one (e.g. plan/usage info) — treat its absence "
+"as normal. For triage: use sort_by=waiting_since, order=ASC, "
+"waiting_for_reply=true. For a specific customer's tickets, prefer get-"
+"customer-tickets instead. Customer name and email are included for all "
+"agents with fst_view_tickets — agents need customer context to work their "
+"queue. For a multi-page sweep where you act on tickets as you go "
+"(replying/closing shifts waiting_since), use meta.paging.next_cursor from "
+"each response as the next call's cursor instead of incrementing page — this "
+"is immune to rows shifting position mid-sweep; plain page/per_page is fine "
+"for a one-off fetch."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:400
+msgid ""
+"List automation workflows — see what automatic actions are configured (auto-"
+"assign, auto-tag, auto-reply, etc.) and their triggers. Helps you understand "
+"what the system handles automatically so you don't duplicate work. Paginated;"
+" use page/per_page to navigate. Requires Fluent Support Pro."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:294
+msgid "List Saved Replies"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:23
+msgid "List Support Tickets"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:399
+msgid "List Workflows"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:295
+msgid ""
+"List your saved/canned replies. Only returns replies you created. Optionally "
+"filter by search text or product_id. Use the returned ID with reply-to-"
+"ticket's saved_reply_id param. Content may contain placeholders like "
+"{{customer.first_name}} or {{agent.first_name}}, expanded automatically when "
+"the reply is sent."
+msgstr ""
+
+#: app/Hooks/Handlers/CustomerPortalHandler.php:78
+msgid "Loading Customer Portal. Please wait..."
+msgstr ""
+
+#: app/Services/Integrations/FluentCommunity/PortalRenderer.php:89
+msgid "Loading Support Portal. Please wait..."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:155
+msgid ""
+"Local dev mode is on, so NODE_TLS_REJECT_UNAUTHORIZED is included — the npx "
+"proxy needs it to talk to self-signed SSL."
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:161
+msgid "Login"
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:250
+msgid "Login Code"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:496
+msgid "macOS"
+msgstr ""
+
+#: app/Http/Controllers/MailBoxController.php:56
+msgid "Mailbox has been created successfully"
+msgstr ""
+
+#: app/Http/Controllers/MailBoxController.php:81
+msgid "Mailbox has been saved"
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:209
+msgid "MailBox ID must be provided"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:159
+msgid "Make sure form field values match with Fluent Support priorities"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:467
+msgid "Manage Others Tickets"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:488
+msgid "Manage Overall Settings"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:465
+msgid "Manage Own Tickets"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:482
+msgid "Manage Saved Replies"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:466
+msgid "Manage Unassigned Tickets"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:480
+msgid "Manage Workflows"
+msgstr ""
+
+#: app/Hooks/Handlers/InternalNotificationHandler.php:302
+#, php-format
+msgid "Manual workflow \"%s\" was run"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:258
+msgid "Max File Size (in MegaByte)"
+msgstr ""
+
+#: app/Services/Helper.php:843
+msgid "Max Waiting"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:264
+msgid "Maximum File Upload"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:73
+msgid "MCP disabled. The endpoint will reject requests until re-enabled."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:72
+msgid ""
+"MCP enabled. AI agents with a valid application password can now reach the "
+"Fluent Support tools."
+msgstr ""
+
+#: app/Services/Helper.php:1231
+msgid "MCP for AI Agents"
+msgstr ""
+
+#: app/Services/Helper.php:62 app/Services/Helper.php:76
+msgid "Medium"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:268
+msgid "Meeting"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:272
+msgid "Meeting scheduled via FluentBooking"
+msgstr ""
+
+#: app/Services/Helper.php:1117
+msgid "MemberPress"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:54
+msgid "mentioned you"
+msgstr ""
+
+#: app/Services/Notifications/NotificationCategory.php:29
+msgid "Mentions"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:191
+msgid ""
+"Merge duplicate tickets into one. All conversations and attachments from the "
+"merged tickets are moved into the target ticket. The merged tickets are "
+"deleted. Requires Fluent Support Pro."
+msgstr ""
+
+#: app/Modules/PermissionManager.php:470
+#: app/Modules/MCP/AbilitiesRegistrar.php:190
+msgid "Merge Tickets"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:811
+msgid "Merge tickets requires Fluent Support Pro"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:236
+msgid "Message for non logged in users"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:337
+msgid "Minimum Ticket Number"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:215
+msgid "More"
+msgstr ""
+
+#: app/Services/Helper.php:121
+msgid "New"
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:237
+msgid "New Box cannot be the same as MailBox ID"
+msgstr ""
+
+#: app/Modules/StatModule.php:69 app/Modules/StatModule.php:112
+#: app/Modules/StatModule.php:160
+#: app/Http/Controllers/ReportingController.php:441
+#: app/Services/Tickets/TicketStats.php:31
+msgid "New Tickets"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:340
+msgid "Next Ticket Number: %d"
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:584
+#: app/Http/Controllers/FluentBotController.php:611
+msgid "No active chat for this ticket"
+msgstr ""
+
+#: app/Services/Helper.php:1383
+msgid "No activity settings found"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:25
+#: app/Modules/MCP/Tools/TicketTools.php:296
+#: app/Modules/MCP/Tools/TicketTools.php:401
+#: app/Modules/MCP/Tools/TicketTools.php:537
+#: app/Modules/MCP/Tools/TicketTools.php:595
+#: app/Modules/MCP/Tools/TicketTools.php:625
+#: app/Modules/MCP/Tools/TicketTools.php:728
+#: app/Modules/MCP/Tools/TicketTools.php:758
+#: app/Modules/MCP/Tools/TicketTools.php:807
+#: app/Modules/MCP/Tools/CustomerTools.php:16
+#: app/Modules/MCP/Tools/ResponseTools.php:18
+#: app/Modules/MCP/Tools/ResponseTools.php:52
+#: app/Modules/MCP/Tools/ResponseTools.php:89
+#: app/Modules/MCP/Tools/ResponseTools.php:146
+#: app/Modules/MCP/Tools/ResponseTools.php:183
+#: app/Modules/MCP/Tools/ResponseTools.php:322
+#: app/Modules/MCP/Tools/ManagementTools.php:30
+#: app/Modules/MCP/Tools/ManagementTools.php:306
+#: app/Modules/MCP/Tools/ManagementTools.php:344
+#: app/Modules/MCP/Tools/ManagementTools.php:481
+#: app/Modules/MCP/Tools/ManagementTools.php:516
+#: app/Modules/MCP/Tools/ManagementTools.php:718
+#: app/Modules/MCP/Tools/ManagementTools.php:823
+msgid "No agent found for current user"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1258
+msgid "No agents found in this group"
+msgstr ""
+
+#: app/Services/Integrations/AI/AIProviderFactory.php:52
+msgid "No AI provider configured."
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotAPI.php:51
+msgid "No AI response found in the API response."
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:365
+msgid "No customers selected for deletion"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:397
+msgid "No customers were deleted"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:241
+msgid "No FluentBooking meetings found for this customer."
+msgstr ""
+
+#: app/Http/Controllers/UploaderController.php:262
+msgid "No image file provided."
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:239
+msgid "No meeting booked yet from these links."
+msgstr ""
+
+#: app/Services/Helper.php:61 app/Services/Helper.php:75
+msgid "Normal"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:78
+msgid "Not registered?"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:93
+#: app/Models/Traits/CustomerTrait.php:95
+msgid "Note"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:291
+msgid "Notification data older than 15 days will be removed automatically."
+msgstr ""
+
+#: app/Services/Helper.php:1193
+msgid "Notification Integrations"
+msgstr ""
+
+#: app/Services/Notifications/NotificationSettings.php:109
+msgid "Notify Assigned Agent When Another Agent Replies"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:338
+msgid ""
+"Once a ticket is created, you cannot lower this value below the current "
+"highest ticket number. Set this carefully — raising it is easy, but lowering "
+"it below an existing ticket number is not allowed."
+msgstr ""
+
+#. %s is a comma-separated list of allowed file types (e.g., "jpg, png, pdf")
+#: app/Http/Controllers/UploaderController.php:126
+#, php-format
+msgid "Only %s files are allowed."
+msgstr ""
+
+#: app/Http/Policies/AgentPolicy.php:54
+msgid "Only administrators can add, edit, or delete support staff."
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:428
+msgid "Open"
+msgstr ""
+
+#: app/Services/Helper.php:839 app/Http/Controllers/ReportingController.php:445
+msgid "Open Tickets"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:355
+msgid "Optional prefix for newly created public ticket numbers."
+msgstr ""
+
+#: app/Services/Helper.php:991
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:371
+#: app/Hooks/Handlers/AuthHandler.php:373
+msgid "Password"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:550
+msgid "Password reset is not allowed for this user"
+msgstr ""
+
+#: app/Services/Helper.php:1082
+msgid "Paymattic"
+msgstr ""
+
+#: app/Services/Helper.php:206
+msgid "PDF/Docs"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:219
+msgid "Pending"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:342
+msgid ""
+"Permanently delete a saved reply. Only the reply's creator (or an agent with "
+"settings-management permission) can delete it."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:163
+msgid ""
+"Permanently delete a support ticket and all its responses, attachments, and "
+"metadata. This action cannot be undone."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1046
+msgid "Permission denied to assign agent"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1063
+msgid "Permission denied to move this ticket to another mailbox."
+msgstr ""
+
+#: app/Services/Helper.php:183
+msgid "Photos"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:625
+msgid "Please check your email for the reset link"
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:243
+msgid ""
+"Please check your email inbox and enter the two-factor verification code "
+"below:"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:151
+msgid "Please input your file upload or image upload field shortcode here"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:13
+msgid "Please let us know about this support type"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:35
+msgid "Please let us know more details about this issue"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:26
+msgid "Please let us know your invoice number"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:171
+msgid ""
+"Please Map Your Customer Data for this form. If your customer already logged "
+"in you can leave this"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:260
+msgid "Please Map Your Ticket Custom Field Data for this form."
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:118
+msgid "Please provide a valid login code"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:88
+#: app/Http/Controllers/AuthController.php:96
+#: app/Http/Controllers/AuthController.php:131
+msgid ""
+"Please provide a valid verification code that was sent to your email address"
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:296
+msgid "Please provide at least 3 characters to search"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:237
+msgid ""
+"Please provide message for not logged in users. You can place login "
+"shortcode too. Use shortcode <code>[fluent_support_login]</code> to show "
+"built-in login form. For the user registration use this shortcode <code>"
+"[fluent_support_signup]</code> and for both form please use <code>"
+"[fluent_support_auth]</code>"
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:286
+msgid "Please provide search string"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:225
+msgid ""
+"Please provide the page id where you want to show the tickets for your "
+"customers. Use shortcode <code>[fluent_support_portal]</code> in that page"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:165
+msgid ""
+"Please provide the ticket provider info. If user is logged in then it will "
+"use that info. For Public users you can set your customer info"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:601
+#: app/Http/Controllers/TicketController.php:632
+msgid "Please select a FluentBooking event type."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:133
+msgid "Please select a page or enable create page"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:341
+msgid "Please verify reCAPTCHA before saving."
+msgstr ""
+
+#: app/Services/Helper.php:1036 app/Services/Helper.php:1050
+#: app/Services/Helper.php:1064
+msgid "Powerful platform for any member-focused business"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:117
+msgid "Product"
+msgstr ""
+
+#: app/Models/Product.php:118
+msgid "Product has been deleted"
+msgstr ""
+
+#: app/Models/Product.php:84
+msgid "Product has been successfully created"
+msgstr ""
+
+#: app/Models/Product.php:103
+msgid "Product has been updated"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:134
+msgid "Product is required"
+msgstr ""
+
+#: app/Http/Requests/ProductRequest.php:26
+msgid "Product Title is required"
+msgstr ""
+
+#: app/Services/Helper.php:1173
+msgid "Products"
+msgstr ""
+
+#: app/Services/AvatarUploder.php:36
+msgid "Profile picture has been updated successfully"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:966
+msgid "Prompt options saved successfully"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:242
+msgid "Public Ticket Interaction"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:35
+msgid "Quick Summary"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:66
+msgid "reassigned a ticket"
+msgstr ""
+
+#: app/Services/Helper.php:1213
+msgid "Recaptcha"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:130
+msgid ""
+"Reopen a closed ticket. Sets status back to active and clears the resolved "
+"date. Use when a customer follows up on a closed issue."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:129
+msgid "Reopen Ticket"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:78
+msgid "reopened a ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:540
+msgid "Replied by Agent (To Customer)"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:564
+msgid "Replied by Customer (To Agent/Admin)"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:58
+#: app/Services/Notifications/NotificationEventMap.php:70
+msgid "replied to a ticket"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:296
+msgid "Reply added to ticket #%d"
+msgstr ""
+
+#: app/Http/Requests/TicketResponseRequest.php:25
+msgid "Reply content is required"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:140
+msgid "Reply has been added"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:295
+msgid "Reply sent and ticket #%d closed"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:95
+msgid "Reply to Ticket"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:493
+msgid "Reporting"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:71 app/Hooks/Handlers/Menu.php:72
+#: app/Hooks/Handlers/Menu.php:163
+msgid "Reports"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:203
+msgid "Reset Password"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:88
+msgid "Reset password"
+msgstr ""
+
+#. %s is the site name
+#: app/Http/Controllers/AuthController.php:568
+#, php-format
+msgid "Reset your password for %s"
+msgstr ""
+
+#. %s is the site name
+#: app/Http/Controllers/AuthController.php:600
+#, php-format
+msgid "Reset your password for %s support portal"
+msgstr ""
+
+#: app/Services/Tickets/Importer/Common.php:120
+msgid "Resolved attachment path escapes the import directory."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:555
+msgid "Response has been added"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1436
+msgid "Response has been added to the selected tickets"
+msgstr ""
+
+#: app/Http/Controllers/ChatMessageParserController.php:38
+msgid "Response has been successfully recorded"
+msgstr ""
+
+#: app/Modules/StatModule.php:81 app/Modules/StatModule.php:124
+#: app/Modules/StatModule.php:168 app/Services/Helper.php:837
+#: app/Http/Controllers/ReportingController.php:444
+msgid "Responses"
+msgstr ""
+
+#: app/Services/Helper.php:1061
+msgid "Restrict Content pro"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:219
+msgid ""
+"Run this in your terminal where Claude Code is installed, replacing the "
+"placeholder with base64 of \"username:application-password\"."
+msgstr ""
+
+#: app/Modules/PermissionManager.php:481
+msgid "Run workflows"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:126 app/Hooks/Handlers/Menu.php:127
+#: app/Hooks/Handlers/Menu.php:199
+msgid "Saved Replies"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:80
+#, php-format
+msgid "Saved reply \"%s\" created"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:166
+#, php-format
+msgid "Saved reply \"%s\" deleted"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:137
+#, php-format
+msgid "Saved reply \"%s\" updated"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:99
+#: app/Modules/MCP/Tools/ResponseTools.php:156
+#: app/Modules/MCP/Tools/ResponseTools.php:198
+msgid "Saved reply not found"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:368
+msgid "Search Customers"
+msgstr ""
+
+#: app/Services/TicketHelper.php:450
+msgid "Search deleted successfully."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:369
+msgid ""
+"Search for customers by name or email. Returns customer profiles with "
+"location and account age. Use get-customer-tickets if you already know which "
+"customer and want their tickets. Use this when you need to find or identify "
+"a customer first."
+msgstr ""
+
+#: app/Services/TicketHelper.php:455
+msgid "Search ID not found."
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:219
+msgid "Security verification failed"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:34
+#: app/Http/Controllers/AuthController.php:482
+msgid "Security verification failed. Please try again"
+msgstr ""
+
+#. followed by the booking URL.
+#: app/Services/Integrations/FluentBooking/BookingAvailabilityHelper.php:387
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:126
+msgid "See all available times"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:432
+msgid "Select a Country"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:220
+msgid "Select a Page"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:108
+msgid "Select Business"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:223
+msgid "Select Portal Page"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:118
+msgid "Select Support Product"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:109
+msgid "Select the Business you would like to add your Support Ticket to."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:227
+msgid ""
+"Select the default status for new contacts. If you select pending and it's a "
+"new contact then a double optin email will be sent"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:196
+msgid ""
+"Select which Fluent Forms fields pair with their<br /> respective Fluent "
+"Support fields."
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:81
+msgid "Selected Business has been deleted"
+msgstr ""
+
+#: app/Services/MailerInbox/MailBoxService.php:152
+msgid "Selected Business has been set as default"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:104
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:156
+msgid "Selected FluentBooking event type is not available."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1482
+msgid "Selected response has been deleted"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1563
+msgid "Selected response has been updated"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1307
+msgid "Selected tags has been added to tickets"
+msgstr ""
+
+#: app/Services/Helper.php:1015
+msgid "Self-hosted email and marketing automation for WordPress"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:96
+msgid ""
+"Send a customer-visible reply on a ticket. If the ticket is unassigned it is "
+"automatically assigned to you; pass assignee_id to assign someone else in "
+"the same call. Set close_ticket=true to close after replying. Supports saved "
+"replies via saved_reply_id (use list-saved-replies to browse). If you just "
+"need to close without a reply, use close-ticket instead."
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:399
+msgid ""
+"Send Telegram notifications to Group, Channel or individual person inbox and "
+"reply from Telegram inbox"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:406
+msgid "Send ticket activity notifications to slack"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:55
+msgid "Set FluentSupport"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:128
+msgid "Set Product"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:486 app/Hooks/Handlers/Menu.php:137
+#: app/Hooks/Handlers/Menu.php:138
+msgid "Settings"
+msgstr ""
+
+#: app/Http/Controllers/SlackController.php:41
+#: app/Http/Controllers/IntegrationController.php:41
+msgid "Settings failed to save"
+msgstr ""
+
+#: app/Http/Controllers/SlackController.php:48
+#: app/Http/Controllers/SettingsController.php:87
+#: app/Http/Controllers/IntegrationController.php:49
+#: app/Services/MailerInbox/MailBoxService.php:196
+msgid "Settings has been updated"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:457
+msgid "Shortcut"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:151
+msgid "Signup"
+msgstr ""
+
+#: app/Services/Helper.php:984 app/Hooks/Handlers/Menu.php:405
+msgid "Slack"
+msgstr ""
+
+#: app/Services/Notifications/NotificationFormatter.php:209
+#: app/Modules/MCP/Tools/ManagementTools.php:879
+msgid "Someone"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:604
+msgid ""
+"Someone has requested a new password for the following account on WordPress:"
+msgstr ""
+
+#. %s is the site name
+#: app/Hooks/Handlers/TwoFaHandler.php:214
+#, php-format
+msgid ""
+"Someone requested to login to %s and here is the Login code that you can use "
+"in the login form"
+msgstr ""
+
+#: app/Services/AvatarUploder.php:29
+msgid "Something went wrong while updating the profile picture"
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotAPI.php:44
+msgid "Something went wrong."
+msgstr ""
+
+#: app/Services/Helper.php:1915
+#: app/Http/Controllers/FluentBotController.php:227
+msgid "Something went wrong. Please try again later."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1311
+msgid "Sorry no action found as available"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1388
+msgid "Sorry no tickets found based on your filter and bulk actions"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:271
+msgid "Sorry you cannot create response"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:201
+msgid "Sorry you cannot create ticket"
+msgstr ""
+
+#: app/Services/FluentCRMServices.php:124
+msgid "Sorry you do not have permission to add contact tags"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:539
+msgid "Sorry! FluentCRM could not be installed. Please install manually"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:304
+msgid "Sorry! No customer found"
+msgstr ""
+
+#. %s is the action being performed (e.g., "view", "edit", "delete")
+#: app/Services/CustomerPortalService.php:476
+#, php-format
+msgid "Sorry! You cannot %s this ticket"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:519
+#: app/Http/Controllers/SettingsController.php:556
+msgid "Sorry! you do not have permission to install plugin"
+msgstr ""
+
+#: app/Services/Tickets/Importer/SupportCandyTickets.php:42
+#: app/Services/Tickets/Importer/JSHelpdeskTickets.php:28
+#: app/Services/Tickets/Importer/AwesomeSupportTickets.php:44
+msgid "Sorry, no tickets available for import."
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:491
+msgid "Sorry, You cannot access this ticket"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:278
+#: app/Services/CustomerPortalService.php:469
+msgid "Sorry, You do not have access to customer portal"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1543
+msgid "Sorry, You do not have permission to approve this draft response"
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:55
+msgid "Sorry, you do not have permission to change the MCP setting."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1470
+msgid "Sorry, you do not have permission to delete this response."
+msgstr ""
+
+#: app/Http/Controllers/McpSettingsController.php:86
+msgid "Sorry, you do not have permission to install plugins."
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:296
+#: app/Services/CustomerPortalService.php:465
+msgid "Sorry, You do not have permission to this support ticket"
+msgstr ""
+
+#: app/Http/Controllers/Controller.php:40
+msgid "Sorry, You do not have permission to this ticket"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1531
+#: app/Http/Controllers/TicketController.php:1549
+msgid "Sorry, you do not have permission to update this response."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:536
+#: app/Http/Controllers/TicketController.php:692
+#: app/Http/Controllers/TicketController.php:740
+#: app/Http/Controllers/NotificationController.php:19
+#: app/Http/Controllers/NotificationController.php:38
+#: app/Http/Controllers/NotificationController.php:62
+#: app/Http/Controllers/NotificationController.php:77
+#: app/Http/Controllers/NotificationController.php:93
+msgid ""
+"Sorry, You do not have permission. Please add yourself as support agent first"
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:155
+msgid "Sorry, your login code has been expired. Please try to login again"
+msgstr ""
+
+#: app/Hooks/Handlers/ExternalPages.php:109
+msgid ""
+"Sorry, Your secure sign is invalid, Please reload the previous page and get "
+"new signed url"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:471
+msgid "Split Ticket"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:284
+msgid ""
+"START HERE — call this first in any session. Returns: your agent identity, "
+"your open ticket queue, tickets needing attention (unassigned/longest-"
+"waiting/critical/SLA breaches), all reference data "
+"(agents/products/mailboxes/tags with IDs), ticket stats, valid "
+"priority/status values, and AI guidelines. One call gives you full "
+"situational awareness. my_queue is split into awaiting_your_reply (customer "
+"spoke last — actionable, ranked oldest-waiting-first) and awaiting_customer "
+"(you replied last — informational only); each has a _total count and a "
+"_truncated flag since only the first page is returned (10 rows for "
+"awaiting_your_reply, 5 for awaiting_customer). Each attention-list row "
+"includes last_reply_by (\"agent\" | \"customer\" | null) and response_count "
+"(same meaning as in list-tickets: last_reply_by=\"customer\" means awaiting "
+"an agent reply; response_count excludes internal notes) — triage your queue "
+"from this single call, starting with my_queue.awaiting_your_reply; do not "
+"call get-ticket per ticket unless you need the conversation body."
+msgstr ""
+
+#: app/Models/Customer.php:55 app/Models/Traits/CustomerTrait.php:142
+#: app/Models/Traits/CustomerTrait.php:144
+#: app/Hooks/Handlers/AuthHandler.php:423
+#: app/Hooks/Handlers/AuthHandler.php:425
+#: app/Hooks/Handlers/PrivacyHandler.php:248
+msgid "State"
+msgstr ""
+
+#: app/Models/Traits/CustomerTrait.php:99
+#: app/Hooks/Handlers/PrivacyHandler.php:220
+msgid "Status"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:215
+msgid "Subscribed"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:197
+msgid "Successfully registered to the site."
+msgstr ""
+
+#: app/Services/Integrations/IntegrationInit.php:63
+#: app/Services/Integrations/FluentCart/FluentCart.php:242
+msgid "Support"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:173
+msgid "Support Customer Field"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:143
+msgid "Support Portal"
+msgstr ""
+
+#: app/Services/Helper.php:1178
+msgid "Support Staff"
+msgstr ""
+
+#: app/Http/Controllers/AgentController.php:183
+msgid "Support Staff avatar reset to gravatar default"
+msgstr ""
+
+#: app/Http/Controllers/AgentController.php:44
+msgid "Support Staff has been added"
+msgstr ""
+
+#: app/Http/Controllers/AgentController.php:97
+msgid "Support Staff has been deleted"
+msgstr ""
+
+#: app/Http/Controllers/AgentController.php:73
+msgid "Support Staff has been updated"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:364
+msgid "Support ticket creation failed, because customer email is blocked"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:346
+msgid "Support ticket creation failed, because no valid customer email found"
+msgstr ""
+
+#. %d is the ticket ID number
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:396
+msgid "Support ticket has been created at Fluent Support. Ticket ID: %d"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/FluentCRMWidgets.php:24
+msgid "Support Tickets by Fluent Support"
+msgstr ""
+
+#: app/Services/Tickets/CustomFieldsService.php:12
+#: app/Services/Tickets/CustomFieldsService.php:15
+msgid "Support Type"
+msgstr ""
+
+#. %1$s is a comma-separated list of supported file types, %2$.01f is the maximum file size in megabytes
+#: app/Services/Helper.php:176
+#, php-format
+msgid "Supported Types: %1$s and max file size: %2$.01fMB"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:504
+#, php-format
+msgid "Tag \"%s\" already exists"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:503
+#, php-format
+msgid "Tag \"%s\" created"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1709
+msgid "Tag has been added to this ticket"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1735
+msgid "Tag has been removed from this ticket"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:750
+msgid "tag_ids is required for the tag action"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:833
+msgid "Target ticket not found"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:818
+msgid "target_ticket_id and merge_ticket_ids are required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:826
+msgid "target_ticket_id must not also appear in merge_ticket_ids"
+msgstr ""
+
+#: app/Http/Controllers/FluentBoardsController.php:97
+msgid "Task successfully added to Fluent Boards"
+msgstr ""
+
+#: app/Services/Helper.php:1005 app/Hooks/Handlers/Menu.php:398
+msgid "Telegram"
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:98
+msgid ""
+"Thank you for registering with us! To complete the setup of your account, "
+"please enter the verification code below on the registration page."
+msgstr ""
+
+#: app/Modules/MCP/Support/TicketAccessGuard.php:72
+msgid "That agent is restricted from this ticket's mailbox"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1083
+msgid ""
+"The assigned agent is restricted from the selected mailbox. Reassign the "
+"ticket before moving it."
+msgstr ""
+
+#. %.01f is the maximum file size in megabytes
+#: app/Http/Controllers/UploaderController.php:128
+#, php-format
+msgid ""
+"The file cannot be more than %.01fMB. Please upload somewhere like "
+"Dropbox/Google Drive and paste the link in the response"
+msgstr ""
+
+#: app/Services/Helper.php:1092
+msgid "The leading course platform built for WordPress"
+msgstr ""
+
+#: app/Services/Helper.php:966
+msgid "The most popular e-commerce platform for WordPress"
+msgstr ""
+
+#: app/Http/Controllers/AgentGroupController.php:137
+msgid "The selected fallback group does not exist"
+msgstr ""
+
+#: app/Modules/MCP/Helpers/MCPHelper.php:564
+msgid "The specified agent does not exist"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:475
+#: app/Modules/MCP/Tools/TicketTools.php:657
+msgid "The specified mailbox does not exist"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:464
+#: app/Modules/MCP/Tools/TicketTools.php:667
+#: app/Modules/MCP/Tools/ResponseTools.php:65
+#: app/Modules/MCP/Tools/ResponseTools.php:128
+msgid "The specified product does not exist"
+msgstr ""
+
+#: app/Services/Helper.php:1071
+msgid "The standard plugin for knowledge base and documentation"
+msgstr ""
+
+#: app/Services/Helper.php:994
+msgid "The ultimate platform for any member-focused business"
+msgstr ""
+
+#. Description of the plugin
+msgid "The Ultimate Support Plugin For Your WordPress."
+msgstr ""
+
+#: app/Services/Helper.php:1057
+msgid "The ultimate WordPress platform for digital products"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:530
+msgid "There is no account with that username or email address."
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:102
+#: app/Hooks/Handlers/TwoFaHandler.php:218
+msgid ""
+"This code is valid for 10 minutes and is meant to ensure the security of "
+"your account. If you did not initiate this request, please ignore this email."
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:565
+msgid ""
+"This email will be sent to Assigned Agent or Admin when a customer reply to "
+"a ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:573
+msgid "This email will be sent to newly assigned agent"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:533
+msgid "This email will be sent when a customer submit a support ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:549
+msgid "This email will be sent when an agent close a ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:589
+msgid ""
+"This email will be sent when an agent creates a ticket using the \"Agent "
+"Initiated\" option to proactively reach out to a customer — includes the "
+"agent's message content"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:581
+msgid ""
+"This email will be sent when an agent logs a ticket on behalf of a customer "
+"(e.g. from a phone call or email received outside the system)"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:541
+msgid "This email will be sent when an agent reply to a ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:557
+msgid ""
+"This email will be sent when the business when a new ticket has been "
+"submitted"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1523
+msgid "This response type cannot be edited."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:895
+#: app/Http/Controllers/TicketController.php:1092
+msgid "This ticket property cannot be updated."
+msgstr ""
+
+#: app/Services/Notifications/NotificationCategory.php:33
+msgid "Ticket Activity"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:572
+msgid "Ticket Agent Change (To Agent)"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:83
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:149
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:150
+msgid "Ticket Attachments"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:275
+#: app/Http/Controllers/TicketController.php:438
+#: app/Http/Controllers/TicketController.php:1459
+#: app/Http/Controllers/TicketController.php:1505
+msgid "Ticket cannot be fetched due to restricted mailbox"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:548
+msgid "Ticket Closed by Agent (To Customer)"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:79
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:142
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:143
+msgid "Ticket Content"
+msgstr ""
+
+#: app/Http/Requests/TicketCreateCustomerPortalRequest.php:27
+msgid "Ticket content is required"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:556
+msgid "Ticket Created (To Admin)"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:532
+msgid "Ticket Created (To Customer)"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:103
+msgid "Ticket Created At"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:524
+msgid ""
+"Ticket created unassigned. Your permission level does not include access to "
+"unassigned tickets, so follow-up actions (reply, close, update) will be "
+"denied until the ticket is assigned to you by a manager."
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:259
+msgid "Ticket Custom Fields"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:85
+msgid "Ticket Description"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:84
+msgid "Ticket Description (you can use any smart code)"
+msgstr ""
+
+#: app/Services/Helper.php:1163
+msgid "Ticket Form Config"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:162
+#: app/Http/Controllers/TicketController.php:1112
+#: app/Services/Tickets/ResponseService.php:124
+#: app/Services/Tickets/TicketService.php:39
+msgid "Ticket has been closed"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:226
+#: app/Http/Controllers/CustomerPortalController.php:219
+msgid "Ticket has been created successfully"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1334
+msgid "Ticket has been deleted successfully"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:182
+#: app/Http/Controllers/TicketController.php:1137
+msgid "Ticket has been opened again"
+msgstr ""
+
+#: app/Services/Tickets/TicketService.php:75
+msgid "Ticket has been reopened"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:71
+#: app/Hooks/Handlers/PrivacyHandler.php:153
+msgid "Ticket ID"
+msgstr ""
+
+#: app/Services/Helper.php:1208
+msgid "Ticket Importer"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:580
+msgid "Ticket Logged by Agent (To Customer)"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:860
+msgid ""
+"Ticket merge failed or was only partially completed. Some tickets may be in "
+"an inconsistent state."
+msgstr ""
+
+#: app/Http/Controllers/WidgetsController.php:45
+#: app/Modules/MCP/Tools/TicketTools.php:307
+#: app/Modules/MCP/Tools/TicketTools.php:547
+#: app/Modules/MCP/Tools/TicketTools.php:605
+#: app/Modules/MCP/Tools/TicketTools.php:635
+#: app/Modules/MCP/Tools/TicketTools.php:738
+#: app/Modules/MCP/Tools/TicketTools.php:768
+#: app/Modules/MCP/Tools/ResponseTools.php:214
+#: app/Modules/MCP/Tools/ResponseTools.php:338
+#: app/Modules/MCP/Tools/ManagementTools.php:318
+#: app/Modules/MCP/Tools/ManagementTools.php:354
+msgid "Ticket not found"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:354
+msgid "Ticket Prefix"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:99
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:157
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:158
+msgid "Ticket Priority"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:87
+msgid "Ticket Product"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:473
+#: app/Services/EmailNotification/Settings.php:490
+msgid "Ticket Reply – Bookmarks"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:472
+#: app/Services/EmailNotification/Settings.php:489
+msgid "Ticket Reply – Merge"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:471
+#: app/Services/EmailNotification/Settings.php:488
+msgid "Ticket Reply – Personal note"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:474
+#: app/Services/EmailNotification/Settings.php:491
+msgid "Ticket Reply – Refresh"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:470
+#: app/Services/EmailNotification/Settings.php:487
+msgid "Ticket Reply – Reply"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:95
+msgid "Ticket Status"
+msgstr ""
+
+#. 1: previous status, 2: new status
+#: app/Http/Controllers/TicketController.php:915
+#, php-format
+msgid "Ticket status changed from %1$s to %2$s"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:42
+msgid "Ticket Summary"
+msgstr ""
+
+#: app/Services/Helper.php:1158 app/Hooks/Handlers/PrivacyHandler.php:91
+msgid "Ticket Tags"
+msgstr ""
+
+#: app/Hooks/Handlers/PrivacyHandler.php:75
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:135
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:136
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:80
+msgid "Ticket Title"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/CreateTicketAction.php:79
+msgid "Ticket Title (you can use any smart code)"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1001
+msgid "Ticket title cannot be empty."
+msgstr ""
+
+#: app/Http/Requests/TicketCreateCustomerPortalRequest.php:26
+msgid "Ticket title is required"
+msgstr ""
+
+#. %s is the ticket title
+#: app/Hooks/Handlers/ActivityLogger.php:206
+#, php-format
+msgid "Ticket: %s"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:313
+msgid "ticket_id and agent_id are required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:301
+#: app/Modules/MCP/Tools/TicketTools.php:542
+#: app/Modules/MCP/Tools/TicketTools.php:600
+#: app/Modules/MCP/Tools/TicketTools.php:630
+#: app/Modules/MCP/Tools/TicketTools.php:733
+#: app/Modules/MCP/Tools/TicketTools.php:763
+#: app/Modules/MCP/Tools/ResponseTools.php:188
+#: app/Modules/MCP/Tools/ResponseTools.php:327
+#: app/Modules/MCP/Tools/ManagementTools.php:349
+msgid "ticket_id is required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:725
+msgid "ticket_ids and action are required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:729
+msgid ""
+"ticket_ids may not exceed %d items per request. Split into multiple calls."
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:61 app/Hooks/Handlers/Menu.php:62
+#: app/Hooks/Handlers/Menu.php:158
+msgid "Tickets"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:462
+msgid "Tickets Permissions"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:460
+#: app/Services/EmailNotification/Settings.php:478
+msgid "Tickets – Advanced filter toggle"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:464
+#: app/Services/EmailNotification/Settings.php:482
+msgid "Tickets – All Tickets"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:468
+#: app/Services/EmailNotification/Settings.php:486
+msgid "Tickets – Bookmarks"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:462
+#: app/Services/EmailNotification/Settings.php:480
+msgid "Tickets – Create Ticket"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:465
+#: app/Services/EmailNotification/Settings.php:483
+msgid "Tickets – My Tickets"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:461
+#: app/Services/EmailNotification/Settings.php:479
+msgid "Tickets – Refresh"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:463
+#: app/Services/EmailNotification/Settings.php:481
+msgid "Tickets – Reset filter"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:469
+msgid "Tickets – Toggle (Open, active, close, all)"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:466
+#: app/Services/EmailNotification/Settings.php:484
+msgid "Tickets – Unassigned"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:467
+#: app/Services/EmailNotification/Settings.php:485
+msgid "Tickets – Waiting for reply"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/BookingAvailabilityHelper.php:327
+msgid "Time zone:"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:89
+msgid "Title"
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:409
+#: app/Modules/MCP/Tools/ResponseTools.php:58
+msgid "title and content are required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:109
+msgid "title cannot be empty"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:123
+msgid "Title is required"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:486
+msgid "title is required"
+msgstr ""
+
+#: app/Http/Controllers/CustomerController.php:302
+msgid "Too many contact searches. Please try again in a few minutes."
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:275
+msgid "Too many login attempts. Please try again after 15 minutes."
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:500
+msgid "Too many password reset requests. Please try again after 15 minutes."
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:125
+#: app/Hooks/Handlers/TwoFaHandler.php:148
+msgid "Too many verification attempts. Please try again after 15 minutes."
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:31
+msgid "Too many verification code requests. Please try again after 15 minutes."
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:51
+msgid "Too many verification code requests. Please try again later."
+msgstr ""
+
+#: app/Modules/StatModule.php:204
+msgid "Total Closed"
+msgstr ""
+
+#: app/Modules/StatModule.php:196
+#: app/Http/Controllers/ReportingController.php:440
+msgid "Total Replies"
+msgstr ""
+
+#: app/Services/Tickets/TicketStats.php:19
+msgid "Total Tickets"
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:82
+msgid "triggered automation"
+msgstr ""
+
+#: app/Services/Helper.php:998
+msgid "Tutor LMS"
+msgstr ""
+
+#: app/Services/Tickets/TicketStats.php:37
+msgid "Un-Assigned Tickets"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:303
+msgid "Unable to delete reCAPTCHA settings, try again"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:191
+msgid ""
+"Unable to identify. Please make sure you have provided correct information."
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:87
+#: app/Hooks/Handlers/TwoFaHandler.php:41
+msgid "Unable to send verification code. Please try again later."
+msgstr ""
+
+#: app/Models/Traits/AgentTrait.php:178
+msgid "Unassigned Tickets"
+msgstr ""
+
+#: app/Services/Integrations/FluentBot/FluentBotAPI.php:37
+msgid "Unknown error occurred"
+msgstr ""
+
+#: app/Services/Integrations/AI/BaseAIProvider.php:81
+#: app/Services/Integrations/AI/Providers/AnthropicProvider.php:73
+msgid "Unknown error occurred."
+msgstr ""
+
+#. %s is a comma-separated list of allowed file extensions (e.g., "jpg, png, gif")
+#: app/Services/AvatarUploder.php:63
+#, php-format
+msgid "Unsupported file submitted, allowed image file types are: %s"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:325
+msgid ""
+"Update an existing saved reply's title, content, or product scope. Only the "
+"reply's creator (or an agent with settings-management permission) can update "
+"it."
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:324
+msgid "Update Saved Reply"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:143
+msgid "Update Ticket Properties"
+msgstr ""
+
+#: app/Modules/MCP/AbilitiesRegistrar.php:144
+msgid ""
+"Update ticket properties like title, priority, status, product, mailbox, or "
+"assigned agent. Can change multiple fields at once. Use get-support-context "
+"to look up valid IDs. For just closing or reopening, use close-ticket or "
+"reopen-ticket instead."
+msgstr ""
+
+#: app/Services/Notifications/NotificationEventMap.php:93
+msgid "updated a ticket"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:768
+msgid "Upload and store the files to Amazon S3 cloud storage."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:758
+msgid ""
+"Upload and store the files to Cloudflare R2 Storage with zero egress fees."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:739
+msgid "Upload and store the files to your Dropbox Storage."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:748
+msgid "Upload and store the files to your Google Drive Storage."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:729
+msgid "Upload and store the files to your WordPress File System Storage."
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:357
+#: app/Hooks/Handlers/AuthHandler.php:359
+msgid "Username"
+msgstr ""
+
+#. %s is the username
+#: app/Http/Controllers/AuthController.php:606
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: app/Hooks/Handlers/EmailVerificationHandler.php:125
+#: app/Hooks/Handlers/TwoFaHandler.php:246
+msgid "Verification Code"
+msgstr ""
+
+#. %s is the verification code
+#. %s is the two-factor authentication code
+#: app/Hooks/Handlers/EmailVerificationHandler.php:100
+#: app/Hooks/Handlers/TwoFaHandler.php:216
+#, php-format
+msgid "Verification Code: %s"
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:258
+msgid "Verify and Login"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminBarHandler.php:101
+msgid "View"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:496
+msgid "View Activity Logs"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:497
+msgid "View Agent Today Performance"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:495
+msgid "View All Reports"
+msgstr ""
+
+#: app/Services/Integrations/FluentBooking/FluentBookingService.php:282
+msgid "View booking"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:464
+msgid "View Dashboard"
+msgstr ""
+
+#: app/Services/Integrations/FluentCrm/FluentCRMWidgets.php:46
+msgid "View Ticket"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:474
+msgid "View Tickets (Read Only)"
+msgstr ""
+
+#: app/Services/Helper.php:841
+msgid "Waiting Tickets"
+msgstr ""
+
+#: app/Modules/StatModule.php:273
+msgid "Waiting Today"
+msgstr ""
+
+#: app/Services/Helper.php:1075
+msgid "WhatsApp"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:497
+msgid "Windows"
+msgstr ""
+
+#: app/Services/Helper.php:1047
+msgid "WishList Member"
+msgstr ""
+
+#: app/Services/Helper.php:963
+msgid "WooCommerce"
+msgstr ""
+
+#: app/Services/EmailNotification/Settings.php:417
+msgid "WooCommerce Account Navigation"
+msgstr ""
+
+#: app/Hooks/Handlers/InternalNotificationHandler.php:209
+#: app/Hooks/Handlers/InternalNotificationHandler.php:298
+msgid "Workflow"
+msgstr ""
+
+#: app/Modules/PermissionManager.php:478
+msgid "Workflow Permissions"
+msgstr ""
+
+#: app/Hooks/Handlers/Menu.php:115 app/Hooks/Handlers/Menu.php:116
+#: app/Hooks/Handlers/Menu.php:207
+msgid "Workflows"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ManagementTools.php:916
+msgid "Workflows require Fluent Support Pro"
+msgstr ""
+
+#. Author of the plugin
+msgid "WPManageNinja LLC"
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:35 app/Hooks/Handlers/AuthHandler.php:114
+#: app/Hooks/Handlers/AuthHandler.php:173
+msgid "You are already logged in."
+msgstr ""
+
+#. %s is the URL to the support portal
+#: app/Hooks/Handlers/AuthHandler.php:221
+#, php-format
+msgid "You are already logged in. <a href=\"%s\">Go to support portal</a>"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:213
+msgid "You are not allowed to login using this form"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:474
+msgid "You are not allowed to reset password using this form"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:28
+msgid "You are not allowed to signup using this form"
+msgstr ""
+
+#. %d is the maximum number of files allowed per ticket
+#: app/Http/Controllers/UploaderController.php:111
+msgid "You can upload a maximum of %d files."
+msgstr ""
+
+#: app/Modules/MCP/Tools/TicketTools.php:852
+#, php-format
+msgid "You do not have access to the following ticket(s): %s"
+msgstr ""
+
+#: app/Modules/MCP/Support/TicketAccessGuard.php:55
+msgid "You do not have access to the specified mailbox"
+msgstr ""
+
+#: app/Modules/MCP/Support/TicketAccessGuard.php:36
+#: app/Modules/MCP/Support/TicketAccessGuard.php:41
+msgid "You do not have access to this ticket"
+msgstr ""
+
+#: app/Http/Policies/PortalPolicy.php:38
+msgid "You do not have permission"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1578
+msgid "You do not have permission to approve draft responses."
+msgstr ""
+
+#: app/Modules/MCP/Helpers/MCPHelper.php:554
+msgid "You do not have permission to assign agents"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:1764
+msgid "You do not have permission to change the ticket customer."
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:803
+msgid "You do not have permission to delete this draft"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:160
+msgid "You do not have permission to delete this saved reply"
+msgstr ""
+
+#: app/Http/Controllers/TicketController.php:778
+msgid "You do not have permission to perform this action"
+msgstr ""
+
+#: app/Http/Controllers/Controller.php:23
+#: app/Modules/MCP/AbilitiesRegistrar.php:474
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: app/Http/Controllers/FluentBotController.php:168
+msgid "You do not have permission to reset chat"
+msgstr ""
+
+#: app/Modules/MCP/Tools/ResponseTools.php:103
+msgid "You do not have permission to update this saved reply"
+msgstr ""
+
+#: app/Http/Controllers/UploaderController.php:179
+#: app/Http/Controllers/UploaderController.php:187
+msgid "You do not have permission to upload a file"
+msgstr ""
+
+#: app/Services/CustomerPortalService.php:480
+msgid "You do not have permission to view this support ticket"
+msgstr ""
+
+#: app/Hooks/Handlers/CustomerPortalHandler.php:29
+msgid "You don't have permission to access customer support portal"
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:390
+msgid "You have been logged out"
+msgstr ""
+
+#: app/Modules/MCP/Support/PermissionGate.php:58
+msgid "Your account does not have Fluent Support access."
+msgstr ""
+
+#: app/Http/Controllers/CustomerPortalController.php:65
+msgid "Your account is not active. Please contact support."
+msgstr ""
+
+#: app/Hooks/Handlers/AuthHandler.php:366
+#: app/Hooks/Handlers/AuthHandler.php:453
+msgid "Your Email Address"
+msgstr ""
+
+#: app/Services/Integrations/FluentForm/FeedIntegration.php:102
+msgid "Your Feed Name"
+msgstr ""
+
+#. %1s is the site name
+#: app/Hooks/Handlers/TwoFaHandler.php:207
+#, php-format
+msgid "Your Login code for %1s"
+msgstr ""
+
+#: app/Http/Controllers/TwofaController.php:19
+msgid "Your provided code is not valid. Please try again"
+msgstr ""
+
+#: app/Hooks/Handlers/TwoFaHandler.php:133
+#: app/Hooks/Handlers/TwoFaHandler.php:141
+#: app/Hooks/Handlers/TwoFaHandler.php:182
+#: app/Hooks/Handlers/TwoFaHandler.php:190
+msgid "Your provided code or url is not valid"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:325
+msgid "Your recaptcha details are already saved."
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:65
+#: app/Http/Controllers/AuthController.php:231
+msgid "Your recaptcha is not verified"
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:361
+msgid "Your reCAPTCHA settings added successfully."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:336
+msgid "Your reCAPTCHA settings are not valid."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:298
+msgid "Your reCAPTCHA settings deleted successfully."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:350
+msgid "Your reCAPTCHA settings updated successfully."
+msgstr ""
+
+#. %s is the site name
+#: app/Hooks/Handlers/EmailVerificationHandler.php:92
+#, php-format
+msgid "Your registration verification code for %s"
+msgstr ""
+
+#: app/Services/TicketHelper.php:395
+msgid "Your saved search has been updated successfully!"
+msgstr ""
+
+#: app/Services/TicketHelper.php:396
+msgid "Your search has been saved successfully!"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:103
+#: app/Http/Controllers/AuthController.php:149
+msgid "Your verification code has already been used. Please try again"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:119
+msgid "Your verification code has been expired. Please try again"
+msgstr ""
+
+#: app/Http/Controllers/AuthController.php:111
+msgid "Your verification code has expired. Please request a new one"
+msgstr ""
+
+#: app/Services/Tickets/Importer/ZendeskTickets.php:347
+msgid "Zendesk API URL is not allowed."
+msgstr ""
+
+#: app/Services/Helper.php:218 app/Hooks/Handlers/AuthHandler.php:416
+#: app/Hooks/Handlers/AuthHandler.php:418
+#: app/Hooks/Handlers/PrivacyHandler.php:244
+msgid "Zip"
+msgstr ""
+
+#: app/Models/Customer.php:56 app/Models/Traits/CustomerTrait.php:149
+#: app/Models/Traits/CustomerTrait.php:151
+msgid "Zip Code"
+msgstr ""

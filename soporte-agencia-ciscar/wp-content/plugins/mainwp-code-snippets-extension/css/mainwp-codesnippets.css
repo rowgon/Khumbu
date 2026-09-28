@@ -1,0 +1,69 @@
+.mainwp_page_Extensions-Mainwp-Code-Snippets-Extension #mainwp-page-navigation-wrapper {
+    display: none !important;
+}
+
+.mainwp_page_Extensions-Mainwp-Code-Snippets-Extension #mainwp-site-mode-wrap {
+    width: 100% !important;
+}
+
+.mainwp_page_Extensions-Mainwp-Code-Snippets-Extension .mainwp-snippet-type-selector {
+  border: none !important;
+}
+
+#mainwp-code-snippet-output-log {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+#mainwp-code-snippet-output-log .mainwp-code-snippet-header-status {
+  margin-left: 0.75rem;
+}
+
+#mainwp-code-snippet-output .mainwp-snippet-site-accordion.ui.styled.accordion {
+  border: 1px solid #2F302E;
+  border-radius: 6px !important;
+  margin-bottom: 1rem !important;
+  padding: 0 !important;
+}
+
+.mainwp-default-theme #mainwp-code-snippet-output .mainwp-snippet-site-accordion.ui.styled.accordion {
+  border: 1px solid #e8e8eb;
+  box-shadow: none !important;
+}
+
+#mainwp-code-snippet-output .mainwp-snippet-site-accordion.ui.styled.accordion .title,
+#mainwp-code-snippet-output .mainwp-snippet-site-accordion.ui.styled.accordion .content {
+  background: none !important;
+  padding: 1rem !important;
+}
+
+#mainwp-code-snippet-output .mainwp-snippet-item:not(.accordion),
+#mainwp-code-snippet-output .mainwp-update-snippet-item,
+#mainwp-code-snippet-output .mainwp-clear-snippet-item {
+  background: none !important;
+  padding: 1rem !important;
+  border-bottom: 1px solid #2F302E;
+  margin-bottom: 0 !important;
+}
+
+.mainwp-default-theme #mainwp-code-snippet-output .mainwp-snippet-item ,
+.mainwp-default-theme #mainwp-code-snippet-output .mainwp-update-snippet-item,
+.mainwp-default-theme #mainwp-code-snippet-output .mainwp-clear-snippet-item {
+  border-bottom: 1px solid #e8e8eb;
+}
+
+#mainwp-code-snippet-output .mainwp-snippet-site-accordion.ui.styled.accordion .title .status.right.floated {
+  float: right !important;
+}
+
+#mainwp-code-snippet-output .mainwp-snippet-output {
+  max-height: 280px;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  color: #f6f7f9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #1f2933;
+  border-radius: 6px;
+}

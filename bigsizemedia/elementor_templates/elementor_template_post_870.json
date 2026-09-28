@@ -1,0 +1,1216 @@
+[
+  {
+    "id": "6b2b4102",
+    "elType": "section",
+    "settings": {
+      "layout": "full_width",
+      "gap": "no",
+      "gap_columns_custom": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+      },
+      "height": "min-height",
+      "custom_height": {
+        "unit": "px",
+        "size": 1089,
+        "sizes": []
+      },
+      "column_position": "stretch",
+      "content_position": "middle",
+      "stretch_section": "section-stretched",
+      "margin": {
+        "unit": "px",
+        "top": "-38",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "595672e1",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null,
+          "content_position": "top",
+          "align": "center",
+          "space_between_widgets": 0,
+          "margin": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          },
+          "padding": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "6e7ceaa5",
+            "elType": "widget",
+            "settings": {
+              "slides": [
+                {
+                  "heading": "FOX - EXPEDIENTE X",
+                  "description": "PUERTA DEL SOL – MADRID\n",
+                  "button_text": "",
+                  "background_color": "#833ca3",
+                  "_id": "fda4968",
+                  "background_image": {
+                    "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/ovni2.jpg",
+                    "id": 507,
+                    "alt": "",
+                    "source": "library"
+                  },
+                  "background_overlay": "yes",
+                  "background_overlay_color": "#0000004F",
+                  "background_overlay_blend_mode": "exclusion",
+                  "custom_style": "yes",
+                  "horizontal_position": "left",
+                  "vertical_position": "bottom",
+                  "text_align": "left"
+                }
+              ],
+              "slides_height": {
+                "unit": "vh",
+                "size": 100,
+                "sizes": []
+              },
+              "slides_height_tablet": {
+                "unit": "vh",
+                "size": "",
+                "sizes": []
+              },
+              "slides_height_mobile": {
+                "unit": "vh",
+                "size": "",
+                "sizes": []
+              },
+              "content_max_width": {
+                "unit": "%",
+                "size": 100,
+                "sizes": []
+              },
+              "slides_padding": {
+                "unit": "px",
+                "top": "55",
+                "right": "55",
+                "bottom": "55",
+                "left": "55",
+                "isLinked": true
+              },
+              "slides_horizontal_position": "left",
+              "slides_vertical_position": "bottom",
+              "arrows_size": {
+                "unit": "px",
+                "size": 45,
+                "sizes": []
+              },
+              "arrows_color": "#FF00AC",
+              "dots_size": {
+                "unit": "px",
+                "size": 8,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "1",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_element_custom_width": {
+                "unit": "%",
+                "size": 100,
+                "sizes": []
+              },
+              "_element_vertical_align": "flex-end",
+              "heading_spacing": {
+                "unit": "px",
+                "size": 7,
+                "sizes": []
+              },
+              "description_spacing": {
+                "unit": "px",
+                "size": 14,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "slides"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "726cfd0",
+    "elType": "section",
+    "settings": {
+      "background_background": "gradient",
+      "background_color": "#000000",
+      "background_color_stop": {
+        "unit": "%",
+        "size": 100,
+        "sizes": []
+      },
+      "background_color_b": "#202028",
+      "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": true
+      },
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+      },
+      "z_index": 0
+    },
+    "elements": [
+      {
+        "id": "7f78a85",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "5c739633",
+            "elType": "widget",
+            "settings": {
+              "title": "\"Soluciones impactantes y eficaces\"",
+              "align": "right",
+              "align_mobile": "center",
+              "title_color": "#C3C3C3",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "typography_font_weight": "700",
+              "_margin": {
+                "unit": "px",
+                "top": "128",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "__globals__": {
+                "title_color": ""
+              },
+              "typography_font_style": "italic",
+              "_animation": "fadeInLeft",
+              "animation_duration": "slow",
+              "_animation_delay": 100
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "e2aa680",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 11,
+                "sizes": []
+              },
+              "align": "right",
+              "text": "Separador",
+              "color": "#B4068E",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 18,
+                "sizes": []
+              },
+              "_animation": "fadeInLeft",
+              "animation_duration": "slow",
+              "_animation_delay": 500
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "d7490a2",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1254,
+        "sizes": []
+      },
+      "structure": "20",
+      "background_background": "gradient",
+      "background_color": "#000000",
+      "background_color_b": "#202028",
+      "shape_divider_bottom": "pyramids",
+      "shape_divider_bottom_width": {
+        "unit": "%",
+        "size": 124,
+        "sizes": []
+      },
+      "shape_divider_bottom_height": {
+        "unit": "px",
+        "size": 227,
+        "sizes": []
+      },
+      "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": true
+      },
+      "padding": {
+        "unit": "px",
+        "top": "111",
+        "right": "0",
+        "bottom": "140",
+        "left": "0",
+        "isLinked": false
+      },
+      "z_index": 3
+    },
+    "elements": [
+      {
+        "id": "25d54f5",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": null,
+          "padding": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "5fca875",
+            "elType": "widget",
+            "settings": {
+              "title": "Soporte Publicitario",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#B4068E",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 26,
+                "sizes": []
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "_margin": {
+                "unit": "px",
+                "top": "36",
+                "right": "0",
+                "bottom": "7",
+                "left": "0",
+                "isLinked": false
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "d530e55",
+            "elType": "widget",
+            "settings": {
+              "title": "ACCIONES ESPECIALES <br> EN LA CALLES ",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "7a7bc3e",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>El suelo urbano se ha convertido en el nuevo medio publicitario a conquistar por diferente marcas. <strong>Big Size</strong> Media se especializa en sacar a la calle las ideas más rompedoras de los anunciante.</p><p><strong>Big Size Media</strong>, ofrece la realización de acciones especiales, entendiendo esté servicio desde el desarrollo creativo hasta la producción, ejecución y obtención de permisos para la realización del mismo.</p>",
+              "align_mobile": "center",
+              "text_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_weight": "400",
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          }
+        ],
+        "isInner": false
+      },
+      {
+        "id": "ef303c8",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "ca5064b",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/barrera.png",
+                "id": 542,
+                "alt": "",
+                "source": "library"
+              },
+              "image_size": "full",
+              "align": "center",
+              "width": {
+                "unit": "%",
+                "size": 80,
+                "sizes": []
+              },
+              "space": {
+                "unit": "%",
+                "size": 100,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "53",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "103",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "image"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "834c5b1",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1341,
+        "sizes": []
+      },
+      "margin": {
+        "unit": "px",
+        "top": "50",
+        "right": 0,
+        "bottom": "50",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "35",
+        "left": "0",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "3762d60",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "ea0e19a",
+            "elType": "widget",
+            "settings": {
+              "title": "\"Las marcas, mediante la publicidad no convencional, buscan generar wow, conseguir general entusiasmo con la acción y provocar un experiencia emocionante cuyo objetivo es el de amplificar el alcance de su  negocio.\"",
+              "align": "center",
+              "title_color": "#000000",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 28,
+                "sizes": []
+              },
+              "typography_font_weight": "400",
+              "typography_font_style": "italic",
+              "typography_line_height": {
+                "unit": "px",
+                "size": 35,
+                "sizes": []
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "40",
+                "right": "0",
+                "bottom": "40",
+                "left": "0",
+                "isLinked": false
+              },
+              "_animation": "fadeIn",
+              "animation_duration": "slow",
+              "_animation_delay": 300
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "2409052",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 31,
+                "sizes": []
+              },
+              "align": "center",
+              "look": "line_icon",
+              "text": "Separador",
+              "icon": {
+                "value": "fas fa-asterisk",
+                "library": "fa-solid"
+              },
+              "color": "#FE1BA8",
+              "weight": {
+                "unit": "px",
+                "size": 3.9,
+                "sizes": []
+              },
+              "icon_size": {
+                "unit": "px",
+                "size": 27,
+                "sizes": []
+              },
+              "primary_color": "#FF0084",
+              "icon_spacing": {
+                "unit": "px",
+                "size": 2,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "30e65f28",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1302,
+        "sizes": []
+      },
+      "padding": {
+        "unit": "px",
+        "top": "106",
+        "right": "1",
+        "bottom": "1",
+        "left": "1",
+        "isLinked": false
+      },
+      "hide_desktop": "hidden-desktop",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "6c2c14d6",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "9e1420c",
+            "elType": "widget",
+            "settings": {
+              "title": "Nuestros Proyectos ",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#000000",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "4e043f5b",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 19,
+                "sizes": []
+              },
+              "align": "left",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 9,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "100",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_animation": "fadeInRight"
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "d42cee",
+    "elType": "section",
+    "settings": {
+      "padding": {
+        "unit": "px",
+        "top": "66",
+        "right": "0",
+        "bottom": "107",
+        "left": "0",
+        "isLinked": false
+      },
+      "content_width": {
+        "unit": "px",
+        "size": 1302,
+        "sizes": []
+      },
+      "hide_desktop": "hidden-desktop",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "1f74b33",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "1c87d619",
+            "elType": "widget",
+            "settings": {
+              "gallery_type": "multiple",
+              "gallery": [
+                {
+                  "id": 262,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/1.png"
+                },
+                {
+                  "id": 263,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/2.png"
+                },
+                {
+                  "id": 173,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/10647009_786999241355542_1265661614543423178_n.jpg"
+                },
+                {
+                  "id": 172,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/10476509_788315627890570_8859925541892477906_o.jpg"
+                },
+                {
+                  "id": 171,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11032144_864511956937603_5221649795651587183_o.jpg"
+                },
+                {
+                  "id": 170,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11021365_825612050827594_4829433054889354103_o.jpg"
+                },
+                {
+                  "id": 169,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11024800_830412550347544_5360151742968716122_n.jpg"
+                }
+              ],
+              "galleries": [
+                {
+                  "gallery_title": "Renault Twizy",
+                  "_id": "79e5dd2",
+                  "multiple_gallery": [
+                    {
+                      "id": 546,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R1.jpg"
+                    },
+                    {
+                      "id": 547,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R2.jpg"
+                    },
+                    {
+                      "id": 548,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R3.jpg"
+                    },
+                    {
+                      "id": 549,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R4.jpg"
+                    },
+                    {
+                      "id": 550,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R5.jpg"
+                    },
+                    {
+                      "id": 551,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R6.jpg"
+                    },
+                    {
+                      "id": 552,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R7.jpg"
+                    }
+                  ]
+                },
+                {
+                  "gallery_title": "Expediente X- FOX",
+                  "multiple_gallery": [
+                    {
+                      "id": 556,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/OVNI3.jpg"
+                    },
+                    {
+                      "id": 554,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/ONVI1.jpg"
+                    },
+                    {
+                      "id": 555,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/OVNI2-1.jpg"
+                    },
+                    {
+                      "id": 557,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/OVNI4.jpg"
+                    }
+                  ],
+                  "_id": "f55d227"
+                },
+                {
+                  "gallery_title": "Canal Panda",
+                  "multiple_gallery": [
+                    {
+                      "id": 567,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/Canalpanda1.jpg"
+                    },
+                    {
+                      "id": 568,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/Canalpanda2.jpg"
+                    },
+                    {
+                      "id": 569,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/canalpanda3.jpg"
+                    },
+                    {
+                      "id": 570,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/Canalpanda4.jpg"
+                    }
+                  ],
+                  "_id": "84b4f5a"
+                }
+              ],
+              "show_all_galleries_label": "Todos nuestros proyecto",
+              "overlay_title": "title",
+              "image_border_radius_hover": {
+                "unit": "px",
+                "size": 8,
+                "sizes": []
+              },
+              "overlay_background_background": "classic",
+              "overlay_background_color": "#7A04AD",
+              "overlay_background_hover_color": "#000000AD",
+              "background_overlay_hover_animation": "fade-in",
+              "title_color": "#FFFFFF",
+              "title_typography_typography": "custom",
+              "title_typography_font_family": "Poppins",
+              "title_typography_font_size": {
+                "unit": "px",
+                "size": 26,
+                "sizes": []
+              },
+              "title_typography_font_weight": "600",
+              "galleries_title_color_normal": "#000000",
+              "galleries_titles_typography_typography": "custom",
+              "galleries_titles_typography_font_family": "Poppins",
+              "galleries_titles_typography_font_size": {
+                "unit": "px",
+                "size": 19,
+                "sizes": []
+              },
+              "galleries_titles_typography_font_weight": "400",
+              "galleries_title_color_hover": "#54595F",
+              "galleries_pointer_color_hover": "#AF00F2",
+              "galleries_pointer_color_active": "#AF00F2",
+              "pointer_width": {
+                "unit": "px",
+                "size": 0,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "gallery"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "7d29bf2c",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#000000",
+      "padding": {
+        "unit": "px",
+        "top": "137",
+        "right": "0",
+        "bottom": "100",
+        "left": "0",
+        "isLinked": false
+      },
+      "background_overlay_background": "classic",
+      "background_overlay_color": "#000000",
+      "background_overlay_image": {
+        "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/OVNI3.jpg",
+        "id": 556,
+        "alt": "",
+        "source": "library"
+      },
+      "background_overlay_position": "center center",
+      "background_overlay_repeat": "no-repeat",
+      "background_overlay_size": "cover",
+      "background_overlay_opacity": {
+        "unit": "px",
+        "size": 0.24,
+        "sizes": []
+      }
+    },
+    "elements": [
+      {
+        "id": "7ec66294",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "3ede85d3",
+            "elType": "widget",
+            "settings": {
+              "title": "¿Buscas una acción que impacte?",
+              "title_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Playfair Display",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 57,
+                "sizes": []
+              },
+              "typography_font_weight": "700",
+              "typography_line_height": {
+                "unit": "px",
+                "size": 88,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "4fa10c1e",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>Si está interesado en nuestros productos o servicios y desea obtener más información, por favor llene nuestro formulario de solicitud. También puede utilizar este formulario para contarnos sobre su proyecto y cómo podemos ayudar a lograrlo. Uno de nuestros representantes se pondrá en contacto con usted lo antes posible para discutir cómo podemos brindarle la mejor solución. ¡Estamos deseando escuchar sobre su proyecto y ayudar a alcanzar sus objetivos!</p>",
+              "text_color": "#FFFFFF",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "10",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          },
+          {
+            "id": "1c113981",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 13,
+                "sizes": []
+              },
+              "align": "center",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 2,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "divider"
+          },
+          {
+            "id": "276dd886",
+            "elType": "widget",
+            "settings": {
+              "form_name": "Nuevo formulario",
+              "form_fields": [
+                {
+                  "custom_id": "name",
+                  "placeholder": "Nombre",
+                  "width": "30",
+                  "dynamic": {
+                    "active": true
+                  },
+                  "_id": "9bb2dbf"
+                },
+                {
+                  "custom_id": "email",
+                  "field_type": "email",
+                  "required": "true",
+                  "placeholder": "Correo electrónico",
+                  "width": "30",
+                  "_id": "7418fc2"
+                },
+                {
+                  "_id": "877896b",
+                  "field_type": "checkbox",
+                  "field_options": "He leido y acepto las politicas de privacidad.",
+                  "width": "33",
+                  "custom_id": "field_877896b"
+                }
+              ],
+              "button_width": "30",
+              "step_next_label": "Siguiente",
+              "step_previous_label": "Anterior",
+              "button_text": "SOLICITAR INFORMACIÓN",
+              "email_to": "sebastian@funmark.es",
+              "email_subject": "Nuevo mensaje desde «My blog»",
+              "email_content": "[all-fields]",
+              "email_from": "email@bigsizemedia.es",
+              "email_from_name": "My blog",
+              "email_to_2": "sebastian@funmark.es",
+              "email_subject_2": "Nuevo mensaje desde «My blog»",
+              "email_content_2": "[all-fields]",
+              "email_from_2": "email@bigsizemedia.es",
+              "email_from_name_2": "My blog",
+              "email_reply_to_2": "sebastian@funmark.es",
+              "mailchimp_fields_map": [],
+              "drip_fields_map": [],
+              "activecampaign_fields_map": [],
+              "getresponse_fields_map": [],
+              "convertkit_fields_map": [],
+              "mailerlite_fields_map": [],
+              "success_message": "El formulario se ha enviado correctamente.",
+              "error_message": "Ha ocurrido un error.",
+              "required_field_message": "Este campo es obligatorio.",
+              "invalid_message": "Hay algo que no funciona. El formulario no es válido.",
+              "column_gap": {
+                "unit": "px",
+                "size": 23,
+                "sizes": []
+              },
+              "row_gap": {
+                "unit": "px",
+                "size": 20,
+                "sizes": []
+              },
+              "button_background_color": "#C500FF",
+              "previous_button_background_color": "#C500FF",
+              "button_border_radius": {
+                "unit": "px",
+                "top": "38",
+                "right": "38",
+                "bottom": "38",
+                "left": "38",
+                "isLinked": true
+              }
+            },
+            "elements": [],
+            "widgetType": "form"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  }
+]

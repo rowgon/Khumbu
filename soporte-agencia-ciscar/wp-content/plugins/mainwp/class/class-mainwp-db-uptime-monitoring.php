@@ -1,0 +1,1750 @@
+<?php
+/**
+ * MainWP Database Monitors
+ *
+ * This file handles all interactions with the Monitors DB.
+ *
+ * @package MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class MainWP_DB_Uptime_Monitoring
+ *
+ * @package MainWP\Dashboard
+ */
+class MainWP_DB_Uptime_Monitoring extends MainWP_DB { // phpcs:ignore Generic.Classes.OpeningBraceSameLine.ContentAfterBrace -- NOSONAR.
+
+    // phpcs:disable WordPress.DB.RestrictedFunctions, WordPress.DB.PreparedSQL.NotPrepared -- unprepared SQL ok, accessing the database directly to custom database functions.
+
+    /**
+     * Private static variable to hold the single instance of the class.
+     *
+     * @static
+     *
+     * @var mixed Default null
+     */
+    private static $instance = null;
+
+    /**
+     * Method instance()
+     *
+     * Create public static instance.
+     *
+     * @static
+     * @return MainWP_DB_Common
+     */
+    public static function instance() {
+        if ( null === static::$instance ) {
+            static::$instance = new self();
+        }
+        return static::$instance;
+    }
+
+    /**
+     * Method get_db_schema()
+     *
+     * @param  array  $sql sql.
+     * @param  string $currentVersion current version.
+     * @return void
+     */
+    public function get_db_schema( &$sql,  $currentVersion ) { // phpcs:ignore -- NOSONAR - complex function. Current complexity is the only way to achieve desired results, pull request solutions appreciated.
+
+        $charset_collate = $this->wpdb->get_charset_collate();
+
+        $tbl = 'CREATE TABLE ' . $this->table_name( 'monitors' ) . " (
+monitor_id int(11) NOT NULL auto_increment,
+wpid int(11) NOT NULL,
+`active` tinyint(1) DEFAULT -1,
+`type` varchar(20) NOT NULL DEFAULT '',
+`keyword` varchar(255) NOT NULL DEFAULT '',
+`suburl` varchar(255) NOT NULL DEFAULT '',
+`issub` tinyint(1) DEFAULT 0,
+`timeout` smallint NOT NULL DEFAULT -1,
+`interval` int(11) NOT NULL DEFAULT -1,
+`retry_interval` int(11) NOT NULL DEFAULT 1,
+`up_status_codes` text NOT NULL DEFAULT '',
+`last_status` tinyint(1) DEFAULT 99,
+`last_main_status` tinyint(1) DEFAULT 99,
+`last_http_code` int(11) NOT NULL DEFAULT 0,
+`lasttime_check` int(11) NOT NULL,
+`retries` tinyint(1) DEFAULT 0,
+`maxretries` tinyint(1) DEFAULT -1,
+`maxredirects` tinyint(1) DEFAULT 2,
+`method` varchar(20) NOT NULL DEFAULT '',
+`dts_interval_lasttime` int(11) NOT NULL DEFAULT 0,
+`dts_auto_monitoring_time` int(11) NOT NULL DEFAULT 0,
+`dts_auto_monitoring_start` int(11) NOT NULL DEFAULT 0,
+`dts_auto_monitoring_retry_time` int(11) NOT NULL DEFAULT 0,
+KEY idx_wpid (wpid),
+KEY idx_wpid_issub (wpid, issub)";
+        if ( empty( $currentVersion ) || version_compare( $currentVersion, '9.0.0.41', '<' ) ) { // NOSONAR - no ip.
+            $tbl .= ',
+    PRIMARY KEY (monitor_id) ';
+        }
+        $tbl  .= ') ' . $charset_collate;
+        $sql[] = $tbl;
+
+        $tbl = 'CREATE TABLE ' . $this->table_name( 'monitor_heartbeat' ) . ' (
+    heartbeat_id int(11) NOT NULL auto_increment,
+    monitor_id int(11) NOT NULL,
+    `msg` text NOT NULL,
+    `importance` tinyint(1) NOT NULL DEFAULT 0,
+    `status` smallint NOT NULL DEFAULT 3,
+    `time` DATETIME NOT NULL,
+    `ping_ms` int DEFAULT 0,
+    `duration` int DEFAULT 0,
+    `down_count` tinyint(1) NOT NULL DEFAULT 0,
+    `http_code` smallint NOT NULL DEFAULT 0,
+    KEY idx_monitor_id (monitor_id),
+    KEY idx_monitor_time (`time`)';
+
+        if ( empty( $currentVersion ) || version_compare( $currentVersion, '9.0.0.41', '<' ) ) { // NOSONAR - no ip.
+            $tbl .= ',
+        PRIMARY KEY (heartbeat_id) ';
+        }
+        $tbl .= ') ' . $charset_collate;
+
+        $sql[] = $tbl;
+
+        $tbl = 'CREATE TABLE ' . $this->table_name( 'monitor_stat_hourly' ) . ' (
+    stat_hourly_id int(11) NOT NULL auto_increment,
+    monitor_id int(11) NOT NULL,
+    `up` int DEFAULT 0,
+    `down` int DEFAULT 0,
+    `ping_avg` int DEFAULT 0,
+    `ping_min` int DEFAULT 0,
+    `ping_max` int DEFAULT 0,
+    `timestamp` int DEFAULT 0,
+    KEY idx_monitor_id (monitor_id),
+    KEY idx_hourly_timestamp (`timestamp`)';
+
+        if ( empty( $currentVersion ) || version_compare( $currentVersion, '9.0.0.42', '<' ) ) { // NOSONAR - no ip.
+            $tbl .= ',
+        PRIMARY KEY (stat_hourly_id) ';
+        }
+        $tbl .= ') ' . $charset_collate;
+
+        $sql[] = $tbl;
+
+        add_action( 'mainwp_db_after_update', array( $this, 'update_db_data' ), 10, 2 );
+    }
+
+    /**
+     * Method update_db_data action.
+     *
+     * @param string $current_version current version.
+     *
+     * @return void
+     */
+    public function update_db_data( $current_version ) {
+        $suppress = $this->wpdb->suppress_errors();
+        $this->update_db_90041( $current_version );
+        $this->update_db_90043( $current_version );
+
+        if ( ! empty( $current_version ) && version_compare( $current_version, '9.0.1.2', '<' ) ) { // NOSONAR - no ip.
+            $this->wpdb->query( 'ALTER TABLE ' . $this->table_name( 'monitors' ) . ' ADD INDEX idx_wpid_issub (wpid, issub)' ); //phpcs:ignore -- ok.
+        }
+
+        $this->wpdb->suppress_errors( $suppress );
+    }
+
+    /**
+     * Method update_db_data action.
+     *
+     * @param string $current_version current version.
+     *
+     * @return void
+     */
+    public function update_db_90041( $current_version ) { //phpcs:ignore -- NOSONAR - complexity.
+
+        $update_ver = '9.0.0.41'; // NOSONAR - no ip.
+
+        if ( ! empty( $current_version ) && version_compare( $current_version, $update_ver, '<' ) ) {
+            // To compatible with basic monitoring settings.
+            $disableSitesMonitoring = (int) get_option( 'mainwp_disableSitesChecking' );
+            $frequencySitesChecking = (int) get_option( 'mainwp_frequencySitesChecking', 60 );
+            $ignored_codes          = get_option( 'mainwp_ignore_HTTP_response_status' );
+
+            $interval_values = MainWP_Uptime_Monitoring_Edit::get_interval_values( false );
+            if ( ! isset( $interval_values[ $frequencySitesChecking ] ) ) {
+                $frequencySitesChecking = 60;
+            }
+            $global_settings             = MainWP_Uptime_Monitoring_Handle::get_global_monitoring_settings();
+            $global_settings['active']   = $disableSitesMonitoring ? 0 : 1;
+            $global_settings['interval'] = $frequencySitesChecking;
+
+            if ( ! empty( $ignored_codes ) ) {
+                $global_settings['up_status_codes'] = $ignored_codes;
+            }
+
+            $legacy_enabled_monitors = $this->wpdb->get_results( $this->get_legacy_sql_websites_enabled_check_status( true ) ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+
+            if ( $legacy_enabled_monitors ) {
+                foreach ( $legacy_enabled_monitors as $mo ) {
+                    $this->update_wp_monitor(
+                        array(
+                            'wpid'            => $mo->id,
+                            'active'          => $disableSitesMonitoring ? 1 : -1, // if global setting is disabled, it will be 1 - individual active, else it will be -1 use global setting - active.
+                            'interval'        => $mo->status_check_interval > 0 ? $mo->status_check_interval : -1, // 0 then -1, use global setting.
+                            'timeout'         => -1,
+                            'method'          => 'useglobal',
+                            'type'            => 'useglobal',
+                            'up_status_codes' => 'useglobal',
+                        )
+                    ); // use global setting.
+                }
+            }
+
+            $legacy_disabled_monitors = $this->wpdb->get_results( $this->get_legacy_sql_websites_enabled_check_status( false ) ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+
+            if ( $legacy_disabled_monitors ) {
+                if ( ! $disableSitesMonitoring ) {
+                    $this->update_db_legacy_first_enable_monitoring_create_monitors( $legacy_disabled_monitors, 0 );
+                } else {
+                    $global_settings['first_enable_update'] = 1;
+                }
+            }
+
+            MainWP_Uptime_Monitoring_Handle::update_uptime_global_settings( $global_settings );
+
+            delete_option( 'mainwp_frequencySitesChecking' );
+            delete_option( 'mainwp_disableSitesChecking' );
+            delete_option( 'mainwp_ignore_HTTP_response_status' );
+
+            $delColumns       = array( 'status_check_interval' );
+            $table_wp         = esc_sql( $this->table_name( 'wp' ) );
+            $existing_columns = $this->wpdb->get_col( "SHOW COLUMNS FROM {$table_wp}", 0 ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- DDL introspection; table name is a hardcoded internal identifier escaped via esc_sql(), no user input involved.
+
+            foreach ( $delColumns as $column ) {
+                if ( in_array( $column, $existing_columns, true ) ) {
+                    $this->wpdb->query( 'ALTER TABLE ' . $table_wp . ' DROP COLUMN ' . esc_sql( $column ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- DDL statement; table and column names are hardcoded internal identifiers escaped via esc_sql(), no user input involved.
+                }
+            }
+        }
+    }
+
+    /**
+     * Method update_db_data action.
+     *
+     * @param string $current_version current version.
+     *
+     * @return void
+     */
+    public function update_db_90043( $current_version ) {
+        $update_ver  = '9.0.0.43'; // NOSONAR - no ip.
+        $update_ver2 = '9.0.0.41'; // NOSONAR - no ip.
+        if ( ! empty( $current_version ) && version_compare( $current_version, $update_ver, '<' ) && version_compare( $current_version, $update_ver2, '>=' ) ) {
+            $table_wp = esc_sql( $this->table_name( 'wp' ) );
+            $this->wpdb->query( 'ALTER TABLE ' . $table_wp . ' CHANGE up_statuscodes_json up_status_codes text NOT NULL DEFAULT ""' ); //phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+        }
+
+        $update_ver3 = '9.0.0.49'; // NOSONAR - no ip.
+        if ( empty( $current_version ) || version_compare( $current_version, $update_ver3, '<' ) ) {
+            // default up codes for new install.
+            $up_codes = array( 200, 201, 202, 203, 204, 205, 206 );
+
+            $global_settings = MainWP_Uptime_Monitoring_Handle::get_global_monitoring_settings();
+
+            $current_codes = ! empty( $global_settings['up_status_codes'] ) ? explode( ',', $global_settings['up_status_codes'] ) : array();
+            if ( ! empty( $current_codes ) ) {
+                $up_codes = array_unique( array_merge( $up_codes, $current_codes ) );
+            }
+            $global_settings['up_status_codes'] = implode( ',', $up_codes );
+            MainWP_Uptime_Monitoring_Handle::update_uptime_global_settings( $global_settings );
+        }
+    }
+
+    /**
+     * Method dev_update_db_90050 action.
+     *
+     * @param string $current_version current version.
+     *
+     * @return void
+     */
+    public function dev_update_db_90050( $current_version ) { //phpcs:ignore -- NOSONAR - complex.
+        $update_ver = '9.0.0.61'; // NOSONAR - no ip.
+
+        if ( ! empty( $current_version ) && version_compare( $current_version, $update_ver, '<=' ) ) {
+            $websites = MainWP_DB::instance()->query( MainWP_DB::instance()->get_sql_websites() );
+            while ( $websites && ( $website  = MainWP_DB::fetch_object( $websites ) ) ) {
+                $table_monitors = esc_sql( $this->table_name( 'monitors' ) );
+                $sql            = $this->wpdb->prepare(
+                    'SELECT mo.* FROM ' . $table_monitors . ' mo WHERE mo.wpid = %d AND mo.issub = 0 ORDER BY mo.monitor_id ASC',
+                    intval( $website->id )
+                );
+
+                $site_mos = $this->wpdb->get_results( $sql );
+
+                if ( $site_mos ) {
+                    $first_mo_id = false;
+                    foreach ( $site_mos as $mo ) {
+                        if ( ! $first_mo_id ) {
+                            $first_mo_id = $mo->monitor_id;
+                        } elseif ( $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . $table_monitors . ' WHERE monitor_id=%d', $mo->monitor_id ) ) ) {
+                                $this->wpdb->update(
+                                    $this->table_name( 'monitor_heartbeat' ),
+                                    array( 'monitor_id' => $first_mo_id ),
+                                    array( 'monitor_id' => $mo->monitor_id )
+                                );
+                                $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . esc_sql( $this->table_name( 'monitor_stat_hourly' ) ) . ' WHERE monitor_id=%d', $mo->monitor_id ) );
+                        }
+                    }
+                }
+            }
+            MainWP_DB::free_result( $websites );
+        }
+    }
+
+
+    /**
+     * Method update_db_legacy_first_enable_monitoring_create_monitors
+     *
+     * @param  mixed $disabled_monitors disabled monitors.
+     * @param  mixed $active active.
+     * @return void
+     */
+    public function update_db_legacy_first_enable_monitoring_create_monitors( $disabled_monitors = null, $active = null ) {
+
+        if ( null === $disabled_monitors ) {
+            $disabled_monitors = $this->wpdb->get_results( $this->get_legacy_sql_websites_enabled_check_status( false ) ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+        }
+
+        if ( is_array( $disabled_monitors ) ) {
+            if ( null === $active ) {
+                $act = - 1; // create and enable monitors -  -1: use global active setting.
+            } else {
+                $act = $active ? -1 : 0; // create and set active/deactive monitors - -1: use global active setting, 0: individual disable.
+            }
+
+            foreach ( $disabled_monitors as $mo ) {
+                $this->update_wp_monitor(
+                    array(
+                        'wpid'            => $mo->id,
+                        'active'          => $act,
+                        'interval'        => $mo->status_check_interval > 0 ? $mo->status_check_interval : -1, // 0 then -1, use global setting.
+                        'timeout'         => -1,
+                        'method'          => 'useglobal',
+                        'type'            => 'useglobal',
+                        'up_status_codes' => 'useglobal',
+                        'issub'           => 0,
+                    )
+                );
+            }
+        }
+    }
+
+
+    /**
+     * Get legacy sql websites by check status.
+     *
+     * @param  bool $enabled enabled or not.
+     * @return string SQL string.
+     */
+    public function get_legacy_sql_websites_enabled_check_status( $enabled ) {
+        $table_wp = esc_sql( $this->table_name( 'wp' ) );
+        return $this->wpdb->prepare(
+            'SELECT wp.id FROM ' . $table_wp . ' wp WHERE 2 = %d', // to fix error with wp.disable_status_check column not exist, it will return 0 for all, then we can get all enabled or disabled monitors based on $enabled value.
+            $enabled ? 0 : 1
+        );
+    }
+
+
+    /**
+     * Method get_monitor_by
+     *
+     * @param  int    $site_id site id.
+     * @param  string $by Get by.
+     * @param  mixed  $value value.
+     * @param  array  $params params.
+     * @param  string $obj OBJECT|ARRAY_A.
+     * @return object|null
+     */
+    public function get_monitor_by( $site_id, $by, $value, $params = array(), $obj = OBJECT ) {
+
+        if ( ! is_array( $params ) ) {
+            $params = array();
+        }
+
+        if ( 'monitor_id' !== $by && empty( $site_id ) ) { // get by monitor_id, site id may be empty.
+            return false;
+        }
+
+        if ( ! empty( $site_id ) ) {
+            $params['wpid'] = $site_id;
+        }
+
+        if ( in_array( $by, array( 'suburl', 'monitor_id', 'issub', 'wpid' ), true ) ) {
+            $params[ $by ] = $value;
+        } else {
+            return false;
+        }
+
+        if ( empty( $params['view'] ) ) {
+            $params['view'] = 'monitor_view';
+        }
+
+        return $this->get_row_result( $this->get_sql_monitor( $params ), $obj );
+    }
+
+
+    /**
+     * Get moniyor's sub page.
+     *
+     * @param  array $params params.
+     * @return mixed result.
+     */
+    public function get_monitor_sub_pages( $params ) {
+
+        if ( ! is_array( $params ) ) {
+            $params = array();
+        }
+
+        $params['issub'] = 1;
+
+        if ( empty( $params['view'] ) ) {
+            $params['view'] = 'monitor_view';
+        }
+
+        $sql = $this->get_sql_monitor( $params );
+
+        $this->log_system_query( $params, $sql );
+
+        return $this->wpdb->get_results( $sql, ARRAY_A ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL built with esc_sql() table names.
+    }
+
+
+    /**
+     * Get monitors.
+     *
+     * @param array $params params.
+     * @param int   $obj OBJECT|ARRAY_A.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_monitors( $params = array(), $obj = OBJECT ) { // phpcs:ignore -- NOSONAR - complexity.
+        if ( ! is_array( $params ) ) {
+            $params = array();
+        }
+
+        // Initialize custom_where if it does not exist.
+        if ( empty( $params['custom_where'] ) ) {
+            $params['custom_where'] = '';
+        }
+
+        // Handel exclude.
+        if ( isset( $params['exclude'] ) && ! empty( $params['exclude'] ) ) {
+            $exclude_ids             = wp_parse_id_list( $params['exclude'] );
+            $params['custom_where'] .= empty( $exclude_ids ) ? '' : ' AND mo.monitor_id NOT IN (' . implode( ',', $exclude_ids ) . ')';
+        }
+
+        // Handel include.
+        if ( isset( $params['include'] ) && ! empty( $params['include'] ) ) {
+            $include_ids             = wp_parse_id_list( $params['include'] );
+            $params['custom_where'] .= empty( $include_ids ) ? '' : ' AND mo.monitor_id  IN (' . implode( ',', $include_ids ) . ')';
+        }
+
+        // Handel status.
+        if ( isset( $params['status'] ) ) {
+            if ( is_numeric( $params['status'] ) && -1 !== (int) $params['status'] ) {
+                $params['custom_where'] .= ' AND wp.offline_check_result = ' . $params['status'];
+            } elseif ( -1 === (int) $params['status'] ) {
+                $params['custom_where'] .= ' AND wp.offline_check_result = -1';
+            }
+        }
+
+        // Handel search.
+        if ( isset( $params['search'] ) && ! empty( $params['search'] ) ) {
+            $search_term             = $this->escape( htmlspecialchars( $params['search'] ) );
+            $params['custom_where'] .= ' AND (wp.name LIKE "%' . $search_term . '%" OR wp.url LIKE "%' . $search_term . '%" OR mo.suburl LIKE "%' . $search_term . '%")';
+        }
+
+        // Handel page and per_page.
+        $page     = '';
+        $per_page = '';
+        if ( isset( $params['page'] ) && ! empty( $params['page'] ) ) {
+            $page = (int) $params['page'];
+        }
+
+        if ( isset( $params['per_page'] ) && ! empty( $params['per_page'] ) ) {
+            $per_page = (int) $params['per_page'];
+        }
+
+        if ( ! empty( $page ) && ! empty( $per_page ) ) {
+            $params['str_limit'] = ' LIMIT ' . ( $page - 1 ) * $per_page . ', ' . $per_page;
+        }
+
+        if ( empty( $params['view'] ) ) {
+            $params['view'] = 'monitor_view';
+        }
+
+        return $this->wpdb->get_results( $this->get_sql_monitor( $params ), $obj ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL built with esc_sql().
+    }
+
+    /**
+     * Get sites monitors to check.
+     *
+     * @param array $params params.
+     *
+     * @return object|null Database query result or null on failure.
+     */
+    public function get_monitors_to_check_uptime( $params = array() ) { //phpcs:ignore -- NOSONAR - complexity.
+
+        $params = apply_filters( 'mainwp_uptime_monitoring_get_monitors_to_check_params', $params );
+
+        $local_timestamp  = mainwp_get_timestamp();
+        $lasttime_counter = isset( $params['main_counter_lasttime'] ) ? intval( $params['main_counter_lasttime'] ) : 0;
+        $glo_settings     = isset( $params['global_settings'] ) && is_array( $params['global_settings'] ) ? $params['global_settings'] : array();
+        $limit            = isset( $params['limit'] ) ? intval( $params['limit'] ) : 10;
+
+        $glo_interval = isset( $glo_settings['interval'] ) ? intval( $glo_settings['interval'] ) : 60; // mins.
+
+        if ( empty( $glo_interval ) ) {
+            $glo_interval = 60;
+        }
+
+        if ( $limit < 1 || $limit > 100 ) {
+            $limit = 10;
+        }
+
+        $glo_active = 1;
+        if ( isset( $glo_settings['active'] ) ) {
+            $glo_active = 1 === (int) $glo_settings['active'] ? 1 : 0;
+        }
+
+        $glo_maxretries = isset( $glo_settings['maxretries'] ) ? (int) $glo_settings['maxretries'] : 0;
+
+        if ( $glo_maxretries < 0 || $glo_maxretries > 5 ) {
+            $glo_maxretries = 0;
+        }
+
+        $not_suspended = true;
+
+        if ( isset( $params['not_suspended'] ) ) {
+            $not_suspended = $params['not_suspended'] ? true : false;
+        }
+
+        $where = '';
+        if ( true === $not_suspended ) {
+            $where .= ' AND wp.suspended = 0 ';
+        }
+
+        $_params = array(
+            'view' => 'ping_view',
+        );
+
+        $and_active = ' AND ( mo.active = 1 OR ( mo.active = -1 AND 1 = ' . $glo_active . ') ) ';
+
+        // interval = 0, use global settings.
+        $and_interval_run = ' ( mo.interval != -1 AND mo.dts_interval_lasttime + mo.interval * 60 < ' . intval( $local_timestamp ) . ' ) OR ( mo.interval = -1 AND mo.dts_interval_lasttime + ' . intval( $glo_interval ) . ' * 60 < ' . intval( $local_timestamp ) . ') ';
+        $and_interval_run = ' ( ' . $and_interval_run . ' )';
+
+        $and_main_round_run = ' ( mo.dts_auto_monitoring_start = 0  OR (  mo.dts_auto_monitoring_start < ' . intval( $lasttime_counter ) . ' ) ) '; // To ensure the check request is not completed.
+
+        $and_retry_run  = '  ( ( mo.maxretries != 0 AND mo.maxretries != -1 AND mo.retries < mo.maxretries ) OR ( mo.maxretries = -1 AND 0 != ' . intval( $glo_maxretries ) . ' AND mo.retries < ' . intval( $glo_maxretries ) . ' ) ) AND '; // in case maxretries >= 1, validate the maximum allowed retries.
+        $and_retry_run .= ' ( mo.dts_auto_monitoring_retry_time + mo.retry_interval * 60 <= ' . intval( $local_timestamp ) . ' ) '; // if retry is set, do it after retry_interval mins.
+        $and_retry_run  = ' ( ' . $and_retry_run . ' )';
+
+        $where .= $and_active . ' AND ( ' . $and_interval_run . ' OR ' . $and_main_round_run . ' OR ' . $and_retry_run . ' ) ';
+
+        $_params['limit']        = $limit;
+        $_params['custom_where'] = $where;
+        $_params['order_by']     = ' mo.dts_auto_monitoring_time ASC ';
+
+        $sql = $this->get_sql_monitor( $_params );
+
+        $this->log_system_query( $params, $sql );
+
+        return $this->wpdb->get_results( $sql, OBJECT ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL built with esc_sql() table names.
+    }
+
+    /**
+     * Count individual enabled sites monitors.
+     *
+     * @return int
+     */
+    public function count_monitors_individual_active_enabled() {
+        $table_monitors = esc_sql( $this->table_name( 'monitors' ) );
+        return $this->wpdb->get_var( 'SELECT count(*) FROM ' . $table_monitors . ' WHERE active = 1 ' );
+    }
+
+    /**
+     * Get uptime notifcation to send.
+     *
+     * @param  int $limit limit.
+     * @param  int $global_active global active.
+     *
+     * @return mixed
+     */
+    public function get_uptime_notification_to_start_send( $limit = 50, $global_active = 1 ) {
+        $table_monitors           = esc_sql( $this->table_name( 'monitors' ) );
+        $table_schedule_processes = esc_sql( $this->table_name( 'schedule_processes' ) );
+
+        $sql = $this->wpdb->prepare(
+            ' SELECT pro.process_id,pro.status,pro.dts_process_start,pro.dts_process_stop,mo.* FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_schedule_processes . ' pro ON mo.monitor_id = pro.item_id ' .
+            " WHERE ( pro.type = 'monitor' AND pro.process_slug = 'uptime_notification' " .
+            ' AND ( ( mo.active = -1 AND 1 = ' . ( $global_active ? 1 : 0 ) . ' ) OR mo.active = 1  ) ' .
+            " AND ( pro.dts_process_stop > pro.dts_process_start OR pro.dts_process_start = 0 ) AND pro.status = 'active' ) " .
+            ' ORDER BY pro.dts_process_start ASC LIMIT %d ',
+            $limit
+        );
+
+        return $this->wpdb->get_results( $sql );
+    }
+
+    /**
+     * Get uptime notifcation to continue send.
+     *
+     * @param  array $params params.
+     * @return mixed result
+     */
+    public function get_uptime_notification_to_continue_send( $params ) {
+        if ( ! is_array( $params ) ) {
+            $params = array();
+        }
+
+        $params['view']          = 'uptime_notification';
+        $params['custom_where']  = " AND ( pro.type = 'monitor' AND pro.process_slug = 'uptime_notification' AND pro.status = 'active' AND pro.dts_process_stop < pro.dts_process_start ) ";
+        $params['others_fields'] = array( 'monitoring_notification_emails', 'settings_notification_emails', 'site_info' ); // other wp options fields.
+
+        $sql = $this->get_sql_monitor( $params );
+
+        $this->log_system_query( $params, $sql );
+
+        return $this->wpdb->get_results( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL built with esc_sql() table names.
+    }
+
+    /**
+     * Get uptime monitor notifcation heartbeats to send.
+     *
+     * @param  int $mo_id Monitor id.
+     * @param  int $hb_timestamp Heartbeat init time.
+     *
+     * @return mixed result
+     */
+    public function get_monitor_notification_heartbeats_to_send( $mo_id, $hb_timestamp ) {
+
+        if ( empty( $hb_timestamp ) ) {
+            return false;
+        }
+
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+        $hb_time                 = gmdate( 'Y-m-d H:i:S', $hb_timestamp );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT he.* FROM ' . $table_monitor_heartbeat . ' he ' .
+            ' WHERE he.monitor_id = %d AND ( he.status = 0 OR he.status = 1 ) AND he.time >= %s ' .
+            ' AND he.importance = 1 ORDER BY he.heartbeat_id ASC ',
+            $mo_id,
+            $hb_time
+        );
+        return $this->wpdb->get_results( $sql );
+    }
+
+    /**
+     * Update site monitor.
+     *
+     * @param array $data data.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function update_wp_monitor( $data ) { // phpcs:ignore -- NOSONAR - complexity.
+        if ( ! is_array( $data ) ) {
+            return false;
+        }
+        $allowed_methods = MainWP_Uptime_Monitoring_Edit::get_allowed_methods();
+
+        if ( isset( $data['method'] ) ) {
+            $data['method'] = strtolower( $data['method'] );
+            if ( empty( $data['method'] ) || ! isset( $allowed_methods[ $data['method'] ] ) ) {
+                $data['method'] = 'get';
+            }
+        }
+
+        if ( ! isset( $data['monitor_id'] ) && ! empty( $data['wpid'] ) ) {
+            $check = $this->get_monitor_by( $data['wpid'], 'issub', 0 );
+            if ( ! empty( $check ) ) {
+                $data['monitor_id'] = $check->monitor_id;
+            }
+        }
+
+        if ( isset( $data['monitor_id'] ) ) {
+            $id = $data['monitor_id'];
+            unset( $data['monitor_id'] );
+
+            if ( isset( $data['wpid'] ) ) { // Do not update or change this field.
+                unset( $data['wpid'] );
+            }
+
+            $this->wpdb->update(
+                $this->table_name( 'monitors' ),
+                $data,
+                array( 'monitor_id' => $id )
+            );
+                return $id;
+        } else {
+            if ( empty( $data['method'] ) || ! isset( $allowed_methods[ $data['method'] ] ) ) {
+                $data['method'] = 'get';
+            }
+
+            $data['issub'] = ! empty( $data['suburl'] ) ? 1 : 0;
+
+            $this->wpdb->insert( $this->table_name( 'monitors' ), $data );
+            return $this->wpdb->insert_id;
+        }
+    }
+
+    /**
+     * Update site monitor increase retries.
+     *
+     * @param array $data data.
+     *
+     * @return bool Database query results or false.
+     */
+    public function update_monitor_increase_retry( $monitor_id ) {
+        if ( empty( $monitor_id ) ) {
+            return false;
+        }
+        $table_monitors = esc_sql( $this->table_name( 'monitors' ) );
+        return $this->wpdb->query( $this->wpdb->prepare( 'UPDATE ' . $table_monitors . ' SET retries = retries + 1 WHERE monitor_id=%d', $monitor_id ) );
+    }
+
+    /**
+     * Get child site monitor by id via SQL.
+     *
+     * @param array $params params.
+     *
+     * @return object|null Database query result or null on failure.
+     */
+    public function get_sql_monitor( $params ) { //phpcs:ignore -- NOSONAR - complexity.
+
+        if ( ! is_array( $params ) ) {
+            $params = array();
+        }
+
+        $table_wp                 = esc_sql( $this->table_name( 'wp' ) );
+        $table_wp_sync            = esc_sql( $this->table_name( 'wp_sync' ) );
+        $table_monitors           = esc_sql( $this->table_name( 'monitors' ) );
+        $table_wp_clients         = esc_sql( $this->table_name( 'wp_clients' ) );
+        $table_wp_group           = esc_sql( $this->table_name( 'wp_group' ) );
+        $table_group              = esc_sql( $this->table_name( 'group' ) );
+        $table_schedule_processes = esc_sql( $this->table_name( 'schedule_processes' ) );
+
+        $view = ! empty( $params['view'] ) ? $params['view'] : 'default';
+
+        $extra_view = ! empty( $params['extra_view'] ) ? $params['extra_view'] : array();
+
+        $site_id   = isset( $params['wpid'] ) ? intval( $params['wpid'] ) : false;
+        $monitorid = isset( $params['monitor_id'] ) ? intval( $params['monitor_id'] ) : false;
+        $sub_url   = isset( $params['suburl'] ) ? $params['suburl'] : false;
+        $is_sub    = isset( $params['issub'] ) ? intval( $params['issub'] ) : false;
+
+        $limit         = ! empty( $params['limit'] ) ? $params['limit'] : 0;
+        $with_clients  = isset( $params['with_clients'] ) && $params['with_clients'] ? true : false;
+        $select_grps   = isset( $params['selectgroups'] ) && $params['selectgroups'] ? true : false;
+        $is_staging    = isset( $params['is_staging'] ) && in_array( $params['is_staging'], array( 'yes', 'no' ) ) ? $params['is_staging'] : 'no';
+        $others_fields = isset( $params['others_fields'] ) && is_array( $params['others_fields'] ) ? $params['others_fields'] : array( 'favi_icon' );
+        $for_manager   = isset( $params['for_manager'] ) && $params['for_manager'] ? true : false;
+        $custom_where  = ! empty( $params['custom_where'] ) ? $params['custom_where'] : '';
+        $order_by      = isset( $params['order_by'] ) && ! empty( $params['order_by'] ) ? $params['order_by'] : '';
+
+        if ( ! empty( $extra_view ) && is_array( $extra_view ) && is_array( $others_fields ) ) {
+            $others_fields = array_unique( array_merge( $extra_view, $others_fields ) );
+        }
+
+        $select_clients = '';
+        $join_clients   = '';
+
+        if ( $with_clients ) {
+            $select_clients = ', wpclient.name as client_name ';
+            $join_clients   = ' LEFT JOIN ' . $table_wp_clients . ' wpclient ON wp.client_id = wpclient.client_id ';
+        }
+
+        $where = '';
+
+        if ( false !== $site_id ) {
+            $where .= ' AND wp.id = ' . intval( $site_id );
+        }
+
+        if ( false !== $monitorid ) {
+            $where .= ' AND  mo.monitor_id = ' . intval( $monitorid );
+        }
+
+        if ( false !== $sub_url ) {
+            $where .= $this->wpdb->prepare( ' AND mo.suburl = %s', $sub_url );
+        }
+
+        if ( false !== $is_sub ) {
+            $where .= ' AND mo.issub = ' . intval( $is_sub );
+        }
+
+        if ( ! $for_manager ) {
+            $where .= $this->get_sql_where_allow_access_sites( 'wp', $is_staging );
+        }
+
+        $light_fields = array(
+            'wp.id',
+            'wp.url',
+            'wp.name',
+            'wp.client_id',
+            'wp.verify_certificate',
+            'wp.http_user',
+            'wp.http_pass',
+            'wp.ssl_version',
+            'wp.adminname',
+            'wp.privkey',
+            'wp.pubkey',
+            'wp.wpe',
+            'wp.is_staging',
+            'wp.force_use_ipv4',
+            'wp.siteurl',
+            'wp.suspended',
+            'wp.mainwpdir',
+            'wp.is_ignoreCoreUpdates',
+            'wp.is_ignorePluginUpdates',
+            'wp.is_ignoreThemeUpdates',
+            'wp.backup_before_upgrade',
+            'wp.userid',
+            'wp_sync.sync_errors',
+        );
+
+        $legacy_status_fields = array(
+            'wp.offline_check_result', // 1 - online, -1 offline.
+            'wp.http_response_code',
+            'wp.offline_checks_last',
+        );
+
+        $light_fields = array_merge( $light_fields, $legacy_status_fields );
+
+        $base_fields = array(
+            $light_fields,
+            array(
+                'wp.plugins',
+                'wp.themes',
+            ),
+        );
+
+        $default_fields = array(
+            'wp.*',
+            'wp_sync.*',
+        );
+
+        if ( 'ping_view' === $view || 'monitor_view' === $view ) {
+            $select_fields = $light_fields;
+        } elseif ( 'base_view' === $view ) {
+            $select_fields = $base_fields;
+        } elseif ( 'uptime_notification' === $view ) {
+            $select_fields   = $light_fields;
+            $select_fields[] = 'pro.*';
+        } else {
+            $select_fields = $default_fields;
+        }
+
+        $select_fields[] = 'mo.*';
+
+        $select = implode( ',', $select_fields );
+
+        $select_groups = '';
+        $join_groups   = '';
+
+        if ( $select_grps ) {
+            $select_groups = ', GROUP_CONCAT(gr.name ORDER BY gr.name SEPARATOR ",") as wpgroups, GROUP_CONCAT(gr.id ORDER BY gr.name SEPARATOR ",") as wpgroupids, GROUP_CONCAT(gr.color ORDER BY gr.name SEPARATOR ",") as wpgroups_colors, ';
+            $join_groups   = '
+            LEFT JOIN ' . $table_wp_group . ' wpgr ON wp.id = wpgr.wpid
+            LEFT JOIN ' . $table_group . ' gr ON wpgr.groupid = gr.id';
+        }
+
+        $join_monitors = 'LEFT JOIN ' . $table_monitors . ' mo ON wp.id = mo.wpid';
+        $join_process  = '';
+
+        if ( 'uptime_notification' === $view ) {
+            $join_process = ' LEFT JOIN ' . $table_schedule_processes . ' pro ON mo.monitor_id = pro.item_id ';
+        }
+
+        if ( ! empty( $params['count_only'] ) ) {
+            $select = ' count(*) ';
+        } else {
+            $select = $select . $select_clients . $select_groups;
+        }
+
+        if ( empty( $order_by ) ) {
+            $order_by = '  mo.monitor_id DESC';
+        }
+
+        $limit_str = '';
+        if ( ! empty( $limit ) ) {
+            $limit_str = ' LIMIT ' . intval( $limit );
+        }
+
+        // Handle page and per_page.
+        if ( ! empty( $params['str_limit'] ) ) {
+            $limit_str = $params['str_limit'];
+        }
+
+        $view_selects = '';
+        $view_joins   = '';
+
+        $opts_view = $this->get_option_view_by_join( $view, $others_fields );
+
+        if ( is_array( $opts_view ) && ! empty( $opts_view['selects'] ) ) {
+            $view_selects = ',' . $opts_view['selects'];
+            $view_joins   = $opts_view['joins'];
+        }
+
+        $qry = 'SELECT ' . $select . $view_selects . '
+            FROM ' . $table_wp . ' wp
+            ' . $join_clients . '
+            ' . $join_groups . '
+            ' . $join_monitors . '
+            ' . $join_process . '
+            JOIN ' . $table_wp_sync . ' wp_sync ON wp.id = wp_sync.wpid
+            ' . $view_joins . '
+            WHERE 1 ' . $where . $custom_where . '
+            GROUP BY mo.monitor_id ORDER BY ' . $order_by . $limit_str;
+
+        $this->log_system_query( $params, $qry );
+
+        return $qry;
+    }
+
+
+    /**
+     * Delete monitor and uptime data.
+     *
+     * @param array $params data.
+     *
+     * @return bool success|failed.
+     */
+    public function delete_monitor( $params ) {
+
+        if ( ! is_array( $params ) ) {
+            return false;
+        }
+
+        $table_monitors = esc_sql( $this->table_name( 'monitors' ) );
+        $sql            = '';
+
+        if ( ! empty( $params['monitor_id'] ) ) {
+            $sql = $this->wpdb->prepare( 'SELECT monitor_id, wpid FROM ' . $table_monitors . ' WHERE monitor_id=%d', $params['monitor_id'] );
+        } elseif ( ! empty( $params['wpid'] ) ) {
+            $sql = $this->wpdb->prepare( 'SELECT monitor_id, wpid FROM ' . $table_monitors . ' WHERE wpid=%d AND issub = 0 ', $params['wpid'] );
+        }
+
+        $current = 0;
+
+        if ( ! empty( $sql ) ) {
+            $current = $this->wpdb->get_row( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+        }
+
+        if ( empty( $current ) ) {
+            return false;
+        }
+
+        $monitor_id = $current->monitor_id;
+        $wp_id      = $current->wpid;
+
+        if ( ! empty( $current->issub ) ) {
+            if ( $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . $table_monitors . ' WHERE monitor_id=%d', $monitor_id ) ) ) {
+                $this->delete_heartbeat( $monitor_id );
+                $this->delete_stats( $monitor_id );
+                return true;
+            }
+            return false;
+        }
+
+        $sql      = $this->wpdb->prepare( 'SELECT monitor_id FROM ' . $table_monitors . ' WHERE wpid=%d ', $wp_id );
+        $monitors = $this->wpdb->get_results( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+        if ( $monitors ) {
+            foreach ( $monitors as $mo ) {
+                if ( $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . $table_monitors . ' WHERE monitor_id=%d', $mo->monitor_id ) ) ) {
+                    $this->delete_heartbeat( $mo->monitor_id );
+                    $this->delete_stats( $mo->monitor_id );
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method delete_heartbeat by monitor id.
+     *
+     * @param  int $monitorid monitor id.
+     * @return bool
+     */
+    public function delete_heartbeat( $monitorid ) {
+        if ( empty( $monitorid ) ) {
+            return false;
+        }
+
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+        if ( $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . $table_monitor_heartbeat . ' WHERE monitor_id=%d', $monitorid ) ) ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Update heartbeat monitor.
+     *
+     * @param array $data data.
+     *
+     * @return int|bool Database query results or null on failure.
+     */
+    public function update_heartbeat( $data ) {
+
+        if ( ! is_array( $data ) ) {
+            return false;
+        }
+
+        MainWP_Logger::instance()->log_uptime_check( 'Update heartbeat :: ' . print_r( $data, true ) ); //phpcs:ignore --NOSONAR -for dev logs.
+
+        if ( isset( $data['heartbeat_id'] ) ) {
+            $id = $data['heartbeat_id'];
+            unset( $data['heartbeat_id'] );
+            $this->wpdb->update(
+                $this->table_name( 'monitor_heartbeat' ),
+                $data,
+                array( 'heartbeat_id' => $id )
+            );
+            return $id;
+        } else {
+            $this->wpdb->insert( $this->table_name( 'monitor_heartbeat' ), $data );
+            return $this->wpdb->insert_id;
+        }
+    }
+
+
+    /**
+     * Get last monitor heartbeat.
+     *
+     * @param int $monitor_id monitor id.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_previous_monitor_heartbeat( $monitor_id ) {
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+        $sql                     = $this->wpdb->prepare( 'SELECT * FROM ' . $table_monitor_heartbeat . ' WHERE monitor_id = %d ORDER BY time DESC LIMIT 1', $monitor_id );
+        return $this->wpdb->get_row( $sql );
+    }
+
+
+    /**
+     * Get last site's heartbeat.
+     *
+     * @param int  $siteid site id.
+     * @param bool $include_suburl include suburl.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_last_site_heartbeat( $siteid, $include_suburl = true ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        if ( $include_suburl ) {
+            $where = ' AND ( mo.issub = 1 OR mo.issub = 0 ) ';
+        } else {
+            $where = ' AND mo.issub = 0';
+        }
+
+        $sql = $this->wpdb->prepare(
+            'SELECT he.*,mo.active FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d ' . $where . ' ORDER BY he.time DESC LIMIT 1',
+            $siteid
+        );
+        return $this->wpdb->get_row( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+    /**
+     * Count up down monitors.
+     *
+     * @return array data.
+     */
+    public function get_count_up_down_monitors() {
+        $table_monitors = esc_sql( $this->table_name( 'monitors' ) );
+        $table_wp       = esc_sql( $this->table_name( 'wp' ) );
+
+        $where_and_allow_sites = MainWP_DB::instance()->get_sql_where_allow_access_sites( 'wp' ); // Example: AND wp.is_staging = 0 or empty.
+
+        $sql = "
+            SELECT
+                SUM(mo.last_status = 1) AS count_up,
+                SUM(mo.last_status = 0) AS count_down
+            FROM {$table_monitors} mo
+            LEFT JOIN {$table_wp} wp ON wp.id = mo.wpid
+            WHERE 1 {$where_and_allow_sites}
+        ";
+
+        return $this->wpdb->get_row( $sql, ARRAY_A ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+
+    /**
+     * Count last site's incidents.
+     *
+     * @param int   $siteid site id.
+     * @param array $days_num days number.
+     *
+     * @return array data.
+     */
+    public function get_site_count_last_incidents( $siteid, $days_num ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        if ( empty( $days_num ) ) {
+            $days_num = 1;
+        }
+
+        $start_date = gmdate( 'Y-m-d 00:00:00', time() - $days_num * DAY_IN_SECONDS );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT ' .
+            ' ( SELECT count(*) FROM ' . $table_monitor_heartbeat . ' he2 WHERE he2.time > %s AND he2.monitor_id = he.monitor_id AND he2.status = 0 AND he2.importance = 1 ) AS count ' .
+            ' FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND mo.issub = 0 LIMIT 1',
+            $start_date,
+            $siteid
+        );
+
+        return $this->wpdb->get_row( $sql, ARRAY_A );
+    }
+
+
+    /**
+     * Get last site's incidents stats.
+     *
+     * @param int $siteid site id.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_last_site_incidents_stats( $siteid ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT ' .
+            ' ( SELECT count(*) FROM ' . $table_monitor_heartbeat . ' he24 WHERE ( he24.time >= NOW() - INTERVAL 1 DAY ) AND he24.monitor_id = he.monitor_id AND he24.status = 0 AND he.importance = 1 ) AS total24,' .
+            ' ( SELECT count(*) FROM ' . $table_monitor_heartbeat . ' he7 WHERE ( he7.time >= NOW() - INTERVAL 7 DAY ) AND he7.monitor_id = he.monitor_id AND he7.status = 0 AND he.importance = 1 ) AS total7,' .
+            ' ( SELECT count(*) FROM ' . $table_monitor_heartbeat . ' he30 WHERE ( he30.time >= NOW() - INTERVAL 30 DAY ) AND he30.monitor_id = he.monitor_id AND he30.status = 0 AND he.importance = 1 ) AS total30 ' .
+            ' FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d LIMIT 1',
+            $siteid
+        );
+        return $this->wpdb->get_row( $sql, ARRAY_A );
+    }
+
+
+    /**
+     * Get site's incidents stats.
+     *
+     * @param int   $siteid site id.
+     * @param array $params params.
+     *
+     * @return array data.
+     */
+    public function get_site_incidents_stats( $siteid, $params = array() ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        $start = isset( $params['start'] ) ? $params['start'] . ' 00:00:00' : gmdate( 'Y-m-d 00:00:00', time() - 7 * DAY_IN_SECONDS );
+        $end   = isset( $params['end'] ) ? $params['end'] . ' 23:59:59' : gmdate( 'Y-m-d 23:59:59', time() );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT mo.wpid, mo.monitor_id, ' .
+            ' ( SELECT count(*) FROM ' . $table_monitor_heartbeat . ' he2 WHERE he2.time > %s AND he2.time <= %s AND he2.monitor_id = mo.monitor_id AND he2.status = 0 AND he2.importance = 1 ) AS count_incidents' .
+            ' FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND mo.issub = 0 LIMIT 1 ',
+            $start,
+            $end,
+            $siteid
+        );
+
+        $results = $this->wpdb->get_row( $sql, ARRAY_A );
+
+        return array(
+            'start'           => $start,
+            'end'             => $end,
+            'count_incidents' => is_array( $results ) && isset( $results['count_incidents'] ) ? $results['count_incidents'] : 0,
+        );
+    }
+
+
+    /**
+     * Get last site's uptime ratios stats.
+     *
+     * @param int $siteid site id.
+     * @param int $days_num day number.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_last_site_uptime_ratios_values( $siteid, $days_num ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        if ( empty( $days_num ) ) {
+            $days_num = 1;
+        }
+
+        $start_date = gmdate( 'Y-m-d 00:00:00', time() - $days_num * DAY_IN_SECONDS );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT ' .
+            ' ( SELECT SUM(he.duration) FROM ' . $table_monitor_heartbeat . ' he WHERE he.time > %s AND he.monitor_id = mo.monitor_id AND he.status = 1 ) AS up_value,' .
+            ' ( SELECT SUM(he.duration) FROM ' . $table_monitor_heartbeat . ' he WHERE he.time > %s AND he.monitor_id = mo.monitor_id AND ( he.status = 0 OR he.status = 1 )  ) AS total_value ' .
+            ' FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND mo.issub = 0 LIMIT 1',
+            $start_date,
+            $start_date,
+            $siteid
+        );
+        return $this->wpdb->get_row( $sql, ARRAY_A );
+    }
+
+    /**
+     * Get last site's uptime ratios stats.
+     *
+     * @param int $siteid site id.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_last_site_uptime_ratios_stats( $siteid ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT ' .
+            ' ( SELECT SUM(he24.duration) FROM ' . $table_monitor_heartbeat . ' he24 WHERE ( he24.time >= NOW() - INTERVAL 1 DAY ) AND he24.monitor_id = he.monitor_id AND he24.status = 1 ) AS up24,' .
+            ' ( SELECT SUM(he24.duration) FROM ' . $table_monitor_heartbeat . ' he24 WHERE ( he24.time >= NOW() - INTERVAL 1 DAY ) AND he24.monitor_id = he.monitor_id  AND ( he24.status = 0 OR he24.status = 1 )  ) AS total24,' .
+            ' ( SELECT SUM(he7.duration)  FROM ' . $table_monitor_heartbeat . ' he7 WHERE ( he7.time >= NOW() - INTERVAL 7 DAY ) AND he7.monitor_id = he.monitor_id AND he7.status = 1 ) AS up7,' .
+            ' ( SELECT SUM(he7.duration)  FROM ' . $table_monitor_heartbeat . ' he7 WHERE ( he7.time >= NOW() - INTERVAL 7 DAY ) AND he7.monitor_id = he.monitor_id AND ( he7.status = 0 OR he7.status = 1 ) ) AS total7,' .
+            ' ( SELECT SUM(he30.duration) FROM ' . $table_monitor_heartbeat . ' he30 WHERE ( he30.time >= NOW() - INTERVAL 30 DAY ) AND he30.monitor_id = he.monitor_id AND he30.status = 1 ) AS up30, ' .
+            ' ( SELECT SUM(he30.duration) FROM ' . $table_monitor_heartbeat . ' he30 WHERE ( he30.time >= NOW() - INTERVAL 30 DAY ) AND he30.monitor_id = he.monitor_id AND ( he30.status = 0 OR he30.status = 1 ) ) AS total30 ' .
+            ' FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d LIMIT 1',
+            $siteid
+        );
+        return $this->wpdb->get_row( $sql, ARRAY_A );
+    }
+
+
+
+    /**
+     * Get site's reports uptime ratios.
+     *
+     * @param int   $siteid site id.
+     * @param array $params params.
+     *
+     * @return array data.
+     */
+    public function get_site_uptime_ratios_reports_data( $siteid, $params = array() ) {
+
+        // 'period_days' :.
+        // 'uptimeratiosall' => 365, // Last 365 days.
+        // 'uptimeratios7'   => 7.
+        // 'uptimeratios15'  => 15
+        // 'uptimeratios30'  => 30.
+        // 'uptimeratios45'  => 45.
+        // 'uptimeratios60'  => 60.
+        // 'uptimeratios'  => from start->end date.
+
+        $period_days = isset( $params['period_days'] ) ? $params['period_days'] : array();
+        if ( empty( $period_days ) || empty( $params['start'] ) || empty( $params['end'] ) ) {
+            return array();
+        }
+
+        $end_time_period = strtotime( $params['end'] . ' 23:59:59' );
+        $period_date     = array();
+        foreach ( $period_days as $period => $days ) {
+            if ( 'uptimeratios' !== $period ) {
+                $period_date[ $period ] = array(
+                    'start' => gmdate( 'Y-m-d 00:00:00', $end_time_period - $days * DAY_IN_SECONDS ),
+                    'end'   => $params['end'] . ' 23:59:59',
+                );
+            }
+        }
+
+        $period_date['uptimeratios'] = array(
+            'start' => $params['start'] . ' 00:00:00',
+            'end'   => $params['end'] . ' 23:59:59',
+        );
+
+        $sql_sub = '';
+
+        foreach ( $period_date as $period => $date ) {
+            $as_up    = $period;
+            $as_total = 'total' . $period;
+            $_sql     = ' ( SELECT SUM(' . $as_up . '.duration) FROM ' . $this->table_name( 'monitor_heartbeat' ) . ' ' . $as_up . ' WHERE  ' . $as_up . '.time > "' . $this->escape( $date['start'] ) . '" AND ' . $as_up . '.time <= "' . $this->escape( $date['end'] ) . '" AND ' . $as_up . '.monitor_id = he.monitor_id AND ' . $as_up . '.status = 1 ) AS ' . $as_up . ',';
+            $_sql    .= ' ( SELECT SUM(' . $as_total . '.duration) FROM ' . $this->table_name( 'monitor_heartbeat' ) . ' ' . $as_total . ' WHERE  ' . $as_total . '.time > "' . $this->escape( $date['start'] ) . '" AND ' . $as_total . '.time <= "' . $this->escape( $date['end'] ) . '" AND ' . $as_total . '.monitor_id = he.monitor_id AND ( ' . $as_total . '.status = 1 OR ' . $as_total . '.status = 0 ) ) AS ' . $as_total . ',';
+            $sql_sub .= $_sql;
+
+        }
+
+        $sql_sub = rtrim( $sql_sub, ',' );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT ' .
+            $sql_sub .
+            ' FROM ' . $this->table_name( 'monitors' ) . ' mo ' .
+            ' LEFT JOIN ' . $this->table_name( 'monitor_heartbeat' ) . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND mo.issub = 0 LIMIT 1',
+            $siteid
+        );
+
+        $result = $this->wpdb->get_row( $sql, ARRAY_A ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+
+        if ( ! is_array( $result ) ) {
+            $result = array();
+        }
+
+        $data = array();
+
+        foreach ( $period_days as $period => $number ) {
+            $as_up           = $period;
+            $as_total        = 'total' . $period;
+            $data[ $period ] = isset( $result[ $as_total ] ) && ! empty( $result[ $as_total ] ) ? number_format( $result[ $as_up ] * 100 / $result[ $as_total ], 6 ) : 'N/A'; // prevent divided by zero.
+        }
+        MainWP_Logger::instance()->log_uptime_check( 'Get reports data :: [params=' . print_r( $params, true ) . '] :: [ratios data='. print_r( $data, true ) . ']' ); //phpcs:ignore -- NOSONAR -for debug.
+        return $data;
+    }
+
+
+    /**
+     * Get monitor response time stats.
+     *
+     * @param int   $siteid site id.
+     * @param array $params params.
+     * array 'start' and 'end' format : 'Y-m-d'.
+     *
+     * @return array Database query results or empty.
+     */
+    public function get_db_site_response_time_stats_data( $siteid, $params = array() ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        if ( empty( $params['start'] ) || empty( $params['end'] ) ) {
+            return array();
+        }
+
+        $group_time = ! empty( $params['group_time_by'] ) ? strtolower( $params['group_time_by'] ) : 'date';
+
+        $start_ts = strtotime( $params['start'] );
+        $end_ts   = strtotime( $params['end'] );
+
+        $start = gmdate( 'Y-m-d 00:00:00', $start_ts );
+        $end   = gmdate( 'Y-m-d 23:59:59', $end_ts );
+
+        $sum_total = ', SUM(he.ping_ms) as resp_total_ms ';
+
+        if ( 'hour' === $group_time ) {
+            $group_by = ' GROUP BY HOUR(he.time) ';
+        } elseif ( 'get_all' === $group_time ) {
+            $group_by  = '';
+            $sum_total = ', he.ping_ms as resp_total_ms ';
+        } else {
+            $group_by = ' GROUP BY DATE( he.time ) ';
+        }
+
+        $where = '';
+        if ( isset( $params['issub'] ) && 0 === (int) $params['issub'] ) {
+            $where = ' AND mo.issub = 0 ';
+        }
+
+        $sql = $this->wpdb->prepare(
+            'SELECT he.time as resp_time ' . $sum_total . '  FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d ' . $where . ' AND he.time > %s AND he.time <= %s ' .
+            $group_by .
+            ' ORDER BY resp_time ASC ',
+            $siteid,
+            $start,
+            $end
+        );
+
+        $data = $this->wpdb->get_results( $sql, ARRAY_A ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+
+        $sql_stats = $this->wpdb->prepare(
+            'SELECT AVG( he.ping_ms ) AS avg_time_ms, MIN( he.ping_ms ) as min_time_ms, MAX( he.ping_ms ) as max_time_ms FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND he.time > %s AND he.time <= %s',
+            $siteid,
+            $start,
+            $end
+        );
+
+        $resp_data = $this->wpdb->get_row( $sql_stats, ARRAY_A );
+
+        return array(
+            'resp_time_list'  => $data,
+            'start'           => $start,
+            'end'             => $end,
+            'resp_stats_data' => $resp_data,
+        );
+    }
+
+
+    /**
+     * Get monitoring events stats.
+     *
+     * @param int   $siteid site id.
+     * @param array $params params.
+     *
+     * @return object|null Database query results or null on failure.
+     */
+    public function get_site_monitoring_events_stats( $siteid, $params = array() ) {
+        $table_monitors          = esc_sql( $this->table_name( 'monitors' ) );
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+
+        $start = isset( $params['start'] ) ? $params['start'] . ' 00:00:00' : gmdate( 'Y-m-d 00:00:00', time() - 7 * DAY_IN_SECONDS );
+        $end   = isset( $params['end'] ) ? $params['end'] . ' 23:59:59' : gmdate( 'Y-m-d 23:59:59', time() );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT mo.active,mo.type,mo.keyword,mo.suburl,mo.interval,he.msg,he.status,he.time,he.ping_ms,he.http_code FROM ' . $table_monitors . ' mo ' .
+            ' LEFT JOIN ' . $table_monitor_heartbeat . ' he ' .
+            ' ON mo.monitor_id = he.monitor_id ' .
+            ' WHERE mo.wpid = %d AND he.time > %s AND he.time <= %s ' .
+            ' AND he.importance = 1 ',
+            $siteid,
+            $start,
+            $end
+        );
+
+        return $this->wpdb->get_results( $sql, ARRAY_A );
+    }
+
+
+    /**
+     * Get monitor uptime hourly stats by.
+     *
+     * @param  int    $monitor_id monitor id.
+     * @param  string $by by.
+     * @param  mixed  $value value.
+     * @param  string $obj obj.
+     * @return mixed
+     */
+    public function get_uptime_monitor_stat_hourly_by( $monitor_id, $by, $value = false, $obj = ARRAY_A ) {
+        $table_monitor_stat_hourly = esc_sql( $this->table_name( 'monitor_stat_hourly' ) );
+
+        if ( 'timestamp' === $by ) {
+            if ( empty( $value ) ) {
+                return false;
+            }
+            $sql = $this->wpdb->prepare( 'SELECT stho.* FROM ' . $table_monitor_stat_hourly . ' stho WHERE stho.monitor_id = %d AND stho.timestamp = %d', $monitor_id, $value );
+            return $this->wpdb->get_row( $sql, $obj );
+        } elseif ( 'last24' === $by ) {
+            if ( empty( $value ) ) {
+                return false;
+            }
+            $sql = $this->wpdb->prepare( 'SELECT stho.* FROM ' . $table_monitor_stat_hourly . ' stho WHERE stho.monitor_id = %d AND stho.timestamp >= %d  ORDER BY stho.timestamp ASC ', $monitor_id, $value );
+            return $this->wpdb->get_results( $sql, $obj );
+        } elseif ( 'between' === $by ) {
+            if ( empty( $value ) ) {
+                return false;
+            }
+            $day   = gmdate( 'Y-m-d', $value );
+            $start = strtotime( $day . ' 00:00:00' );
+            $end   = strtotime( $day . ' 23:59:59' );
+
+            $sql = $this->wpdb->prepare( 'SELECT stho.* FROM ' . $this->table_name( 'monitor_stat_hourly' ) . ' stho WHERE stho.monitor_id = %d AND stho.timestamp BETWEEN %d AND %d ORDER BY stho.timestamp ASC ', $monitor_id, $start, $end );
+            return $this->wpdb->get_results( $sql, $obj ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+        }
+        return false;
+    }
+
+
+    /**
+     * Method remove_outdated_hourly_uptime_stats
+     *
+     * @param  int $days days.
+     * @return void
+     */
+    public function remove_outdated_hourly_uptime_stats( $days = 30 ) {
+        $table_monitor_stat_hourly = esc_sql( $this->table_name( 'monitor_stat_hourly' ) );
+        $time                      = time() - $days * DAY_IN_SECONDS;
+        $this->wpdb->query( $this->wpdb->prepare( 'DELETE  FROM ' . $table_monitor_stat_hourly . ' WHERE timestamp < %d', $time ) );
+    }
+
+
+    /**
+     * Update uptime stat hourly.
+     *
+     * @param array $data data.
+     *
+     * @return int|bool Database query results or null on failure.
+     */
+    public function update_site_uptime_stat_hourly( $data ) {
+
+        if ( ! is_array( $data ) ) {
+            return false;
+        }
+
+        if ( isset( $data['stat_hourly_id'] ) ) {
+            $id = $data['stat_hourly_id'];
+            unset( $data['stat_hourly_id'] );
+            $this->wpdb->update(
+                $this->table_name( 'monitor_stat_hourly' ),
+                $data,
+                array( 'stat_hourly_id' => $id )
+            );
+            return $id;
+        } else {
+            $this->wpdb->insert( $this->table_name( 'monitor_stat_hourly' ), $data );
+            return $this->wpdb->insert_id;
+        }
+    }
+
+
+    /**
+     * Delete stats by monitor id.
+     *
+     * @param  int $monitorid monitor id.
+     * @return bool
+     */
+    public function delete_stats( $monitorid ) {
+        if ( empty( $monitorid ) ) {
+            return false;
+        }
+
+        $table_monitor_stat_hourly = esc_sql( $this->table_name( 'monitor_stat_hourly' ) );
+        if ( $this->wpdb->query( $this->wpdb->prepare( 'DELETE FROM ' . $table_monitor_stat_hourly . ' WHERE monitor_id=%d', $monitorid ) ) ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Count the number of transitions (up -> down or down -> up) for a monitor_id in the time period.
+     *
+     * @param int    $monitor_id ID of the monitor.
+     * @param string $start_at Start date (Y-m-d H:i:s).
+     * @param string $end_at End date (Y-m-d H:i:s).
+     * @param string $transition Transition type: 'up_to_down' or 'down_to_up'.
+     *
+     * @return int Number of transitions.
+     */
+    public function count_site_incidents_stats( $monitor_id, $start_at, $end_at, $transition = 'up_to_down' ) {
+        $start      = ! empty( $start_at ) ? $start_at . ' 00:00:00' : gmdate( 'Y-m-d 00:00:00', time() - 7 * DAY_IN_SECONDS );
+        $end        = ! empty( $end_at ) ? $end_at . ' 23:59:59' : gmdate( 'Y-m-d 23:59:59', time() );
+        $table_name = $this->table_name( 'monitor_heartbeat' );
+
+        // Define conditions by transition type.
+        if ( 'up_to_down' === $transition ) {
+            $current_status = MainWP_Uptime_Monitoring_Connect::DOWN;
+            $prev_status    = MainWP_Uptime_Monitoring_Connect::UP;
+        } elseif ( 'down_to_up' === $transition ) {
+            $current_status = MainWP_Uptime_Monitoring_Connect::UP;
+            $prev_status    = MainWP_Uptime_Monitoring_Connect::DOWN;
+        } else {
+            return 0; // Return 0 if transition type is invalid.
+        }
+
+        $sql = "SELECT COUNT(*) AS transition_count
+            FROM {$table_name} h
+            LEFT JOIN {$table_name} p
+            ON p.monitor_id = h.monitor_id
+            AND p.time = (
+                SELECT MAX(time)
+                FROM {$table_name}
+                WHERE monitor_id = h.monitor_id
+                    AND time < h.time
+            )
+            WHERE h.monitor_id = %d
+            AND h.time BETWEEN %s AND %s
+            AND h.status = %d
+            AND p.status = %d";
+
+        $query = $this->wpdb->prepare( $sql, $monitor_id, $start, $end, $current_status, $prev_status );
+        return (int) $this->wpdb->get_var( $query ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+    /**
+     * Get uptime monitoring stats.
+     *
+     * @param int    $monitor_id Monitor ID.
+     * @param string $start_at Start date (Y-m-d).
+     * @param string $end_at End date (Y-m-d).
+     *
+     * @return array Database query results or empty.
+     */
+    public function get_uptime_monitoring_stats( $monitor_id, $start_at, $end_at ) {
+        $start      = ! empty( $start_at ) ? $start_at . ' 00:00:00' : gmdate( 'Y-m-d 00:00:00', time() - 7 * DAY_IN_SECONDS );
+        $end        = ! empty( $end_at ) ? $end_at . ' 23:59:59' : gmdate( 'Y-m-d 23:59:59', time() );
+        $table_name = $this->table_name( 'monitor_heartbeat' );
+
+        $sql = "SELECT  * FROM {$table_name} h
+            WHERE h.monitor_id = %d
+            AND h.time BETWEEN %s AND %s
+            ORDER BY h.time ASC";
+
+        $query = $this->wpdb->prepare( $sql, $monitor_id, $start, $end );
+        return $this->wpdb->get_results( $query, ARRAY_A ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+    /**
+     * Get heartbeat count.
+     *
+     * @param int    $monitor_id Monitor ID.
+     * @param array  $date_range Date range.
+     * @param string $status Status.
+     *
+     * @return int Heartbeat count.
+     */
+    public function get_heartbeat_count( $monitor_id, $date_range, $status = '' ) {
+
+        $table_name = $this->table_name( 'monitor_heartbeat' );
+
+        $where_conditions   = array();
+        $where_conditions[] = $this->wpdb->prepare( 'monitor_id = %d', $monitor_id );
+        $where_conditions[] = $this->wpdb->prepare( 'time >= %s', $date_range['start'] );
+        $where_conditions[] = $this->wpdb->prepare( 'time <= %s', $date_range['end'] );
+
+        if ( is_numeric( $status ) ) {
+            $where_conditions[] = $this->wpdb->prepare( 'status = %d', $status );
+        }
+
+        $where_clause = 'WHERE ' . implode( ' AND ', $where_conditions );
+
+        $sql = "SELECT COUNT(*) FROM {$table_name} {$where_clause}";
+
+        return (int) $this->wpdb->get_var( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+
+    /**
+     * Get heartbeat data paginated.
+     *
+     * @param int    $monitor_id Monitor ID.
+     * @param array  $date_range Date range.
+     * @param string $status Status.
+     * @param int    $per_page Number of items per page.
+     * @param int    $offset Offset.
+     *
+     * @return array Heartbeat data.
+     */
+    public function get_heartbeat_data_paginated( $monitor_id, $date_range, $status = '', $per_page = 50, $offset = 0 ) {
+        $table_name = $this->table_name( 'monitor_heartbeat' );
+
+        $where_conditions   = array();
+        $where_conditions[] = $this->wpdb->prepare( 'monitor_id = %d', $monitor_id );
+        $where_conditions[] = $this->wpdb->prepare( 'time >= %s', $date_range['start'] );
+        $where_conditions[] = $this->wpdb->prepare( 'time <= %s', $date_range['end'] );
+
+        if ( is_numeric( $status ) ) {
+            $where_conditions[] = $this->wpdb->prepare( 'status = %d', $status );
+        }
+
+        $where_clause = 'WHERE ' . implode( ' AND ', $where_conditions );
+        // Limit item.
+        $limit_clause = '';
+        if ( $per_page > 0 ) {
+            $limit_clause = $this->wpdb->prepare( 'LIMIT %d OFFSET %d', $per_page, $offset );
+        }
+
+        $sql = "SELECT * FROM {$table_name} {$where_clause} ORDER BY time DESC {$limit_clause}";
+
+        return $this->wpdb->get_results( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+    /**
+     * Get heartbeat data for incidents processing.
+     *
+     * @param int $monitor_id Monitor ID.
+     * @return array Heartbeat data ordered by time.
+     */
+    public function get_heartbeat_data_for_incidents( $monitor_id ) {
+        $table_name = $this->table_name( 'monitor_heartbeat' );
+
+        $sql = $this->wpdb->prepare(
+            'SELECT status, time FROM ' . $table_name . ' WHERE monitor_id = %d ORDER BY time ASC',
+            $monitor_id
+        );
+
+        return $this->wpdb->get_results( $sql ); //phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- SQL from wpdb->prepare().
+    }
+
+    /**
+     * Cleanup monitoring data.
+     *
+     * @param int $days Days to keep monitoring data.
+     *
+     * @return int Deleted results.
+     */
+    public function cleanup_heartbeat_data( $days ) {
+        $table_monitor_heartbeat = esc_sql( $this->table_name( 'monitor_heartbeat' ) );
+        $time                    = time() - $days * DAY_IN_SECONDS;
+        $datetime                = gmdate( 'Y-m-d H:i:s', $time );
+
+        $max_batches = 10; // max 10k rows per run.
+        $batches     = 0;
+
+        do {
+            $rows = $this->wpdb->query(
+                $this->wpdb->prepare(
+                    "DELETE FROM {$table_monitor_heartbeat}
+                    WHERE `time` < %s
+                    ORDER BY `time`
+                    LIMIT %d",
+                    $datetime,
+                    1000
+                )
+            );
+            ++$batches;
+        } while ( 1000 === $rows && $batches < $max_batches );
+
+        if ( 1000 === $rows && $batches >= $max_batches ) {
+            MainWP_Utility::update_option( 'mainwp_uptime_monitor_cleanup_heartbeat_at', 0 ); // reset cleanup heartbeat to process on next run.
+        }
+    }
+
+    /**
+     * Get batch stat hourly.
+     *
+     * @param array $monitor_ids Array of monitor IDs to retrieve stats for.
+     * @param array $last24_time time.
+     *
+     * @return array Database query results or empty.
+     */
+    public function get_batch_stat_hourly( $monitor_ids, $last24_time ) {
+
+        if ( ! is_array( $monitor_ids ) || empty( $monitor_ids ) ) {
+            return array();
+        }
+
+        $table           = $this->table_name( 'monitor_stat_hourly' );
+        $int_monitor_ids = array_map( 'intval', array_values( $monitor_ids ) );
+        $placeholders    = implode( ',', array_fill( 0, count( $int_monitor_ids ), '%d' ) );
+
+        // Single batch query for all monitors.
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter -- Safe: table name is an internal MainWP table identifier, IN placeholders are generated from the count of integer-cast monitor IDs, and all runtime values are bound through wpdb::prepare().
+        return $this->wpdb->get_results(
+            $this->wpdb->prepare(
+                "SELECT * FROM `{$table}` WHERE monitor_id IN ({$placeholders}) AND timestamp >= %d ORDER BY timestamp ASC", //phpcs:ignore -- No user input.
+                ...array_merge( $int_monitor_ids, array( $last24_time ) )
+            ),
+            ARRAY_A
+        );
+    }
+}

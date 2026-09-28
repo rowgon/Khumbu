@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Tecnoterrazas</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#4A8ED1', // Adjusted to match the button color
+              dark: '#1C355E', // Navy blue base
+              darker: '#162A4A',
+              light: '#F8F9FA',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style data-purpose="custom-styles">
+    body {
+      font-family: "Inter", sans-serif;
+      color: #333;
+    }
+    /* Add smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Utility for background images to match the design */
+    .bg-hero-left {
+        background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .bg-process-img {
+        background-image: url('https://images.unsplash.com/photo-1528840328604-837a9e44c244?q=80&w=2070&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .bg-contact-img {
+         background-image: url('https://images.unsplash.com/photo-1600607687644-c7e750251288?q=80&w=2053&auto=format&fit=crop');
+         background-size: cover;
+         background-position: center;
+    }
+
+    .bg-overlay-dark {
+      background-color: rgba(28, 53, 94, 0.85); /* brand-dark with opacity */
+    }
+  </style>
+</head>
+<body class="bg-white antialiased">
+
+  <header class="bg-white h-[90px] px-6 md:px-12 flex items-center justify-between border-b border-gray-50 shadow-sm relative z-50 sticky top-0">
+    <!-- Logo -->
+    <a href="#" class="relative flex items-center justify-center w-[170px] h-[50px] bg-white group hover:opacity-90 transition-opacity">
+      <!-- Blue T -->
+      <div class="absolute left-2 top-2 bottom-2 flex flex-col items-center w-10">
+        <div class="w-full h-[3px] bg-[#124294]"></div>
+        <div class="w-[3px] h-full bg-[#124294]"></div>
+      </div>
+      <!-- Center Line -->
+      <div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-400 -translate-x-1/2"></div>
+      <!-- Cyan Inverted T -->
+      <div class="absolute right-2 top-2 bottom-2 flex flex-col items-center w-10">
+        <div class="w-[3px] h-full bg-[#41D5D5]"></div>
+        <div class="w-full h-[3px] bg-[#41D5D5]"></div>
+      </div>
+      <!-- Text -->
+      <div class="relative z-10 bg-white px-2 py-[3px] mt-0.5">
+        <span class="text-[8.5px] font-bold tracking-[0.28em] text-gray-800 ml-[0.28em] block">TECNOTERRAZAS</span>
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden xl:flex items-center space-x-8">
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Pérgolas</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Techos</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Cristal</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Vallas</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Carpintería</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Proyectos</a>
+      <a href="#" class="text-[13px] font-semibold text-[#6E7E99] hover:text-[#124294] tracking-wider transition-colors uppercase">Productos</a>
+    </nav>
+
+    <!-- CTA Button & Mobile Menu -->
+    <div class="flex items-center gap-6">
+      <a href="#" class="hidden md:inline-flex bg-brand-blue hover:bg-blue-600 text-white text-[13px] font-semibold py-3.5 px-8 rounded-[2px] tracking-wider transition-colors shadow-sm uppercase">
+        PRESUPUESTO
+      </a>
+      <button class="xl:hidden text-gray-500 hover:text-[#124294] focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <section class="flex flex-col md:flex-row h-screen min-h-[600px] max-h-[800px]">
+    <div class="w-full md:w-1/2 bg-hero-left relative">
+        <div class="absolute inset-0 bg-black/20"></div>
+    </div>
+    <div class="w-full md:w-1/2 bg-brand-dark p-12 md:p-24 flex flex-col justify-center relative">
+      <div class="max-w-xl">
+        <div class="flex items-center mb-8">
+            <div class="w-8 h-[1px] bg-gray-500 mr-4"></div>
+            <span class="text-xs tracking-[0.2em] uppercase text-gray-400">Arquitectura Exterior</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-8">
+          Mejorar<br>espacio<br>y confort con<br>la <span class="text-brand-blue font-normal">pérgola<br>para terraza</span>
+        </h1>
+        <p class="text-gray-300 text-lg md:text-xl font-light mb-12 max-w-md leading-relaxed">
+          Vive al Aire Libre: Diseños exclusivos y soluciones técnicas para transformar terrazas y jardines.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#" class="bg-white text-brand-dark text-[13px] font-semibold tracking-wider uppercase py-4 px-8 text-center hover:bg-gray-100 transition-colors">
+            VER PROYECTOS REALIZADOS
+          </a>
+          <a href="#" class="border border-white/30 text-white text-[13px] font-semibold tracking-wider uppercase py-4 px-8 text-center hover:bg-white/10 transition-colors">
+            SOLICITAR PRESUPUESTO
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-black text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 items-center">
+      <div class="w-full md:w-1/2 relative h-[500px] md:h-[600px]">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" alt="Pérgola de madera" class="w-full h-full object-cover">
+        <!-- Vertical Text Bar -->
+        <div class="absolute top-0 -left-6 bottom-0 w-12 flex items-center justify-center pointer-events-none">
+             <div class="transform -rotate-90 whitespace-nowrap text-[10px] tracking-[0.3em] uppercase text-gray-400">
+                Tecnoterrazas - Valencia
+            </div>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <div class="flex items-center mb-8">
+            <div class="w-8 h-[1px] bg-gray-600 mr-4"></div>
+            <span class="text-xs tracking-[0.2em] uppercase text-gray-500">LARGA TRAYECTORIA</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-12 text-gray-200">
+          LARGA TRAYECTORIA EN<br>
+          CERRAMIENTOS Y<br>
+          CARPINTERÍA METÁLICA DE<br>
+          <span class="text-brand-blue">ALTA CALIDAD</span>
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-8 text-sm font-light text-gray-400 leading-relaxed">
+          <div>
+            <p class="mb-6">Bienvenidos a <span class="text-brand-blue font-normal">Tecnoterrazas</span>, contamos con los mejores especialistas para trabajos de cerramientos de espacios y carpintería con estándares de óptima calidad.</p>
+            <p>Los años de trabajo nos han permitido acumular una gran experiencia, consolidando un equipo de expertos dedicados a la excelencia técnica.</p>
+          </div>
+          <div>
+            <p class="mb-6">Pusimos en acción variados proyectos donde se rompen las tendencias predominantes del mercado para beneficiar a los clientes más exigentes.</p>
+            <p class="mb-8">Transformamos espacios según las tendencias actuales de construcción y decoración, aportando soluciones duraderas y estéticas.</p>
+            <a href="#" class="text-brand-blue text-xs font-semibold tracking-wider uppercase flex items-center hover:text-blue-400 transition-colors group">
+              HABLAR CON UN ESPECIALISTA
+              <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-16 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-brand-dark leading-tight">
+        Transformamos tus espacios<br>
+        con soluciones innovadoras
+      </h2>
+    </div>
+
+    <div class="flex flex-col w-full h-auto">
+        <!-- Top Row -->
+        <div class="flex flex-col md:flex-row w-full md:h-[450px]">
+            <!-- Service 1 -->
+            <div class="w-full md:w-1/2 relative group overflow-hidden h-[300px] md:h-full">
+                 <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pérgolas Bioclimáticas">
+                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8 md:p-12 text-white">
+                    <h3 class="text-2xl font-semibold mb-3">Pérgolas Bioclimáticas</h3>
+                    <p class="text-sm text-gray-300 font-light mb-6 max-w-sm">Lamas orientables motorizadas que regulan luz, ventilación y protección contra lluvia de forma inteligente.</p>
+                    <a href="#" class="text-xs font-semibold tracking-wider uppercase flex items-center hover:text-gray-300 transition-colors group/link w-fit">
+                        Saber más <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                 </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="w-full md:w-1/2 relative group overflow-hidden h-[300px] md:h-full">
+                 <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Cortinas de Cristal">
+                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8 md:p-12 text-white">
+                    <h3 class="text-2xl font-semibold mb-3">Cortinas de Cristal</h3>
+                    <p class="text-sm text-gray-300 font-light mb-6 max-w-sm">Cerramientos sin perfiles verticales para una vista panorámica limpia y protección total contra el viento.</p>
+                    <a href="#" class="text-xs font-semibold tracking-wider uppercase flex items-center hover:text-gray-300 transition-colors group/link w-fit">
+                        Saber más <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+                    </a>
+                 </div>
+            </div>
+        </div>
+        <!-- Bottom Row -->
+        <div class="flex flex-col md:flex-row w-full md:h-[450px]">
+            <!-- Service 3 -->
+            <div class="w-full md:w-1/3 relative group overflow-hidden h-[300px] md:h-full">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1db9b02?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Carpintería Técnica">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-8 text-white">
+                   <h3 class="text-xl font-semibold mb-3">Carpintería Técnica</h3>
+                   <p class="text-sm text-gray-300 font-light mb-6">Sistemas de puertas y ventanas de aluminio con rotura de puente térmico y alta seguridad.</p>
+                   <a href="#" class="text-xs font-semibold tracking-wider uppercase flex items-center hover:text-gray-300 transition-colors group/link w-fit">
+                       Saber más <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+                   </a>
+                </div>
+           </div>
+           <!-- Service 4 -->
+           <div class="w-full md:w-1/3 relative group overflow-hidden h-[300px] md:h-full">
+            <img src="https://images.unsplash.com/photo-1470770848216-c8d487cf329c?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Cerramientos de Terrazas">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-8 text-white">
+               <h3 class="text-xl font-semibold mb-3">Cerramientos de Terrazas</h3>
+               <p class="text-sm text-gray-300 font-light mb-6">Lamas orientables motorizadas que regulan luz, ventilación y protección contra lluvia de forma inteligente.</p>
+               <a href="#" class="text-xs font-semibold tracking-wider uppercase flex items-center hover:text-gray-300 transition-colors group/link w-fit">
+                   Saber más <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+               </a>
+            </div>
+           </div>
+           <!-- Service 5 -->
+           <div class="w-full md:w-1/3 relative group overflow-hidden h-[300px] md:h-full">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Mantenimientos">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-8 text-white">
+               <h3 class="text-xl font-semibold mb-3">Mantenimientos</h3>
+               <p class="text-sm text-gray-300 font-light mb-6">Cerramientos sin perfiles verticales para una vista panorámica limpia y protección total contra el viento.</p>
+               <a href="#" class="text-xs font-semibold tracking-wider uppercase flex items-center hover:text-gray-300 transition-colors group/link w-fit">
+                   Saber más <i class="fas fa-arrow-right ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+               </a>
+            </div>
+           </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16 lg:gap-24 items-start">
+      <div class="w-full md:w-1/2">
+        <div class="flex items-center mb-8">
+            <div class="w-8 h-[1px] bg-gray-300 mr-4"></div>
+            <span class="text-xs tracking-[0.2em] uppercase text-gray-400">NUESTROS SERVICIOS</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-light text-brand-dark leading-tight mb-8">
+          Transformamos tus<br>espacios con soluciones<br>innovadoras
+        </h2>
+        <p class="text-gray-500 font-light text-sm md:text-base leading-relaxed mb-12">
+          En Tecnoterrazas ofrecemos las más actuales soluciones para tu hogar o empresa: cerramientos de terrazas y porches para que los disfrutes todo el año.
+        </p>
+        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop" alt="Pérgola Detail" class="w-full h-[400px] object-cover grayscale hover:grayscale-0 transition-all duration-500">
+      </div>
+      <div class="w-full md:w-1/2 flex flex-col pt-8 md:pt-16">
+        <!-- List Item 1 -->
+        <div class="border-b border-gray-100 pb-8 mb-8 flex gap-8 items-start group">
+          <span class="text-4xl font-light text-gray-300 group-hover:text-brand-blue transition-colors">01</span>
+          <div>
+            <h3 class="text-xl md:text-2xl font-light text-brand-dark mb-2">Pérgolas Bioclimáticas</h3>
+            <p class="text-gray-400 font-light text-sm">Elegancia y control climático total para tu porche o terraza.</p>
+          </div>
+        </div>
+        <!-- List Item 2 -->
+        <div class="border-b border-gray-100 pb-8 mb-8 flex gap-8 items-start group">
+            <span class="text-4xl font-light text-gray-300 group-hover:text-brand-blue transition-colors">02</span>
+            <div>
+              <h3 class="text-xl md:text-2xl font-light text-brand-dark mb-2">Cerramientos de Terrazas</h3>
+              <p class="text-gray-400 font-light text-sm">Diseños modernos que integran tu terraza con el interior del hogar.</p>
+            </div>
+          </div>
+        <!-- List Item 3 -->
+        <div class="border-b border-gray-100 pb-8 mb-8 flex gap-8 items-start group">
+            <span class="text-4xl font-light text-gray-300 group-hover:text-brand-blue transition-colors">03</span>
+            <div>
+              <h3 class="text-xl md:text-2xl font-light text-brand-dark mb-2">Cortinas de Cristal</h3>
+              <p class="text-gray-400 font-light text-sm">Vistas panorámicas sin perfiles verticales. Transparencia total.</p>
+            </div>
+          </div>
+        <!-- List Item 4 -->
+        <div class="border-b border-gray-100 pb-8 mb-8 flex gap-8 items-start group">
+            <span class="text-4xl font-light text-gray-300 group-hover:text-brand-blue transition-colors">04</span>
+            <div>
+              <h3 class="text-xl md:text-2xl font-light text-brand-dark mb-2">Carpintería de Aluminio</h3>
+              <p class="text-gray-400 font-light text-sm">Puertas, ventanas y estructuras metálicas a medida.</p>
+            </div>
+          </div>
+        <!-- List Item 5 -->
+        <div class="flex gap-8 items-start group">
+            <span class="text-4xl font-light text-gray-300 group-hover:text-brand-blue transition-colors">05</span>
+            <div>
+              <h3 class="text-xl md:text-2xl font-light text-brand-dark mb-2">Vallas y Cercados</h3>
+              <p class="text-gray-400 font-light text-sm">Seguridad y privacidad con diseños contemporáneos para tu parcela.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-32 bg-process-img bg-fixed">
+    <div class="absolute inset-0 bg-overlay-dark"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-white">
+      <div class="flex items-center mb-8">
+        <div class="w-8 h-[1px] bg-gray-500 mr-4"></div>
+        <span class="text-xs tracking-[0.2em] uppercase text-gray-300">CÓMO TRABAJAMOS</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-6 max-w-4xl">
+        Entusiasmo y responsabilidad en cada detalle técnico
+      </h2>
+      <p class="text-lg md:text-xl font-light text-gray-300 mb-20 max-w-3xl">
+        Nuestra experiencia nos permite abordar cada proyecto como una pieza única de arquitectura funcional.
+      </p>
+
+      <div class="w-full h-[1px] bg-white/20 mb-16"></div>
+
+      <div class="grid md:grid-cols-3 gap-12 lg:gap-24">
+        <div>
+          <div class="text-5xl md:text-6xl font-light mb-6">01.</div>
+          <h3 class="text-xl md:text-2xl font-light mb-4">Consulta Inicial</h3>
+          <p class="text-gray-300 font-light text-sm leading-relaxed">Escuchamos tus ideas y necesidades para ofrecerte la mejor solución técnica y estética.</p>
+        </div>
+        <div>
+          <div class="text-5xl md:text-6xl font-light mb-6">02.</div>
+          <h3 class="text-xl md:text-2xl font-light mb-4">Diseño Personalizado</h3>
+          <p class="text-gray-300 font-light text-sm leading-relaxed">Creamos un diseño adaptado a tus espacios, integrando funcionalidad y estilo contemporáneo.</p>
+        </div>
+        <div>
+          <div class="text-5xl md:text-6xl font-light mb-6">03.</div>
+          <h3 class="text-xl md:text-2xl font-light mb-4">Ejecución Maestra</h3>
+          <p class="text-gray-300 font-light text-sm leading-relaxed">Instalación precisa llevada a cabo por nuestros expertos, garantizando durabilidad y acabados premium.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-16">
+      <div class="w-full md:w-3/5">
+        <div class="flex items-center mb-8">
+            <div class="w-8 h-[1px] bg-gray-600 mr-4"></div>
+            <span class="text-xs tracking-[0.2em] uppercase text-gray-500">TESTIMONIOS</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-light text-gray-200 mb-16">
+          Lo que dicen <span class="text-brand-blue">nuestros clientes</span>
+        </h2>
+        
+        <div class="space-y-6">
+          <!-- Testimonial 1 -->
+          <div class="bg-brand-dark p-8 md:p-12">
+            <div class="flex text-orange-400 text-sm mb-6 space-x-1">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-100">
+              Acudí a Tecnoterrazas y he obtenido una cortina de cristal a un precio inigualable, con un óptimo servicio de instalación y asesoría.
+            </p>
+            <p class="text-[10px] tracking-[0.2em] uppercase text-brand-blue font-semibold">PEDRO R. — CLIENTE VALENCIA</p>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="bg-brand-light p-8 md:p-12">
+             <div class="flex text-orange-400 text-sm mb-6 space-x-1">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+            <p class="text-xl md:text-2xl font-light text-brand-dark leading-relaxed mb-8">
+              Respondieron todas mis dudas y preguntas, con lo que pude seleccionar el tipo más adecuado de cortina de cristal que requiere mi casa.
+            </p>
+            <p class="text-[10px] tracking-[0.2em] uppercase text-gray-500 font-semibold">MARÍA JOSÉ. — CLIENTE PARTICULAR</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full md:w-2/5 flex flex-col gap-6 pt-0 md:pt-24">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop" alt="Cliente satisfecha" class="w-full h-64 md:h-80 object-cover grayscale">
+        <div class="bg-brand-dark text-white p-12 flex flex-col items-center justify-center text-center flex-grow">
+          <div class="text-5xl md:text-6xl font-light mb-4 text-white">5.0</div>
+          <div class="flex text-orange-400 text-sm mb-6 space-x-1">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-8 font-semibold">VALORACIÓN MEDIA CERTIFICADA</p>
+          <a href="#" class="bg-brand-blue text-white w-full py-4 text-[13px] font-semibold tracking-wider uppercase hover:bg-blue-600 transition-colors">
+            ÚNETE A NUESTROS CLIENTES
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flex flex-col md:flex-row bg-brand-light min-h-[700px]">
+    <!-- Form Side -->
+    <div class="w-full md:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center">
+      <div class="max-w-md mx-auto w-full">
+        <h2 class="text-3xl md:text-4xl font-light text-brand-dark mb-4">Solicita tu presupuesto</h2>
+        <p class="text-gray-500 font-light text-sm mb-12">Sin compromiso. Te responderemos en menos de 24 horas laborables.</p>
+        
+        <form class="space-y-8">
+          <div class="flex flex-col sm:flex-row gap-8">
+            <div class="w-full sm:w-1/2">
+              <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-dark mb-2 font-semibold">NOMBRE</label>
+              <input type="text" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand-blue px-0 py-2 text-gray-700 font-light placeholder-gray-400 text-sm transition-colors" placeholder="Juan Pérez">
+            </div>
+            <div class="w-full sm:w-1/2">
+              <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-dark mb-2 font-semibold">MÓVIL</label>
+              <input type="tel" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand-blue px-0 py-2 text-gray-700 font-light placeholder-gray-400 text-sm transition-colors" placeholder="+34 000 000 000">
+            </div>
+          </div>
+          <div>
+            <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-dark mb-2 font-semibold">EMAIL</label>
+            <input type="email" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand-blue px-0 py-2 text-gray-700 font-light placeholder-gray-400 text-sm transition-colors" placeholder="tu@email.com">
+          </div>
+          <div>
+            <label class="block text-[10px] uppercase tracking-[0.2em] text-brand-dark mb-2 font-semibold">DESCRIPCIÓN DEL PROYECTO</label>
+            <textarea rows="3" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-brand-blue px-0 py-2 text-gray-700 font-light placeholder-gray-400 text-sm resize-none transition-colors" placeholder="Medidas aproximadas, ubicación, producto..."></textarea>
+          </div>
+          <div class="flex items-center">
+            <input type="checkbox" id="privacy" class="text-brand-dark focus:ring-brand-dark border-gray-300 rounded-[2px] mr-3 bg-transparent">
+            <label for="privacy" class="text-[13px] text-gray-500 font-light">
+              He leído y acepto la <a href="#" class="text-brand-blue hover:underline">Política de Privacidad</a> y el aviso legal.
+            </label>
+          </div>
+          <button type="submit" class="w-full bg-brand-dark text-white py-4 text-[13px] font-semibold tracking-wider uppercase hover:bg-brand-darker transition-colors mt-4">
+            SOLICITAR PRESUPUESTO GRATUITO
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Image/Location Side -->
+    <div class="w-full md:w-1/2 bg-contact-img relative p-8 md:p-16 lg:p-24 flex flex-col justify-center text-white min-h-[500px]">
+        <div class="absolute inset-0 bg-overlay-dark"></div>
+        <div class="relative z-10 max-w-md mx-auto w-full">
+            <div class="flex items-center mb-8">
+                <div class="w-8 h-[1px] bg-gray-400 mr-4"></div>
+                <span class="text-xs tracking-[0.2em] uppercase text-gray-300">UBÍCANOS</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-light mb-12">Estamos en Valencia</h2>
+            
+            <div class="space-y-8 font-light text-gray-200 text-sm md:text-base">
+                <div class="flex items-start">
+                    <i class="fas fa-map-marker-alt text-white mt-1 mr-4 text-lg"></i>
+                    <p>Calle Alicante, 10 B — 46910 Sedaví, Valencia</p>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-envelope text-white mr-4 text-lg"></i>
+                    <p>administracion@tecnoterrazas.com</p>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-phone-alt text-white mr-4 text-lg"></i>
+                    <p>672 634 271</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-brand-darker text-white pt-24 pb-8 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between mb-16 gap-y-12">
+      <!-- Col 1: Logo & Info -->
+      <div class="w-full md:w-1/4 pr-0 md:pr-8">
+        <!-- Text Logo for footer -->
+        <div class="mb-8 flex items-center">
+            <span class="text-xl font-bold tracking-[0.2em] text-white">TECNOTERRAZAS</span>
+        </div>
+        <p class="text-gray-400 font-light text-sm leading-relaxed mb-8">
+          Referente en cerramientos de terrazas, cortinas de cristal y soluciones bioclimáticas premium en toda la Comunidad Valenciana.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="w-10 h-10 border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Servicios -->
+      <div class="w-1/2 md:w-1/6">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-6">SERVICIOS</h4>
+        <ul class="space-y-4 font-light text-sm text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Pérgolas</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Techos</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Cristal</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Vallas</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Carpintería</a></li>
+        </ul>
+        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold mt-8 mb-6">OTROS</h4>
+        <ul class="space-y-4 font-light text-sm text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Productos -->
+      <div class="w-1/2 md:w-1/6">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-6">PRODUCTOS</h4>
+        <ul class="space-y-4 font-light text-sm text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Spa</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Cocinas de exterior</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Mobiliario</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Suelo de Exterior</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Vallas</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Sede Central -->
+      <div class="w-full md:w-1/4">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold mb-6">SEDE CENTRAL</h4>
+        <p class="font-light text-sm text-gray-300 mb-6">
+          Calle Alicante, 10 B<br>
+          46910 Sedaví, Valencia
+        </p>
+        <p class="text-2xl font-light mb-8 text-white">672 634 271</p>
+        <a href="#" class="block w-full bg-white/5 border border-transparent hover:border-gray-600 text-white text-center py-4 text-[11px] font-semibold uppercase tracking-widest transition-colors">
+          CONFIGURADOR ONLINE
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="max-w-7xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 font-light uppercase tracking-[0.1em]">
+      <p class="mb-4 md:mb-0">COPYRIGHT © 2026 TECNOTERRAZAS. TODOS LOS DERECHOS RESERVADOS.</p>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="#" class="hover:text-gray-300 transition-colors">AVISO LEGAL</a>
+        <a href="#" class="hover:text-gray-300 transition-colors">POLÍTICA DE PRIVACIDAD</a>
+        <a href="#" class="hover:text-gray-300 transition-colors">ACCESIBILIDAD</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

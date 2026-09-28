@@ -1,0 +1,1084 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Role Based Pricing for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-05 09:56+0000\n"
+"PO-Revision-Date: 2024-11-05 09:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: Dutch\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.11; wp-6.6.1\n"
+"X-Domain: addify_role_price"
+
+#. %s: Number of members.
+#: includes/class-af-c-s-p-ajax.php:148
+#, php-format
+msgid "%s customer pricing rules has been imported successfully."
+msgstr ""
+
+#. %s File Type.
+#: includes/class-af-c-s-p-ajax.php:87 includes/class-af-c-s-p-ajax.php:262
+#, php-format
+msgid "%s File type is not allowed."
+msgstr ""
+
+#. %s: Number of members.
+#: includes/class-af-c-s-p-ajax.php:175
+#, php-format
+msgid "%s members has been imported successfully."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:542
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:613
+#: includes/admin/meta-boxes/product/csp-product-level.php:307
+#: includes/admin/meta-boxes/product/csp-product-level.php:396
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:295
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:384
+msgid "---Select Adjustment Type---"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:106
+msgid ""
+"Add email address of the customer for which might want to add prices. If you "
+"need to import prices by user role any, please leave this empty."
+msgstr ""
+
+#: addify-role-based-pricing.php:190
+msgid "Add New Rule"
+msgstr ""
+
+#: addify-role-based-pricing.php:191
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:461
+#: includes/admin/meta-boxes/product/csp-product-level.php:192
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:195
+msgid "Add Rule"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:102
+msgid "Add to Cart Button Link"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:94
+msgid "Add to Cart Button Text"
+msgstr ""
+
+#. Author of the plugin
+msgid "Addify"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:321
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:480
+#: includes/admin/meta-boxes/product/csp-product-level.php:31
+#: includes/admin/meta-boxes/product/csp-product-level.php:221
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:34
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:210
+msgid "Adjustment Type"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:109
+msgid "Adjustment Type: "
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:34
+msgid "Adjustment/Discount Type"
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:67
+msgid "ALl products"
+msgstr ""
+
+#: addify-role-based-pricing.php:200
+msgid "All Rules"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:270
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:245
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:238
+msgid "Applied categories ids."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:265
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:240
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:233
+msgid "Applied products ids."
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:734
+msgid "Apply Discount on"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:23
+msgid "Apply on All Products"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:640
+msgid "Calculate Discount on Price Exclusive of Tax"
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:69
+msgid "Categories"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:45
+msgid "Category id to get the role based price."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:117
+msgid "Cautions:"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:29
+msgid "Check this if you want to apply this rule on all products."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:54
+msgid "Choose a CSV file from your computer:"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:113
+msgid ""
+"Choose to replace to display new price as special price along with existing "
+"one or just show the new price by replacing the existing one."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:136
+msgid "Click Below to export product level pricing."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:14
+msgid "Complete"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:21
+msgid "CSV file must be in this format."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:320
+#: includes/admin/meta-boxes/product/csp-product-level.php:30
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:33
+msgid "Customer"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:31
+msgid "Customer Email"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:106
+msgid "Customer Email: "
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:72
+msgid "Customer Rules"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:13
+msgid "Data Import"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:509
+msgid "Date Published"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:35
+msgid "Discount Price/Value"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:110
+msgid "Discount Price: "
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:321
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:361
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:296
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:336
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:289
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:329
+msgid "Discount Type."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:326
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:366
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:301
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:341
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:294
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:334
+msgid "Discount value."
+msgstr ""
+
+#: addify-role-based-pricing.php:192
+msgid "Edit Rule"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:21
+msgid "Enable Hide Price & Add to Cart"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:326
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:485
+#: includes/admin/meta-boxes/product/csp-product-level.php:36
+#: includes/admin/meta-boxes/product/csp-product-level.php:226
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:39
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:215
+#: includes/admin/settings/tabs/import-product-rules.php:37
+msgid "End Date"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:112
+msgid ""
+"End Date can be added, the role base pricing will be applied on the basis of "
+"end date. Leave empty if you want to apply the pricing exclusive of end date."
+" "
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:112
+msgid "End Date: "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:655
+msgid "Enforce Min & Max Quantity"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:720
+msgid "Exclude User Roles"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:173
+msgid "Export"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:137
+msgid "Export CSV"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:45
+msgid "Export pricing rules"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:134
+msgid "Export Product Prices"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:43
+msgid "Export your pricing rules to get a sample file for CSV format."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:23
+msgid "File Format:"
+msgstr ""
+
+#: includes/af-import-product-level-pricing.php:53
+msgid "File type is not allowed."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:12
+msgid "File Upload"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:416
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:545
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:616
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:668
+#: includes/admin/meta-boxes/product/csp-product-level.php:128
+#: includes/admin/meta-boxes/product/csp-product-level.php:310
+#: includes/admin/meta-boxes/product/csp-product-level.php:399
+#: includes/admin/meta-boxes/product/csp-product-level.php:447
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:130
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:298
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:387
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:444
+msgid "Fixed Decrease"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:415
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:544
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:615
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:667
+#: includes/admin/meta-boxes/product/csp-product-level.php:127
+#: includes/admin/meta-boxes/product/csp-product-level.php:309
+#: includes/admin/meta-boxes/product/csp-product-level.php:398
+#: includes/admin/meta-boxes/product/csp-product-level.php:446
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:129
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:297
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:386
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:443
+msgid "Fixed Increase"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:414
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:543
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:614
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:666
+#: includes/admin/meta-boxes/product/csp-product-level.php:126
+#: includes/admin/meta-boxes/product/csp-product-level.php:308
+#: includes/admin/meta-boxes/product/csp-product-level.php:397
+#: includes/admin/meta-boxes/product/csp-product-level.php:445
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:128
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:296
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:385
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:442
+msgid "Fixed Price"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:590
+msgid "General Settings"
+msgstr ""
+
+#: includes/class-af-c-s-p-import.php:74 includes/class-af-c-s-p-import.php:102
+#: includes/class-af-c-s-p-import.php:139 includes/class-af-c-s-p-admin.php:905
+#: includes/class-af-c-s-p-export.php:63
+msgid "Guest"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:86
+msgid "Hide Add to Cart Button"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:27
+msgid "Hide for Guest Users"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:32
+msgid "Hide for Registered Users"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:542 includes/class-af-c-s-p-admin.php:543
+#: includes/admin/settings/csp-hide-price.php:70
+msgid "Hide Price"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:13
+msgid "Hide Price & Add to Cart"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://woocommerce.com/products/role-based-pricing-for-woocommerce/"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://woocommerce.com/vendor/addify/"
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:65
+msgid "ID"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:315
+#: includes/admin/meta-boxes/product/csp-product-level.php:25
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:28
+msgid ""
+"If more than one rule is applied on same customer then rule that is added "
+"last will be applied."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:89
+msgid ""
+"If this option is checked then Add To Cart button is hidden on the archive "
+"and product pages."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:73
+msgid ""
+"If this option is checked then Price is hidden on the archive and product "
+"pages. The price will not be hidden in cart. If you enable the \"Add to "
+"Cart\" Button. "
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:872
+msgid "Ignore if Sale Prices Exist"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:174
+#: includes/admin/settings/tabs/import-rules.php:69
+msgid "Import"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:132
+msgid "Import CSV"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:121
+msgid "Import prices using CSV file only."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:36
+msgid "Import Pricing Rules from a CSV file"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:14
+msgid "Import Product Prices"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:591
+msgid "Import Rules"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:592
+msgid "Import/Export Product Level Pricing"
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:12
+#: includes/admin/meta-boxes/product/csp-product-level.php:204
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:13
+msgid "Important Notes:"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:99
+msgid "Instructions:"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:161
+msgid "Invalid file type, Only csv file is allowed."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:451
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:413
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:171
+msgid "Invalid ID."
+msgstr ""
+
+#: includes/af-import-product-level-pricing.php:72
+msgid "Invalid Path."
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:239
+msgid "kindly select a file to upload."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:309
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:349
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:284
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:324
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:277
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:317
+msgid "List of customer rules."
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:759
+msgid "Manage module general settings from here."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:324
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:483
+#: includes/admin/meta-boxes/product/csp-product-level.php:34
+#: includes/admin/meta-boxes/product/csp-product-level.php:224
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:37
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:213
+msgid "Max Qty"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:689
+msgid "Max Qty Error Message"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:336
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:376
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:311
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:351
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:304
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:344
+msgid "Maximum Quantity."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:61
+msgid "Maximum size: 40 MB"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:323
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:482
+#: includes/admin/meta-boxes/product/csp-product-level.php:33
+#: includes/admin/meta-boxes/product/csp-product-level.php:223
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:36
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:212
+msgid "Min Qty"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:673
+msgid "Min Qty Error Message"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:331
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:371
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:306
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:346
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:299
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:339
+msgid "Minimum Quantity."
+msgstr ""
+
+#: addify-role-based-pricing.php:193
+msgid "New Rule"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:133
+msgid "No Product Level Prices found to export!"
+msgstr ""
+
+#: addify-role-based-pricing.php:197
+msgid "No rule found"
+msgstr ""
+
+#: addify-role-based-pricing.php:198
+msgid "No rule found in trash"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:610
+#: includes/admin/meta-boxes/product/csp-product-level.php:393
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:381
+msgid "Non LoggedIn/Guest"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:42
+msgid "Note:"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:22
+msgid ""
+"Note: This import/export rule feature will be retiring from 31st December "
+"2023. Please use \"Import/Export Product Level Pricing\" to bulk import and "
+"export role based pricing using a CSV file. If this feature is critical for "
+"your business, please contact us at support@addify.co for more details."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:417
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:546
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:617
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:669
+#: includes/admin/meta-boxes/product/csp-product-level.php:129
+#: includes/admin/meta-boxes/product/csp-product-level.php:311
+#: includes/admin/meta-boxes/product/csp-product-level.php:400
+#: includes/admin/meta-boxes/product/csp-product-level.php:448
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:131
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:299
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:388
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:445
+msgid "Percentage Decrease"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:418
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:547
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:618
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:670
+#: includes/admin/meta-boxes/product/csp-product-level.php:130
+#: includes/admin/meta-boxes/product/csp-product-level.php:312
+#: includes/admin/meta-boxes/product/csp-product-level.php:401
+#: includes/admin/meta-boxes/product/csp-product-level.php:449
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:132
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:300
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:389
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:446
+msgid "Percentage Increase"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:105
+msgid ""
+"Please add the user role ID/Value. For example the admin user roles is "
+"usually administrator, Shop Manager has shop_manager. No Caps and spaces!"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:120
+msgid ""
+"Please do not add empty rows like if you are not adding price for specific "
+"product, please remove its row."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:170
+msgid "Please upload a CSV file."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:109
+msgid ""
+"Please use the values as fixed_price, fixed_increase, fixed_decrease, "
+"percentage_decrease, percentage_increase."
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:16
+#: includes/admin/meta-boxes/product/csp-product-level.php:208
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:17
+msgid "Price Specific to a Customer"
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:17
+#: includes/admin/meta-boxes/product/csp-product-level.php:209
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:18
+msgid "Price Specific to a Role"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:78
+msgid "Price Text"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:120
+msgid "Prices imported successfully."
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:14
+#: includes/admin/meta-boxes/product/csp-product-level.php:206
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:15
+msgid "Pricing Priority:"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:27
+msgid "Product ID"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:72
+msgid "product id to get the role based price."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:101
+msgid "Product ID: "
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:29
+msgid "Product Name"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:104
+msgid ""
+"Product name can be added as the third column for reference. Just like SKU "
+"this won’t be used by extension while importing prices."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:104
+msgid "Product Name: "
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:68
+msgid "Products"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:18
+msgid ""
+"Provide number between 0 and 100, If more than one rules are applied on same "
+"item then rule with high priority will be applied. 1 is high and 100 is low."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:32
+msgid "Quantity From(min qty)"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:107
+msgid "Quantity From: "
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:33
+msgid "Quantity To(max qty)"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:108
+msgid "Quantity To: "
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:869
+msgid "Regular Price"
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:18
+#: includes/admin/meta-boxes/product/csp-product-level.php:210
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:19
+msgid "Regular Product Price"
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:42
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:45
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:38
+msgid "Replace Original Price"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:341
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:381
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:316
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:356
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:309
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:349
+msgid "Replace Original Price."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:113
+msgid "Replace Original Price: "
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:486
+#: includes/admin/meta-boxes/product/csp-product-level.php:37
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:40
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:216
+msgid "Replace Original Price?"
+msgstr ""
+
+#: includes/admin/meta-boxes/product/csp-product-level.php:227
+msgid "Replace Orignal Price?"
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:329
+msgid ""
+"Replace Orignal Price? This will only work for Fixed Price, Fixed Decrease "
+"and Percentage Decrease."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:327
+msgid "Replace?"
+msgstr ""
+
+#: addify-role-based-pricing.php:201 includes/class-af-c-s-p-admin.php:585
+msgid "Role Based Pricing"
+msgstr ""
+
+#. Name of the plugin
+msgid "Role Based Pricing for WooCommerce"
+msgstr ""
+
+#: addify-role-based-pricing.php:188 addify-role-based-pricing.php:189
+msgid "Role Based Pricing Rules"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:197
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:314
+#: includes/admin/meta-boxes/product/csp-product-level.php:24
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:27
+msgid "Role Based Pricing(By Customers)"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:204
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:473
+#: includes/admin/meta-boxes/product/csp-product-level.php:216
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:203
+msgid "Role Based Pricing(By User Roles)"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:379
+msgid "Rule Details"
+msgstr ""
+
+#: includes/class-af-c-s-p-import.php:144
+msgid "Rule Imported"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:508 includes/class-af-c-s-p-export.php:71
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:14
+msgid "Rule Priority"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:304
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:279
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:272
+msgid "Rule Priority."
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:70
+msgid "Rule Status"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:297
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:272
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:265
+msgid "Rule status (post status)."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:255
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:230
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:223
+msgid "Rule title."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:260
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:235
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:228
+msgid "Rules applied on all products or not."
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:866
+msgid "Sale Price"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:376
+msgid "Save Settings"
+msgstr ""
+
+#: addify-role-based-pricing.php:195
+msgid "Search Rule"
+msgstr ""
+
+#: includes/af-import-product-level-pricing.php:13
+#: includes/class-af-c-s-p-admin.php:84 includes/class-af-c-s-p-admin.php:100
+msgid "Security Violated."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:140
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:66
+msgid "Select Categories"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:365
+msgid ""
+"Select Categories for which Products you want to hide price and add to cart."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:111
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:34
+msgid "Select Products"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:134
+msgid "Select Products for which you want to hide price and add to cart."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:37
+msgid "Select User Roles"
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:64
+msgid ""
+"Select User Roles for which users you want to hide price and add to cart on "
+"frontend. If no user role is selected then price and add to cart will not be "
+"hidden for registered users."
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:551 includes/class-af-c-s-p-admin.php:552
+msgid "Settings"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:1105
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:28
+msgid "SKU"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:103
+msgid "SKU: "
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:325
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:484
+#: includes/admin/meta-boxes/product/csp-product-level.php:35
+#: includes/admin/meta-boxes/product/csp-product-level.php:225
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:38
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:214
+#: includes/admin/settings/tabs/import-product-rules.php:36
+msgid "Start Date"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:111
+msgid ""
+"Start Date can be added, the role base pricing will be applied on the basis "
+"of start date. Leave empty if you want to apply the pricing exclusive of "
+"start date."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:111
+msgid "Start Date: "
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:103
+msgid ""
+"Stock keeping unit can be added as the second column for your reference as "
+"it won’t be used by extension while importing."
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:315
+msgid "System has failed to read the file."
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:335
+msgid "System has failed to upload the file."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:280
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:255
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:248
+msgid "The date the product was created, as GMT."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:275
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:250
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:243
+msgid "The date the product was created, in the site's timezone."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:291
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:266
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:259
+msgid "The date the product was last modified, as GMT."
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:285
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:260
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:253
+msgid "The date the product was last modified, in the site's timezone."
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:44 includes/class-af-c-s-p-ajax.php:223
+msgid "The Link You Followed Has Expired"
+msgstr ""
+
+#: includes/class-af-c-s-p-admin.php:151
+msgid "The link you followed has expired"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:110
+msgid ""
+"The value will be considered as percentage value when percentage price "
+"adjustment is applied and when its fixed price, fixed increase or decrease, "
+"this will be considered as a number value."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:108
+msgid ""
+"This is the maximum quantity at the prices will be applicable. If you want "
+"to add same price for no matter the quantity, please leave this empty."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:107
+msgid ""
+"This is the minimum required quantity number to add prices. If you want to "
+"add same price for no matter the quantity, please leave this empty."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:105
+msgid "This link will replace Add to Cart Button link."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:81
+msgid "This text will be shown in place of price in archive and product pages."
+msgstr ""
+
+#: includes/admin/settings/csp-hide-price.php:97
+msgid "This text will be shown in place of text of Add to Cart Button."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-rules.php:39
+msgid ""
+"This tool allows you to import pricing rules data to your store from a CSV. "
+"Existing ID(s) will be updated."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:488
+#: includes/admin/meta-boxes/product/csp-product-level.php:39
+#: includes/admin/meta-boxes/product/csp-product-level.php:229
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:42
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:218
+msgid ""
+"This will only work for Fixed Price, Fixed Decrease and Percentage Decrease."
+msgstr ""
+
+#: includes/class-af-c-s-p-export.php:66
+msgid "Title"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:249
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:81
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:224
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:217
+msgid "Unique identifier for the resource."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:101
+msgid ""
+"Unique product identifier, this is required as the extension will import "
+"prices based on product and variation IDs."
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: includes/class-af-c-s-p-admin.php:705
+msgid "Update Cart Error Message"
+msgstr ""
+
+#: includes/af-import-product-level-pricing.php:33
+msgid "Upload a CSV file to import."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:126
+msgid "Upload CSV File"
+msgstr ""
+
+#. %s File Type.
+#: includes/class-af-c-s-p-ajax.php:64
+msgid "Uploaded file is missing. Try uploading the file again"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:316
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:291
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:284
+msgid "User ID."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:479
+#: includes/admin/meta-boxes/product/csp-product-level.php:220
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:209
+#: includes/admin/settings/tabs/import-product-rules.php:30
+msgid "User Role"
+msgstr ""
+
+#: includes/rest-api/controllers/class-af-c-s-p-rest-product-pricing-controller.php:356
+#: includes/rest-api/controllers/class-af-c-s-p-rest-rules-controller.php:331
+#: includes/rest-api/controllers/class-af-c-s-p-rest-category-pricing-controller.php:324
+msgid "User role."
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:105
+msgid "User Role: "
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:322
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:481
+#: includes/admin/meta-boxes/product/csp-product-level.php:32
+#: includes/admin/meta-boxes/product/csp-product-level.php:222
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:35
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:211
+msgid "Value"
+msgstr ""
+
+#: addify-role-based-pricing.php:194
+msgid "View Rule"
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:152
+msgid "View Rules"
+msgstr ""
+
+#: includes/admin/settings/tabs/import-product-rules.php:119
+msgid ""
+"When importing the existing prices will be removed. For example, if the "
+"import sheet includes prices for Album, the existing role based prices for "
+"album will be removed and the new prices will be added using CSV."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"WooCommerce Role Based Pricing plugin empowers merchants to set product "
+"prices based on user roles and individual customers. (PLEASE TAKE BACKUP "
+"BEFORE UPDATING THE PLUGIN)."
+msgstr ""
+
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:332
+#: includes/admin/meta-boxes/rules/csp-rule-level.php:715
+#: includes/admin/meta-boxes/product/csp-product-level.php:168
+#: includes/admin/meta-boxes/product/csp-product-level.php:491
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:172
+#: includes/admin/meta-boxes/product/csp-product-level-variable-product.php:485
+msgid "X"
+msgstr ""
+
+#: includes/class-af-c-s-p-ajax.php:48
+msgid "You are not allowed to import files."
+msgstr ""
+
+#: includes/af-import-product-level-pricing.php:17
+#: includes/class-af-c-s-p-ajax.php:227
+msgid "You are not allowed to upload_files."
+msgstr ""

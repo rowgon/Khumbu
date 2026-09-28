@@ -1,0 +1,17 @@
+/*
+Theme Name: Soporte Agencia Ciscar
+Theme URI: https://agenciaciscar.com/
+Author: Agencia Ciscar
+Author URI: https://agenciaciscar.com/
+Description: Tema personalizado para la página de inicio y portal de mantenimiento de Soporte Agencia Ciscar. Optimizado con diseño moderno en Tailwind CSS, alta velocidad y 100% en español.
+Version: 1.0.0
+Text Domain: soporte-ciscar
+*/
+
+/* Estilos base de reseteo para asegurar máxima fidelidad con Tailwind CDN */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}

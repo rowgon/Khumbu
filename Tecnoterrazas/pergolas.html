@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuerpo - Pérgolas Bioclimáticas</title>
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+        }
+
+        .bg-why-us {
+            background-color: #1a3a6c;
+            position: relative;
+        }
+
+        /* Ajuste fino para el botón del CTA */
+        .btn-cta {
+            background-color: #5394d6;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background-color: #417dbb;
+            transform: translateY(-1px);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1a4f9c',
+                            navy: '#1a2b48',
+                            dark: '#0f1b2d',
+                            light: '#f8f8f8' /* Fondo gris muy claro de la imagen CTA */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="text-slate-800 antialiased bg-white">
+
+    <!-- 1. Hero Section -->
+    <section class="relative h-[65vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1600607687940-4e7a6a357d19?q=80&w=2070&auto=format&fit=crop"
+                alt="Pérgola Bioclimática Principal" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+        <div class="relative z-10 text-center">
+            <h1 class="text-white text-4xl md:text-6xl font-extrabold uppercase tracking-[0.25em] drop-shadow-2xl">
+                Pérgolas Bioclimáticas
+            </h1>
+        </div>
+    </section>
+
+    <!-- 2. Cinematic Precision Section -->
+    <section class="bg-black flex flex-col lg:flex-row min-h-[85vh]">
+        <div class="lg:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center">
+            <div class="flex items-center space-x-4 mb-12">
+                <div class="w-8 h-[1px] bg-zinc-600"></div>
+                <span class="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.3em]">Larga Trayectoria</span>
+            </div>
+            <h2
+                class="text-3xl md:text-5xl font-extrabold text-brand-blue leading-tight uppercase tracking-tight mb-12">
+                Precisión en cada detalle
+            </h2>
+            <div class="space-y-8 text-zinc-500 font-medium leading-relaxed text-sm md:text-base max-w-lg">
+                <p>Las pérgolas bioclimáticas son la mejor solución para ser colocadas en la <span
+                        class="text-zinc-300 font-bold">terraza, jardín, patio</span>, o en cualquier otra zona que
+                    decidas; brindan <span class="text-zinc-300 font-bold">protección, luminosidad y, sobre todo, un
+                        ambiente confortable.</span></p>
+                <p>Una <span class="text-zinc-300 font-bold">pérgola bioclimática</span> es un sistema de sombreo y
+                    protección ante los cambios e inclemencias del tiempo; generalmente son elaboradas con lamas de
+                    aluminio motorizadas.</p>
+                <p>Es una clase de pérgola que se distingue por poseer un <span class="text-zinc-300 font-bold">sistema
+                        inteligente para el funcionamiento automático</span>, permitiendo obtener un mejor y mayor
+                    confort.</p>
+            </div>
+            <div class="flex gap-16 mt-16">
+                <div>
+                    <span class="block text-3xl font-extrabold text-brand-blue">15+</span>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-600 mt-2 block">Años de
+                        excelencia</span>
+                </div>
+                <div>
+                    <span class="block text-3xl font-extrabold text-brand-blue">100%</span>
+                    <span
+                        class="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-600 mt-2 block">Personalizado</span>
+                </div>
+            </div>
+        </div>
+        <div class="lg:w-1/2 h-64 lg:h-auto">
+            <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?q=80&w=2070&auto=format&fit=crop"
+                alt="Detalle de pérgola blanca" class="w-full h-full object-cover">
+        </div>
+    </section>
+
+    <!-- 3. Why Choose Us Section -->
+    <section class="py-32 bg-why-us overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-30 mix-blend-multiply grayscale">
+            <div class="absolute inset-0 bg-[#162a4d]/90"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-light text-white uppercase tracking-[0.1em] mb-10">¿Por qué elegirnos?
+            </h2>
+            <div class="w-full max-w-5xl mx-auto border-t border-white/20 mb-10"></div>
+            <p class="text-white/80 text-sm md:text-base font-medium max-w-4xl mx-auto mb-20 tracking-wide">Empresa
+                especializada en cerramientos de terrazas, cortinas de cristal, carpintería aluminio y pérgolas
+                bioclimáticas.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                <div class="flex flex-col items-center group">
+                    <div class="mb-6 text-white group-hover:scale-110 transition-transform duration-300"><i
+                            data-lucide="badge-check" class="w-16 h-16 stroke-[1.2px]"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Experiencia Confiable</h3>
+                    <p class="text-white/60 text-xs leading-relaxed max-w-[200px]">Más de 20 años ofreciendo soluciones
+                        de alta calidad.</p>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="mb-6 text-white group-hover:scale-110 transition-transform duration-300"><i
+                            data-lucide="user-cog" class="w-16 h-16 stroke-[1.2px]"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Servicio Profesional</h3>
+                    <p class="text-white/60 text-xs leading-relaxed max-w-[200px]">Equipo experto comprometido con tu
+                        satisfacción total.</p>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="mb-6 text-white group-hover:scale-110 transition-transform duration-300"><i
+                            data-lucide="award" class="w-16 h-16 stroke-[1.2px]"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Calidad Garantizada</h3>
+                    <p class="text-white/60 text-xs leading-relaxed max-w-[200px]">Materiales premium y acabados
+                        impecables en cada proyecto.</p>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="mb-6 text-white group-hover:scale-110 transition-transform duration-300"><i
+                            data-lucide="compass" class="w-16 h-16 stroke-[1.2px]"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Diseño Personalizado</h3>
+                    <p class="text-white/60 text-xs leading-relaxed max-w-[200px]">Equipo experto comprometido con tu
+                        satisfacción total.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Bento Gallery Section (ACTUALIZADA SEGÚN IMAGEN) -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 mb-16">
+            <h2 class="text-4xl font-light text-slate-800 text-center tracking-tight">Tipos y diseños de pérgolas
+                bioclimáticas</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-0">
+            <!-- Pérgola 1 -->
+            <div class="relative group aspect-[1/1] md:aspect-[4/5] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1582234372722-50d7ccc30e5a?q=80&w=2070&auto=format&fit=crop"
+                    alt="Pérgolas bioclimáticas retráctiles"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white text-xl font-semibold mb-3">Pérgolas bioclimáticas retráctiles</h3>
+                    <div class="flex items-center text-white/80 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        Saber más <i data-lucide="move-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Pérgola 2 -->
+            <div class="relative group aspect-[1/1] md:aspect-[4/5] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop"
+                    alt="Pérgolas Orientables"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white text-xl font-semibold mb-3">Pérgolas Orientables</h3>
+                    <div class="flex items-center text-white/80 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        Saber más <i data-lucide="move-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Pérgola 3 -->
+            <div class="relative group aspect-[1/1] md:aspect-[4/5] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1520699918507-3c3e01c7690d?q=80&w=2070&auto=format&fit=crop"
+                    alt="Pérgolas Retráctiles con Pendiente"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white text-xl font-semibold mb-3">Pérgolas Retráctiles con Pendiente</h3>
+                    <div class="flex items-center text-white/80 text-[10px] font-bold uppercase tracking-[0.2em]">
+                        Saber más <i data-lucide="move-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Call to Action Section (ACTUALIZADA SEGÚN PNG) -->
+    <section class="py-24 bg-brand-light flex flex-col items-center text-center px-6">
+        <h2 class="text-4xl font-light text-slate-800 mb-10 tracking-tight">¿Por qué confiar en Tecnoterrazas?</h2>
+
+        <div class="max-w-6xl space-y-8 text-slate-500 font-normal leading-[1.8] text-base md:text-lg">
+            <p>
+                Para comprar cortinas de cristal puedes acudir a cualquier tienda, pues en la actualidad hay muchas; no
+                obstante, si deseas contar con las mejores cortinas, de alta calidad, con un servicio óptimo de parte de
+                personas con una amplia experiencia, debes acudir a Tecnoterrazas. Aquí también puedes ver el precio de
+                cortinas de cristal.
+            </p>
+            <p>
+                La especialización de Tecnoterrazas, así como el entusiasmo y dinamismo de nuestro personal, sumado a su
+                gran criterio de responsabilidad, hacen que la elección sea muy obvia: Tecnoterrazas.
+            </p>
+        </div>
+
+        <a href="#"
+            class="btn-cta mt-12 text-white px-12 py-5 rounded-full font-bold uppercase text-[11px] tracking-[0.2em] shadow-lg shadow-blue-200">
+            Contactar Ahora
+        </a>
+    </section>
+
+    <!-- 6. Form & Map Section (Mantenida como cierre de contacto) -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 shadow-2xl rounded-sm overflow-hidden min-h-[600px]">
+            <div class="bg-white p-12 md:p-16 border-r border-slate-50">
+                <h2 class="text-3xl font-extrabold text-brand-navy uppercase mb-4 tracking-tight">Solicita tu
+                    presupuesto</h2>
+                <p class="text-slate-400 mb-12 text-sm">Rellena el formulario y te enviaremos una oferta personalizada
+                    sin compromiso.</p>
+                <form class="space-y-10">
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div class="relative">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 absolute -top-6">Nombre</label>
+                            <input type="text" placeholder="Tu nombre"
+                                class="w-full border-b border-slate-200 py-3 focus:border-brand-blue outline-none transition bg-transparent text-sm">
+                        </div>
+                        <div class="relative">
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 absolute -top-6">Email</label>
+                            <input type="email" placeholder="email@dominio.com"
+                                class="w-full border-b border-slate-200 py-3 focus:border-brand-blue outline-none transition bg-transparent text-sm">
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-brand-navy text-white py-5 rounded-sm font-extrabold uppercase tracking-[0.3em] hover:bg-brand-dark transition text-xs">
+                        Solicitar Información Gratis
+                    </button>
+                </form>
+            </div>
+            <div class="relative flex flex-col justify-center p-12 md:p-16">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=2070&auto=format&fit=crop"
+                        class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-brand-navy/90 backdrop-blur-[2px]"></div>
+                </div>
+                <div class="relative z-10 text-white space-y-12">
+                    <div>
+                        <span
+                            class="text-brand-blue font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">Tecnoterrazas</span>
+                        <h2 class="text-4xl font-extrabold uppercase leading-tight">Estamos en Valencia</h2>
+                    </div>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-6">
+                            <div class="bg-brand-blue/20 p-3 rounded"><i data-lucide="map-pin"
+                                    class="w-5 h-5 text-brand-blue"></i></div>
+                            <div>
+                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">
+                                    Dirección</h4>
+                                <p class="text-base font-medium text-zinc-200">Carrer de la Pau, 4, 46003 València</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-6">
+                            <div class="bg-brand-blue/20 p-3 rounded"><i data-lucide="phone"
+                                    class="w-5 h-5 text-brand-blue"></i></div>
+                            <div>
+                                <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Teléfono
+                                </h4>
+                                <p class="text-2xl font-extrabold tracking-tighter text-brand-blue">900 123 456</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

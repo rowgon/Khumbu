@@ -1,0 +1,119 @@
+[
+  {
+    "id": "59ebae89",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1302,
+        "sizes": []
+      },
+      "padding": {
+        "unit": "px",
+        "top": "106",
+        "right": "1",
+        "bottom": "1",
+        "left": "1",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "4a0fadc6",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "6a6007f4",
+            "elType": "widget",
+            "settings": {
+              "title": "Nuestros Proyectos ",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#000000",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "6a289207",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 19,
+                "sizes": []
+              },
+              "align": "left",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 9,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "100",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_animation": "fadeInRight"
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  }
+]

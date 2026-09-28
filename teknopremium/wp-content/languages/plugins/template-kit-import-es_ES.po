@@ -1,0 +1,194 @@
+# Translation of Plugins - Template Kit &#8211; Import - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Template Kit &#8211; Import - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-08-07 15:18:56+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Template Kit &#8211; Import - Stable (latest release)\n"
+
+#: inc/api/class-template-kit-import.php:93
+msgid "Single: Landing Page"
+msgstr "Individual: Página de destino"
+
+#: inc/backend/class-welcome.php:43 inc/backend/class-welcome.php:44
+msgid "TK Review"
+msgstr "Valoración de TK"
+
+#: inc/api/class-template-kit-import.php:119
+msgid "Other"
+msgstr "Otros"
+
+#: inc/api/class-template-kit-import.php:118
+msgid "Clients"
+msgstr "Clientes"
+
+#: inc/api/class-template-kit-import.php:117
+msgid "Logo Grid"
+msgstr "Cuadrícula de logotipos"
+
+#: inc/api/class-template-kit-import.php:116
+msgid "Gallery"
+msgstr "Galería"
+
+#: inc/api/class-template-kit-import.php:115
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: inc/api/class-template-kit-import.php:114
+msgid "Countdown"
+msgstr "Cuenta atrás"
+
+#: inc/api/class-template-kit-import.php:113
+msgid "Stats"
+msgstr "Estadísticas"
+
+#: inc/api/class-template-kit-import.php:112
+msgid "Services"
+msgstr "Servicios"
+
+#: inc/api/class-template-kit-import.php:111
+msgid "Product"
+msgstr "Producto"
+
+#: inc/api/class-template-kit-import.php:110
+msgid "Testimonial"
+msgstr "Recomendación"
+
+#: inc/api/class-template-kit-import.php:109
+msgid "Pricing"
+msgstr "Precios"
+
+#: inc/api/class-template-kit-import.php:108
+msgid "Features"
+msgstr "Características"
+
+#: inc/api/class-template-kit-import.php:107
+msgid "Map"
+msgstr "Mapa"
+
+#: inc/api/class-template-kit-import.php:106
+msgid "Team"
+msgstr "Equipo"
+
+#: inc/api/class-template-kit-import.php:105
+msgid "Call to Action"
+msgstr "Llamada a la acción"
+
+#: inc/api/class-template-kit-import.php:104
+msgid "Contact"
+msgstr "Contacto"
+
+#: inc/api/class-template-kit-import.php:103
+msgid "FAQ"
+msgstr "FAQ"
+
+#: inc/api/class-template-kit-import.php:102
+msgid "About"
+msgstr "Acerca de"
+
+#: inc/api/class-template-kit-import.php:101
+msgid "Hero"
+msgstr "A pantalla completa"
+
+#: inc/api/class-template-kit-import.php:100
+msgid "Popup"
+msgstr "Mensaje emergente"
+
+#: inc/api/class-template-kit-import.php:99
+msgid "Footer"
+msgstr "Pie de página"
+
+#: inc/api/class-template-kit-import.php:98
+msgid "Header"
+msgstr "Cabecera"
+
+#: inc/api/class-template-kit-import.php:97
+msgid "Archive: Category"
+msgstr "Archivo: Categoría"
+
+#: inc/api/class-template-kit-import.php:96
+msgid "Archive: Search"
+msgstr "Archivo: Búsqueda"
+
+#: inc/api/class-template-kit-import.php:95
+msgid "Archive: Product"
+msgstr "Archivo: Producto"
+
+#: inc/api/class-template-kit-import.php:94
+msgid "Archive: Blog"
+msgstr "Archivo: Blog"
+
+#: inc/api/class-template-kit-import.php:92
+msgid "Single: 404"
+msgstr "Página individual: 404"
+
+#: inc/api/class-template-kit-import.php:91
+msgid "Single: Product"
+msgstr "Página individual: Producto"
+
+#: inc/api/class-template-kit-import.php:90
+msgid "Single: Post"
+msgstr "Página individual: Entrada"
+
+#: inc/api/class-template-kit-import.php:89
+msgid "Single: Home"
+msgstr "Página individual: Inicio"
+
+#: inc/api/class-template-kit-import.php:88
+msgid "Single: Page"
+msgstr "Página individual: Página"
+
+#: inc/api/class-requirements.php:306
+msgid "Sorry, you are not allowed to install themes on this site."
+msgstr "Lo siento, no tienes permisos para instalar temas en este sitio."
+
+#: inc/api/class-requirements.php:265 inc/api/class-requirements.php:352
+msgid "Unable to connect to the filesystem. Please confirm your credentials."
+msgstr "No ha sido posible conectar con el sistema de archivos. Por favor, confirma tus credenciales."
+
+#: review/review.php:39
+msgid " - Version "
+msgstr " - Versión "
+
+#: inc/utils/class-base.php:51 inc/utils/class-base.php:62
+msgid "Something went wrong."
+msgstr "Algo ha ido mal."
+
+#. translators: %s: WordPress version
+#: template-kit-import.php:112
+msgid "Envato Elements requires WordPress version %s+. Because you are using an earlier version, the plugin is currently NOT ACTIVE."
+msgstr "Envato Elements necesita la versión %s o superior de WordPress. Como estás usando una versión anterior, el plugin NO ESTÁ ACTIVO en este momento."
+
+#: template-kit-import.php:93
+msgid "7.2 or above"
+msgstr "7.2 o superior"
+
+#. translators: %s: PHP version
+#: template-kit-import.php:88
+msgid "Template Kit Import plugin requires PHP version %1$s+, plugin is currently NOT ACTIVE. Please contact the hosting provider. WordPress recommends version %2$s."
+msgstr "El plugin Template Kit necesita la versión %1$s+ o superior de PHP, actualmente el plugin está como NO ACTIVO. Por favor, contacta con el proveedor de alojamiento. WordPress recomienda la versión %2$s."
+
+#. Author URI of the plugin
+#: template-kit-import.php
+msgid "https://envato.com"
+msgstr "https://envato.com"
+
+#. Author of the plugin
+#: template-kit-import.php
+msgid "Envato"
+msgstr "Envato"
+
+#. Description of the plugin
+#: template-kit-import.php
+msgid "Import Template Kits to WordPress"
+msgstr "Importar kits de plantillas a WordPress"
+
+#. Plugin Name of the plugin
+#: template-kit-import.php inc/backend/class-welcome.php:33
+msgid "Template Kit Import"
+msgstr "Importar kit de plantillas"

@@ -1,0 +1,1669 @@
+[
+  {
+    "id": "52ac1c4c",
+    "elType": "section",
+    "settings": {
+      "layout": "full_width",
+      "gap": "no",
+      "gap_columns_custom": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+      },
+      "height": "min-height",
+      "custom_height": {
+        "unit": "px",
+        "size": 1089,
+        "sizes": []
+      },
+      "column_position": "stretch",
+      "content_position": "middle",
+      "stretch_section": "section-stretched",
+      "margin": {
+        "unit": "px",
+        "top": "-95",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "1ee9482c",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null,
+          "content_position": "top",
+          "align": "center",
+          "space_between_widgets": 0,
+          "margin": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          },
+          "padding": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "7267a057",
+            "elType": "widget",
+            "settings": {
+              "slides": [
+                {
+                  "heading": "KENZO",
+                  "description": "      DECORACIÓN ESPACIO KENZO - DCODE\n\n",
+                  "button_text": "",
+                  "background_color": "#FFFFFF",
+                  "_id": "fda4968",
+                  "background_image": {
+                    "url": "https://bigsizemedia.es/wp-content/uploads/2023/02/web-kenzo.jpg",
+                    "id": 874,
+                    "alt": "",
+                    "source": "library"
+                  },
+                  "background_overlay_color": "#0000004F",
+                  "background_overlay_blend_mode": "exclusion",
+                  "custom_style": "yes",
+                  "horizontal_position": "left",
+                  "vertical_position": "bottom",
+                  "text_align": "left"
+                },
+                {
+                  "heading": "GIVENCHY",
+                  "description": "PRESENTACIÓN NUEVA FRAGANCIA\n\n",
+                  "button_text": "",
+                  "background_color": "#FFFFFF",
+                  "background_image": {
+                    "url": "https://bigsizemedia.es/wp-content/uploads/2023/02/GIVENCHY.jpg",
+                    "id": 876,
+                    "alt": "",
+                    "source": "library"
+                  },
+                  "background_overlay_color": "#0000004F",
+                  "background_overlay_blend_mode": "exclusion",
+                  "custom_style": "yes",
+                  "horizontal_position": "left",
+                  "vertical_position": "bottom",
+                  "text_align": "left",
+                  "_id": "cf5d658"
+                },
+                {
+                  "heading": "ARIAS",
+                  "description": "PERSONALIZACIÓN DE BAKERIES\n\n",
+                  "button_text": "",
+                  "background_color": "#FFFFFF",
+                  "background_image": {
+                    "url": "https://bigsizemedia.es/wp-content/uploads/2023/02/ARIAS.jpg",
+                    "id": 877,
+                    "alt": "",
+                    "source": "library"
+                  },
+                  "background_overlay_color": "#0000004F",
+                  "background_overlay_blend_mode": "exclusion",
+                  "custom_style": "yes",
+                  "horizontal_position": "left",
+                  "vertical_position": "bottom",
+                  "text_align": "left",
+                  "_id": "6610733"
+                }
+              ],
+              "slides_height": {
+                "unit": "vh",
+                "size": 100,
+                "sizes": []
+              },
+              "slides_height_tablet": {
+                "unit": "vh",
+                "size": "",
+                "sizes": []
+              },
+              "slides_height_mobile": {
+                "unit": "vh",
+                "size": "",
+                "sizes": []
+              },
+              "content_max_width": {
+                "unit": "%",
+                "size": 100,
+                "sizes": []
+              },
+              "slides_padding": {
+                "unit": "px",
+                "top": "55",
+                "right": "55",
+                "bottom": "55",
+                "left": "55",
+                "isLinked": true
+              },
+              "slides_horizontal_position": "left",
+              "slides_vertical_position": "bottom",
+              "arrows_size": {
+                "unit": "px",
+                "size": 45,
+                "sizes": []
+              },
+              "arrows_color": "#FF00AC",
+              "dots_size": {
+                "unit": "px",
+                "size": 8,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_element_custom_width": {
+                "unit": "%",
+                "size": 100,
+                "sizes": []
+              },
+              "_element_vertical_align": "flex-end",
+              "heading_spacing": {
+                "unit": "px",
+                "size": 7,
+                "sizes": []
+              },
+              "description_spacing": {
+                "unit": "px",
+                "size": 14,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "slides"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "7ea9a1df",
+    "elType": "section",
+    "settings": {
+      "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": true
+      },
+      "padding": {
+        "unit": "px",
+        "top": "32",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+      },
+      "padding_tablet": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "50",
+        "left": "0",
+        "isLinked": false
+      },
+      "content_width": {
+        "unit": "px",
+        "size": 1461,
+        "sizes": []
+      },
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "1117f16c",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null,
+          "_inline_size_tablet": 65
+        },
+        "elements": [
+          {
+            "id": "5b64f32f",
+            "elType": "widget",
+            "settings": {
+              "title": "BigSizeMedia",
+              "header_size": "h3",
+              "align": "left",
+              "title_color": "#5E60A208",
+              "typography_typography": "custom",
+              "typography_font_family": "Roboto",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 104,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "typography_line_height": {
+                "unit": "px",
+                "size": 130,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "-110",
+                "left": "-60",
+                "isLinked": false
+              },
+              "_margin_tablet": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "-110",
+                "left": "-25",
+                "isLinked": false
+              },
+              "_z_index": 1,
+              "__globals__": {
+                "title_color": ""
+              },
+              "align_mobile": "center",
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 70,
+                "sizes": []
+              },
+              "typography_line_height_mobile": {
+                "unit": "px",
+                "size": 70,
+                "sizes": []
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "-40",
+                "left": "0",
+                "isLinked": false
+              },
+              "_position": "absolute",
+              "_offset_x": {
+                "size": -78,
+                "unit": "px"
+              },
+              "_offset_y": {
+                "size": -16,
+                "unit": "px"
+              },
+              "_offset_x_mobile": {
+                "size": -79.986,
+                "unit": "px"
+              },
+              "_offset_y_mobile": {
+                "size": -17.99,
+                "unit": "px"
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "30caf60b",
+            "elType": "widget",
+            "settings": {
+              "title": "\"Big Size Media produce e instala cualquier elemento publicitario y desarrolla eventos a medida atendiendo a los objetivos de sus clientes\"",
+              "align": "center",
+              "__globals__": {
+                "title_color": ""
+              },
+              "_z_index": 2,
+              "title_color": "#727272",
+              "align_mobile": "center",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 38,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "_margin": {
+                "unit": "px",
+                "top": "75",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "typography_line_height": {
+                "unit": "px",
+                "size": 44,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "119e3a01",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 25,
+                "sizes": []
+              },
+              "align": "right",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 30,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "100",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_animation": "fadeInLeft"
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": true
+      }
+    ],
+    "isInner": true
+  },
+  {
+    "id": "5bdb4b4",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1405,
+        "sizes": []
+      },
+      "structure": "20",
+      "background_background": "classic",
+      "background_image": {
+        "url": "",
+        "id": "",
+        "alt": "",
+        "source": "library"
+      },
+      "background_position": "initial",
+      "background_ypos": {
+        "unit": "px",
+        "size": -360,
+        "sizes": []
+      },
+      "background_repeat": "no-repeat",
+      "background_size": "cover",
+      "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": 0,
+        "bottom": "100",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "111",
+        "right": "0",
+        "bottom": "61",
+        "left": "0",
+        "isLinked": false
+      },
+      "z_index": 5
+    },
+    "elements": [
+      {
+        "id": "7eaa0a2",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 42.237,
+          "margin": {
+            "unit": "px",
+            "top": "87",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          },
+          "padding": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "d530e55",
+            "elType": "widget",
+            "settings": {
+              "title": "Creación de Eventos <br>y Producciones",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#9A06C6",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              },
+              "_animation_delay": 200
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "7a7bc3e",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p><strong>Bis Size Media</strong>, ofrece la realización de acciones especiales, entendiendo esté servicio desde el desarrollo creativo hasta la producción, ejecución y obtención de permisos para la realización del mismo.</p><p><strong>Soluciones impactantes y eficaces</strong> que satisfacen las necesidades más específicas y peculiares de las marcas más ambiciosas.</p>",
+              "align_mobile": "center",
+              "text_color": "#878787",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_weight": "400",
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          },
+          {
+            "id": "96c6fa1",
+            "elType": "widget",
+            "settings": {
+              "text": "Solicitar Información",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 16,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "background_background": "gradient",
+              "background_color": "#9A06C6",
+              "background_color_b": "#FB005B",
+              "background_gradient_angle": {
+                "unit": "deg",
+                "size": 130,
+                "sizes": []
+              },
+              "border_radius": {
+                "unit": "px",
+                "top": "45",
+                "right": "45",
+                "bottom": "45",
+                "left": "45",
+                "isLinked": true
+              },
+              "button_box_shadow_box_shadow_type": "yes",
+              "button_box_shadow_box_shadow": {
+                "horizontal": 0,
+                "vertical": 0,
+                "blur": 4,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.5)"
+              },
+              "text_padding": {
+                "unit": "px",
+                "top": "22",
+                "right": "22",
+                "bottom": "22",
+                "left": "22",
+                "isLinked": true
+              },
+              "link": {
+                "url": "#info",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+              },
+              "_animation": "slideInRight",
+              "_animation_delay": 300
+            },
+            "elements": [],
+            "widgetType": "button"
+          }
+        ],
+        "isInner": false
+      },
+      {
+        "id": "b691429",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 57.731,
+          "border_radius": {
+            "unit": "px",
+            "top": "20",
+            "right": "20",
+            "bottom": "20",
+            "left": "20",
+            "isLinked": true
+          },
+          "padding": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          },
+          "content_position": "center",
+          "align": "center",
+          "margin": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "161fd37",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2023/02/web-IBERIA.jpg",
+                "id": 881,
+                "alt": "",
+                "source": "library"
+              },
+              "align": "center",
+              "image_border_radius": {
+                "unit": "px",
+                "top": "51",
+                "right": "51",
+                "bottom": "51",
+                "left": "51",
+                "isLinked": true
+              },
+              "_mask_shape": "blob",
+              "image_size": "full",
+              "width": {
+                "unit": "%",
+                "size": 80,
+                "sizes": []
+              },
+              "image_box_shadow_box_shadow_type": "yes",
+              "image_box_shadow_box_shadow": {
+                "horizontal": -1,
+                "vertical": 5,
+                "blur": 9,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.5)"
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "image"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "19db2574",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1600,
+        "sizes": []
+      },
+      "structure": "20",
+      "background_background": "classic",
+      "background_image": {
+        "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/Captura.jpg",
+        "id": 738,
+        "alt": "",
+        "source": "library"
+      },
+      "background_position": "center center",
+      "background_repeat": "no-repeat",
+      "background_size": "initial",
+      "background_bg_width": {
+        "unit": "%",
+        "size": 60,
+        "sizes": []
+      },
+      "background_motion_fx_translateX_speed": {
+        "unit": "px",
+        "size": 1.1,
+        "sizes": []
+      },
+      "background_motion_fx_blur_level": {
+        "unit": "px",
+        "size": 1,
+        "sizes": []
+      },
+      "background_motion_fx_mouseTrack_effect": "yes",
+      "margin": {
+        "unit": "px",
+        "top": "146",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "113",
+        "right": "0",
+        "bottom": "400",
+        "left": "0",
+        "isLinked": false
+      },
+      "border_radius": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+      },
+      "z_index": 0,
+      "hide_desktop": "hidden-desktop",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "df92ead",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 51.187
+        },
+        "elements": [
+          {
+            "id": "232f4488",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/3.jpg",
+                "id": 740,
+                "alt": "",
+                "source": "library"
+              },
+              "_element_width": "auto",
+              "_position": "absolute",
+              "_offset_x": {
+                "size": 105.938,
+                "unit": "px"
+              },
+              "_offset_y": {
+                "size": -71.927,
+                "unit": "px"
+              },
+              "image_box_shadow_box_shadow_type": "yes",
+              "image_box_shadow_box_shadow": {
+                "horizontal": 4,
+                "vertical": 6,
+                "blur": 10,
+                "spread": -4,
+                "color": "rgba(255, 255, 255, 0.51)"
+              },
+              "image_border_radius": {
+                "unit": "px",
+                "top": "5",
+                "right": "5",
+                "bottom": "5",
+                "left": "5",
+                "isLinked": true
+              },
+              "_animation": "fadeInLeft"
+            },
+            "elements": [],
+            "widgetType": "image"
+          },
+          {
+            "id": "191f37c2",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/producciones.jpg",
+                "id": 600,
+                "alt": "",
+                "source": "library"
+              },
+              "image_size": "custom",
+              "_element_width": "auto",
+              "_position": "absolute",
+              "_offset_x": {
+                "size": -71.042,
+                "unit": "px"
+              },
+              "_offset_y": {
+                "size": 522.913,
+                "unit": "px"
+              },
+              "image_box_shadow_box_shadow_type": "yes",
+              "image_box_shadow_box_shadow": {
+                "horizontal": 5,
+                "vertical": 6,
+                "blur": 11,
+                "spread": -4,
+                "color": "rgba(255, 255, 255, 0.58)"
+              },
+              "width": {
+                "unit": "%",
+                "size": 73,
+                "sizes": []
+              },
+              "image_border_radius": {
+                "unit": "px",
+                "top": "5",
+                "right": "5",
+                "bottom": "5",
+                "left": "5",
+                "isLinked": true
+              },
+              "_animation": "fadeInUp"
+            },
+            "elements": [],
+            "widgetType": "image"
+          }
+        ],
+        "isInner": false
+      },
+      {
+        "id": "47248343",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 48.813,
+          "background_background": "classic",
+          "background_color": "#FFFFFF",
+          "border_radius": {
+            "unit": "px",
+            "top": "16",
+            "right": "16",
+            "bottom": "16",
+            "left": "16",
+            "isLinked": true
+          },
+          "box_shadow_box_shadow_type": "yes",
+          "box_shadow_box_shadow": {
+            "horizontal": 1,
+            "vertical": 10,
+            "blur": 32,
+            "spread": -4,
+            "color": "rgba(0,0,0,0.5)"
+          },
+          "margin": {
+            "unit": "px",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "isLinked": false
+          },
+          "padding": {
+            "unit": "px",
+            "top": "50",
+            "right": "50",
+            "bottom": "50",
+            "left": "50",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "23ced96e",
+            "elType": "widget",
+            "settings": {
+              "title": "Producciones",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#434343",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 26,
+                "sizes": []
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "_margin": {
+                "unit": "px",
+                "top": "36",
+                "right": "0",
+                "bottom": "7",
+                "left": "0",
+                "isLinked": false
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "__globals__": {
+                "title_color": ""
+              },
+              "_animation": "slideInRight",
+              "_animation_delay": 100
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "b6cb794",
+            "elType": "widget",
+            "settings": {
+              "title": "PRODUCCIONES PARA EVENTOS",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#CC2D67",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              },
+              "_animation_delay": 200
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "309e7381",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>La Calidad es prioritaria en las actividades de BIG SIZE MEDIA que la entiende como dar satisfacción a las necesidades del cliente a cada momento, con un servicio competitivo, contando con la participación del Conjunto de colaboradores que forman la Empresa.</p>",
+              "align_mobile": "center",
+              "text_color": "#B8B8B8",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_weight": "400",
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          },
+          {
+            "id": "efe0e3f",
+            "elType": "widget",
+            "settings": {
+              "text": "Solicitar Información",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 16,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "background_background": "gradient",
+              "background_color": "#FFBB00",
+              "background_color_b": "#FB005B",
+              "background_gradient_angle": {
+                "unit": "deg",
+                "size": 130,
+                "sizes": []
+              },
+              "border_radius": {
+                "unit": "px",
+                "top": "45",
+                "right": "45",
+                "bottom": "45",
+                "left": "45",
+                "isLinked": true
+              },
+              "button_box_shadow_box_shadow_type": "yes",
+              "button_box_shadow_box_shadow": {
+                "horizontal": 0,
+                "vertical": 0,
+                "blur": 4,
+                "spread": 0,
+                "color": "rgba(0,0,0,0.5)"
+              },
+              "text_padding": {
+                "unit": "px",
+                "top": "22",
+                "right": "22",
+                "bottom": "22",
+                "left": "22",
+                "isLinked": true
+              },
+              "link": {
+                "url": "",
+                "is_external": "",
+                "nofollow": "",
+                "custom_attributes": ""
+              },
+              "_animation": "fadeInRight",
+              "_animation_delay": 300
+            },
+            "elements": [],
+            "widgetType": "button"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "30e65f28",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1302,
+        "sizes": []
+      },
+      "padding": {
+        "unit": "px",
+        "top": "106",
+        "right": "1",
+        "bottom": "1",
+        "left": "1",
+        "isLinked": false
+      },
+      "hide_desktop": "hidden-desktop",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "6c2c14d6",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "9e1420c",
+            "elType": "widget",
+            "settings": {
+              "title": "Algunos de nuestros Eventos",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#000000",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 42,
+                "sizes": []
+              },
+              "typography_font_weight": "800",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "_animation": "fadeInRight",
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "4e043f5b",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 19,
+                "sizes": []
+              },
+              "align": "left",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 9,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "100",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_animation": "fadeInRight"
+            },
+            "elements": [],
+            "widgetType": "divider"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "d42cee",
+    "elType": "section",
+    "settings": {
+      "padding": {
+        "unit": "px",
+        "top": "66",
+        "right": "0",
+        "bottom": "107",
+        "left": "0",
+        "isLinked": false
+      },
+      "content_width": {
+        "unit": "px",
+        "size": 1302,
+        "sizes": []
+      },
+      "hide_desktop": "hidden-desktop",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+    },
+    "elements": [
+      {
+        "id": "1f74b33",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "1c87d619",
+            "elType": "widget",
+            "settings": {
+              "gallery_type": "multiple",
+              "gallery": [
+                {
+                  "id": 262,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/1.png"
+                },
+                {
+                  "id": 263,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/2.png"
+                },
+                {
+                  "id": 173,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/10647009_786999241355542_1265661614543423178_n.jpg"
+                },
+                {
+                  "id": 172,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/10476509_788315627890570_8859925541892477906_o.jpg"
+                },
+                {
+                  "id": 171,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11032144_864511956937603_5221649795651587183_o.jpg"
+                },
+                {
+                  "id": 170,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11021365_825612050827594_4829433054889354103_o.jpg"
+                },
+                {
+                  "id": 169,
+                  "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11024800_830412550347544_5360151742968716122_n.jpg"
+                }
+              ],
+              "galleries": [
+                {
+                  "gallery_title": "Evento 1",
+                  "_id": "79e5dd2",
+                  "multiple_gallery": [
+                    {
+                      "id": 552,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/R7.jpg"
+                    }
+                  ]
+                },
+                {
+                  "gallery_title": "Evento 2",
+                  "multiple_gallery": [
+                    {
+                      "id": 556,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/OVNI3.jpg"
+                    }
+                  ],
+                  "_id": "f55d227"
+                },
+                {
+                  "gallery_title": "Evento 3",
+                  "multiple_gallery": [
+                    {
+                      "id": 567,
+                      "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/Canalpanda1.jpg"
+                    }
+                  ],
+                  "_id": "84b4f5a"
+                }
+              ],
+              "show_all_galleries_label": "Todos nuestros eventos",
+              "overlay_title": "title",
+              "image_border_radius_hover": {
+                "unit": "px",
+                "size": 8,
+                "sizes": []
+              },
+              "overlay_background_background": "classic",
+              "overlay_background_color": "#7A04AD",
+              "overlay_background_hover_color": "#000000AD",
+              "background_overlay_hover_animation": "fade-in",
+              "title_color": "#FFFFFF",
+              "title_typography_typography": "custom",
+              "title_typography_font_family": "Poppins",
+              "title_typography_font_size": {
+                "unit": "px",
+                "size": 26,
+                "sizes": []
+              },
+              "title_typography_font_weight": "600",
+              "galleries_title_color_normal": "#000000",
+              "galleries_titles_typography_typography": "custom",
+              "galleries_titles_typography_font_family": "Poppins",
+              "galleries_titles_typography_font_size": {
+                "unit": "px",
+                "size": 19,
+                "sizes": []
+              },
+              "galleries_titles_typography_font_weight": "400",
+              "galleries_title_color_hover": "#54595F",
+              "galleries_pointer_color_hover": "#AF00F2",
+              "galleries_pointer_color_active": "#AF00F2",
+              "pointer_width": {
+                "unit": "px",
+                "size": 0,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "gallery"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  },
+  {
+    "id": "7d29bf2c",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#000000",
+      "padding": {
+        "unit": "px",
+        "top": "137",
+        "right": "0",
+        "bottom": "100",
+        "left": "0",
+        "isLinked": false
+      },
+      "background_overlay_background": "classic",
+      "background_overlay_color": "#000000",
+      "background_overlay_image": {
+        "url": "https://bigsizemedia.es/wp-content/uploads/2023/01/rev_sliderhome1_1.jpg",
+        "id": 584,
+        "alt": "",
+        "source": "library"
+      },
+      "background_overlay_position": "center center",
+      "background_overlay_repeat": "no-repeat",
+      "background_overlay_size": "cover",
+      "background_overlay_opacity": {
+        "unit": "px",
+        "size": 0.24,
+        "sizes": []
+      }
+    },
+    "elements": [
+      {
+        "id": "7ec66294",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "e54a6dd",
+            "elType": "widget",
+            "settings": {
+              "anchor": "info"
+            },
+            "elements": [],
+            "widgetType": "menu-anchor"
+          },
+          {
+            "id": "3ede85d3",
+            "elType": "widget",
+            "settings": {
+              "title": "¿Necesitas crear un evento único ?",
+              "title_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Playfair Display",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 57,
+                "sizes": []
+              },
+              "typography_font_weight": "700",
+              "typography_line_height": {
+                "unit": "px",
+                "size": 88,
+                "sizes": []
+              },
+              "align": "left",
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "4fa10c1e",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>Si estas interesado en nuestros productos o servicios y deseas obtener más información, por favor llena nuestro formulario de solicitud. También puedes utilizar este formulario para contarnos sobre tu proyecto y cómo podemos ayudarte a lograrlo. </p>",
+              "text_color": "#FFFFFF",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "10",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          },
+          {
+            "id": "1c113981",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 13,
+                "sizes": []
+              },
+              "align": "center",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 2,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "divider"
+          },
+          {
+            "id": "276dd886",
+            "elType": "widget",
+            "settings": {
+              "form_name": "Nuevo formulario",
+              "form_fields": [
+                {
+                  "custom_id": "name",
+                  "placeholder": "Nombre",
+                  "width": "30",
+                  "dynamic": {
+                    "active": true
+                  },
+                  "_id": "9bb2dbf"
+                },
+                {
+                  "custom_id": "email",
+                  "field_type": "email",
+                  "required": "true",
+                  "placeholder": "Correo electrónico",
+                  "width": "30",
+                  "_id": "7418fc2"
+                },
+                {
+                  "_id": "877896b",
+                  "field_type": "checkbox",
+                  "field_options": "He leído y acepto las <a href=\"https://bigsizemedia.es/politicas-de-privacidad/\">políticas de privacidad.</a>",
+                  "width": "33",
+                  "custom_id": "field_877896b"
+                }
+              ],
+              "button_width": "30",
+              "step_next_label": "Siguiente",
+              "step_previous_label": "Anterior",
+              "button_text": "SOLICITAR INFORMACIÓN",
+              "email_to": "monica.luche@bigsizemedia.es",
+              "email_subject": "Nuevo mensaje desde «My blog»",
+              "email_content": "[all-fields]",
+              "email_from": "email@bigsizemedia.es",
+              "email_from_name": "My blog",
+              "email_to_2": "sebastian@funmark.es",
+              "email_subject_2": "Nuevo mensaje desde «My blog»",
+              "email_content_2": "[all-fields]",
+              "email_from_2": "email@bigsizemedia.es",
+              "email_from_name_2": "My blog",
+              "email_reply_to_2": "sebastian@funmark.es",
+              "mailchimp_fields_map": [],
+              "drip_fields_map": [],
+              "activecampaign_fields_map": [],
+              "getresponse_fields_map": [],
+              "convertkit_fields_map": [],
+              "mailerlite_fields_map": [],
+              "success_message": "El formulario se ha enviado correctamente.",
+              "error_message": "Ha ocurrido un error.",
+              "required_field_message": "Este campo es obligatorio.",
+              "invalid_message": "Hay algo que no funciona. El formulario no es válido.",
+              "column_gap": {
+                "unit": "px",
+                "size": 23,
+                "sizes": []
+              },
+              "row_gap": {
+                "unit": "px",
+                "size": 20,
+                "sizes": []
+              },
+              "button_background_color": "#C500FF",
+              "previous_button_background_color": "#C500FF",
+              "button_border_radius": {
+                "unit": "px",
+                "top": "38",
+                "right": "38",
+                "bottom": "38",
+                "left": "38",
+                "isLinked": true
+              }
+            },
+            "elements": [],
+            "widgetType": "form"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  }
+]

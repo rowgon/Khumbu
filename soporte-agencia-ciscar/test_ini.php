@@ -1,0 +1,1 @@
+<?php echo "Apache upload_max_filesize: " . ini_get("upload_max_filesize") . "\n"; unlink("test_ini.php");

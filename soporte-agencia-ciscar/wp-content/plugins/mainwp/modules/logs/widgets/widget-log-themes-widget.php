@@ -1,0 +1,212 @@
+<?php
+/**
+ * MainWP Logs Widget
+ *
+ * Displays the Logs Info.
+ *
+ * @package MainWP/Dashboard
+ * @version 4.6
+ */
+
+namespace MainWP\Dashboard\Module\Log;
+
+use MainWP\Dashboard\MainWP_Utility;
+use MainWP\Dashboard\MainWP_UI;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class Log_Themes_Widget
+ *
+ * Displays the Logs info.
+ */
+class Log_Themes_Widget {
+
+    /**
+     * Protected static variable to hold the single instance of the class.
+     *
+     * @var mixed Default null
+     */
+    protected static $instance = null;
+
+    /**
+     * Return the single instance of the class.
+     *
+     * @return mixed $instance The single instance of the class.
+     */
+    public static function instance() {
+        if ( is_null( static::$instance ) ) {
+            static::$instance = new self();
+        }
+        return static::$instance;
+    }
+
+
+    /**
+     * Method get_class_name()
+     *
+     * @return string __CLASS__ Class name.
+     */
+    public static function get_class_name() {
+        return __CLASS__;
+    }
+
+    /**
+     * Method render()
+     *
+     * @param array ...$args Widget callback args.
+     * @return mixed render_site_info()
+     */
+    public function render( ...$args ) {
+        $this->render_widget( $args );
+    }
+
+
+    /**
+     * Render client overview Info.
+     *
+     * @param array $args Args data.
+     */
+    public function render_widget( $args ) {
+        $data       = is_array( $args ) && ! empty( $args[1][0] ) && is_array( $args[1][0] ) ? $args[1][0] : array();
+        $stats_data = is_array( $data ) && ! empty( $data['stats_data']['installer']['theme'] ) ? $data['stats_data']['installer']['theme'] : array();
+        if ( ! is_array( $stats_data ) ) {
+            $stats_data = array();
+        }
+
+        $stats_prev_data = is_array( $data ) && ! empty( $data['stats_prev_data']['installer']['theme'] ) ? $data['stats_prev_data']['installer']['theme'] : array();
+        if ( ! is_array( $stats_prev_data ) ) {
+            $stats_prev_data = array();
+        }
+
+        ?>
+        <div class="mainwp-widget-header">
+            <h2 class="ui header handle-drag">
+                <?php esc_html_e( 'Themes Management Activity Overview', 'mainwp' ); ?>
+                <div class="sub header">
+                <?php esc_html_e( 'Comprehensive bar chart reflecting theme actions culminating in a total activity count.', 'mainwp' ); ?>
+                </div>
+            </h2>
+        </div>
+
+        <div class="mainwp-widget-insights-card mainwp-scrolly-overflow">
+                <?php
+                /**
+                 * Action: mainwp_logs_widget_top
+                 *
+                 * Fires at the top of the widget.
+                 *
+                 * @since 4.6
+                 */
+                do_action( 'mainwp_logs_widget_top', 'themes' );
+                ?>
+                <div id="mainwp-message-zone" style="display:none;" class="ui message"></div>
+                <?php
+                MainWP_UI::generate_wp_nonce( 'mainwp-admin-nonce' );
+                if ( ! empty( $data ) ) {
+                    $this->render_widget_content( $stats_data, $stats_prev_data );
+                } else {
+                    MainWP_UI::render_empty_element_placeholder( __( 'No activity recorded', 'mainwp' ), __( 'Data will appear here once actions are tracked.', 'mainwp' ), '<em data-emoji=":bar_chart:" class="medium"></em>' );
+                }
+                ?>
+                <?php
+                /**
+                 * Action: mainwp_logs_widget_bottom
+                 *
+                 * Fires at the bottom of the widget.
+                 *
+                 * @since 4.6
+                 */
+                do_action( 'mainwp_logs_widget_bottom', 'themes' );
+                ?>
+            </div>
+        <div class="mainwp-widget-footer ui four columns stackable grid">
+            <div class="column">
+            </div>
+            <div class="column">
+            </div>
+        </div>
+        <?php
+    }
+
+    /**
+     * Method render_widget_content().
+     *
+     * @param array $data Stats data.
+     * @param array $prev_data Previous stats data.
+     */
+    public function render_widget_content( $data, $prev_data ) {
+        $columns = array(
+            'install'      => esc_html__( 'Installed', 'mainwp' ),
+            'updated'      => esc_html__( 'Updated', 'mainwp' ),
+            'activate'     => esc_html__( 'Activated', 'mainwp' ),
+            'delete'       => esc_html__( 'Deleted', 'mainwp' ),
+            'total_events' => esc_html__( 'Total', 'mainwp' ),
+        );
+        ?>
+        <div class="ui grid">
+            <div class="sixteen wide column">
+                <div class="ui equal width grid">
+                    <?php
+                    foreach ( $columns as $act => $title ) {
+                        Log_Stats::render_stats_info( $data, $act, $title, $prev_data );
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="sixteen wide column">
+                <div id="mainwp-module-log-chart-themes-management-wrapper" ></div>
+                <script type="text/javascript">
+                    jQuery( document ).ready( function() {
+                        let options = {
+                            chart: {
+                                type: 'bar',
+                                height: 350,
+                            },
+                            plotOptions: {
+                                bar: {
+                                    columnWidth: '60%'
+                                }
+                            },
+                            series: [ {
+                                name: 'Events:',
+                                data: [
+                                <?php
+                                foreach ( $columns as $act => $title ) {
+                                    Log_Stats::render_chart_series( $data, $act, $title, $prev_data );
+                                }
+                                ?>
+                                ],
+                            } ],
+                            xaxis: {
+                                labels: {
+                                    style: {
+                                        colors: '#999999',
+                                    }
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    style: {
+                                        colors: '#999999',
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                theme: 'dark',
+                            },
+                        }
+                        let clients = new ApexCharts(document.querySelector("#mainwp-module-log-chart-themes-management-wrapper"), options);
+                        setTimeout(() => {
+                            clients.render();
+                        }, 1000);
+                    } );
+                </script>
+            </div>
+        </div>
+        <?php
+    }
+}

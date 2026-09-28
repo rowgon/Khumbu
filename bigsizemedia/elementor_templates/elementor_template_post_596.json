@@ -1,0 +1,308 @@
+[
+  {
+    "id": "3971fe4d",
+    "elType": "section",
+    "settings": {
+      "content_width": {
+        "unit": "px",
+        "size": 1600,
+        "sizes": []
+      },
+      "structure": "20",
+      "background_background": "classic",
+      "background_color": "#1F2029",
+      "background_image": {
+        "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/11032144_864511956937603_5221649795651587183_o.jpg",
+        "id": 171,
+        "alt": "",
+        "source": "library"
+      },
+      "background_position": "center center",
+      "background_repeat": "no-repeat",
+      "background_size": "initial",
+      "background_bg_width": {
+        "unit": "%",
+        "size": 52,
+        "sizes": []
+      },
+      "background_motion_fx_motion_fx_scrolling": "yes",
+      "background_motion_fx_translateX_speed": {
+        "unit": "px",
+        "size": 1.1,
+        "sizes": []
+      },
+      "background_motion_fx_blur_level": {
+        "unit": "px",
+        "size": 1,
+        "sizes": []
+      },
+      "background_motion_fx_mouseTrack_effect": "yes",
+      "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": 0,
+        "bottom": "0",
+        "left": 0,
+        "isLinked": false
+      },
+      "padding": {
+        "unit": "px",
+        "top": "275",
+        "right": "0",
+        "bottom": "400",
+        "left": "0",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "29de87a2",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 38.125
+        },
+        "elements": [
+          {
+            "id": "11da1ab7",
+            "elType": "widget",
+            "settings": {
+              "title": "Lona Publicidad ",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#B4068E",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 26,
+                "sizes": []
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "_margin": {
+                "unit": "px",
+                "top": "75",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "225ce6bd",
+            "elType": "widget",
+            "settings": {
+              "title": "Calidad en nuestros trabajos",
+              "align": "left",
+              "align_mobile": "center",
+              "title_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 60,
+                "sizes": []
+              },
+              "typography_font_size_mobile": {
+                "unit": "px",
+                "size": 37,
+                "sizes": []
+              },
+              "typography_font_weight": "600",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_z_index": 2,
+              "__globals__": {
+                "title_color": ""
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "43731e5d",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>La Calidad es prioritaria en las actividades de BIG SIZE MEDIA que la entiende como dar satisfacción a las necesidades del cliente a cada momento, con un servicio competitivo, contando con la participación del Conjunto de colaboradores que forman la Empresa.</p>",
+              "align_mobile": "center",
+              "text_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Poppins",
+              "typography_font_weight": "400",
+              "_margin_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding_mobile": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          }
+        ],
+        "isInner": false
+      },
+      {
+        "id": "78326099",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 61.875
+        },
+        "elements": [
+          {
+            "id": "7daff80b",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/2.png",
+                "id": 263,
+                "alt": "",
+                "source": "library"
+              },
+              "_element_width": "auto",
+              "_position": "absolute",
+              "_offset_x": {
+                "size": 767.976,
+                "unit": "px"
+              },
+              "_offset_y": {
+                "size": -1.958,
+                "unit": "px"
+              },
+              "image_box_shadow_box_shadow_type": "yes",
+              "image_box_shadow_box_shadow": {
+                "horizontal": 4,
+                "vertical": 6,
+                "blur": 10,
+                "spread": -4,
+                "color": "rgba(255, 255, 255, 0.51)"
+              }
+            },
+            "elements": [],
+            "widgetType": "image"
+          },
+          {
+            "id": "185aaa4e",
+            "elType": "widget",
+            "settings": {
+              "image": {
+                "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/1.png",
+                "id": 262,
+                "alt": "",
+                "source": "library"
+              },
+              "image_size": "medium",
+              "_element_width": "auto",
+              "_position": "absolute",
+              "_offset_x": {
+                "size": 524.99,
+                "unit": "px"
+              },
+              "_offset_y": {
+                "size": 302.983,
+                "unit": "px"
+              },
+              "image_box_shadow_box_shadow_type": "yes",
+              "image_box_shadow_box_shadow": {
+                "horizontal": 5,
+                "vertical": 6,
+                "blur": 11,
+                "spread": -4,
+                "color": "rgba(255, 255, 255, 0.58)"
+              }
+            },
+            "elements": [],
+            "widgetType": "image"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  }
+]

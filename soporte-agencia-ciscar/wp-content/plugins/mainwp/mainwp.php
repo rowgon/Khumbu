@@ -1,0 +1,173 @@
+<?php
+/**
+ * Plugin Name: MainWP Dashboard
+ *
+ * Description: Manage all of your WP sites, even those on different servers, from one central dashboard that runs off of your own self-hosted WordPress install.
+ *
+ * Author: MainWP
+ * Author URI: https://mainwp.com
+ * Plugin URI: https://mainwp.com/
+ * Text Domain: mainwp
+ * Version:  6.1.4
+ * License: GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ *
+ * @package MainWP/Dashboard
+ *
+ * @uses \MainWP\Dashboard\MainWP_System
+ */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Ignore cron/bootstrap.php from Plugin Check direct file access protection.
+ * This file must execute before WordPress loads to locate wp-load.php,
+ * so the standard ABSPATH check would break functionality.
+ */
+add_filter(
+    'wp_plugin_check_ignore_files',
+    function ( $ignored_files ) {
+        $ignored_files[] = 'cron/bootstrap.php';
+        return $ignored_files;
+    }
+);
+
+if ( ! defined( 'MAINWP_PLUGIN_FILE' ) ) {
+
+    /**
+     * Define MainWP Dashboard Plugin absolute full path and filename of this file.
+     *
+     * @const ( string ) Defined MainWP dashboard file path.
+     * @source https://github.com/mainwp/mainwp/blob/master/mainwp.php
+     */
+    define( 'MAINWP_PLUGIN_FILE', __FILE__ );
+}
+
+if ( ! defined( 'MAINWP_PLUGIN_DIR' ) ) {
+    /**
+     * Define MainWP Dashboard Plugin Directory.
+     *
+     * @const ( string ) Defined MainWP Dashboard Plugin Directory.
+     * @source https://github.com/mainwp/mainwp/blob/master/mainwp.php
+     */
+    define( 'MAINWP_PLUGIN_DIR', plugin_dir_path( MAINWP_PLUGIN_FILE ) );
+}
+
+if ( ! defined( 'MAINWP_PLUGIN_URL' ) ) {
+    /**
+     * Define MainWP Child Dashboard URL.
+     *
+     * @const ( string ) Defined MainWP Dashboard Plugin URL.
+     * @source https://github.com/mainwp/mainwp/blob/master/mainwp.php
+     */
+    define( 'MAINWP_PLUGIN_URL', plugin_dir_url( MAINWP_PLUGIN_FILE ) );
+}
+
+
+if ( ! defined( 'MAINWP_MODULES_DIR' ) ) {
+    define( 'MAINWP_MODULES_DIR', MAINWP_PLUGIN_DIR . 'modules' . DIRECTORY_SEPARATOR );
+}
+
+if ( ! defined( 'MAINWP_MODULES_URL' ) ) {
+    define( 'MAINWP_MODULES_URL', MAINWP_PLUGIN_URL . 'modules/' );
+}
+
+
+/**
+ * Define enable Log Module.
+ */
+if ( ! defined( 'MAINWP_MODULE_LOG_ENABLED' ) ) {
+    define( 'MAINWP_MODULE_LOG_ENABLED', true );
+}
+
+if ( ! defined( 'MAINWP_MODULE_COST_TRACKER_ENABLED' ) ) {
+    define( 'MAINWP_MODULE_COST_TRACKER_ENABLED', true );
+}
+
+if ( ! defined( 'MAINWP_MODULE_API_BACKUPS_ENABLED' ) ) {
+    define( 'MAINWP_MODULE_API_BACKUPS_ENABLED', true );
+}
+
+
+// Version information from WordPress.
+require_once ABSPATH . 'wp-includes' . DIRECTORY_SEPARATOR . 'version.php'; // NOSONAR - WP compatible.
+
+if ( ! function_exists( 'mainwp_autoload' ) ) {
+
+    /**
+     * Autoloader for all classes, pages & widgets
+     *
+     * @param string $class_name Folder name class|pages|widgets.
+     * @return require_once $autoload_path;
+     */
+    function mainwp_autoload( $class_name ) {
+
+        if ( 0 === strpos( $class_name, 'MainWP\Dashboard' ) ) {
+            // trip the namespace prefix: MainWP\Dashboard\ .
+            $class_name = substr( $class_name, 17 );
+        }
+
+        if ( 0 !== strpos( $class_name, 'MainWP_' ) ) {
+            return;
+        }
+
+        $autoload_types = array(
+            'class'   => 'class',
+            'pages'   => 'page',
+            'widgets' => 'widget',
+        );
+
+        foreach ( $autoload_types as $type => $prefix ) {
+            $autoload_dir  = \trailingslashit( __DIR__ . DIRECTORY_SEPARATOR . $type );
+            $autoload_path = sprintf( '%s%s-%s.php', $autoload_dir, $prefix, strtolower( str_replace( '_', '-', $class_name ) ) );
+
+            if ( file_exists( $autoload_path ) ) {
+                require_once $autoload_path; // NOSONAR - WP compatible.
+                break;
+            }
+        }
+    }
+}
+
+spl_autoload_register( 'mainwp_autoload' );
+
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'functions.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'core-functions.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'compatible.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'class-mainwp-includes.php'; // NOSONAR -- WP compatible.
+
+// Load Abilities API integration (feature-gated).
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-util.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-sites.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-updates.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-clients.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-tags.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-batch.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities-cron.php'; // NOSONAR -- WP compatible.
+require_once MAINWP_PLUGIN_DIR . 'includes' . DIRECTORY_SEPARATOR . 'abilities' . DIRECTORY_SEPARATOR . 'class-mainwp-abilities.php'; // NOSONAR -- WP compatible.
+
+// Initialize Abilities API integration (does nothing if Abilities API not available).
+if ( class_exists( '\MainWP\Dashboard\MainWP_Abilities' ) ) {
+    \MainWP\Dashboard\MainWP_Abilities::init();
+}
+
+// Detect if secupress_scanner is running.
+$mainwp_is_secupress_scanning = false;
+if ( ! empty( $_GET ) && isset( $_GET['test'] ) && isset( $_GET['action'] ) && 'secupress_scanner' === $_GET['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized.Recommended
+    $mainwp_is_secupress_scanning = true;
+}
+
+// Fix a conflict with SecuPress plugin.
+if ( ! $mainwp_is_secupress_scanning ) {
+    $mainWP = new MainWP\Dashboard\MainWP_System( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . plugin_basename( __FILE__ ) );
+    register_activation_hook( __FILE__, array( $mainWP, 'activation' ) );
+    register_deactivation_hook( __FILE__, array( $mainWP, 'deactivation' ) );
+    add_action( 'plugins_loaded', array( $mainWP, 'update_install' ) );
+    // Register the post-upgrade hook for MWP-1557/1558 pk/ filename migration.
+    // Must be registered before plugins_loaded fires so MainWP_Install::install()
+    // sees a subscriber when it does_action('mainwp_db_after_update').
+    add_action( 'plugins_loaded', array( 'MainWP\\Dashboard\\MainWP_Keys_Manager', 'register_migration_hooks' ), 5 );
+}

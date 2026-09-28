@@ -1,0 +1,2 @@
+"Product ID","Product SKU","Product Name","User Role","Customer Name","Minimum Quantity","Maximum Quantity","Discount Type","Discount Value","Start Date","End Date","Replace Original"
+23,woo-album-ff-ff,Album,subscriber,,1,10,fixed_price,23,,,

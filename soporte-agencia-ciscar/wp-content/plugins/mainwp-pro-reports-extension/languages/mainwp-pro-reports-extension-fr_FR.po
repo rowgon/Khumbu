@@ -1,0 +1,462 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MainWP Pro Reports Extension\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-01 12:20+0000\n"
+"PO-Revision-Date: 2022-07-01 13:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.2; wp-6.0\n"
+"X-Domain: mainwp-pro-reports-extension"
+
+#: templates/reports/pro-report-basic.php:490 
+#: templates/reports/pro-report-default.php:513 
+#: templates/reports/pro-report-modern.php:524
+msgid "Accessibility score"
+msgstr "Note d'accessibilité"
+
+#: class/class-mainwp-pro-reports-plugin.php:172
+msgid "Activate Plugin"
+msgstr "Activer l'extension"
+
+#: templates/reports/pro-report-basic.php:176 
+#: templates/reports/pro-report-default.php:189 
+#: templates/reports/pro-report-modern.php:199
+msgid "Active Theme"
+msgstr "Thème actif"
+
+#: templates/reports/pro-report-basic.php:423 
+#: templates/reports/pro-report-default.php:441 
+#: templates/reports/pro-report-modern.php:452
+msgid "Analytics"
+msgstr "Analytics"
+
+#: templates/reports/pro-report-default.php:447 
+#: templates/reports/pro-report-modern.php:458
+msgid "Analytics Data"
+msgstr "Données analytiques"
+
+#: templates/reports/pro-report-basic.php:214 
+#: templates/reports/pro-report-default.php:227 
+#: templates/reports/pro-report-modern.php:238
+msgid "Average Pagespeed"
+msgstr "Moyenne Pagespeed"
+
+#: templates/reports/pro-report-basic.php:432 
+#: templates/reports/pro-report-default.php:456 
+#: templates/reports/pro-report-modern.php:467
+msgid "Average Time"
+msgstr "Temps moyen"
+
+#: templates/reports/pro-report-basic.php:395 
+#: templates/reports/pro-report-default.php:413 
+#: templates/reports/pro-report-modern.php:424
+msgid "Backup Date"
+msgstr "Date de Sauvegarde"
+
+#: templates/reports/pro-report-basic.php:396 
+#: templates/reports/pro-report-default.php:414 
+#: templates/reports/pro-report-modern.php:425
+msgid "Backup Type"
+msgstr "Type de Sauvegarde"
+
+#: templates/reports/pro-report-basic.php:390 
+#: templates/reports/pro-report-default.php:408 
+#: templates/reports/pro-report-modern.php:419
+msgid "Backups"
+msgstr "Sauvegardes"
+
+#: templates/reports/pro-report-basic.php:202 
+#: templates/reports/pro-report-default.php:215 
+#: templates/reports/pro-report-modern.php:226
+msgid "Backups Created"
+msgstr "Sauvegardes créées"
+
+#: templates/reports/pro-report-basic.php:491 
+#: templates/reports/pro-report-default.php:514 
+#: templates/reports/pro-report-modern.php:525
+msgid "Best practices score"
+msgstr "Score des meilleures pratiques"
+
+#: templates/reports/pro-report-basic.php:431 
+#: templates/reports/pro-report-default.php:455 
+#: templates/reports/pro-report-modern.php:466
+msgid "Bounce Rate"
+msgstr "Taux de rebond"
+
+#: class/class-mainwp-pro-reports-plugin.php:144
+msgid "Click to jump to the site Overview page"
+msgstr "Cliquez pour accéder à la page d'Aperçu du site"
+
+#: templates/reports/pro-report-basic.php:208 
+#: templates/reports/pro-report-default.php:221 
+#: templates/reports/pro-report-modern.php:232
+msgid "Database Optimizations"
+msgstr "Optimisations de la base de données"
+
+#: templates/reports/pro-report-basic.php:455 
+#: templates/reports/pro-report-default.php:479 
+#: templates/reports/pro-report-modern.php:490
+msgid "Date"
+msgstr "Date"
+
+#: templates/reports/pro-report-basic.php:456 
+#: templates/reports/pro-report-default.php:480 
+#: templates/reports/pro-report-modern.php:491
+msgid "Details"
+msgstr "Détails"
+
+#: class/class-mainwp-pro-reports-plugin.php:164
+msgid "Edit"
+msgstr "Modifier"
+
+#: templates/reports/pro-report-default.php:182 
+#: templates/reports/pro-report-modern.php:192
+msgid "General Information"
+msgstr "Information Générale"
+
+#: templates/emails/pro-report-email-default.php:81 
+#: templates/emails/pro-report-email-minimal.php:77 
+#: templates/emails/pro-report-email-modern.php:90
+msgid "Have questions? Email us at "
+msgstr "Vous avez des questions ? Écrivez-nous à "
+
+#: class/class-mainwp-pro-reports-plugin.php:72 
+#: class/class-mainwp-pro-reports-plugin.php:92
+msgid "Hidden"
+msgstr "Caché"
+
+#: class/class-mainwp-pro-reports-plugin.php:169
+msgid "Hide Plugin"
+msgstr "Masquer l'Extension"
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://mainwp.com"
+msgstr "https://mainwp.com"
+
+#: class/class-mainwp-pro-reports-plugin.php:146
+msgid "Jump to the site front page"
+msgstr "Accéder à la page d'accueil du site"
+
+#: class/class-mainwp-pro-reports-plugin.php:145
+msgid "Jump to the site WP Admin"
+msgstr "Accéder au WP Admin du site"
+
+#: templates/reports/pro-report-basic.php:241 
+#: templates/reports/pro-report-default.php:260 
+#: templates/reports/pro-report-modern.php:271
+msgid "Last 15 Days"
+msgstr "Derniers 15 Jours"
+
+#: templates/reports/pro-report-basic.php:242 
+#: templates/reports/pro-report-default.php:261 
+#: templates/reports/pro-report-modern.php:272
+msgid "Last 30 Days"
+msgstr "Derniers 30 Jours"
+
+#: templates/reports/pro-report-basic.php:243 
+#: templates/reports/pro-report-default.php:262 
+#: templates/reports/pro-report-modern.php:273
+msgid "Last 45 Days"
+msgstr "Derniers 45 Jours"
+
+#: templates/reports/pro-report-basic.php:244 
+#: templates/reports/pro-report-default.php:263 
+#: templates/reports/pro-report-modern.php:274
+msgid "Last 60 Days"
+msgstr "Derniers 60 Jours"
+
+#: templates/reports/pro-report-basic.php:240 
+#: templates/reports/pro-report-default.php:259 
+#: templates/reports/pro-report-modern.php:270
+msgid "Last 7 Days"
+msgstr "Derniers 7 Jours"
+
+#: templates/reports/pro-report-basic.php:493 
+#: templates/reports/pro-report-default.php:516 
+#: templates/reports/pro-report-modern.php:527
+msgid "Last check Time"
+msgstr "Dernière vérification"
+
+#: class/class-mainwp-pro-reports-plugin.php:73 
+#: class/class-mainwp-pro-reports-plugin.php:93
+msgid "Last Report"
+msgstr "Dernier Rapport"
+
+#: templates/reports/pro-report-basic.php:484 
+#: templates/reports/pro-report-default.php:507 
+#: templates/reports/pro-report-modern.php:518
+msgid "Lighthouse"
+msgstr "Lighthouse"
+
+#: templates/reports/pro-report-basic.php:220 
+#: templates/reports/pro-report-default.php:233 
+#: templates/reports/pro-report-modern.php:244
+msgid "Lighthouse Performance"
+msgstr "Performance Lighthouse"
+
+#: class/class-mainwp-pro-reports-plugin.php:74 
+#: class/class-mainwp-pro-reports-plugin.php:94
+msgid "Log Start"
+msgstr "Début journal"
+
+#: templates/reports/pro-report-basic.php:450 
+#: templates/reports/pro-report-default.php:474 
+#: templates/reports/pro-report-modern.php:485
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#. Author of the plugin
+msgid "MainWP"
+msgstr "MainWP"
+
+#. Name of the plugin
+msgid "MainWP Pro Reports Extension"
+msgstr "Extension MainWP Pro Reports"
+
+#. Description of the plugin
+msgid ""
+"MainWP Pro Reports Extension allows you to generate pro reports for your "
+"child sites. Requires MainWP Dashboard."
+msgstr ""
+"L'extension MainWP Pro Reports vous permet de générer des rapports "
+"professionnels pour vos sites enfants. Nécessite le tableau de bord MainWP."
+
+#: templates/reports/pro-report-default.php:253 
+#: templates/reports/pro-report-modern.php:264
+msgid "Monitoring Period"
+msgstr "Période de surveillance"
+
+#: templates/reports/pro-report-basic.php:178 
+#: templates/reports/pro-report-default.php:191 
+#: templates/reports/pro-report-modern.php:201
+msgid "MySQL Version"
+msgstr "Version MySQL"
+
+#: templates/reports/pro-report-basic.php:304 
+#: templates/reports/pro-report-default.php:322 
+#: templates/reports/pro-report-modern.php:333
+msgid "New Version"
+msgstr "Nouvelle version"
+
+#: templates/reports/pro-report-basic.php:433 
+#: templates/reports/pro-report-default.php:457 
+#: templates/reports/pro-report-modern.php:468
+msgid "New Visits"
+msgstr "Nouvelles visites"
+
+#: class/class-mainwp-pro-reports-plugin.php:148
+msgid "No"
+msgstr "Non"
+
+#: templates/reports/pro-report-basic.php:303 
+#: templates/reports/pro-report-default.php:321 
+#: templates/reports/pro-report-modern.php:332
+msgid "Old Version"
+msgstr "Ancienne version"
+
+#: mainwp-pro-reports-extension.php:159
+msgid "Once every 5 minutes"
+msgstr "Toutes les 5 minutes"
+
+#: class/class-mainwp-pro-reports-plugin.php:165
+msgid "Open Child Reports"
+msgstr "Ouvrir le rapport du site enfant"
+
+#: templates/reports/pro-report-basic.php:239 
+#: templates/reports/pro-report-default.php:258 
+#: templates/reports/pro-report-modern.php:269
+msgid "Overall"
+msgstr "Globalement"
+
+#: class/class-mainwp-pro-reports-plugin.php:163
+msgid "Overview"
+msgstr "Aperçu"
+
+#: templates/reports/pro-report-basic.php:429 
+#: templates/reports/pro-report-default.php:453 
+#: templates/reports/pro-report-modern.php:464
+msgid "Page Views"
+msgstr "Vues de page"
+
+#: templates/reports/pro-report-basic.php:430 
+#: templates/reports/pro-report-default.php:454 
+#: templates/reports/pro-report-modern.php:465
+msgid "Page Visits"
+msgstr "Visites de page"
+
+#: templates/reports/pro-report-basic.php:489 
+#: templates/reports/pro-report-default.php:512 
+#: templates/reports/pro-report-modern.php:523
+msgid "Performance score"
+msgstr "Score de Performance"
+
+#: templates/reports/pro-report-basic.php:177 
+#: templates/reports/pro-report-default.php:190 
+#: templates/reports/pro-report-modern.php:200
+msgid "PHP Version"
+msgstr "Version PHP"
+
+#: templates/reports/pro-report-basic.php:331 
+#: templates/reports/pro-report-default.php:349 
+#: templates/reports/pro-report-modern.php:360
+msgid "Plugin"
+msgstr "Extension"
+
+#: templates/reports/pro-report-basic.php:193 
+#: templates/reports/pro-report-default.php:206 
+#: templates/reports/pro-report-modern.php:217
+msgid "Plugins Updated"
+msgstr "Extensions mises à jour"
+
+#: templates/reports/pro-report-basic.php:326 
+#: templates/reports/pro-report-default.php:344 
+#: templates/reports/pro-report-modern.php:355
+msgid "Plugins Updates"
+msgstr "Mises à jour d'Extensions"
+
+#: templates/reports/pro-report-basic.php:266 
+#: templates/reports/pro-report-default.php:285 
+#: templates/reports/pro-report-modern.php:296
+msgid "Scanned on"
+msgstr "Scanné le"
+
+#: templates/reports/pro-report-basic.php:261 
+#: templates/reports/pro-report-default.php:280 
+#: templates/reports/pro-report-modern.php:291
+msgid "Security"
+msgstr "Sécurité"
+
+#: templates/reports/pro-report-basic.php:188 
+#: templates/reports/pro-report-default.php:201 
+#: templates/reports/pro-report-modern.php:212
+msgid "Security Scans"
+msgstr "Scans de sécurité"
+
+#: class/class-mainwp-pro-reports-plugin.php:160
+msgid "See more options"
+msgstr "Voir plus d'options"
+
+#: templates/reports/pro-report-basic.php:492 
+#: templates/reports/pro-report-default.php:515 
+#: templates/reports/pro-report-modern.php:526
+msgid "Seo score"
+msgstr "Score SEO"
+
+#: class/class-mainwp-pro-reports-plugin.php:68 
+#: class/class-mainwp-pro-reports-plugin.php:88
+msgid "Site"
+msgstr "Site"
+
+#: templates/reports/pro-report-basic.php:267 
+#: templates/reports/pro-report-default.php:286 
+#: templates/reports/pro-report-modern.php:297
+msgid "Status"
+msgstr "Statut"
+
+#: templates/reports/pro-report-basic.php:359 
+#: templates/reports/pro-report-default.php:377 
+#: templates/reports/pro-report-modern.php:388
+msgid "Theme"
+msgstr "Thème"
+
+#: templates/reports/pro-report-basic.php:197 
+#: templates/reports/pro-report-default.php:210 
+#: templates/reports/pro-report-modern.php:221
+msgid "Themes Updated"
+msgstr "Thèmes mis à jour"
+
+#: templates/reports/pro-report-basic.php:354 
+#: templates/reports/pro-report-default.php:372 
+#: templates/reports/pro-report-modern.php:383
+msgid "Themes Updates"
+msgstr "Mises à jour des Thèmes"
+
+#: class/class-mainwp-pro-reports-plugin.php:167
+msgid "Unhide Plugin"
+msgstr "Afficher l'Extension"
+
+#: class/class-mainwp-pro-reports-plugin.php:175
+msgid "Update Plugin"
+msgstr "Mettre à jour l'Extension"
+
+#: templates/reports/pro-report-basic.php:302 
+#: templates/reports/pro-report-basic.php:330 
+#: templates/reports/pro-report-basic.php:358 
+#: templates/reports/pro-report-default.php:320 
+#: templates/reports/pro-report-default.php:348 
+#: templates/reports/pro-report-default.php:376 
+#: templates/reports/pro-report-modern.php:331 
+#: templates/reports/pro-report-modern.php:359 
+#: templates/reports/pro-report-modern.php:387
+msgid "Updated on"
+msgstr "Mis à jour le "
+
+#: templates/reports/pro-report-basic.php:235 
+#: templates/reports/pro-report-default.php:248 
+#: templates/reports/pro-report-modern.php:259
+msgid "Uptime Monitoring"
+msgstr "Surveillance de la disponibilité"
+
+#: class/class-mainwp-pro-reports-plugin.php:70 
+#: class/class-mainwp-pro-reports-plugin.php:90
+msgid "URL"
+msgstr "URL"
+
+#: class/class-mainwp-pro-reports-plugin.php:71 
+#: class/class-mainwp-pro-reports-plugin.php:91 
+#: templates/reports/pro-report-basic.php:332 
+#: templates/reports/pro-report-basic.php:360 
+#: templates/reports/pro-report-default.php:350 
+#: templates/reports/pro-report-default.php:378 
+#: templates/reports/pro-report-modern.php:361 
+#: templates/reports/pro-report-modern.php:389
+msgid "Version"
+msgstr "Version"
+
+#: templates/reports/pro-report-basic.php:174 
+#: templates/reports/pro-report-default.php:187 
+#: templates/reports/pro-report-modern.php:197
+msgid "Website"
+msgstr "Site web"
+
+#: templates/reports/pro-report-basic.php:182 
+#: templates/reports/pro-report-default.php:195 
+#: templates/reports/pro-report-modern.php:206
+msgid "Website Uptime"
+msgstr "Disponibilité du site web"
+
+#: templates/reports/pro-report-basic.php:428 
+#: templates/reports/pro-report-default.php:452 
+#: templates/reports/pro-report-modern.php:463
+msgid "Website Visits"
+msgstr "Visites du site web"
+
+#: templates/reports/pro-report-basic.php:268 
+#: templates/reports/pro-report-default.php:287 
+#: templates/reports/pro-report-modern.php:298
+msgid "Webtrust Status"
+msgstr "Statut Webtrust"
+
+#: templates/reports/pro-report-basic.php:298 
+#: templates/reports/pro-report-default.php:316 
+#: templates/reports/pro-report-modern.php:327
+msgid "WordPress Updates"
+msgstr "Mises à jour de Wordpress"
+
+#: templates/reports/pro-report-basic.php:175 
+#: templates/reports/pro-report-default.php:188 
+#: templates/reports/pro-report-modern.php:198
+msgid "WordPress Version"
+msgstr "Version de Wordpress"
+
+#: class/class-mainwp-pro-reports-plugin.php:148
+msgid "Yes"
+msgstr "Oui"

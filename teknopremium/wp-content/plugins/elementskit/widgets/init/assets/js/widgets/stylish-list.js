@@ -1,0 +1,1 @@
+!function(t,e){"use strict";ElementsKit_Helper.registerWidget("elementskit-stylish-list.default",(function(e){e.find(".ekit-stylish-list-content-wrapper").each((function(){let e=t(this),i=e.data("ekit-delay"),n=e.parent().data("ekit-animation");i!=undefined&&setTimeout((()=>{e.addClass("animated "+n).css("opacity",1)}),i)}))}))}(jQuery,window.elementorFrontend);

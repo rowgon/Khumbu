@@ -1,0 +1,24 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1" display-as-translated="1">csp_rules</custom-type>
+  </custom-types>
+  <admin-texts>
+    <key name="cps_hide_categories"/>
+    <key name="csp_cart_button_link"/>
+    <key name="csp_cart_button_text"/>
+    <key name="csp_enable_hide_pirce"/>
+    <key name="csp_enable_hide_pirce_guest"/>
+    <key name="csp_enable_hide_pirce_registered"/>
+    <key name="csp_enable_tire_price_table"/>
+    <key name="csp_enfore_min_max_qty"/>
+    <key name="csp_hide_cart_button"/>
+    <key name="csp_hide_price"/>
+    <key name="csp_hide_products"/>
+    <key name="csp_hide_user_role"/>
+    <key name="csp_max_qty_error_msg"/>
+    <key name="csp_min_qty_error_msg"/>
+    <key name="csp_price_text"/>
+    <key name="csp_range_msg"/>
+    <key name="csp_update_cart_error_msg"/>
+  </admin-texts>
+</wpml-config>

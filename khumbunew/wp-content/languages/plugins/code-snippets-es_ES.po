@@ -1,0 +1,1614 @@
+# Translation of Plugins - Code Snippets - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Code Snippets - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-09-04 07:24:20+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.1.0\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Code Snippets - Stable (latest release)\n"
+
+#: php/Settings/Settings_Fields.php:142
+msgid "Use this button to manually clear snippets caches. Worth doing before switching to an older version of the plugin, if your site uses a persistent object cache."
+msgstr "Usa este botón para vaciar manualmente las cachés de fragmentos de código. Vale la pena hacerlo antes de cambiar a una versión anterior del plugin, si tu sitio usa una caché persistente de objetos."
+
+#: php/Utils/i18n.php:30
+msgid "HTML output at the end of the &amp;lt;body&amp;gt; tag"
+msgstr "Salida HTML al final de la etiqueta &amp;lt;body&amp;gt;"
+
+#: php/Utils/i18n.php:29
+msgid "HTML output at the start of the &amp;lt;body&amp;gt; tag"
+msgstr "Salida HTML al inicio de la etiqueta &amp;lt;body&amp;gt;"
+
+#: php/Utils/i18n.php:28
+msgid "HTML output in the &amp;lt;head&amp;gt; section"
+msgstr "Salida HTML en la sección &amp;lt;head&amp;gt;"
+
+#: php/Utils/i18n.php:27
+msgid "JavaScript loaded at the end of the &amp;lt;body&amp;gt; tag"
+msgstr "JavaScript cargado al final de la etiqueta &amp;lt;body&amp;gt;"
+
+#: php/Settings/Version_Switch.php:390
+msgid "Select a version…"
+msgstr "Seleccionar una versión…"
+
+#: php/Settings/Version_Switch.php:382
+msgid "Version switch in progress. Please wait…"
+msgstr "Cambio de versión en curso. Espera, por favor…"
+
+#: php/Settings/Settings_Fields.php:236
+msgid "snippets"
+msgstr "fragmentos de código"
+
+#: php/Settings/Settings_Fields.php:235
+msgid "Number of snippets to show in the admin bar Active/Inactive menus before paginating."
+msgstr "Número de fragmentos de código que se muestran en los menús Activo/Inactivo de la barra de administración antes de paginar."
+
+#: php/Settings/Settings_Fields.php:233
+msgid "Admin Bar Snippets Per Page"
+msgstr "Fragmentos de código por página en la barra de administración"
+
+#: php/Settings/Settings_Fields.php:229
+msgid "Show a Snippets menu in the admin bar for quick access to snippets."
+msgstr "Mostrar un menú de fragmentos de código en la barra de administración para acceder rápidamente a ellos."
+
+#: php/Settings/Settings_Fields.php:227
+msgid "Enable Admin Bar Menu"
+msgstr "Activar el menú en la barra de administración"
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:928
+msgid "Stack trace for the most recent snippet code error."
+msgstr "Traza de pila del error de código más reciente del fragmento."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:915
+msgid "Timestamp of when the snippet was last active, if available."
+msgstr "Marca de tiempo de la última vez que el fragmento estuvo activo, si está disponible."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:892
+msgid "Whether the snippet is locked from modification or deletion."
+msgstr "Indica si el fragmento está bloqueado para su modificación o eliminación."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:888
+msgid "Whether the snippet is marked as deleted."
+msgstr "Indica si el fragmento está marcado como eliminado."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:629
+msgid "The snippet could not be restored."
+msgstr "No se ha podido restaurar el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:609
+msgid "The snippet could not be trashed."
+msgstr "No se ha podido enviar el fragmento de código a la papelera."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:87
+msgid "Sort direction."
+msgstr "Dirección de ordenación."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:80
+msgid "Sort collection by object attribute."
+msgstr "Ordenar la colección por un atributo del objeto."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:67
+msgid "List of snippet types to exclude from the response."
+msgstr "Lista de tipos de fragmentos que se deben excluir de la respuesta."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:59
+msgid "Filter snippets by activation status."
+msgstr "Filtrar fragmentos por estado de activación."
+
+#: php/REST_API/Snippets/Recently_Active_REST_Controller.php:68
+msgid "Clear the recent list for network-wide snippets instead of site-wide."
+msgstr "Vaciar la lista de fragmentos recientes de toda la red en lugar de solo del sitio."
+
+#: php/REST_API/Snippets/Recently_Active_REST_Controller.php:49
+msgid "Fetch the recent list for network-wide snippets instead of site-wide."
+msgstr "Obtener la lista de fragmentos recientes de toda la red en lugar de solo del sitio."
+
+#: php/REST_API/Snippets/Preferences_REST_Controller.php:77
+msgid "Whether snippet lists display as a grid of cards or a table."
+msgstr "Si las listas de fragmentos de código se muestran como una cuadrícula de tarjetas o como una tabla."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:54
+msgid "Snippet data to import"
+msgstr "Datos del fragmento que se van a importar"
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:351
+msgid "Snippet revision number."
+msgstr "Número de revisión del fragmento."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:347
+msgid "Date and time when the snippet was last created, in ISO format."
+msgstr "Fecha y hora de la última creación del fragmento, en formato ISO."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:331
+msgid "Title of cloud snippet."
+msgstr "Título del fragmento en la nube."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:327
+msgid "Cloud snippet identifier."
+msgstr "Identificador del fragmento en la nube."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:306
+msgid "Failed to create new snippet."
+msgstr "Error al crear el fragmento de código nuevo."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:290
+msgid "Cloud snippet not found."
+msgstr "Fragmento de código en la nube no encontrado."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:271
+msgid "Could not fetch featured snippets."
+msgstr "No se pudieron obtener los fragmentos de código destacados."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:248
+msgid "Could not fetch snippets."
+msgstr "No se pudieron obtener los fragmentos de código."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:175
+msgid "Cloud snippet ID."
+msgstr "ID del fragmento en la nube."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:131
+msgid "Treat the search query as the name of a CodeVault instead of a search term."
+msgstr "Tratar la consulta de búsqueda como el nombre de un CodeVault en lugar de un término de búsqueda."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:126
+msgid "Search query."
+msgstr "Consulta de búsqueda."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:82
+msgid "Filter by status ID."
+msgstr "Filtrar por ID de estado."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:77
+msgid "Filter by language/type ID."
+msgstr "Filtrar por ID de idioma/tipo."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:72
+msgid "Filter by category ID."
+msgstr "Filtrar por ID de categoría."
+
+#: php/Model/Snippet.php:405
+msgid "Body content"
+msgstr "Contenido del cuerpo"
+
+#: php/Migration/Export/Download_Code.php:133
+msgid "The snippet download archive could not be read."
+msgstr "No se ha podido leer el archivo de descarga del fragmento."
+
+#: php/Migration/Export/Download_Code.php:105
+msgid "The snippet download archive could not be created."
+msgstr "No se ha podido crear el archivo de descarga del fragmento."
+
+#: php/Migration/Export/Download_Code.php:92
+msgid "The temporary download archive could not be created."
+msgstr "No se ha podido crear el archivo temporal de descarga."
+
+#: php/Migration/Export/Download_Code.php:82
+msgid "Multiple snippet downloads require the ZipArchive PHP extension."
+msgstr "La descarga de múltiples fragmentos requiere la extensión ZipArchive de PHP."
+
+#: php/Integration/Promotions/Other/Elementor_Editor.php:73
+msgid "Manage CSS snippets"
+msgstr "Gestionar fragmentos de código CSS"
+
+#: php/Integration/Promotions/Other/Elementor_Editor.php:56
+msgid "Manage your custom styles"
+msgstr "Gestionar tus estilos personalizados"
+
+#: php/Integration/Promotions/Notices/WP_Headers_And_Footers.php:18
+msgid "Insert Headers and Footers"
+msgstr "Insertar cabeceras y pies de página"
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:255
+msgid "Manage your snippets"
+msgstr "Gestiona tus fragmentos de código"
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:246
+msgid "Migrate to Code Snippets"
+msgstr "Migrar a Code Snippets"
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:179
+msgid "Code Snippets Promotion"
+msgstr "Promoción de Code Snippets"
+
+#. translators: %s: plugin name.
+#: php/Integration/Promotions/Notices/Promotion_Base.php:61
+#: php/Integration/Promotions/Other/Elementor_Editor.php:69
+msgid "Code Snippets provides a powerful and user-friendly alternative to \"%s\", with cloud sync, advanced features, and an intuitive interface."
+msgstr "Code Snippets ofrece una alternativa potente y fácil de usar a «%s», con sincronización en la nube, funciones avanzadas y una interfaz intuitiva."
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:51
+msgid "Clean up your plugin list today"
+msgstr "Limpia tu lista de plugins hoy"
+
+#: php/Integration/Promotions/Notices/Insert_PHP_Code_Snippet.php:52
+#: php/Integration/Promotions/Notices/WP_Headers_And_Footers.php:47
+msgid "Looking for a better way to manage your custom code?"
+msgstr "¿Buscas una mejor manera de gestionar tu código personalizado?"
+
+#: php/Integration/Promotions/Notices/Insert_PHP.php:18
+msgid "Woody Code Snippets"
+msgstr "Woody Code Snippets"
+
+#: php/Integration/Promotions/Notices/Insert_HTML_Snippet.php:18
+msgid "Insert HTML Snippet"
+msgstr "Insertar fragmento HTML"
+
+#: php/Integration/Promotions/Notices/Header_Footer_Code_Manager.php:52
+#: php/Integration/Promotions/Notices/Insert_HTML_Snippet.php:50
+#: php/Integration/Promotions/Notices/Insert_PHP.php:53
+msgid "Move your functionality to Code Snippets and reduce your dependency on third-party plugins."
+msgstr "Traslada tu funcionalidad a Code Snippets y reduce tu dependencia de plugins de terceros."
+
+#: php/Integration/Promotions/Notices/Header_Footer_Code.php:56
+msgid "Why risk manual edits? Migrate to Code Snippets Pro to get enterprise-grade Safe Mode that automatically catches errors before they go live."
+msgstr "¿Por qué arriesgarte con ediciones manuales? Migra a Code Snippets Pro para obtener un modo seguro de nivel empresarial que detecta automáticamente los errores antes de que se publiquen."
+
+#: php/Integration/Promotions/Notices/Header_Footer_Code.php:47
+msgid "Stop worrying about breaking your site"
+msgstr "Deja de preocuparte por romper tu sitio"
+
+#: php/Integration/Promotions/Notices/Header_Footer_Code.php:18
+msgid "Head & Footer Code"
+msgstr "Código de cabecera y pie de página"
+
+#: php/Integration/Promotions/Notices/Elementor.php:63
+msgid "Move your custom logic into a dedicated dashboard built for professionals. Experience a cleaner workflow with advanced security and global organization."
+msgstr "Traslada tu lógica personalizada a un Escritorio dedicado diseñado para profesionales. Disfruta de un flujo de trabajo más limpio con seguridad avanzada y organización global."
+
+#: php/Integration/Promotions/Notices/Elementor.php:54
+msgid "Upgrade to the industry standard for code management"
+msgstr "Actualiza al estándar del sector en gestión de código"
+
+#: php/Integration/Promotions/Notices/Elementor.php:18
+#: php/Integration/Promotions/Other/Elementor_Editor.php:70
+msgid "Elementor Custom Code"
+msgstr "Código personalizado de Elementor"
+
+#: php/Integration/Admin_Bar.php:512
+msgid "Next"
+msgstr "Siguiente"
+
+#: php/Integration/Admin_Bar.php:507
+msgid "Page"
+msgstr "Página"
+
+#: php/Integration/Admin_Bar.php:506
+msgid "Back"
+msgstr "Atrás"
+
+#. translators: %d: number of inactive snippets.
+#: php/Integration/Admin_Bar.php:416
+msgid "Inactive snippets (%d)"
+msgstr "Fragmentos inactivos (%d)"
+
+#. translators: %d: number of active snippets.
+#: php/Integration/Admin_Bar.php:383
+msgid "Active snippets (%d)"
+msgstr "Fragmentos activos (%d)"
+
+#: php/Integration/Admin_Bar.php:264
+msgctxt "snippet type"
+msgid "Conditions (COND)"
+msgstr "Condiciones (COND)"
+
+#: php/Integration/Admin_Bar.php:263
+msgctxt "snippet type"
+msgid "Scripts (JS)"
+msgstr "Scripts (JS)"
+
+#: php/Integration/Admin_Bar.php:262
+msgctxt "snippet type"
+msgid "Styles (CSS)"
+msgstr "Estilos (CSS)"
+
+#: php/Integration/Admin_Bar.php:261
+msgctxt "snippet type"
+msgid "Content (HTML)"
+msgstr "Contenido (HTML)"
+
+#: php/Integration/Admin_Bar.php:260
+msgctxt "snippet type"
+msgid "Functions (PHP)"
+msgstr "Funciones (PHP)"
+
+#: php/Integration/Admin_Bar.php:236
+msgctxt "snippets"
+msgid "Inactive Snippets"
+msgstr "Fragmentos inactivos"
+
+#: php/Integration/Admin_Bar.php:235
+msgctxt "snippets"
+msgid "Active Snippets"
+msgstr "Fragmentos activos"
+
+#: php/Integration/Admin_Bar.php:234
+msgctxt "snippets"
+msgid "All Snippets"
+msgstr "Todos los fragmentos"
+
+#: php/Integration/Admin_Bar.php:172
+msgid "Snippets Safe Mode Active"
+msgstr "Modo seguro de fragmentos activo"
+
+#: php/Flat_Files/Snippet_Files.php:610
+msgid "Enable File-Based Execution"
+msgstr "Activar la ejecución basada en archivos"
+
+#: php/Core/deactivation-notice.php:55
+msgid "Code Snippets duplicate plugin notice"
+msgstr "Aviso de plugin duplicado de Code Snippets"
+
+#: php/Core/deactivation-notice.php:34
+msgid "Code Snippets PHP version notice"
+msgstr "Aviso de versión de PHP de Code Snippets"
+
+#: php/Admin/Menus/Welcome_Menu.php:34 dist/welcome.js:2
+msgid "Resources and Updates"
+msgstr "Recursos y actualizaciones"
+
+#: php/Admin/Menus/Settings_Menu.php:266
+msgid "Settings tabs"
+msgstr "Pestañas de ajustes"
+
+#: php/Admin/Menus/Settings_Menu.php:102
+msgid "Refreshing…"
+msgstr "Actualizando…"
+
+#: php/Admin/Menus/Settings_Menu.php:99
+msgid "Processing version switch. Please wait…"
+msgstr "Procesando el cambio de versión. Espera, por favor…"
+
+#: php/Admin/Menus/Settings_Menu.php:98
+msgid "Switching…"
+msgstr "Cambiando…"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:182
+msgid "Truncate long snippet names and descriptions"
+msgstr "Truncar nombres y descripciones largos de fragmentos"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:172
+msgid "Table Options"
+msgstr "Opciones de la tabla"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:61
+msgid "Columns"
+msgstr "Columnas"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Bulk_Download.php:94
+msgid "You are not allowed to download network snippets."
+msgstr "No tienes permiso para descargar fragmentos de red."
+
+#: php/Admin/Menus/Manage/Manage_Menu_Bulk_Download.php:55
+msgid "No snippets were selected for download."
+msgstr "No se ha seleccionado ningún fragmento para descargar."
+
+#: php/Admin/Menus/Manage/Manage_Menu_Bulk_Download.php:41
+msgid "The download request is no longer valid. Please refresh and try again."
+msgstr "La solicitud de descarga ya no es válida. Actualiza la página y vuelve a intentarlo."
+
+#: php/Admin/Menus/Manage/Manage_Menu_Bulk_Download.php:34
+msgid "You are not allowed to download these snippets."
+msgstr "No tienes permiso para descargar estos fragmentos."
+
+#: php/Integration/Promotions/Notices/Insert_PHP_Code_Snippet.php:20
+#: php/REST_API/Import/Plugins/Insert_PHP_Code_Snippet_Plugin_Importer.php:41
+msgid "Insert PHP Code Snippet"
+msgstr "Insertar Code Snippet de PHP"
+
+#: php/REST_API/Import/Plugins/Insert_Headers_And_Footers_Plugin_Importer.php:50
+msgid "WPCode (Insert Headers and Footers)"
+msgstr "WPCode (insertar cabeceras y pies de página)"
+
+#: php/Integration/Promotions/Notices/Header_Footer_Code_Manager.php:20
+#: php/REST_API/Import/Plugins/Header_Footer_Code_Manager_Plugin_Importer.php:38
+msgid "Header Footer Code Manager"
+msgstr "Gestor de código de cabecera y pie de página"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:482
+msgid "Unknown upload error."
+msgstr "Error de subida desconocido."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:479
+msgid "A PHP extension stopped the file upload."
+msgstr "Una extensión de PHP detuvo la subida del archivo."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:478
+msgid "Failed to write file to disk."
+msgstr "No se ha podido escribir el archivo en el disco."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:477
+msgid "Missing a temporary folder."
+msgstr "Falta una carpeta temporal."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:476
+msgid "No file was uploaded."
+msgstr "No se ha subido ningún archivo."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:475
+msgid "File was only partially uploaded."
+msgstr "El archivo solo se ha subido parcialmente."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:474
+msgid "File exceeds the MAX_FILE_SIZE directive."
+msgstr "El archivo excede la directiva MAX_FILE_SIZE."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:473
+msgid "File exceeds the upload_max_filesize directive."
+msgstr "El archivo excede la directiva upload_max_filesize."
+
+#. translators: %s: file name
+#: php/REST_API/Import/File_Import_REST_Controller.php:359
+msgid "Invalid XML in file %s"
+msgstr "XML no válido en el archivo %s"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:329
+#: php/REST_API/Import/File_Import_REST_Controller.php:389
+msgid "Untitled Snippet"
+msgstr "Fragmento de código sin título"
+
+#. translators: %s: file name
+#: php/REST_API/Import/File_Import_REST_Controller.php:315
+msgid "No snippets found in file %s"
+msgstr "No se han encontrado fragmentos de código en el archivo %s"
+
+#. translators: %1$s: file name, %2$s: error message
+#: php/REST_API/Import/File_Import_REST_Controller.php:309
+msgid "Invalid JSON in file %1$s: %2$s"
+msgstr "JSON no válido en el archivo %1$s: %2$s"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:287
+msgid "Unsupported file type."
+msgstr "Tipo de archivo no compatible."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:275
+msgid "File not found or is not a valid file."
+msgstr "Archivo no encontrado o no es un archivo válido."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:210
+msgid "No snippet data provided for import."
+msgstr "No se han proporcionado datos del fragmento de código para la importación."
+
+#. translators: %d: number of snippets
+#: php/REST_API/Import/File_Import_REST_Controller.php:175
+msgid "Found %d snippet ready for import."
+msgid_plural "Found %d snippets ready for import."
+msgstr[0] "Se ha encontrado %d fragmento de código listo para importar."
+msgstr[1] "Se han encontrado %d fragmentos de código listos para importar."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:166
+msgid "No valid snippets found in the uploaded files."
+msgstr "No se han encontrado fragmentos de código válidos en los archivos subidos."
+
+#. translators: %1$s: file name, %2$s: error message
+#: php/REST_API/Import/File_Import_REST_Controller.php:156
+msgid "Error parsing %1$s: %2$s"
+msgstr "Error al analizar %1$s: %2$s"
+
+#. translators: %s: file name
+#: php/REST_API/Import/File_Import_REST_Controller.php:147
+msgid "Invalid file type for %s. Only JSON and XML files are allowed."
+msgstr "Tipo de archivo no válido para %s. Solo se permiten archivos JSON y XML."
+
+#. translators: %1$s: file name, %2$s: error message
+#: php/REST_API/Import/File_Import_REST_Controller.php:136
+msgid "Upload error for file %1$s: %2$s"
+msgstr "Error de subida para el archivo %1$s: %2$s"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:118
+msgid "Invalid file upload data."
+msgstr "Datos de subida del archivo no válidos."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:108
+msgid "No files were uploaded."
+msgstr "No se ha subido ningún archivo."
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:98
+msgid "Cookie check failed"
+msgstr "Ha fallado la comprobación de cookies"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:65
+msgid "Whether to import to network table"
+msgstr "Si se debe importar a la tabla de la red"
+
+#: php/REST_API/Import/File_Import_REST_Controller.php:59
+msgid "Action to take when duplicate snippets are found"
+msgstr "Acción a realizar cuando se encuentren fragmentos de código duplicados"
+
+#: php/Settings/settings.php:116
+msgid "Version"
+msgstr "Versión"
+
+#: php/Settings/Settings_Fields.php:158
+msgid "Refresh Versions"
+msgstr "Actualizar versiones"
+
+#: php/Settings/Settings_Fields.php:147
+msgid "Enable the ability to switch or rollback versions of the Code Snippets core plugin."
+msgstr "Habilita la posibilidad de cambiar o revertir versiones del plugin principal Code Snippets."
+
+#: php/Settings/Settings_Fields.php:145
+msgid "Version Change"
+msgstr "Cambio de versión"
+
+#: php/Admin/Menus/Settings_Menu.php:103
+msgid "Refreshed!"
+msgstr "¡Actualizado!"
+
+#: php/Admin/Menus/Settings_Menu.php:101
+msgid "An error occurred while switching versions. Please try again."
+msgstr "Ha ocurrido un error al cambiar de versión. Por favor, inténtalo de nuevo."
+
+#: php/Admin/Menus/Settings_Menu.php:100
+msgid "An error occurred."
+msgstr "Ha ocurrido un error."
+
+#: php/Admin/Menus/Settings_Menu.php:97
+msgid "Please select a different version to switch to."
+msgstr "Por favor, selecciona una versión diferente a la que cambiar."
+
+#: php/Settings/Version_Switch.php:492
+msgid "Switching versions may cause compatibility issues. Always backup your site before switching versions."
+msgstr "Cambiar de versión puede causar problemas de compatibilidad. Haz siempre una copia de seguridad de tu sitio antes de cambiar de versión."
+
+#: php/Settings/Version_Switch.php:479
+msgid "Available versions updated successfully."
+msgstr "Versiones disponibles actualizadas correctamente."
+
+#: php/Settings/Version_Switch.php:473
+msgid "You do not have permission to manage options."
+msgstr "No tienes permiso para gestionar las opciones."
+
+#: php/Settings/Version_Switch.php:460
+msgid "Check for the latest available plugin versions from WordPress.org."
+msgstr "Comprueba las últimas versiones disponibles del plugin desde WordPress.org."
+
+#: php/Settings/Version_Switch.php:455
+msgid "Refresh Available Versions"
+msgstr "Actualizar las versiones disponibles"
+
+#: php/Settings/Settings_Fields.php:153 php/Settings/Version_Switch.php:411
+msgid "Switch Version"
+msgstr "Cambiar de versión"
+
+#: php/Settings/Version_Switch.php:399
+msgid " (Current)"
+msgstr " (Actual)"
+
+#: php/Settings/Version_Switch.php:387
+msgid "Switch to Version:"
+msgstr "Cambiar a la versión:"
+
+#: php/Settings/Version_Switch.php:376
+msgid "Current Version:"
+msgstr "Versión actual:"
+
+#. translators: %s: new version number.
+#: php/Settings/Version_Switch.php:352
+msgid "Successfully switched to version %s. Please refresh the page to see changes."
+msgstr "Cambiado correctamente a la versión %s. Por favor, actualiza la página para ver los cambios."
+
+#: php/Settings/Version_Switch.php:335
+msgid "Already on the specified version."
+msgstr "Ya estás en la versión especificada."
+
+#: php/Settings/Version_Switch.php:324 php/Settings/Version_Switch.php:429
+msgid "You do not have permission to update plugins."
+msgstr "No tienes permiso para actualizar plugins."
+
+#: php/Settings/Version_Switch.php:302
+msgid "Failed to switch versions. Please try again."
+msgstr "No se ha podido cambiar de versión. Por favor, inténtalo de nuevo."
+
+#: php/Settings/Version_Switch.php:159
+msgid "Invalid version specified."
+msgstr "La versión especificada no es válida."
+
+#: php/Settings/Version_Switch.php:142 php/Settings/Version_Switch.php:435
+msgid "No target version specified."
+msgstr "No se ha especificado ninguna versión de destino."
+
+#: php/Settings/Settings_Fields.php:272
+msgctxt "unit"
+msgid "px"
+msgstr "px"
+
+#: php/Flat_Files/Snippet_Files.php:612
+msgid "Snippets will be executed directly from files instead of the database."
+msgstr "Los fragmentos se ejecutarán directamente desde archivos en lugar de desde la base de datos."
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:62 dist/edit.js:2
+#: dist/manage.js:2
+msgid "Active"
+msgstr "Activo"
+
+#: php/Settings/Version_Switch.php:491 dist/manage.js:2
+msgid "Warning:"
+msgstr "Aviso:"
+
+#: php/Utils/i18n.php:13
+msgid "Ok"
+msgstr "Aceptar"
+
+#: php/Settings/Settings_Fields.php:214
+msgid "Hide notices inviting you to upgrade to Code Snippets Pro."
+msgstr "Ocultar los avisos que te invitan a actualizar a Code Snippets Pro."
+
+#: php/Settings/Settings_Fields.php:212
+msgid "Hide Upgrade Notices"
+msgstr "Ocultar avisos de actualización"
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:920
+msgid "Error message if the snippet code could not be parsed."
+msgstr "Mensaje de error si no se ha podido analizar el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:880
+msgid "Identifier of condition linked to this snippet."
+msgstr "Identificador de la condición enlazada a este fragmento de código."
+
+#: php/Model/Snippet.php:415
+msgid "Footer scripts"
+msgstr "Scripts del pie de página"
+
+#: php/Model/Snippet.php:413
+msgid "Head scripts"
+msgstr "Scripts de la cabecera"
+
+#. translators: %d: snippet identifier.
+#. translators: %s: snippet identifier.
+#: php/Integration/Admin_Bar.php:109 php/Model/Snippet.php:331 dist/manage.js:2
+msgid "Snippet #%d"
+msgstr "Fragmento de código #%d"
+
+#. translators: %s: URL to Code Snippets Pro Docs
+#: php/Admin/Contextual_Help.php:163
+msgid "If you're not sure about the types of snippets you can add, take a look at the <a href=\"%s\">Code Snippets Pro Docs</a> for inspiration."
+msgstr "Si no tienes seguridad acerca de los tipos de fragmentos de código que puedes añadir, echa un vistazo a la <a href=\"%s\">documentación de Code Snippets Pro</a> para inspirarte."
+
+#. translators: %s: URL to Code Snippets Pro Docs
+#: php/Admin/Contextual_Help.php:147
+msgid "You can find out how to enable safe mode in the <a href=\"%s\">Code Snippets Pro Docs</a>."
+msgstr "Puedes descubrir cómo activar el modo seguro en la <a href=\"%s\">documentación de Code Snippets Pro</a>."
+
+#. translators: %d: number of snippets
+#: php/REST_API/Import/File_Import_REST_Controller.php:245
+msgid "Successfully imported %d snippet."
+msgid_plural "Successfully imported %d snippets."
+msgstr[0] "Se ha importado correctamente %d fragmento de código."
+msgstr[1] "Se han importado correctamente %d fragmentos de código."
+
+#: php/Admin/Menus/Edit_Menu.php:69 dist/edit.js:2
+msgid "Create New Snippet"
+msgstr "Crear un nuevo fragmento de código"
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:185
+msgid "Code Snippets Logo"
+msgstr "Logotipo de Code Snippets"
+
+#: php/Admin/Menus/Welcome_Menu.php:33
+msgctxt "menu label"
+msgid "What's New"
+msgstr "Novedades"
+
+#: php/Settings/settings.php:324
+msgid "Successfully reset snippets caches."
+msgstr "Restablecidas correctamente las cachés de fragmentos."
+
+#: php/Settings/Settings_Fields.php:140
+msgid "Reset Caches"
+msgstr "Restablecer cachés"
+
+#: php/Settings/settings.php:302
+msgid "Successfully performed database table upgrade."
+msgstr "Realizada correctamente la actualización de la tabla de la base de datos."
+
+#: php/Settings/settings.php:110
+msgid "Debug"
+msgstr "Depurar"
+
+#: php/Settings/Settings_Fields.php:137
+msgid "Use this button to manually upgrade the Code Snippets database table. This action will only affect the snippets table and should be used only when necessary."
+msgstr "Utiliza este botón para actualizar manualmente la tabla de la base de datos de Code Snippets. Esta acción solo afectará a la tabla de fragmentos y solo debe utilizarse cuando sea necesario."
+
+#: php/Settings/Settings_Fields.php:136
+msgid "Upgrade Database Table"
+msgstr "Actualizar tabla de base de datos"
+
+#: php/Settings/Settings_Fields.php:134
+msgid "Database Table Upgrade"
+msgstr "Actualización de la tabla de la base de datos"
+
+#: php/Admin/Bootstrap_Admin.php:194
+msgid "Community"
+msgstr "Comunidad"
+
+#: php/Admin/Bootstrap_Admin.php:188
+msgid "Docs and Support"
+msgstr "Documentación y soporte"
+
+#: php/Admin/Menus/Manage/Manage_Menu.php:93
+msgctxt "top-level menu label"
+msgid "Go Pro"
+msgstr "Hazte Pro"
+
+#: php/Integration/Promotions/Notices/Promotion_Base.php:277
+#: php/Integration/Promotions/Other/Elementor_Editor.php:76 dist/edit.js:2
+msgid "Learn more"
+msgstr "Saber más"
+
+#: php/Flat_Files/Snippet_Files.php:606
+msgid "Learn more."
+msgstr "Saber más."
+
+#: php/Utils/i18n.php:55
+msgid "Select a snippet to display"
+msgstr "Selecciona un fragmento de código para mostrar"
+
+#: php/Settings/Settings_Fields.php:270 php/Utils/i18n.php:54
+msgid "Font Size"
+msgstr "Tamaño de la fuente"
+
+#: php/Utils/i18n.php:53
+msgid "Height"
+msgstr "Altura"
+
+#: php/Utils/i18n.php:52
+msgid "Off"
+msgstr "Desactivado"
+
+#: php/Utils/i18n.php:51
+msgid "On"
+msgstr "Activado"
+
+#: php/Utils/i18n.php:50
+msgid "Word Wrap"
+msgstr "Ajuste de palabras"
+
+#: php/Utils/i18n.php:49
+msgid "Highlight Lines"
+msgstr "Resaltar líneas"
+
+#: php/Utils/i18n.php:48
+msgid "Scripts (JS)"
+msgstr "Scripts (JS)"
+
+#: php/Utils/i18n.php:47
+msgid "Styles (CSS)"
+msgstr "Estilos (CSS)"
+
+#: php/Utils/i18n.php:46
+msgid "Content (Mixed)"
+msgstr "Contenido (Mixto)"
+
+#: php/Utils/i18n.php:45
+msgid "Functions (PHP)"
+msgstr "Funciones (PHP)"
+
+#: php/Utils/i18n.php:44
+msgid "Code Snippet Source"
+msgstr "Origen del fragmento del código"
+
+#: php/Utils/i18n.php:41
+msgid "Select a snippet to show"
+msgstr "Selecciona un fragmento de código para mostrar"
+
+#: php/Utils/i18n.php:40
+msgid "Text Color"
+msgstr "Color del texto"
+
+#: php/Utils/i18n.php:39
+msgid "Justified"
+msgstr "Justificado"
+
+#: php/Utils/i18n.php:38
+msgid "Right"
+msgstr "Derecha"
+
+#: php/Utils/i18n.php:37
+msgid "Center"
+msgstr "Centrado"
+
+#: php/Utils/i18n.php:36
+msgid "Left"
+msgstr "Izquierda"
+
+#: php/Utils/i18n.php:35
+msgid "Alignment"
+msgstr "Alineación"
+
+#: php/Utils/i18n.php:34
+msgid "Processing Options"
+msgstr "Opciones de procesamiento"
+
+#: php/Utils/i18n.php:26
+msgid "JavaScript loaded in the site &amp;lt;head&amp;gt; section"
+msgstr "JavaScript cargado en la sección del sitio &amp;lt;head&amp;gt;"
+
+#: php/Utils/i18n.php:25
+msgid "Administration area stylesheet"
+msgstr "Hoja de estilos del área de administración"
+
+#: php/Utils/i18n.php:24
+msgid "Site front-end stylesheet"
+msgstr "Hoja de estilos del frontal del sitio"
+
+#: php/Utils/i18n.php:21
+msgid "View Full Script"
+msgstr "Ver el script completo"
+
+#: php/Utils/i18n.php:20
+msgid "View Full Stylesheet"
+msgstr "Ver la hoja de estilos completa"
+
+#: php/Utils/i18n.php:17
+msgid "Minify snippet output by removing whitespace and optimizing code to reduce load times."
+msgstr "Minimiza la salida de fragmento de código eliminando los espacios en blanco y optimizando el código para reducir los tiempos de carga."
+
+#: php/Utils/i18n.php:16
+msgid "Minify Snippet Output"
+msgstr "Minimizar el contenido del fragmento de código"
+
+#: php/Utils/i18n.php:12
+msgid "Thanks"
+msgstr "Gracias"
+
+#: php/Utils/i18n.php:11
+msgid "Notice"
+msgstr "Aviso"
+
+#: php/Utils/i18n.php:10
+msgid "Success"
+msgstr "Correcto"
+
+#: php/Utils/i18n.php:8
+msgid "You can now safely remove the free version of Code Snippets"
+msgstr "Ya puedes eliminar de forma segura la versión gratuita de Code Snippets"
+
+#: php/snippet-ops.php:415
+msgid "Could not activate snippet."
+msgstr "No ha sido posible activar el fragmento de código."
+
+#: php/snippet-ops.php:402
+msgid "Could not activate snippet: code did not pass validation."
+msgstr "No ha sido posible activar el fragmento: el código, no ha superado la validación."
+
+#. translators: %d: snippet identifier.
+#: php/snippet-ops.php:396
+msgid "Could not locate snippet with ID %d."
+msgstr "No ha sido posible localizar el fragmento de código con el ID %d."
+
+#: php/Settings/Settings_Fields.php:321
+msgid "Sublime Text"
+msgstr "Sublime Text"
+
+#: php/Settings/Settings_Fields.php:320
+msgid "Emacs"
+msgstr "Emacs"
+
+#: php/Settings/Settings_Fields.php:319
+msgid "Vim"
+msgstr "Vim"
+
+#: php/Settings/Settings_Fields.php:316
+msgid "The set of keyboard shortcuts to use in the code editor."
+msgstr "El conjunto de atajos de teclado a utilizar en el editor de código."
+
+#: php/Settings/Settings_Fields.php:314
+msgid "Keymap"
+msgstr "Mapa de teclas"
+
+#: php/Settings/Settings_Fields.php:286
+msgid "Allow folding functions or other blocks into a single line."
+msgstr "Permite agrupar funciones u otros bloques en una sola línea."
+
+#: php/Settings/Settings_Fields.php:284
+msgid "Code Folding"
+msgstr "Agrupar código"
+
+#: php/Settings/Settings_Fields.php:280
+msgid "Soft-wrap long lines of code instead of horizontally scrolling."
+msgstr "Ajuste suave de líneas largas de código en lugar de scroll horizontal."
+
+#: php/Settings/Settings_Fields.php:264
+msgid "The number of spaces to indent a block."
+msgstr "El número de espacios para aplicar sangría a un bloque."
+
+#: php/Settings/Settings_Fields.php:257 php/Settings/Settings_Fields.php:265
+msgctxt "unit"
+msgid "spaces"
+msgstr "espacios"
+
+#: php/Settings/Settings_Fields.php:206
+msgid "Disable syntax highlighting when displaying snippet code on the front-end."
+msgstr "Desactivar el resaltado de sintaxis al mostrar fragmentos de código en el frontal."
+
+#: php/Settings/Settings_Fields.php:204
+msgid "Disable Syntax Highlighter"
+msgstr "Desactivar el resaltado de sintaxis"
+
+#: php/Settings/Settings_Fields.php:188
+msgctxt "unit"
+msgid "rows"
+msgstr "filas"
+
+#: php/Settings/Settings_Fields.php:186
+msgid "Description Editor Height"
+msgstr "Altura del editor de la descripción"
+
+#: php/Settings/Editor_Preview.php:27 php/Settings/Settings_Fields.php:318
+msgid "Default"
+msgstr "Por defecto"
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:909
+msgid "Date and time when the snippet was last modified, in ISO format."
+msgstr "Fecha y hora de la última modificación del fragmento de código, en formato ISO."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:905
+msgid "If a network snippet, whether can be activated on discrete sites instead of network-wide."
+msgstr "Si se trata de un fragmento de código de red, puede activarse en sitios concretos en lugar de en toda la red."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:900
+msgid "Whether the snippet is network-wide instead of site-wide."
+msgstr "Si el fragmento de código es para toda la red en lugar de para todo el sitio."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:896
+msgid "Relative priority in which the snippet is executed."
+msgstr "Prioridad relativa en la que se ejecuta el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:884
+msgid "Snippet activation status."
+msgstr "Estado de activación del fragmento de código."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:343
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:876
+msgid "Context in which the snippet is executable."
+msgstr "Contexto en el que el fragmento de código es ejecutable."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:869
+msgid "List of tag categories the snippet belongs to."
+msgstr "Lista de categorías de etiquetas a las que pertenece el fragmento de código."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:339
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:865
+msgid "Executable snippet code."
+msgstr "Fragmento de código ejecutable."
+
+#: php/REST_API/Cloud/Cloud_Snippets_REST_Controller.php:335
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:861
+msgid "Descriptive text associated with snippet."
+msgstr "Texto descriptivo asociado al fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:857
+msgid "Descriptive title for the snippet."
+msgstr "Título descriptivo del fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:852
+msgid "Unique identifier for the snippet."
+msgstr "Identificador único para el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:716
+msgid "The snippet could not be deactivated."
+msgstr "No ha sido posible desactivar el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:601
+msgid "The snippet could not be deleted."
+msgstr "No ha sido posible eliminar el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:572
+msgid "The snippet could not be updated."
+msgstr "No ha sido posible actualizar el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:560
+msgid "Cannot update a snippet without a valid ID."
+msgstr "No se puede actualizar un fragmento de código sin un ID válido."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:541
+msgid "The snippet could not be created."
+msgstr "No ha sido posible crear el fragmento de código."
+
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:517
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:591
+#: php/REST_API/Snippets/Snippets_REST_Controller.php:651
+msgid "The snippet could not be found."
+msgstr "No ha sido posible encontrar el fragmento de código."
+
+#: php/Admin/Bootstrap_Admin.php:193
+msgid "Join our community on Facebook"
+msgstr "Únete a nuestra comunidad en Facebook"
+
+#: php/Settings/Settings_Fields.php:309
+msgid "Highlight the line that is currently being edited."
+msgstr "Resalta la línea que se está editando actualmente."
+
+#: php/Settings/Settings_Fields.php:308
+msgid "Highlight Active Line"
+msgstr "Resaltar la línea activa"
+
+#: php/Settings/Settings_Fields.php:200
+msgid "Modified (oldest first)"
+msgstr "Modificados (primero los más antiguos)"
+
+#: php/Settings/Settings_Fields.php:199
+msgid "Modified (latest first)"
+msgstr "Modificados (primero los más nuevos)"
+
+#: php/Settings/Settings_Fields.php:198
+msgid "Name (Z-A)"
+msgstr "Nombre (Z-A)"
+
+#: php/Settings/Settings_Fields.php:197
+msgid "Name (A-Z)"
+msgstr "Nombre (A-Z)"
+
+#: php/Settings/Settings_Fields.php:194
+msgid "Default way to order snippets on the All Snippets admin menu."
+msgstr "Modo por defecto de ordenar fragmentos de código en el menú de administración de «Todos los fragmentos de código»."
+
+#: php/Settings/Settings_Fields.php:192
+msgid "Snippets List Order"
+msgstr "Orden de la lista de fragmentos de código"
+
+#: php/Integration/Classic_Editor/mce-strings.php:32
+msgid "Show line numbers"
+msgstr "Mostrar números de línea"
+
+#: php/Integration/Classic_Editor/mce-strings.php:31
+msgid "Insert Snippet Source"
+msgstr "Inserta el código fuente del fragmento de código"
+
+#: php/Integration/Classic_Editor/mce-strings.php:30
+msgid "Snippet Source Code"
+msgstr "Código fuente del fragmento de código"
+
+#: php/Integration/Classic_Editor/mce-strings.php:28
+msgid "Enable shortcodes"
+msgstr "Activar shortcodes"
+
+#: php/Integration/Classic_Editor/mce-strings.php:27
+msgid "Apply formatting"
+msgstr "Aplicar formato"
+
+#: php/Integration/Classic_Editor/mce-strings.php:26
+msgid "Run PHP code"
+msgstr "Ejecutar código PHP"
+
+#: php/Integration/Classic_Editor/mce-strings.php:25
+msgid "Snippet"
+msgstr "Fragmento de código"
+
+#: php/Integration/Classic_Editor/mce-strings.php:24
+msgid "Insert Content Snippet"
+msgstr "Insertar fragmento de código de contenido"
+
+#: php/Integration/Classic_Editor/mce-strings.php:23
+msgid "Content Snippet"
+msgstr "Fragmento de código de contenido"
+
+#. translators: 1: snippet name, 2: snippet edit link
+#: php/Integration/Shortcodes.php:280
+msgid "%1$s is currently inactive. You can <a href=\"%2$s\">edit this snippet</a> to activate it and make it visible. This message will not appear in the published post."
+msgstr "%1$s está actualmente inactivo. Puedes <a href=\"%2$s\">editar este fragmento de código</a> para activarlo y hacerlo visible. Este mensaje no aparecerá en la entrada publicada."
+
+#. translators: %d: snippet ID.
+#: php/Integration/Shortcodes.php:92
+msgid "Could not load snippet with an invalid ID: %d."
+msgstr "No se pudo cargar el fragmento de código con un ID no válido: %d."
+
+#: php/Core/Upgrader.php:254
+msgid "Shortcode for inserting the current year into a post or page.."
+msgstr "Shortcode para insertar el año actual en una entrada o página…"
+
+#: php/Core/Upgrader.php:252
+msgid "Current year"
+msgstr "Año actual"
+
+#: php/Core/Upgrader.php:248
+msgid "Allows smiley conversion in obscure places."
+msgstr "Permite la conversión de emoticonos en lugares oscuros."
+
+#: php/Core/Upgrader.php:246
+msgid "Allow smilies"
+msgstr "Permitir emoticonos"
+
+#: php/Core/Upgrader.php:241
+msgid "Turns off the WordPress admin bar for everyone except administrators."
+msgstr "Desactiva la barra de administración de WordPress para todos excepto para los administradores."
+
+#: php/Core/Upgrader.php:239
+msgid "Disable admin bar"
+msgstr "Desactivar barra de administración"
+
+#: php/Core/Upgrader.php:235
+msgid "Makes sure that image and file uploads have lowercase filenames."
+msgstr "Asegura que las subidas de imágenes y archivos tengan nombres de archivo en minúsculas."
+
+#: php/Core/Upgrader.php:233
+msgid "Make upload filenames lowercase"
+msgstr "Hacer que los nombres de archivos subidos estén en minúsculas"
+
+#: php/Core/Upgrader.php:229
+msgid "This is a sample snippet. Feel free to use it, edit it, or remove it."
+msgstr "Esto es un fragmento de código de ejemplo. Siéntente libre de usarlo, editarlo o eliminarlo."
+
+#: php/Model/Snippet.php:411
+msgid "Front-end styles"
+msgstr "Estilos en portada"
+
+#: php/Model/Snippet.php:409
+msgid "Admin styles"
+msgstr "Estilos en la administración"
+
+#: php/Model/Snippet.php:407
+msgid "Footer content"
+msgstr "Contenido del pie de página"
+
+#: php/Model/Snippet.php:403
+msgid "Head content"
+msgstr "Contenido de la cabecera"
+
+#: php/Model/Snippet.php:399
+msgid "Single-use function"
+msgstr "Función de un solo uso"
+
+#: php/Model/Snippet.php:397
+msgid "Front-end function"
+msgstr "Función en portada"
+
+#: php/Model/Snippet.php:395
+msgid "Admin function"
+msgstr "Función de administración"
+
+#: php/Model/Snippet.php:393
+msgid "Global function"
+msgstr "Función global"
+
+#: php/Model/Snippet.php:401 dist/admin-bar.js:2 dist/edit.js:2
+#: dist/manage.js:2
+msgid "Content"
+msgstr "Contenido"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:64 dist/import.js:2
+#: dist/manage.js:2
+msgid "Type"
+msgstr "Tipo"
+
+#: php/Admin/Contextual_Help.php:145
+msgid "If something goes wrong with a snippet, and you can't use WordPress, you can cause all snippets to stop executing by turning on <strong>safe mode</strong>."
+msgstr "Si algo va mal con un fragmento de código, y no puedes usar WordPress, puedes hacer que dejen de ejecutarse todos los fragmentos de código activando el <strong>modo seguro</strong>."
+
+#: php/Admin/Bootstrap_Admin.php:245
+msgid "Active Snippets"
+msgstr "Fragmentos de código activos"
+
+#. translators: %s: formatted last modified date
+#: php/Admin/Bootstrap_Admin.php:228
+msgid "Last modified %s"
+msgstr "Modificado por última vez %s"
+
+#: php/Admin/Bootstrap_Admin.php:159 php/Admin/Menus/Manage/Manage_Menu.php:99
+#: dist/edit.js:2 dist/import.js:2 dist/manage.js:2 dist/settings.js:2
+#: dist/welcome.js:2
+msgid "Upgrade to Pro"
+msgstr "Actualiza a Pro"
+
+#: php/Admin/Bootstrap_Admin.php:158 dist/edit.js:2
+msgid "Upgrade to Code Snippets Pro"
+msgstr "Actualiza a Code Snippets Pro"
+
+#: php/Admin/Bootstrap_Admin.php:187
+msgid "Find out how to get support with Code Snippets"
+msgstr "Descubre cómo obtener soporte con Code Snippets"
+
+#: php/Admin/Bootstrap_Admin.php:141
+msgid "Change plugin settings"
+msgstr "Cambiar ajustes del plugin"
+
+#. translators: %s: Update PHP URL.
+#: php/Core/deactivation-notice.php:44
+msgid "Please <a href=\"%s\">upgrade your server to the latest version of PHP</a> to continue using Code Snippets."
+msgstr "Por favor, <a href=\"%s\">actualiza tu servidor a la última versión de PHP</a> para seguir usando Code Snippets."
+
+#. translators: %s: required PHP version number.
+#: php/Core/deactivation-notice.php:36
+msgid "Code Snippets requires PHP %s or later."
+msgstr "Code Snippets requiere PHP %s o posterior."
+
+#: php/Core/deactivation-notice.php:56
+msgid "Another version of Code Snippets appears to be installed. Deactivating this version."
+msgstr "Parece que está instalada otra versión de Code Snippets. Desactiva esta versión."
+
+#. translators: %s: PHP identifier name
+#: php/Utils/Validator.php:268
+msgid "Cannot redeclare %s."
+msgstr "No se puede redeclarar %s."
+
+#. translators: %s: PHP interface name
+#: php/Utils/Validator.php:264
+msgid "Cannot redeclare interface %s."
+msgstr "No se puede redeclarar la interfaz %s."
+
+#. translators: %s: PHP class name
+#: php/Utils/Validator.php:260
+msgid "Cannot redeclare class %s."
+msgstr "No se puede redeclarar la clase %s."
+
+#. translators: %s: PHP function name
+#: php/Utils/Validator.php:256
+msgid "Cannot redeclare function %s."
+msgstr "No se puede redeclarar la función %s."
+
+#: php/Utils/Validator.php:243 php/Utils/Validator.php:306
+msgid "Parse error: syntax error, unexpected end of snippet."
+msgstr "Error de análisis: error de sintaxis, final inesperado del fragmento de código."
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:67 dist/manage.js:2
+msgid "Modified"
+msgstr "Modificado"
+
+#. translators: 1: date format, 2: time format.
+#: php/Model/Snippet.php:547
+msgctxt "date and time format"
+msgid "%1$s at %2$s"
+msgstr "el %1$s a las %2$s"
+
+#: php/Model/Snippet.php:539
+msgid "Y/m/d"
+msgstr "d/m/Y"
+
+#. translators: %s: Human-readable time difference.
+#: php/Model/Snippet.php:537
+msgid "%s ago"
+msgstr "%s atrás"
+
+#: php/Admin/Contextual_Help.php:187
+msgid "Here you can load snippets from a code snippets export file into the database alongside existing snippets."
+msgstr "Aquí puedes cargar en la base de datos, junto a los fragmentos de código existentes, fragmentos de código desde un archivo de exportación de fragmentos de código."
+
+#: php/Admin/Contextual_Help.php:161
+msgid "Here you can add a new snippet, or edit an existing one."
+msgstr "Aquí puedes añadir un nuevo fragmento de código o editar uno existente."
+
+#: php/Admin/Contextual_Help.php:137
+msgid "Here you can manage your existing snippets and perform tasks on them such as activating, deactivating, deleting and exporting."
+msgstr "Aquí puedes gestionar tus fragmentos de código existentes y realizar tareas con ellos, como activarlos, desactivarlos, borrarlos y exportarlos."
+
+#: php/Admin/Contextual_Help.php:126
+msgid "Snippets are similar to plugins - they both extend and expand the functionality of WordPress. Snippets are more light-weight, just a few lines of code, and do not put as much load on your server. "
+msgstr "Los fragmentos de código son parecidos a los plugins - Ambos pueden ampliar e incrementar la funcionalidad de WordPress. Los fragmentos de código son más ligeros, solo tienen unas pocas líneas de código y no sobrecargan tu servidor."
+
+#: php/Admin/Menus/Edit_Menu.php:48
+msgctxt "menu label"
+msgid "Edit Snippet"
+msgstr "Editar el fragmento de código"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: code-snippets.php
+msgid "https://codesnippets.pro"
+msgstr "https://codesnippets.pro"
+
+#. Author of the plugin
+#: code-snippets.php
+msgid "Code Snippets Pro"
+msgstr "Code Snippets Pro"
+
+#: php/Admin/Menus/Settings_Menu.php:212 php/Integration/Admin_Bar.php:291
+#: dist/edit.js:2 dist/import.js:2 dist/manage.js:2 dist/settings.js:2
+#: dist/welcome.js:2
+msgctxt "snippets"
+msgid "Import"
+msgstr "Importar"
+
+#: php/Integration/Admin_Bar.php:300
+msgctxt "snippets"
+msgid "Settings"
+msgstr "Ajustes"
+
+#: php/Admin/Menus/Settings_Menu.php:210 php/Integration/Admin_Bar.php:227
+msgctxt "snippets"
+msgid "Manage"
+msgstr "Gestionar"
+
+#: php/Admin/Menus/Manage/Manage_Menu.php:173
+msgctxt "tools submenu label"
+msgid "Snippets"
+msgstr "Fragmentos de código"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:68
+#: php/Settings/Settings_Fields.php:196 dist/edit.js:2 dist/manage.js:2
+msgid "Priority"
+msgstr "Prioridad"
+
+#: php/Settings/Settings_Fields.php:222
+msgid "When the plugin is deleted from the Plugins menu, also delete all snippets and plugin settings."
+msgstr "Cuando se borra el plugin del menú «Plugins», también se borran todos los fragmentos de código y los ajustes del plugin."
+
+#: php/Settings/Settings_Fields.php:220
+msgid "Complete Uninstall"
+msgstr "Desinstalación total"
+
+#: php/Admin/Bootstrap_Admin.php:92
+msgid "Snippets &raquo; Settings"
+msgstr "Fragmentos de código » Ajustes"
+
+#: php/Admin/Menus/Settings_Menu.php:245
+msgid "Reset to Default"
+msgstr "Restablecer los valores por defecto"
+
+#: php/Settings/settings.php:288
+msgid "All settings have been reset to their defaults."
+msgstr "Todos los ajustes han sido restablecidos a sus valores por defecto."
+
+#. Description of the plugin
+#: code-snippets.php
+msgid "An easy, clean, and simple way to run code snippets on your site. No need to edit your theme's functions.php file again!"
+msgstr "Una forma fácil, limpia y sencilla para ejecutar fragmentos de código en tu sitio. ¡No tendrás que volver a editar el archivo «functions.php» de tu tema!"
+
+#: php/Admin/Menus/Settings_Menu.php:211 php/Integration/Admin_Bar.php:253
+#: dist/edit.js:2
+msgctxt "snippet"
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: php/Admin/Menus/Settings_Menu.php:331 php/Settings/settings.php:376
+msgid "Settings saved."
+msgstr "Ajustes guardados."
+
+#: php/Settings/settings.php:166
+msgid "Editor Preview"
+msgstr "Vista previa del editor"
+
+#: php/Settings/settings.php:109
+msgid "Code Editor"
+msgstr "Editor de código"
+
+#: php/Settings/settings.php:108
+msgid "General"
+msgstr "General"
+
+#: php/Settings/Settings_Fields.php:303
+msgid "Highlight all instances of a currently selected word."
+msgstr "Resalta todas las apariciones de la palabra seleccionada."
+
+#: php/Settings/Settings_Fields.php:302
+msgid "Highlight Selection Matches"
+msgstr "Resaltar las coincidencias con la selección"
+
+#: php/Settings/Settings_Fields.php:298
+msgid "Auto-close brackets and quotes when typed."
+msgstr "Cerrar automáticamente los corchetes y citas al escribir."
+
+#: php/Settings/Settings_Fields.php:296
+msgid "Auto Close Brackets"
+msgstr "Cerrar automáticamente los corchetes"
+
+#: php/Settings/Settings_Fields.php:292
+msgid "Show line numbers to the left of the editor."
+msgstr "Muestra los números de línea a la izquierda del editor."
+
+#: php/Settings/Settings_Fields.php:290
+msgid "Line Numbers"
+msgstr "Números de línea"
+
+#: php/Settings/Settings_Fields.php:278
+msgid "Wrap Lines"
+msgstr "Envolver las líneas"
+
+#: php/Settings/Settings_Fields.php:262
+msgid "Indent Unit"
+msgstr "Unidad de sangría"
+
+#: php/Settings/Settings_Fields.php:256
+msgid "The width of a tab character."
+msgstr "El ancho del carácter de una tabulación."
+
+#: php/Settings/Settings_Fields.php:254
+msgid "Tab Size"
+msgstr "Tamaño de la tabulación"
+
+#: php/Settings/Settings_Fields.php:250
+msgid "Use hard tabs instead of spaces for indentation."
+msgstr "Usa tabulaciones en vez de espacios para la sangría."
+
+#: php/Settings/Settings_Fields.php:248
+msgid "Indent With Tabs"
+msgstr "Sangrar con tabulaciones"
+
+#: php/Settings/Settings_Fields.php:326
+msgid "Theme"
+msgstr "Tema"
+
+#: php/Settings/Settings_Fields.php:183
+msgid "Show snippet descriptions on admin pages."
+msgstr "Muestra las descripciones de los fragmentos de código en las páginas de administración."
+
+#: php/Settings/Settings_Fields.php:181
+msgid "Enable Snippet Descriptions"
+msgstr "Activar las descripciones de los fragmentos de código"
+
+#: php/Settings/Settings_Fields.php:178
+msgid "Show snippet tags on admin pages."
+msgstr "Muestra las etiquetas de los fragmentos de código en las páginas de administración."
+
+#: php/Settings/Settings_Fields.php:176
+msgid "Enable Snippet Tags"
+msgstr "Activar las etiquetas de los fragmentos de código"
+
+#: php/Settings/Settings_Fields.php:173
+msgid "Make the 'Save and Activate' button the default action when saving a snippet."
+msgstr "Hacer que el botón «Guardar y activar» sea la acción por defecto al guardar un fragmento de código."
+
+#: php/Settings/Settings_Fields.php:171
+msgid "Activate by Default"
+msgstr "Activar por defecto"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:63 dist/import.js:2
+#: dist/manage.js:2
+msgid "Name"
+msgstr "Nombre"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:43
+msgid "Snippets per page"
+msgstr "Fragmentos de código por página"
+
+#. translators: %s: URL to Manage Snippets admin menu
+#: php/Admin/Contextual_Help.php:202
+msgid "You can save your snippets to a code snippets export file using the <a href=\"%s\">Manage Snippets</a> page."
+msgstr "Puedes guardar tus fragmentos de código en un archivo de exportación de Code Snippets usando la página <a href=\"%s\">Gestionar los fragmentos de código</a>"
+
+#: php/Admin/Contextual_Help.php:200
+msgid "Exporting"
+msgstr "Exportación"
+
+#. translators: %s: URL to Snippets admin menu
+#: php/Admin/Contextual_Help.php:195
+msgid "Imported snippets will be added to the database along with your existing snippets. Regardless of whether the snippets were active on the previous site, imported snippets are always inactive until activated using the <a href=\"%s\">Manage Snippets</a> page."
+msgstr "Los fragmentos de código importados se añadirán a la base de datos junto con los ya existentes. Independientemente de si los fragmentos de código estaban activos en el sitio anterior, los fragmentos de código importados siempre están inactivos hasta que se activen usando la página <a href=\"%s\">Gestionar los fragmentos de código</a>."
+
+#: php/Admin/Contextual_Help.php:193
+msgid "You can load your snippets from a code snippets export file using this page."
+msgstr "Puedes cargar tus fragmentos de código desde un archivo de exportación de Code Snippets usando esta página."
+
+#: php/Admin/Contextual_Help.php:192
+msgid "Importing"
+msgstr "Importación"
+
+#: php/Admin/Contextual_Help.php:172
+msgid "Please be sure to check that your snippet is valid PHP code and will not produce errors before adding it through this page. While doing so will not become active straight away, it will help to minimize the chance of a faulty snippet becoming active on your site."
+msgstr "Por favor, asegúrate de comprobar que tu fragmento de código tiene código PHP válido y no producirá errores antes de añadirlo a través de esta página. Aunque lo hagas, no se activará de inmediato, lo que ayudará a minimizar la posibilidad de que un fragmento de código defectuoso se active en tu sitio."
+
+#: php/Admin/Contextual_Help.php:171
+msgid "You need to fill out the name and code fields for your snippet to be added. While the description field will add more information about how your snippet works, what is does and where you found it, it is completely optional."
+msgstr "Para añadir el fragmento de código, tienes que rellenar los campos del nombre y del código. Aunque el campo de descripción añadirá más información sobre cómo funciona tu fragmento de código, qué es lo que hace y dónde lo has encontrado, es totalmente opcional."
+
+#: php/Admin/Contextual_Help.php:169
+msgid "Adding Snippets"
+msgstr "Añadir fragmentos de código"
+
+#: php/Admin/Contextual_Help.php:144
+msgid "Be sure to check your snippets for errors before you activate them, as a faulty snippet could bring your whole blog down. If your site starts doing strange things, deactivate all your snippets and activate them one at a time."
+msgstr "Antes de activarlos, asegúrate de comprobar si tus fragmentos de código tienen errores, ya que un fragmento de código defectuoso podría hacer caer todo tu blog. Si tu sitio comienza a hacer cosas extrañas, desactiva todos tus fragmentos de código y actívalos uno por uno."
+
+#: php/Admin/Contextual_Help.php:142 php/Integration/Admin_Bar.php:194
+msgid "Safe Mode"
+msgstr "Modo seguro"
+
+#: php/Admin/Contextual_Help.php:135 php/Admin/Contextual_Help.php:158
+#: php/Admin/Contextual_Help.php:185
+msgid "Overview"
+msgstr "Resumen"
+
+#: php/Admin/Contextual_Help.php:73
+msgid "Plugin Website"
+msgstr "Web del plugin"
+
+#: php/Admin/Contextual_Help.php:72
+msgid "Support Forum"
+msgstr "Foro de soporte"
+
+#: php/Admin/Contextual_Help.php:71
+msgid "FAQ"
+msgstr "FAQ"
+
+#: php/Admin/Contextual_Help.php:70
+msgid "About Plugin"
+msgstr "Acerca del plugin"
+
+#: php/Admin/Contextual_Help.php:82
+msgid "For more information:"
+msgstr "Para más información:"
+
+#: php/Admin/Bootstrap_Admin.php:329
+msgid "Dismiss"
+msgstr "Descartar"
+
+#: php/Admin/Bootstrap_Admin.php:307
+msgid "Take the survey now"
+msgstr "Haz la encuesta ahora"
+
+#: php/Admin/Bootstrap_Admin.php:308
+msgid "<strong>Have feedback on Code Snippets?</strong> Please take the time to answer a short survey on how you use this plugin and what you'd like to see changed or added in the future."
+msgstr "<strong>¿Tienes comentarios sobre Code Snippets?</strong> Por favor, responde a una breve encuesta sobre cómo usas este plugin y lo que te gustaría cambiar o añadir en el futuro."
+
+#: php/Admin/Bootstrap_Admin.php:147
+msgid "Manage your existing snippets"
+msgstr "Gestiona tus fragmentos de código existentes"
+
+#: php/Admin/Bootstrap_Admin.php:142 dist/edit.js:2 dist/import.js:2
+#: dist/manage.js:2 dist/settings.js:2 dist/welcome.js:2
+msgid "Settings"
+msgstr "Ajustes"
+
+#: php/Admin/Menus/Settings_Menu.php:35 php/Admin/Menus/Settings_Menu.php:204
+msgid "Snippets Settings"
+msgstr "Ajustes de los fragmentos de código"
+
+#: php/Admin/Menus/Settings_Menu.php:34
+msgctxt "menu label"
+msgid "Settings"
+msgstr "Ajustes"
+
+#: php/Admin/Menus/Manage/Manage_Menu.php:61
+msgctxt "top-level menu label"
+msgid "Snippets"
+msgstr "Fragmentos de código"
+
+#: php/Admin/Bootstrap_Admin.php:91 php/Admin/Bootstrap_Admin.php:114
+#: php/Admin/Bootstrap_Admin.php:148 php/Admin/Menus/Manage/Manage_Menu.php:39
+#: php/Admin/Menus/Manage/Manage_Menu.php:60
+#: php/Admin/Menus/Manage/Manage_Menu.php:172 php/Integration/Admin_Bar.php:141
+#: dist/edit.js:2 dist/import.js:2 dist/manage.js:2 dist/settings.js:2
+#: dist/welcome.js:2
+msgid "Snippets"
+msgstr "Fragmentos de código"
+
+#: php/Admin/Menus/Manage/Manage_Menu.php:38
+msgctxt "menu label"
+msgid "All Snippets"
+msgstr "Todos los fragmentos de código"
+
+#: php/Admin/Menus/Import_Menu.php:53
+msgid "Import snippets from a code snippets export file"
+msgstr "Importa fragmentos de código desde un archivo de exportación de fragmentos de código"
+
+#. Plugin Name of the plugin
+#: code-snippets.php php/Admin/Menus/Import_Menu.php:52 dist/edit.js:2
+#: dist/import.js:2 dist/manage.js:2 dist/settings.js:2 dist/welcome.js:2
+msgid "Code Snippets"
+msgstr "Code Snippets"
+
+#: php/Admin/Menus/Import_Menu.php:25
+msgid "Import Snippets"
+msgstr "Importar fragmentos de código"
+
+#: php/Admin/Menus/Import_Menu.php:24
+msgctxt "menu label"
+msgid "Import"
+msgstr "Importar"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:66 dist/import.js:2
+#: dist/manage.js:2
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: php/Admin/Menus/Manage/Manage_Menu_Screen_Options.php:65 dist/edit.js:2
+#: dist/import.js:2 dist/manage.js:2
+msgid "Description"
+msgstr "Descripción"
+
+#: php/Admin/Menus/Edit_Menu.php:68
+msgctxt "menu label"
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: php/Admin/Menus/Edit_Menu.php:49 dist/edit.js:2
+msgid "Edit Snippet"
+msgstr "Editar el fragmento de código"
+
+#: php/Admin/Menus/Admin_Menu.php:159
+msgid "You are not authorized to access this page."
+msgstr "No estás autorizado para acceder a esta página."

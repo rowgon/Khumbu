@@ -1,0 +1,1196 @@
+<?php
+/**
+ * MainWP Database Controller
+ *
+ * This file handles all interactions with the DB.
+ *
+ * @package MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class MainWP_DB_Common
+ *
+ * @package MainWP\Dashboard
+ */
+class MainWP_DB_Common extends MainWP_DB { // phpcs:ignore Generic.Classes.OpeningBraceSameLine.ContentAfterBrace -- NOSONAR.
+
+    // phpcs:disable WordPress.DB.RestrictedFunctions,WordPress.DB.PreparedSQL.NotPrepared,Generic.Metrics.CyclomaticComplexity -- This is the only way to achieve desired results, pull request solutions appreciated.
+
+    /**
+     * Private static variable to hold the single instance of the class.
+     *
+     * @static
+     *
+     * @var mixed Default null
+     */
+    private static $instance = null;
+
+    /**
+     * Method instance()
+     *
+     * Create public static instance.
+     *
+     * @static
+     * @return MainWP_DB_Common
+     */
+    public static function instance() {
+        if ( null === static::$instance ) {
+            static::$instance = new self();
+        }
+        return static::$instance;
+    }
+
+    /**
+     * Method get_last_sync_status()
+     *
+     * Get last sync status.
+     *
+     * @return string $return all_synced|not_synced|last_sync
+     */
+    public function get_last_sync_status() {
+        $wpsite_fields = array( 'id' );
+        $sync_fields   = array( 'sync_errors', 'dtsSync' );
+        $websites      = $this->query(
+            $this->get_sql_websites_for_current_user_by_params(
+                array(
+                    'select_wp_fields'   => $wpsite_fields,
+                    'select_sync_fields' => $sync_fields,
+                )
+            )
+        );
+
+        $return = array(
+            'sync_status' => false,
+            'last_sync'   => 0,
+        );
+
+        if ( ! $websites ) {
+            $return['sync_status'] = 'all_synced';
+            return $return;
+        }
+
+        $total_sites  = 0;
+        $synced_sites = 0;
+        $last_sync    = 0;
+        static::data_seek( $websites, 0 );
+        while ( $websites && ( $website      = static::fetch_object( $websites ) ) ) {
+            if ( empty( $website ) || '' !== $website->sync_errors ) {
+                continue;
+            }
+            ++$total_sites;
+            if ( 60 * 60 * 24 > time() - $website->dtsSync ) {
+                ++$synced_sites;
+            }
+            if ( $last_sync < $website->dtsSync ) {
+                $last_sync = $website->dtsSync;
+            }
+        }
+
+        if ( $total_sites === $synced_sites ) {
+            $return['sync_status'] = 'all_synced';
+        } elseif ( 0 === $synced_sites ) {
+            $return['sync_status'] = 'not_synced';
+        }
+        $return['last_sync'] = $last_sync;
+        return $return;
+    }
+
+    /**
+     * Method get_group_by_name()
+     *
+     * Get group by name.
+     *
+     * @param mixed $name Group name.
+     * @param null  $userid user ID.
+     *
+     * @return object|null Database query result for chosen group name or null on failure
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_multi_user()
+     */
+    public function get_group_by_name( $name, $userid = null ) {
+        if ( ( null === $userid ) && MainWP_System::instance()->is_multi_user() ) {
+
+            /**
+             * Current user global.
+             *
+             * @global string
+             */
+            global $current_user;
+
+            $userid = $current_user->ID;
+        }
+        $where  = ( null !== $userid ) ? ' AND userid=' . intval( $userid ) : '';
+        $where .= $this->get_sql_where_allow_groups();
+
+        $table_group = esc_sql( $this->table_name( 'group' ) );
+        return $this->wpdb->get_row( $this->wpdb->prepare( "SELECT * FROM `{$table_group}` WHERE 1 " . esc_sql( $where ) . ' AND name= %s', $this->escape( $name ) ) );
+    }
+
+    /**
+     * Method get_group_by_id()
+     *
+     * Get group by ID.
+     *
+     * @param mixed $id Group ID.
+     *
+     * @return object|null Database query result for chosen Group ID or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     */
+    public function get_group_by_id( $id ) {
+        if ( MainWP_Utility::ctype_digit( $id ) ) {
+            $table_group = esc_sql( $this->table_name( 'group' ) );
+            return $this->wpdb->get_row( $this->wpdb->prepare( "SELECT * FROM `{$table_group}` WHERE id= %d", $id ) );
+        }
+
+        return null;
+    }
+
+    /**
+     * Method get_groups_for_manage_sites()
+     *
+     * Get groups for mananged sites.
+     *
+     * @return object|null Database query result for Managed Sites Groups or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_multi_user()
+     */
+    public function get_groups_for_manage_sites() {
+        $where = ' 1 ';
+        if ( MainWP_System::instance()->is_multi_user() ) {
+
+            /**
+             * Current user global.
+             *
+             * @global string
+             */
+            global $current_user;
+
+            $where = ' userid = ' . $current_user->ID . ' ';
+        }
+        $with_staging    = 'yes';
+        $staging_enabled = is_plugin_active( 'mainwp-staging-extension/mainwp-staging-extension.php' ) || is_plugin_active( 'mainwp-timecapsule-extension/mainwp-timecapsule-extension.php' );
+
+        if ( ! $staging_enabled ) {
+            $with_staging = 'no';
+        }
+
+        $where .= $this->get_sql_where_allow_groups( '', $with_staging );
+
+        $table_group = esc_sql( $this->table_name( 'group' ) );
+        return $this->wpdb->get_results( "SELECT * FROM `{$table_group}` WHERE " . esc_sql( $where ) . ' ORDER BY name', OBJECT_K );
+    }
+
+
+    /**
+     * Method get_sql_where_wpopt_phpversion().
+     *
+     * @param string $coln Column compare.
+     * @param string $operator Operator compare.
+     * @param string $ver_str Version compare.
+     *
+     * @return string Sql version compare.
+     */
+    public function get_sql_where_wpopt_phpversion( $coln, $operator, $ver_str ) {
+        $allowed_columns   = array( 'phpversion' );
+        $allowed_operators = array( '>', '>=', '<', '<=', '=', '!=' );
+        if ( ! in_array( $coln, $allowed_columns, true ) || ! in_array( $operator, $allowed_operators, true ) ) {
+            return ' 0 = 1 ';
+        }
+        $alias = 'owp_' . $coln;
+        return $this->wpdb->prepare(
+            " ( {$alias}.value IS NOT NULL AND INET_ATON( SUBSTRING_INDEX( CONCAT(SUBSTRING_INDEX( {$alias}.value, '-', 1), '.0.0.0.0'), '.', 4 ) ) {$operator} INET_ATON(%s) ) ", //phpcs:ignore -- NOSONAR escaped variables.
+            $ver_str
+        );
+    }
+
+    /**
+     * Method get_sql_version_compare().
+     *
+     * @param string $coln Column compare.
+     * @param string $operator Operator compare.
+     * @param string $ver_str Version compare.
+     *
+     * @return string Sql version compare.
+     */
+    public function get_sql_version_compare( $coln, $operator, $ver_str ) {
+        // It's safe since it's not user input, but the AI still suggests escaping it.
+        return ' INET_ATON( SUBSTRING_INDEX( CONCAT( SUBSTRING_INDEX(' . $this->escape( $coln ) . ", '-', 1), '.0.0.0.0' ), '.', 4) ) " .
+        $this->escape( $operator ) . " INET_ATON('" . $this->escape( $ver_str ) . "') ";
+    }
+
+    /**
+     * Method get_groups_for_current_user()
+     *
+     * Get groups for current user.
+     *
+     * @return object|null Database query result for Current User Groups or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_multi_user()
+     */
+    public function get_groups_for_current_user() {
+        $where = ' 1 ';
+        if ( MainWP_System::instance()->is_multi_user() ) {
+
+            /**
+             * Current user global.
+             *
+             * @global string
+             */
+            global $current_user;
+
+            $where = ' userid = ' . $current_user->ID . ' ';
+        }
+        $where .= $this->get_sql_where_allow_groups();
+
+        $table_group = esc_sql( $this->table_name( 'group' ) );
+        return $this->wpdb->get_results( "SELECT * FROM `{$table_group}` WHERE " . esc_sql( $where ) . ' ORDER BY name', OBJECT_K );
+    }
+
+    /**
+     * Method get_groups_by_website_id()
+     *
+     * Get groups by website ID.
+     *
+     * @param mixed $websiteid Child Site ID.
+     *
+     * @return object|null Database query result for groups by website ID or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     */
+    public function get_groups_by_website_id( $websiteid ) {
+        if ( MainWP_Utility::ctype_digit( $websiteid ) ) {
+            $table_group    = esc_sql( $this->table_name( 'group' ) );
+            $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+            return $this->wpdb->get_results(
+                $this->wpdb->prepare(
+                    "SELECT * FROM `{$table_group}` gr JOIN `{$table_wp_group}` wpgr ON gr.id = wpgr.groupid WHERE wpgr.wpid = %d ORDER BY name",
+                    $websiteid
+                ),
+                OBJECT_K
+            );
+        }
+
+        return null;
+    }
+
+    /**
+     * Medthod get_groups_and_count()
+     *
+     * Get groups and count.
+     *
+     * @param null $userid      Current user ID.
+     * @param bool $for_manager Default: false.
+     *
+     * @return object|null Database query result for groups and count or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_multi_user()
+     */
+    public function get_groups_and_count( $userid = null, $for_manager = false ) {
+        if ( ( null === $userid ) && MainWP_System::instance()->is_multi_user() ) {
+
+            /**
+             * Current user global.
+             *
+             * @global string
+             */
+            global $current_user;
+
+            $userid = $current_user->ID;
+        }
+
+        $where = '';
+
+        if ( ! empty( $userid ) ) {
+            $where = ' AND gr.userid = ' . intval( $userid );
+        }
+
+        if ( ! $for_manager ) {
+            $where .= $this->get_sql_where_allow_groups( 'gr' );
+        }
+
+        $table_group    = esc_sql( $this->table_name( 'group' ) );
+        $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+        $where          = esc_sql( $where );
+        return $this->wpdb->get_results( "SELECT gr.*, COUNT(DISTINCT(wpgr.wpid)) as nrsites FROM `{$table_group}` gr LEFT JOIN `{$table_wp_group}` wpgr ON gr.id = wpgr.groupid WHERE 1 {$where} GROUP BY gr.id ORDER BY gr.name", OBJECT_K );
+    }
+
+
+    /**
+     * Method get_tags()
+     *
+     * Get tags (groups) with optional filtering and pagination.
+     *
+     * @since 5.1.1
+     *
+     * @param array $params Optional parameters for filtering and pagination.
+     *                      - 's'              (string) Search term for tag name or ID.
+     *                      - 'exclude'        (array)  Tag IDs to exclude.
+     *                      - 'include'        (array)  Tag IDs to include.
+     *                      - 'page'           (int)    Page number for pagination.
+     *                      - 'per_page'       (int)    Items per page for pagination.
+     *                      - 'with_sites_ids' (bool)   Include associated site IDs.
+     *                      - 'count'          (bool)   Return count only instead of results.
+     *
+     * @return object[]|int When $params['count'] is true, returns an integer count of matching tags.
+     *                      Otherwise, returns an array of tag objects keyed by ID, or empty array on failure.
+     */
+    public function get_tags( $params = array() ) { //phpcs:ignore -- NOSONAR - complex.
+
+        $s       = '';
+        $exclude = array();
+        $include = array();
+        $limit   = '';
+
+        $where  = '';
+        $select = '';
+
+        if ( $params && is_array( $params ) ) {
+            $s              = isset( $params['s'] ) ? $params['s'] : '';
+            $exclude        = isset( $params['exclude'] ) ? wp_parse_id_list( $params['exclude'] ) : array();
+            $include        = isset( $params['include'] ) ? wp_parse_id_list( $params['include'] ) : array();
+            $page           = isset( $params['page'] ) ? intval( $params['page'] ) : false;
+            $per_page       = isset( $params['per_page'] ) ? intval( $params['per_page'] ) : false;
+            $with_sites_ids = isset( $params['with_sites_ids'] ) && $params['with_sites_ids'] ? true : false;
+            $count_only     = ! empty( $params['count'] );
+
+            if ( $with_sites_ids ) {
+                $select .= ', wp_tagview.* ';
+            }
+
+            if ( ! empty( $s ) ) {
+                $s            = trim( $s );
+                $like_pattern = '%' . $this->wpdb->esc_like( $s ) . '%';
+                $where       .= $this->wpdb->prepare(
+                    ' AND ( gr.name LIKE %s OR gr.id LIKE %s ) ',
+                    $like_pattern,
+                    $like_pattern
+                );
+            }
+
+            if ( ! empty( $exclude ) ) {
+                $where .= ' AND  gr.id NOT IN (' . implode( ',', $exclude ) . ') ';
+            }
+
+            if ( ! empty( $include ) ) {
+                $where .= ' AND  gr.id IN (' . implode( ',', $include ) . ') ';
+            }
+
+            $gr_table = esc_sql( $this->table_name( 'group' ) );
+
+            // Return count only if requested.
+            if ( $count_only ) {
+                return (int) $this->wpdb->get_var( 'SELECT COUNT(*) FROM ' . $gr_table . ' gr WHERE 1 ' . $where ); // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- $where is built with wpdb->prepare() and escaped table name, safe to use directly.
+            }
+
+            if ( ! empty( $page ) && ! empty( $per_page ) ) {
+                $limit = $this->wpdb->prepare( ' LIMIT %d, %d', ( $page - 1 ) * $per_page, $per_page );
+            }
+
+            $join = '';
+
+            if ( $with_sites_ids ) {
+                $join = ' JOIN ' . $this->get_tag_view() . ' wp_tagview ON gr.id = wp_tagview.id ';
+            }
+        }
+        $table_group    = esc_sql( $this->table_name( 'group' ) );
+        $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+        $select_sql     = $select ? $select : '';
+        $join_sql       = $join ? $join : '';
+        $where_sql      = $where ? $where : '';
+        $limit_sql      = $limit ? $limit : '';
+        $query          = "SELECT gr.* {$select_sql}, COUNT(DISTINCT(wpgr.wpid)) as count_sites FROM `{$table_group}` gr LEFT JOIN `{$table_wp_group}` wpgr ON gr.id = wpgr.groupid {$join_sql} WHERE 1 {$where_sql} GROUP BY gr.id ORDER BY gr.name {$limit_sql}";
+        return $this->wpdb->get_results( $query, OBJECT_K ); // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- $query is built with proper escaping and parameterization above.
+    }
+
+    /**
+     * Method get_tag_view().
+     *
+     * @return string tag view.
+     */
+    public function get_tag_view() {
+        $view  = "( SELECT intgr.id, ( SELECT GROUP_CONCAT(wp.id ORDER BY wp.id SEPARATOR ',') FROM `" . $this->table_name( 'wp' ) . '` wp ';
+        $view .= ' LEFT JOIN `' . $this->table_name( 'wp_group' ) . '` wpgr ON wp.id = wpgr.wpid WHERE wpgr.groupid = intgr.id ) as sites_ids ';
+        $view .= ' FROM `' . $this->table_name( 'group' ) . '` intgr )';
+        return $view;
+    }
+
+
+    /**
+     * Method get_not_empty_groups()
+     *
+     * Get non-empty groups.
+     *
+     * @param mixed $userid Current user ID.
+     * @param bool  $enableOfflineSites Include offline sites? Default: true.
+     *
+     * @return object|null Database query result for non-empty groups or null on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_multi_user()
+     */
+    public function get_not_empty_groups( $userid = null, $enableOfflineSites = true ) { //phpcs:ignore --NOSONAR -- complex.
+        if ( ( null === $userid ) && MainWP_System::instance()->is_multi_user() ) {
+
+            /**
+             * Current user global.
+             *
+             * @global string
+             */
+            global $current_user;
+
+            $userid = $current_user->ID;
+        }
+
+        $table_group    = esc_sql( $this->table_name( 'group' ) );
+        $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+        $table_wp       = esc_sql( $this->table_name( 'wp' ) );
+        $table_wp_sync  = esc_sql( $this->table_name( 'wp_sync' ) );
+
+        $sql    = "SELECT DISTINCT(g.id), g.name, count(wp.wpid) FROM `{$table_group}` g JOIN `{$table_wp_group}` wp ON g.id = wp.groupid JOIN `{$table_wp}` wpsite ON wp.wpid = wpsite.id JOIN `{$table_wp_sync}` wp_sync ON wp.wpid = wp_sync.wpid WHERE 1 = 1";
+        $params = array();
+
+        $staging_group = get_option( 'mainwp_stagingsites_group_id' );
+        if ( $staging_group ) {
+            $sql     .= ' AND g.id <> %d';
+            $params[] = absint( $staging_group );
+        }
+
+        $allowed_groups = apply_filters( 'mainwp_currentuserallowedaccessgroups', 'all' );
+        if ( 'all' !== $allowed_groups ) {
+            if ( is_array( $allowed_groups ) && ! empty( $allowed_groups ) ) {
+                $allowed_groups = array_filter(
+                    $allowed_groups,
+                    function ( $e ) {
+                        return is_numeric( $e ) ? true : false;
+                    }
+                );
+
+                if ( ! empty( $allowed_groups ) ) {
+                    $placeholders = implode( ',', array_fill( 0, count( $allowed_groups ), '%d' ) );
+                    $sql         .= ' AND g.id IN (' . $placeholders . ')';
+                    $params       = array_merge( $params, array_map( 'intval', $allowed_groups ) );
+                }
+            } else {
+                $sql .= ' AND 0';
+            }
+        }
+
+        if ( null !== $userid ) {
+            $sql     .= ' AND g.userid = %d';
+            $params[] = intval( $userid );
+        }
+
+        if ( ! $enableOfflineSites ) {
+            $sql .= " AND wp_sync.sync_errors = ''";
+        }
+
+        $sql .= ' GROUP BY g.id HAVING count(wp.wpid) > 0 ORDER BY g.name';
+
+        if ( ! empty( $params ) ) {
+            $sql = $this->wpdb->prepare( $sql, ...$params );
+        }
+
+        return $this->wpdb->get_results( $sql, OBJECT_K ); // phpcs:ignore PluginCheck.Security.DirectDB.UnescapedDBParameter -- $sql is prepared via $wpdb->prepare() with all dynamic values properly parameterized.
+    }
+
+    /**
+     * Method get_sql_log()
+     *
+     * Get sql log.
+     *
+     * @param int   $paged paged.
+     * @param int   $order order.
+     * @param array $params params.
+     *
+     * @return string sql query.
+     */
+    public function get_sql_log( $paged = 0, $order = '', $params = array() ) {
+
+        $count_only = ! empty( $params['count'] ) ? true : false;
+        $limit      = ! empty( $params['limit'] ) ? intval( $params['limit'] ) : 500;
+
+        $last_hours = ! empty( $params['hour'] ) ? intval( $params['hour'] ) : 0;
+
+        $order = strtoupper( $order );
+
+        $order = 'DESC' === $order || 'ASC' === $order ? $order : 'DESC';
+
+        $start = ! empty( $paged ) ? absint( $paged * $limit ) : 0;
+
+        if ( $count_only ) {
+            return 'SELECT count(*)
+                FROM `' . $this->table_name( 'action_log' ) . '` log
+                WHERE 1 ';
+        }
+
+        if ( ! empty( $last_hours ) ) {
+            return 'SELECT log.*
+                FROM `' . $this->table_name( 'action_log' ) . '` log
+                WHERE ' . $this->wpdb->prepare( ' log_timestamp > %d ', time() - $last_hours * HOUR_IN_SECONDS ) .
+                ' ORDER BY log_timestamp ' . $this->escape( $order );
+        }
+
+        return 'SELECT log.*
+                FROM `' . $this->table_name( 'action_log' ) . '` log
+                WHERE 1 ORDER BY ' .
+                $this->wpdb->prepare( 'log_timestamp ' . $this->escape( $order ) . ' LIMIT %d, %d', $start, $limit );
+    }
+
+    /**
+     * Method insert_action_log()
+     *
+     * Insert action log.
+     *
+     * @param array $data log data.
+     *
+     * @return void
+     */
+    public function insert_action_log( $data ) {
+        $this->wpdb->insert( $this->table_name( 'action_log' ), $data );
+    }
+
+    /**
+     * Method delete_action_log()
+     *
+     * Delete action log.
+     *
+     * @param int $days number days.
+     *
+     * @return void
+     */
+    public function delete_action_log( $days = false ) {
+        $where = '';
+        if ( ! empty( $days ) ) {
+            $where .= ' AND log_timestamp < ' . ( time() - $days * DAY_IN_SECONDS );
+        }
+        $table_action_log = esc_sql( $this->table_name( 'action_log' ) );
+        $where            = esc_sql( $where );
+        $this->wpdb->query( "DELETE FROM `{$table_action_log}` WHERE 1 {$where}" );
+    }
+
+    /**
+     * Method insert_or_update_request_log()
+     *
+     * Insert or update request log.
+     *
+     * @param mixed $wpid WordPress ID.
+     * @param mixed $ip IP address.
+     * @param mixed $start Start time.
+     * @param mixed $stop Stop Time.
+     *
+     * @return void
+     */
+    public function insert_or_update_request_log( $wpid, $ip, $start, $stop ) {
+        $updateValues = array();
+        if ( ! empty( $ip ) ) {
+            $updateValues['ip'] = $ip;
+        }
+        if ( ! empty( $start ) ) {
+            $updateValues['micro_timestamp_start'] = $start;
+        }
+        if ( ! empty( $stop ) ) {
+            $updateValues['micro_timestamp_stop'] = $stop;
+        }
+
+        $table_request_log = esc_sql( $this->table_name( 'request_log' ) );
+        $var               = $this->wpdb->get_var( $this->wpdb->prepare( "SELECT id FROM `{$table_request_log}` WHERE wpid = %d ", $wpid ) );
+        if ( null !== $var ) {
+            $this->wpdb->update( $this->table_name( 'request_log' ), $updateValues, array( 'wpid' => $wpid ) );
+        } else {
+            $updateValues['wpid'] = $wpid;
+            $this->wpdb->insert( $this->table_name( 'request_log' ), $updateValues );
+        }
+    }
+
+    /**
+     * Method close_open_requests()
+     *
+     * Close open request.
+     *
+     * @return void
+     */
+    public function close_open_requests() {
+        $table_request_log = esc_sql( $this->table_name( 'request_log' ) );
+        $microtime_value   = esc_sql( microtime( true ) );
+        $this->wpdb->query( "UPDATE `{$table_request_log}` SET micro_timestamp_stop = micro_timestamp_start WHERE micro_timestamp_stop < micro_timestamp_start and {$microtime_value} - micro_timestamp_start > 7" );
+    }
+
+    /**
+     * Method get_nrof_open_requests()
+     *
+     * Get number of requests.
+     *
+     * @param null $ip IP Address.
+     *
+     * @return (string|null) Database query result for number of requests or null on failure.
+     */
+    public function get_nrof_open_requests( $ip = null ) {
+        $table_request_log = esc_sql( $this->table_name( 'request_log' ) );
+        if ( null === $ip ) {
+            return $this->wpdb->get_var( "select count(id) from `{$table_request_log}` where micro_timestamp_stop < micro_timestamp_start" ); // phpcs:ignore -- NOSONAR - table name escaped.
+        }
+
+        return $this->wpdb->get_var(
+            $this->wpdb->prepare(
+                "SELECT COUNT(id) FROM `{$table_request_log}` WHERE micro_timestamp_stop < micro_timestamp_start AND ip = %s", // phpcs:ignore -- NOSONAR - table name escaped.
+                $ip
+            )
+        );
+    }
+
+    /**
+     * Method get_last_request_timestamp()
+     *
+     * Get timestamp of last request sent.
+     *
+     * @param null $ip Child Site IP address, default: null.
+     *
+     * @return (int|null) Database query result for timestamp of last request sent or null on failure.
+     */
+    public function get_last_request_timestamp( $ip = null ) {
+        $table_request_log = esc_sql( $this->table_name( 'request_log' ) );
+        if ( null === $ip ) {
+            return $this->wpdb->get_var( "select micro_timestamp_start from `{$table_request_log}` order by micro_timestamp_start desc limit 1" );
+        }
+
+        return $this->wpdb->get_var( $this->wpdb->prepare( "SELECT micro_timestamp_start FROM `{$table_request_log}` WHERE ip = %s order by micro_timestamp_start desc limit 1", esc_sql( $ip ) ) );
+    }
+
+    /**
+     * Method update_group_site()
+     *
+     * @param mixed $groupId Group ID.
+     * @param mixed $websiteId Child Site ID.
+     *
+     * @return void
+     */
+    public function update_group_site( $groupId, $websiteId ) {
+        $this->wpdb->insert(
+            $this->table_name( 'wp_group' ),
+            array(
+                'wpid'    => $websiteId,
+                'groupid' => $groupId,
+            )
+        );
+    }
+
+    /**
+     * Method clear_group()
+     *
+     * Clear sites in group.
+     *
+     * @param mixed $groupId ID of group.
+     * @param mixed $exclude_wpids Empty or array of wp ids to exclude.
+     */
+    public function clear_group( $groupId, $exclude_wpids = array() ) {
+        $this->wpdb->query( 'DELETE FROM ' . $this->table_name( 'wp_group' ) . ' WHERE groupid=' . $groupId . ( ! empty( $exclude_wpids ) && is_array( $exclude_wpids ) ? ' AND wpid NOT IN (' . implode( ',', array_map( 'intval', $exclude_wpids ) ) . ')' : '' ) );
+    }
+
+
+    /**
+     * Method add_group()
+     *
+     * Add group.
+     *
+     * @param mixed $userid Current User ID.
+     * @param mixed $name Name of group to add.
+     * @param mixed $color  Color of group to add.
+     *
+     * @return boolean true
+     *
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     */
+    public function add_group( $userid, $name, $color = '' ) {
+        if ( MainWP_Utility::ctype_digit( $userid ) && $this->wpdb->insert(
+            $this->table_name( 'group' ),
+            array(
+                'userid' => $userid,
+                'name'   => $this->escape( $name ),
+                'color'  => $this->escape( $color ),
+            )
+        ) ) {
+
+                $groupId = $this->wpdb->insert_id;
+
+                $group = $this->get_group_by_id( $groupId );
+
+                /**
+                 * Fires after a new sites tag has been created.
+                 *
+                 * @param object $group group created.
+                 * @param string group action.
+                 */
+                do_action( 'mainwp_site_tag_action', $group, 'created' );
+
+                return $groupId;
+        }
+
+        return false;
+    }
+
+    /**
+     * Method add_tag()
+     *
+     * Add Group.
+     *
+     * @param array $params params data.
+     */
+    public function add_tag( $params = array() ) {
+        /**
+         * Current user global.
+         *
+         * @global string
+         */
+        global $current_user;
+        //phpcs:disable WordPress.Security.NonceVerification.Missing
+        $groupId  = isset( $params['id'] ) ? intval( $params['id'] ) : 0;
+        $newName  = isset( $params['name'] ) ? sanitize_text_field( wp_unslash( $params['name'] ) ) : '';
+        $newColor = null;
+
+        if ( isset( $params['color'] ) ) {
+            $newColor = sanitize_hex_color( wp_unslash( $params['color'] ) );
+        }
+        //phpcs:enable WordPress.Security.NonceVerification.Missing
+
+        if ( ! empty( $groupId ) ) {
+            $table_group = esc_sql( $this->table_name( 'group' ) );
+            if ( null !== $newColor ) {
+                $this->wpdb->query( $this->wpdb->prepare( "UPDATE `{$table_group}` SET name=%s, color=%s WHERE id=%d", $newName, $newColor, $groupId ) );
+            } else {
+                $this->wpdb->query( $this->wpdb->prepare( "UPDATE `{$table_group}` SET name=%s WHERE id=%d", $newName, $groupId ) );
+            }
+            return $this->get_group_by_id( $groupId );
+        } elseif ( ! empty( $newName ) ) {
+            $groupId = $this->add_group( $current_user->ID, MainWP_Manage_Groups::check_group_name( $newName ), $newColor );
+
+            /**
+             * New Group Added
+             *
+             * Fires after a new sites group has been created.
+             *
+             * @param int $groupId Group ID.
+             */
+            do_action( 'mainwp_added_new_group', $groupId );
+            return $this->get_group_by_id( $groupId );
+        }
+        return false;
+    }
+
+    /**
+     * Method remove_group()
+     *
+     * Remove group.
+     *
+     * @param mixed $groupid Group ID.
+     *
+     * @return int|boolean Group that was deleted or false on failure.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     */
+    public function remove_group( $groupid ) {
+        if ( MainWP_Utility::ctype_digit( $groupid ) ) {
+            $group          = $this->get_group_by_id( $groupid );
+            $table_group    = esc_sql( $this->table_name( 'group' ) );
+            $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+            $nr             = $this->wpdb->query( $this->wpdb->prepare( "DELETE FROM `{$table_group}` WHERE id=%d", $groupid ) );
+            $this->wpdb->query( $this->wpdb->prepare( "DELETE FROM `{$table_wp_group}` WHERE groupid=%d", $groupid ) );
+            if ( $nr ) {
+                /**
+                 * Fires after a tag has been deleted.
+                 *
+                 * @param object $group group created.
+                 * @param string group action.
+                 */
+                do_action( 'mainwp_site_tag_action', $group, 'deleted' );
+            }
+            return $nr;
+        }
+
+        return false;
+    }
+
+    /**
+     * Method update_note()
+     *
+     * Update Note.
+     *
+     * @param mixed $websiteid Child Site ID.
+     * @param mixed $note Note data.
+     *
+     * @return void
+     */
+    public function update_note( $websiteid, $note ) {
+        $table_wp = esc_sql( $this->table_name( 'wp' ) );
+        $this->wpdb->query( $this->wpdb->prepare( "UPDATE `{$table_wp}` SET note= %s WHERE id=%d", $this->escape( $note ), $websiteid ) );
+    }
+
+    /**
+     * Method update_group()
+     *
+     * Update group.
+     *
+     * @param mixed  $groupid Group ID.
+     * @param mixed  $groupname Group Name.
+     * @param string $groupcolor Group Color.
+     *
+     * @return boolean true|false.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Utility::ctype_digit()
+     */
+    public function update_group( $groupid, $groupname, $groupcolor ) {
+        if ( MainWP_Utility::ctype_digit( $groupid ) ) {
+            $table_group = esc_sql( $this->table_name( 'group' ) );
+            $this->wpdb->query( $this->wpdb->prepare( "UPDATE `{$table_group}` SET name=%s, color=%s WHERE id=%d", $this->escape( $groupname ), $this->escape( $groupcolor ), $groupid ) );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Method get_user_notification_email()
+     *
+     * Get user notification email.
+     *
+     * @param mixed $userid Current user ID.
+     *
+     * @return string $user_email User email address.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_single_user()
+     */
+    public function get_user_notification_email( $userid = 0 ) {
+        $theUserId = $userid;
+        if ( MainWP_System::instance()->is_single_user() ) {
+            $theUserId = 0;
+        }
+        $table_users = esc_sql( $this->table_name( 'users' ) );
+        $user_email  = $this->wpdb->get_var( $this->wpdb->prepare( "SELECT user_email FROM `{$table_users}` WHERE userid = %d", $theUserId ) );
+
+        if ( null === $user_email || empty( $user_email ) ) {
+            $user_email = $this->wpdb->get_var( $this->wpdb->prepare( 'SELECT user_email FROM `' . $this->wpdb->prefix . 'users` WHERE id = %d', $userid ) );
+        }
+
+        return $user_email;
+    }
+
+    /**
+     * Method get_user_extension()
+     *
+     * Get user extension.
+     *
+     * @return boolean|int false|get_user_extension_by_user_id()
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_single_user()
+     */
+    public function get_user_extension() {
+
+        /**
+         * Current user global.
+         *
+         * @global string
+         */
+        global $current_user;
+
+        if ( empty( $current_user ) ) {
+            if ( MainWP_System::instance()->is_single_user() ) {
+                $userid = 0;
+            } else {
+                return false;
+            }
+        } else {
+            $userid = $current_user->ID;
+        }
+
+        return $this->get_user_extension_by_user_id( $userid );
+    }
+
+    /**
+     * Method get_user_extension_by_user_id()
+     *
+     * Get user extension by user id.
+     *
+     * @param mixed $userid Current user ID.
+     *
+     * @return object $row User extension.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_single_user()
+     */
+    public function get_user_extension_by_user_id( $userid = 0 ) {
+        if ( MainWP_System::instance()->is_single_user() ) {
+            $userid = 0;
+        }
+
+        $table_users = esc_sql( $this->table_name( 'users' ) );
+        $row         = $this->wpdb->get_row( "SELECT * FROM `{$table_users}` WHERE userid= " . intval( $userid ), OBJECT );
+        if ( null === $row ) {
+            $this->create_user_extension( $userid );
+            $row = $this->wpdb->get_row( "SELECT * FROM `{$table_users}` WHERE userid= " . intval( $userid ), OBJECT );
+        }
+
+        return $row;
+    }
+
+    /**
+     * Method create_user_extension()
+     *
+     * Create user extension
+     *
+     * @param mixed $userId Current user ID.
+     *
+     * @return void
+     */
+    protected function create_user_extension( $userId ) {
+        $fields = array(
+            'userid'                => $userId,
+            'user_email'            => '',
+            'ignored_plugins'       => '',
+            'trusted_plugins'       => '',
+            'trusted_plugins_notes' => '',
+            'ignored_themes'        => '',
+            'trusted_themes'        => '',
+            'trusted_themes_notes'  => '',
+            'pluginDir'             => '',
+            'ignored_wp_upgrades'   => '',
+        );
+
+        $this->wpdb->insert( $this->table_name( 'users' ), $fields );
+    }
+
+    /**
+     * Method update_user_extension()
+     *
+     * Update user extension.
+     *
+     * @param mixed $userExtension User extention to update.
+     *
+     * @return object $row User extension.
+     *
+     * @uses \MainWP\Dashboard\MainWP_System::is_single_user()
+     */
+    public function update_user_extension( $userExtension ) {
+
+        if ( is_object( $userExtension ) ) {
+            $userid = $userExtension->userid;
+        } elseif ( is_array( $userExtension ) ) {
+            $userid = $userExtension['userid'];
+        } else {
+            $userid = null;
+        }
+
+        if ( null === $userid ) {
+            if ( MainWP_System::instance()->is_single_user() ) {
+                $userid = '0';
+            } else {
+
+                /**
+                 * Current user global.
+                 *
+                 * @global string
+                 */
+                global $current_user;
+
+                $userid = $current_user->ID;
+            }
+        }
+        $table_users = esc_sql( $this->table_name( 'users' ) );
+        $row         = $this->wpdb->get_row( "SELECT * FROM `{$table_users}` WHERE userid= " . intval( $userid ), OBJECT );
+        if ( null === $row ) {
+            $this->create_user_extension( $userid );
+        }
+
+        $fields = array();
+        foreach ( $userExtension as $field => $value ) {
+            if ( $value != $row->$field ) { //phpcs:ignore -- to valid.
+                $fields[ $field ] = $value;
+            }
+        }
+
+        if ( ! empty( $fields ) ) {
+            $this->wpdb->update( $this->table_name( 'users' ), $fields, array( 'userid' => $userid ) );
+        }
+
+        return $this->wpdb->get_row( "SELECT * FROM `{$table_users}` WHERE userid= " . intval( $userid ), OBJECT );
+    }
+
+
+    /**
+     * Method rest_api_update_website().
+     *
+     * Rest API update website.
+     *
+     * @param int   $websiteid website ID.
+     * @param array $data Update fields array.
+     * 'http_user'.
+     * 'http_pass'.
+     * 'name'.
+     * 'admin'.
+     * 'sslversion'.
+     * 'uniqueid'.
+     * 'verify'.
+     * 'protocol'.
+     * 'checkinterval'.
+     * 'disablehealthchecking'.
+     * 'healththreshold'.
+     * 'groupids'.
+     * 'automatic_update'.
+     * 'backup_before_upgrade'.
+     * 'force_use_ipv4'.
+     * 'ignore_core_updates'.
+     * 'ignore_plugin_updates'.
+     * 'ignore_theme_updates'.
+     * 'monitoring_emails'.
+     *
+     * @return mixed array|true|false.
+     */
+    public function rest_api_update_website( $websiteid, $data ) { // phpcs:ignore -- NOSONAR - complex function.
+
+        $website = MainWP_DB::instance()->get_website_by_id( $websiteid );
+        if ( empty( $website ) ) {
+            return false;
+        }
+        $success = false;
+
+        $map_fields = array(
+            'http_user'   => 'http_user',
+            'http_pass'   => 'http_pass',
+            'name'        => 'name',
+            'adminname'   => 'admin',
+            'ssl_version' => 'sslversion',
+            'uniqueId'    => 'uniqueid',
+        );
+
+        $update_fields = array();
+
+        foreach ( $map_fields as $field => $name ) {
+            if ( isset( $data[ $name ] ) && empty( ! $data[ $name ] ) ) {
+                $value = $data[ $name ];
+                // MWP-1548: encrypt http_user / http_pass at rest before
+                // they hit the raw SQL UPDATE. Same fail-closed contract
+                // as the other write paths in MainWP_DB.
+                if ( 'http_user' === $field || 'http_pass' === $field ) {
+                    $encrypted = MainWP_Credential_Storage::encrypt_credential( $value, $field );
+                    if ( false === $encrypted ) {
+                        return false;
+                    }
+                    $value = $encrypted;
+                }
+                $update_fields[ $field ] = $value;
+            }
+        }
+
+        if ( isset( $data['verify'] ) ) {
+            $verify                              = intval( $data['verify'] );
+            $update_fields['verify_certificate'] = $verify;
+        }
+
+        if ( isset( $data['protocol'] ) && ( 'http' === $data['protocol'] || 'https' === $data['protocol'] ) ) {
+            $url                  = $data['protocol'] . '://' . MainWP_Utility::remove_http_prefix( $website->url, true );
+            $update_fields['url'] = $this->escape( $url );
+        }
+
+        if ( isset( $data['disablehealthchecking'] ) ) {
+            $update_fields['disable_health_check'] = $data['disablehealthchecking'] ? 1 : 0;
+        }
+
+        if ( isset( $data['healththreshold'] ) ) {
+            $update_fields['health_threshold'] = intval( $data['healththreshold'] );
+        }
+
+        if ( isset( $data['suspended'] ) ) {
+            $update_fields['suspended'] = 1 === intval( $data['suspended'] ) ? 1 : 0;
+        }
+
+        if ( ! empty( $update_fields ) ) {
+            $updated = $this->wpdb->update(
+                $this->table_name( 'wp' ),
+                $update_fields,
+                array( 'id' => $websiteid )
+            );
+            if ( false === $updated ) {
+                return false;
+            }
+            $success = true;
+        }
+
+        $groupids = array();
+        if ( isset( $data['groupids'] ) && ! empty( $data['groupids'] ) ) {
+            $groupids = explode( ',', sanitize_text_field( wp_unslash( $data['groupids'] ) ) );
+        }
+
+        if ( ! empty( $groupids ) ) {
+            $table_wp_group = esc_sql( $this->table_name( 'wp_group' ) );
+            $this->wpdb->query( $this->wpdb->prepare( "DELETE FROM `{$table_wp_group}` WHERE wpid=%d", $websiteid ) );
+
+            // update groups.
+            foreach ( $groupids as $groupid ) {
+                $this->wpdb->insert(
+                    $this->table_name( 'wp_group' ),
+                    array(
+                        'wpid'    => $websiteid,
+                        'groupid' => $groupid,
+                    )
+                );
+            }
+            $success = true;
+        }
+
+        $newValues = array();
+
+        if ( isset( $data['automatic_update'] ) ) {
+            $newValues['automatic_update'] = $data['automatic_update'] ? 1 : 0;
+        }
+
+        if ( isset( $data['backup_before_upgrade'] ) ) {
+            $newValues['backup_before_upgrade'] = $data['backup_before_upgrade'] ? 1 : 0;
+        }
+        if ( isset( $data['force_use_ipv4'] ) ) {
+            $forceuseipv4 = intval( $data['force_use_ipv4'] );
+            if ( 2 < $forceuseipv4 ) {
+                $forceuseipv4 = 0;
+            }
+            $newValues['force_use_ipv4'] = $forceuseipv4;
+        }
+
+        if ( isset( $data['ignore_core_updates'] ) ) {
+            $newValues['is_ignoreCoreUpdates'] = $data['ignore_core_updates'] ? 1 : 0;
+        }
+
+        if ( isset( $data['ignore_plugin_updates'] ) ) {
+            $newValues['is_ignorePluginUpdates'] = $data['ignore_plugin_updates'] ? 1 : 0;
+        }
+
+        if ( isset( $data['ignore_theme_updates'] ) ) {
+            $newValues['is_ignoreThemeUpdates'] = $data['ignore_theme_updates'] ? 1 : 0;
+        }
+
+        if ( isset( $data['client_id'] ) ) {
+            $newValues['client_id'] = max( 0, intval( $data['client_id'] ) );
+        }
+
+        if ( ! empty( $newValues ) ) {
+            MainWP_DB::instance()->update_website_values( $website->id, $newValues );
+            $success = true;
+        }
+
+        if ( isset( $data['monitoring_emails'] ) ) {
+            $monitoring_emails = MainWP_Utility::valid_input_emails( $data['monitoring_emails'] );
+            MainWP_DB::instance()->update_website_option( $website, 'monitoring_notification_emails', ( $monitoring_emails ) );
+
+        }
+
+        return array(
+            'message' => 'Site updated successfully.',
+            'site'    => $website->url,
+            'success' => $success,
+        );
+    }
+}

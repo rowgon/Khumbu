@@ -1,0 +1,919 @@
+<?php
+/**
+ * MainWP Extension Page
+ *
+ * @package     MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class MainWP_Extensions
+ */
+class MainWP_Extensions { // phpcs:ignore Generic.Classes.OpeningBraceSameLine.ContentAfterBrace -- NOSONAR.
+
+    /**
+     * Method get_class_name()
+     *
+     * Get Class Name.
+     *
+     * @return object Class name.
+     */
+    public static function get_class_name() {
+        return __CLASS__;
+    }
+
+    /**
+     * Instantiate action hooks.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::get_class_name()
+     */
+    public static function init() {
+        /**
+         * This hook allows you to render the Extensions page header via the 'mainwp-pageheader-extensions' action.
+         *
+         * @link http://codex.mainwp.com/#mainwp-pageheader-extensions
+         *
+         * @see \MainWP_Extensions::render_header
+         */
+        add_action( 'mainwp-pageheader-extensions', array( static::get_class_name(), 'render_header' ) ); // @deprecated Use 'mainwp_pageheader_extensions' instead.
+        add_action( 'mainwp_pageheader_extensions', array( static::get_class_name(), 'render_header' ) );
+
+        /**
+         * This hook allows you to render the Extensions page footer via the 'mainwp-pagefooter-extensions' action.
+         *
+         * @link http://codex.mainwp.com/#mainwp-pagefooter-extensions
+         *
+         * @see \MainWP_Extensions::render_footer
+         */
+        add_action( 'mainwp-pagefooter-extensions', array( static::get_class_name(), 'render_footer' ) ); // @deprecated Use 'mainwp_pagefooter_extensions' instead.
+        add_action( 'mainwp_pagefooter_extensions', array( static::get_class_name(), 'render_footer' ) );
+
+        add_action( 'mainwp_help_sidebar_content', array( static::get_class_name(), 'mainwp_help_content' ) );
+
+        add_filter( 'mainwp-extensions-apigeneratepassword', array( MainWP_Extensions_Handler::get_class_name(), 'gen_api_password' ), 10, 3 );
+        add_filter( 'mainwp_extensions_apigeneratepassword', array( MainWP_Extensions_Handler::get_class_name(), 'gen_api_password' ), 10, 3 );
+    }
+
+    /**
+     * Method init_menu()
+     *
+     * Instantiate Extensions Menu.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Api_Manager::get_activation_info()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::init_menu()
+     * @uses \MainWP\Dashboard\MainWP_Menu::is_disable_menu_item()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::polish_ext_name()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::added_on_menu()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::get_extensions()
+     * @uses  \MainWP\Dashboard\MainWP_Utility::update_option()
+     */
+    public static function init_menu() { // phpcs:ignore -- NOSONAR - complex function. Current complexity is the only way to achieve desired results, pull request solutions appreciated.
+        if ( ! MainWP_Menu::is_disable_menu_item( 2, 'Extensions' ) ) {
+            MainWP_Extensions_View::init_menu();
+        }
+
+        $save_extensions = array();
+
+        /**
+         * Get extensions
+         *
+         * Adds extension to MainWP system.
+         *
+         * @since 4.1
+         */
+        $init_extensions = array();
+        $init_extensions = apply_filters_deprecated( 'mainwp-getextensions', array( $init_extensions ), '4.0.7.2', 'mainwp_getextensions' ); // NOSONAR - not IP.
+        $init_extensions = apply_filters( 'mainwp_getextensions', $init_extensions );
+
+        $all_available_extensions = MainWP_Extensions_View::get_available_extensions( 'all' );
+
+        $activations_cached = get_option( 'mainwp_extensions_all_activation_cached', array() );
+
+        if ( ! is_array( $activations_cached ) ) {
+            $activations_cached = array();
+        }
+
+        $is_cached = ! empty( $activations_cached ) ? true : false;
+
+        $extraHeaders = array(
+            'IconURI'          => 'Icon URI',
+            'SupportForumURI'  => 'Support Forum URI',
+            'DocumentationURI' => 'Documentation URI',
+        );
+
+        $extsPages = array();
+
+        $compatible_v4_checks = array(
+            'advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php',
+            'mainwp-article-uploader-extension/mainwp-article-uploader-extension.php',
+            'mainwp-backwpup-extension/mainwp-backwpup-extension.php',
+            'boilerplate-extension/boilerplate-extension.php',
+            'mainwp-branding-extension/mainwp-branding-extension.php',
+            'mainwp-bulk-settings-manager/mainwp-bulk-settings-manager.php',
+            'mainwp-clean-and-lock-extension/mainwp-clean-and-lock-extension.php',
+            'mainwp-client-reports-extension/mainwp-client-reports-extension.php',
+            'mainwp-clone-extension/mainwp-clone-extension.php',
+            'mainwp-code-snippets-extension/mainwp-code-snippets-extension.php',
+            'mainwp-comments-extension/mainwp-comments-extension.php',
+            'mainwp-favorites-extension/mainwp-favorites-extension.php',
+            'mainwp-file-uploader-extension/mainwp-file-uploader-extension.php',
+            'mainwp-google-analytics-extension/mainwp-google-analytics-extension.php',
+            'mainwp-maintenance-extension/mainwp-maintenance-extension.php',
+            'mainwp-piwik-extension/mainwp-piwik-extension.php',
+            'mainwp-post-dripper-extension/mainwp-post-dripper-extension.php',
+            'mainwp-rocket-extension/mainwp-rocket-extension.php',
+            'mainwp-sucuri-extension/mainwp-sucuri-extension.php',
+            'mainwp-team-control/mainwp-team-control.php',
+            'mainwp-updraftplus-extension/mainwp-updraftplus-extension.php',
+            'mainwp-url-extractor-extension/mainwp-url-extractor-extension.php',
+            'mainwp-woocommerce-shortcuts-extension/mainwp-woocommerce-shortcuts-extension.php',
+            'mainwp-woocommerce-status-extension/mainwp-woocommerce-status-extension.php',
+            'mainwp-wordfence-extension/mainwp-wordfence-extension.php',
+            'wordpress-seo-extension/wordpress-seo-extension.php',
+            'mainwp-page-speed-extension/mainwp-page-speed-extension.php',
+            'mainwp-ithemes-security-extension/mainwp-ithemes-security-extension.php',
+            'mainwp-post-plus-extension/mainwp-post-plus-extension.php',
+            'mainwp-staging-extension/mainwp-staging-extension.php',
+            'mainwp-custom-post-types/mainwp-custom-post-types.php',
+            'mainwp-buddy-extension/mainwp-buddy-extension.php',
+            'mainwp-vulnerability-checker-extension/mainwp-vulnerability-checker-extension.php',
+            'mainwp-timecapsule-extension/mainwp-timecapsule-extension.php',
+            'activity-log-mainwp/activity-log-mainwp.php',
+        );
+        include_once ABSPATH . '/wp-admin/includes/plugin.php'; // NOSONAR - WP compatible.
+
+        $deactivated_imcompatible = array();
+        foreach ( $init_extensions as $extension ) {
+            $slug        = plugin_basename( $extension['plugin'] );
+            $plugin_data = get_plugin_data( $extension['plugin'], true, false );
+            $file_data   = get_file_data( $extension['plugin'], $extraHeaders );
+
+            if ( ! isset( $plugin_data['Name'] ) || ( '' === $plugin_data['Name'] ) ) {
+                continue;
+            }
+
+            if ( in_array( $slug, $compatible_v4_checks ) ) {
+                $check_minver = '3.99999';
+                if ( 'advanced-uptime-monitor-extension/advanced-uptime-monitor-extension.php' === $slug ) {
+                    $check_minver = '4.6.2';
+                } elseif ( 'activity-log-mainwp/activity-log-mainwp.php' === $slug ) {
+                    $check_minver = '1.0.5';
+                }
+
+                if ( isset( $plugin_data['Version'] ) && version_compare( $plugin_data['Version'], $check_minver, '<' ) ) {
+                    $deactivated_imcompatible[] = $plugin_data['Name'];
+                    deactivate_plugins( $slug, true );
+                    continue;
+                }
+            }
+
+            $extension['slug'] = $slug;
+
+            if ( ! isset( $extension['name'] ) ) {
+                $extension['name'] = $plugin_data['Name'];
+            }
+            $extension['version']          = $plugin_data['Version'];
+            $extension['description']      = $plugin_data['Description'];
+            $extension['author']           = $plugin_data['Author'];
+            $extension['icon']             = isset( $extension['icon'] ) ? trim( $extension['icon'] ) : '';
+            $extension['iconURI']          = $file_data['IconURI'];
+            $extension['SupportForumURI']  = $file_data['SupportForumURI'];
+            $extension['DocumentationURI'] = $file_data['DocumentationURI'];
+            $extension['page']             = 'Extensions-' . str_replace( ' ', '-', ucwords( str_replace( '-', ' ', dirname( $slug ) ) ) );
+
+            if ( isset( $extension['apiManager'] ) && $extension['apiManager'] ) {
+
+                $api_slug = dirname( $slug );
+
+                if ( $is_cached ) {
+                    $options = isset( $activations_cached[ $api_slug ] ) ? $activations_cached[ $api_slug ] : array();
+                    // MWP-1546 (Codex follow-up): pre-MWP-1546 builds persisted
+                    // the full decrypted activation array (including plaintext
+                    // 'api_key') into mainwp_extensions_all_activation_cached.
+                    // On upgrade those rows survive as long as the cache stays
+                    // populated. Treat any cache-hit entry that still carries
+                    // 'api_key' as untrusted legacy data: strip it, derive
+                    // has_api_key, and rewrite the sanitized entry in the
+                    // cache so the plaintext never sees another disk write.
+                    if ( is_array( $options ) && array_key_exists( 'api_key', $options ) ) {
+                        $had_key = ! empty( $options['api_key'] );
+                        unset( $options['api_key'] );
+                        $options['has_api_key']          = $had_key;
+                        $activations_cached[ $api_slug ] = $options;
+                        // Force the post-loop update_option write below to fire.
+                        $is_cached = false;
+                    }
+                } else {
+                    $options = MainWP_Api_Manager::instance()->get_activation_info( $api_slug );
+                    if ( ! is_array( $options ) ) {
+                        $options = array();
+                    }
+                    // MWP-1546: the activations_cached option is persisted via
+                    // update_option(). Storing the decrypted api_key here would
+                    // re-leak the plaintext into another database row,
+                    // defeating the at-rest encryption added to set_activation_info().
+                    // Cache only the non-credential fields plus a has_api_key
+                    // boolean so the cache-hit path knows whether a key is
+                    // configured without ever holding the plaintext.
+                    $cached_options = $options;
+                    unset( $cached_options['api_key'] );
+                    $cached_options['has_api_key']   = ! empty( $options['api_key'] );
+                    $activations_cached[ $api_slug ] = $cached_options;
+                }
+
+                if ( ! is_array( $options ) ) {
+                    $options = array();
+                }
+
+                // MWP-1546: stop persisting the per-extension license key
+                // into the aggregated mainwp_extensions option. The original
+                // 'api_key' field on $extension was a plaintext string sourced
+                // from get_activation_info(); render code that needs to know
+                // "is a key configured?" should consult 'has_api_key' instead.
+                // The deactivate flow uses a server-side sentinel-resolution
+                // path (see MainWP_Post_Extension_Handler::deactivate_extension)
+                // that fetches the real key from the per-slug option at the
+                // moment of use, never via the aggregate.
+                //
+                // The cache-hit path stores has_api_key directly (see above);
+                // the fresh-load path infers it from the decrypted plaintext.
+                $extension['has_api_key']         = isset( $options['has_api_key'] ) ? (bool) $options['has_api_key'] : ! empty( $options['api_key'] );
+                $extension['activated_key']       = isset( $options['activated_key'] ) ? $options['activated_key'] : 'Deactivated';
+                $extension['deactivate_checkbox'] = isset( $options['deactivate_checkbox'] ) ? $options['deactivate_checkbox'] : 'off';
+                $extension['product_id']          = isset( $options['product_id'] ) ? $options['product_id'] : '';
+                $extension['instance_id']         = isset( $options['instance_id'] ) ? $options['instance_id'] : '';
+                $extension['software_version']    = isset( $options['software_version'] ) ? $options['software_version'] : '';
+                $extension['mainwp_version']      = isset( $options['mainwp_version'] ) ? $options['mainwp_version'] : '';
+
+                if ( isset( $options['product_item_id'] ) ) {
+                    $extension['product_item_id'] = $options['product_item_id'];
+                }
+            }
+
+            $ext_slug = dirname( $slug );
+            if ( isset( $all_available_extensions[ $ext_slug ] ) ) {
+                $extension['type'] = $all_available_extensions[ $ext_slug ]['type']; // to fix.
+            }
+
+            $save_extensions[] = $extension;
+            if ( \mainwp_current_user_can( 'extension', dirname( $slug ) ) ) {
+                $callback  = isset( $extension['callback'] ) ? $extension['callback'] : '';
+                $menu_name = MainWP_Extensions_Handler::polish_ext_name( $extension );
+                if ( MainWP_Extensions_Handler::added_on_menu( $slug ) ) {
+                    $_page = add_submenu_page( 'mainwp_tab', $extension['name'], $menu_name, 'read', $extension['page'], $callback );
+                } else {
+                    $_page = add_submenu_page( 'mainwp_tab', $extension['name'], '<div class="mainwp-hidden">' . $extension['name'] . '</div>', 'read', $extension['page'], $callback );
+                }
+
+                if ( isset( $extension['on_load_callback'] ) && ! empty( $extension['on_load_callback'] ) ) {
+                    add_action( 'load-' . $_page, $extension['on_load_callback'] );
+                }
+
+                $_item = array(
+                    'title' => $menu_name,
+                    'slug'  => $extension['page'],
+                    'href'  => isset( $extension['href'] ) ? $extension['href'] : '',
+                );
+
+                $extsPages[] = $_item;
+            }
+        }
+
+        if ( ! empty( $deactivated_imcompatible ) ) {
+            set_transient( 'mainwp_transient_deactivated_incomtible_exts', $deactivated_imcompatible );
+        }
+
+        MainWP_Utility::update_option( 'mainwp_extensions', $save_extensions );
+        MainWP_Extensions_Handler::get_extensions( true ); // forced reload.
+
+        if ( ! $is_cached ) {
+            update_option( 'mainwp_extensions_all_activation_cached', $activations_cached );
+        }
+        static::init_left_menu( $extsPages );
+    }
+
+    /**
+     * Method init_left_menu()
+     *
+     * Initiate top level Extensions Menues.
+     *
+     * @param array $extPages List of extension pages.
+     * @uses \MainWP\Dashboard\MainWP_Menu::is_disable_menu_item()
+     * @uses \MainWP\Dashboard\MainWP_Menu::add_left_menu()
+     * @uses \MainWP\Dashboard\MainWP_Menu::init_subpages_left_menu()
+     */
+    public static function init_left_menu( $extPages ) {
+        $subPages = array();
+        if ( ! MainWP_Menu::is_disable_menu_item( 2, 'Extensions' ) ) {
+            MainWP_Menu::add_left_menu(
+                array(
+                    'title'      => esc_html__( 'Add-ons', 'mainwp' ),
+                    'parent_key' => 'mainwp_tab',
+                    'slug'       => 'Extensions',
+                    'href'       => 'admin.php?page=Extensions',
+                    'icon'       => '<i class="box icon"></i>',
+                ),
+                0
+            );
+
+            $init_sub_subleftmenu = array(
+                array(
+                    'title'      => esc_html__( 'Manage Add-ons', 'mainwp' ),
+                    'parent_key' => 'Extensions',
+                    'href'       => 'admin.php?page=Extensions',
+                    'slug'       => 'Extensions',
+                    'right'      => '',
+                ),
+            );
+
+            MainWP_Menu::init_subpages_left_menu( $subPages, $init_sub_subleftmenu, 'Extensions', 'Extensions' );
+
+            foreach ( $init_sub_subleftmenu as $item ) {
+                if ( MainWP_Menu::is_disable_menu_item( 3, $item['slug'] ) ) {
+                    continue;
+                }
+                MainWP_Menu::add_left_menu( $item, 2 );
+            }
+
+            if ( ! empty( $extPages ) ) {
+
+                $init_sub_subleftmenu = array();
+                $slug                 = '';
+                MainWP_Menu::init_subpages_left_menu( $extPages, $init_sub_subleftmenu, 'Extensions', $slug );
+
+                foreach ( $init_sub_subleftmenu as $item ) {
+                    if ( MainWP_Menu::is_disable_menu_item( 3, $item['slug'] ) ) {
+                            continue;
+                    }
+                    MainWP_Menu::add_left_menu( $item, 2 );
+                }
+            }
+        }
+    }
+
+    /**
+     * Method init_subpages_menu()
+     *
+     * Initiate Extensions Subpage Menu.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::get_extensions()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::added_on_menu()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::polish_ext_name()
+     */
+    public static function init_subpages_menu() {
+        $exts = MainWP_Extensions_Handler::get_extensions();
+        if ( empty( $exts ) ) {
+            return;
+        }
+        $html = '';
+        foreach ( $exts as $extension ) {
+            if ( defined( 'MWP_TEAMCONTROL_PLUGIN_SLUG' ) && ( MWP_TEAMCONTROL_PLUGIN_SLUG === $extension['slug'] ) && ! \mainwp_current_user_can( 'extension', dirname( MWP_TEAMCONTROL_PLUGIN_SLUG ) ) ) {
+                continue;
+            }
+            if ( MainWP_Extensions_Handler::added_on_menu( $extension['slug'] ) ) {
+                continue;
+            }
+            $menu_name = MainWP_Extensions_Handler::polish_ext_name( $extension );
+
+            if ( isset( $extension['direct_page'] ) ) {
+                $html .= '<a href="' . esc_url( admin_url( 'admin.php?page=' . $extension['direct_page'] ) ) . '" class="mainwp-submenu">' . $menu_name . '</a>';
+            } else {
+                $html .= '<a href="' . esc_url( admin_url( 'admin.php?page=' . $extension['page'] ) ) . '" class="mainwp-submenu">' . $menu_name . '</a>';
+            }
+        }
+        if ( empty( $html ) ) {
+            return;
+        }
+        ?>
+        <div id="menu-mainwp-Extensions" class="mainwp-submenu-wrapper" xmlns="http://www.w3.org/1999/html">
+            <div class="wp-submenu sub-open" style="">
+                <div class="mainwp_boxout mainwp-submenu-wide">
+                    <div class="mainwp_boxoutin"></div>
+                    <?php echo $html; // phpcs:ignore WordPress.Security.EscapeOutput ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+
+    /**
+     * Method ajax_get_purchased_extensions()
+     *
+     * Get purchased MainWP Extensions.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Api_Manager::get_purchased_extension()
+     * @uses \MainWP\Dashboard\MainWP_Api_Manager::check_response_for_intall_errors()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::get_available_extensions()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::get_extension_groups()
+     * @uses \MainWP\Dashboard\MainWP_Post_Handler::secure_request()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_Handler::get_extensions()
+     * @uses  \MainWP\Dashboard\MainWP_Utility::update_option()
+     */
+    public static function ajax_get_purchased_extensions() { // phpcs:ignore -- NOSONAR - complex function. Current complexity is the only way to achieve desired results, pull request solutions appreciated.
+
+        MainWP_Post_Handler::instance()->secure_request( 'mainwp_extension_getpurchased' );
+
+        $api_key = isset( $_POST['api_key'] ) ? trim( wp_unslash( $_POST['api_key'] ) ) : false; // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+        // MWP-1547: the Extensions page renders the sentinel placeholder
+        // when a master key is already stored. The browser submits whatever
+        // value is in #mainwp_com_api_key, which is the sentinel for
+        // remembered-license dashboards. Resolve to the stored decrypted
+        // master key server-side rather than sending the placeholder
+        // upstream.
+        if ( MainWP_Credential_Render::is_sentinel( $api_key ) ) {
+            $api_key = MainWP_Api_Manager_Key::instance()->get_decrypt_master_api_key();
+        }
+
+        $all_available_extensions_compatible_api_response = array();
+        $all_free_pro_exts                                = array();
+        $all_org_exts                                     = array();
+        $map_extensions_group                             = array();
+        $purchased_data                                   = array();
+
+        $all_groups = MainWP_Extensions_View::get_extension_groups();
+
+        $grouped_exts = array(
+            'others' => '',
+            'all'    => '',
+        );
+
+        foreach ( MainWP_Extensions_View::get_available_extensions( 'all' ) as $ext ) {
+            $all_available_extensions_compatible_api_response[ $ext['product_id'] ] = $ext;
+            $map_extensions_group[ $ext['product_id'] ]                             = current( $ext['group'] );
+            if ( 'free' === $ext['type'] || 'pro' === $ext['type'] ) {
+                $all_free_pro_exts[ $ext['product_id'] ] = $ext['product_id'];
+            } elseif ( 'org' === $ext['type'] ) {
+                $all_org_exts[ $ext['product_id'] ] = $ext['product_id'];
+            }
+        }
+
+        $extensions          = MainWP_Extensions_Handler::get_extensions();
+        $installed_softwares = array();
+
+        foreach ( $extensions as $extension ) {
+            if ( isset( $extension['type'] ) ) {
+                if ( 'free' === $extension['type'] || 'pro' === $extension['type'] ) {
+                    if ( isset( $extension['product_id'] ) && ! empty( $extension['product_id'] ) ) {
+                        $installed_softwares[ $extension['product_id'] ] = $extension['product_id'];
+                    }
+                } elseif ( 'org' === $extension['type'] ) {
+                    $ext_slug                         = dirname( $extension['slug'] );
+                    $installed_softwares[ $ext_slug ] = $ext_slug;
+                }
+            }
+        }
+
+        $all_disabled_extensions = MainWP_Extensions_Handler::get_extensions_disabled( true );
+
+        foreach ( $all_disabled_extensions as $ext ) {
+            $installed_softwares[ $ext['product_id'] ] = $ext['product_id'];
+        }
+
+        $not_purchased_exts     = $all_free_pro_exts;
+        $not_installed_org_exts = array_diff_key( $all_org_exts, $installed_softwares );
+        $installing_exts        = $not_installed_org_exts;
+
+        if ( ! empty( $api_key ) ) {
+
+            $data = MainWP_Api_Manager::instance()->get_purchased_extension( $api_key );
+
+            $result = json_decode( $data, true );
+            $return = array();
+
+            if ( is_array( $result ) ) {
+                if ( isset( $result['success'] ) && $result['success'] ) {
+                    $purchased_data     = ( isset( $result['purchased_data'] ) && is_array( $result['purchased_data'] ) ) ? $result['purchased_data'] : array();
+                    $not_purchased_exts = array_diff_key( $all_free_pro_exts, $purchased_data );
+                    $installing_exts    = array_diff_key( $purchased_data, $installed_softwares );
+                    $installing_exts    = array_merge( $installing_exts, $not_installed_org_exts );
+                } elseif ( isset( $result['error'] ) ) {
+                    $return = array( 'error' => $result['error'] );
+                }
+            } else {
+                $apisslverify = get_option( 'mainwp_api_sslVerifyCertificate' );
+                if ( 1 === $apisslverify ) {
+                    MainWP_Utility::update_option( 'mainwp_api_sslVerifyCertificate', 0 );
+                    $return['retry_action'] = 1;
+                }
+            }
+
+            if ( ! empty( $return ) ) {
+                wp_send_json( $return );
+            }
+        }
+
+        foreach ( $all_available_extensions_compatible_api_response as $product_id => $ext ) {
+
+            $item_html        = '';
+            $error            = '';
+            $ext_source_label = '';
+            $type             = '';
+            $notice           = '';
+            $add_on_model     = '';
+            $model            = $ext['model'];
+
+            if ( 'extension' === $model ) {
+                $add_on_model = 'addon-extension';
+            } elseif ( 'integration' === $model ) {
+                $add_on_model = 'addon-integration';
+            }
+
+            $item_slug = MainWP_Utility::get_dir_slug( $ext['slug'] );
+
+            $privacy = '<a href="#" class="extension-privacy-info-link" base-slug="' . esc_attr( $item_slug ) . '" style="text-decoration:none"> <i class="fingerprint small icon"></i></a>';
+
+            $new = '';
+
+            $software_title = MainWP_Extensions_Handler::polish_string_name( $ext['title'] );
+
+            if ( ! empty( $ext['type'] ) ) {
+                $type = $ext['type'];
+                if ( 'free' === $type ) {
+                    $ext_source_label = '<span class="ui mini green label">FREE</span>';
+                } elseif ( 'pro' === $type ) {
+                    $ext_source_label = '<span class="ui mini blue label">PRO</span>';
+                } elseif ( 'org' === $type ) {
+                    $ext_source_label = '<span class="ui mini grey label">.ORG</span>';
+                }
+            }
+
+            if ( isset( $ext['release_date'] ) && ( time() - $ext['release_date'] < MONTH_IN_SECONDS ) ) {
+                $new = '<span class="ui mini green label">NEW!</span>';
+            }
+
+            if ( 'MainWP WordPress SEO Extension' === $product_id || 'seopress-for-mainwp' === $product_id ) {
+                $notice = ' <i class="info circle small icon"></i>';
+            }
+
+            $ext_source_label .= '&nbsp;';
+
+            if ( isset( $installing_exts[ $product_id ] ) ) {
+
+                $product_info = isset( $installing_exts[ $product_id ] ) ? $installing_exts[ $product_id ] : array();
+                if ( ! is_array( $product_info ) ) {
+                    $product_info = array();
+                }
+
+                if ( 'free' === $type || 'pro' === $type ) {
+
+                    if ( $product_info && isset( $product_info['package'] ) && ! empty( $product_info['package'] ) ) {
+
+                        /**
+                         * API Manager Upgrade URL
+                         *
+                         * Filters the Upgrade URL for extensions.
+                         *
+                         * @since Unknown
+                         * @ignore
+                         */
+                        $package_url = apply_filters( 'mainwp_api_manager_upgrade_package_url', $product_info['package'], $product_info );
+
+                        $item_html = '
+                                    <div class="item extension extension-to-install ' . esc_attr( $add_on_model ) . '" download-link="' . esc_url( $package_url ) . '" plugin-slug="" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '" slug="' . esc_attr( $ext['slug'] ) . '">
+                                        <div class="ui stackable grid">
+                                            <div class="two column row">
+                                                <div class="column"><span class="ui checkbox"><input type="checkbox" status="queue"><label>' . $ext_source_label . '<strong><a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a>' . $privacy . ' ' . $notice . ' ' . $new . '</strong></label></span></div>
+                                                <div class="right aligned column"><span class="installing-extension" status="queue"></span></div>
+                                            </div>
+                                        </div>
+                                    </div>';
+
+                    } elseif ( isset( $product_info['error'] ) && ! empty( $product_info['error'] ) ) {
+                        $error = MainWP_Api_Manager::instance()->check_response_for_intall_errors( $product_info, $software_title );
+                    } else {
+                        $error = esc_html__( 'Undefined error occurred. Please try again.', 'mainwp' );
+                    }
+
+                    if ( ! empty( $error ) ) {
+                        $item_html = '
+                                    <div class="item extension ' . esc_attr( $add_on_model ) . '" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '">
+                                        <div class="ui stackable grid">
+                                            <div class="two column row">
+                                                <div class="column"><span class="ui checkbox"><input type="checkbox" disabled="disabled"><label>' . $ext_source_label . ' <a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a>' . $privacy . ' ' . $notice . ' ' . $new . '</label></span></div>
+                                                <div class="right aligned column"><span data-tooltip="' . $error . '" data-inverted="" data-position="left center"><i class="times red icon"></i></span></div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                    }
+                } elseif ( 'org' === $type ) {
+                    $item_html = '
+                                <div class="item extension extension-to-install ' . esc_attr( $add_on_model ) . '" download-link="" plugin-slug="' . esc_attr( $ext['slug'] ) . '" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '" slug="' . esc_attr( $ext['slug'] ) . '">
+                                    <div class="ui stackable grid">
+                                        <div class="two column row">
+                                            <div class="column"><span class="ui checkbox"><input type="checkbox" status="queue"><label>' . $ext_source_label . '<strong><a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a>' . $privacy . ' ' . $notice . ' ' . $new . '</strong></label></span></div>
+                                            <div class="right aligned column"><span class="installing-extension" status="queue"></span></div>
+                                        </div>
+                                    </div>
+                                </div>';
+                }
+            } elseif ( isset( $not_purchased_exts[ $product_id ] ) ) {
+                if ( 'free' === $type || 'pro' === $type ) {
+                    $item_html = '
+                        <div class="item extension ' . esc_attr( $add_on_model ) . '" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '" slug="' . esc_attr( $ext['slug'] ) . '">
+                            <div class="ui stackable grid">
+                                <div class="two column row">
+                                    <div class="column"><span class="ui checkbox"><input type="checkbox" disabled="disabled"><label>' . $ext_source_label . ' <a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a>' . $privacy . ' ' . $notice . ' ' . $new . '</label></span></div>
+                                    <div class="right aligned column"><a href="' . $ext['link'] . '" target="_blank" data-tooltip="' . esc_html__( 'Add-on not purchased. Click to find out more.', 'mainwp' ) . '" data-position="left center" data-inverted=""><i class="info blue icon"></i></a></div>
+                                </div>
+                            </div>
+                        </div>';
+                } elseif ( 'org' === $type ) {
+                    $item_html = '
+                            <div class="item extension ' . esc_attr( $add_on_model ) . '" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '" slug="' . esc_attr( $ext['slug'] ) . '">
+                                <div class="ui stackable grid">
+                                    <div class="two column row">
+                                        <div class="column"><span class="ui checkbox"><input type="checkbox" disabled="disabled"><label>' . $ext_source_label . ' <a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a>' . $privacy . ' ' . $notice . ' ' . $new . '</label></span></div>
+                                        <div class="right aligned column"><a href="' . $ext['url'] . '" target="_blank" data-tooltip="' . esc_attr__( 'Add-on not installed. Click to find out more.', 'mainwp' ) . '" data-position="left center" data-inverted=""><i class="info blue icon"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>';
+                }
+            } elseif ( isset( $installed_softwares[ $product_id ] ) ) {
+                $item_html = '
+                    <div class="item extension ' . esc_attr( $add_on_model ) . '" product-id="' . esc_attr( $product_id ) . '" software-title="' . esc_attr( $software_title ) . '" slug="' . esc_attr( $ext['slug'] ) . '">
+                        <div class="ui stackable grid">
+                            <div class="two column row">
+                                <div class="column"><span data-tooltip="' . esc_attr__( 'Already installed', 'mainwp' ) . '" data-inverted="" data-position="right center"><span class="ui checkbox"><input type="checkbox" disabled="disabled"><label>' . $ext_source_label . ' <a href="' . esc_url( $ext['link'] ) . '" target="_blank">' . esc_html( $software_title ) . '</a> ' . $notice . '</label></label></span>' . $privacy . ' ' . $new . '</div>
+                                <div class="right aligned column"><span data-tooltip="' . esc_attr__( 'Already installed', 'mainwp' ) . '" data-inverted="" data-position="left center"><i class="grey box icon"></i></span></div>
+                            </div>
+                        </div>
+                    </div>';
+            }
+
+            $group_id = isset( $map_extensions_group[ $product_id ] ) ? $map_extensions_group[ $product_id ] : false;
+            if ( ! empty( $group_id ) && isset( $all_groups[ $group_id ] ) ) {
+                if ( isset( $grouped_exts[ $group_id ] ) ) {
+                    $grouped_exts[ $group_id ] .= $item_html;
+                } else {
+                    $grouped_exts[ $group_id ] = $item_html;
+                }
+            } else {
+                $grouped_exts['others'] .= $item_html;
+            }
+            $grouped_exts['all'] .= $item_html;
+        }
+
+        $html = '<div class="mainwp-installing-extensions">';
+
+        if ( empty( $installing_exts ) && count( $purchased_data ) === count( $all_free_pro_exts ) ) {
+            $html .= '<div class="ui message">' . esc_html__( 'All purchased add-ons already installed.', 'mainwp' ) . '</div>';
+        } else {
+            $html .= '<div class="ui icon message">';
+            $html .= '<em data-emoji=":bulb:" class="medium"></em>';
+            $html .= '<div class="content">';
+            $html .= '<div class="header">' . esc_html__( 'Install Only What You Need', 'mainwp' ) . '</div>';
+            $html .= '<p>';
+            $html .= esc_html__( 'For a cleaner dashboard and better focus, start with only the add-ons you need right now. You can always install more later.', 'mainwp' );
+            $html .= '</p>';
+            $html .= '</div>';
+            $html .= '</div>';
+
+            $html .= '<div class="ui hidden divider"></div>';
+
+            $html .= '<div id="mainwp-bulk-activating-extensions-status" class="ui message" style="display:none;"></div>';
+
+            $html .= '<div class="ui secondary green pointing tabular stackable menu" id="mainwp-install-extensions-menu">';
+            foreach ( $all_groups as $gr_id => $gr_name ) {
+                if ( isset( $grouped_exts[ $gr_id ] ) ) {
+                    $html .= '<a class="item" data-tab="' . $gr_id . '">' . $gr_name . '</a>';
+                }
+            }
+
+            if ( isset( $grouped_exts['others'] ) && ! empty( $grouped_exts['others'] ) ) {
+                $html .= '<a class="item" data-tab="other">' . esc_html__( 'Other', 'mainwp' ) . '</a>';
+            }
+
+            $html .= '</div>';
+
+            $html .= '<div class="ui grid">';
+            $html .= '<div class="eight wide left aligned middle aligned column">';
+            $html .= esc_html__( 'Show: ', 'mainwp' );
+            $html .= '<div class="ui checkbox"><input type="checkbox" checked="" id="mainwp-standalone-extensions-filer" name="mainwp-standalone-extensions-filer"><label><strong>' . esc_html__( 'Extensions', 'mainwp' ) . '</label></div>';
+            $html .= '&nbsp;&nbsp; <div class="ui checkbox"><input type="checkbox" checked="" id="mainwp-api-extensions-filer" name="mainwp-api-extensions-filer"><label>' . esc_html__( 'Integrations', 'mainwp' ) . '</label></div>';
+            $html .= '&nbsp;&nbsp;&nbsp;&nbsp;<span class="ui small grey text" data-tooltip="' . esc_attr__( 'Extensions add Dashboard features without third-party dependencies. Integrations connect your Dashboard to third-party tools you use.', 'mainwp' ) . '" data-position="right center" data-inverted=""><i class="question circle icon"></i> ' . esc_html__( 'What\'s the difference?', 'mainwp' ) . '</span>';
+            $html .= '</div>';
+            $html .= '<div class="eight wide right aligned middle aligned column">';
+            $html .= '<div id="mainwp-search-extensions-install" class="ui fluid search">
+                        <div class="ui icon mini input">
+                            <input class="prompt" id="mainwp-search-extensions-install-input" type="text" placeholder="' . esc_attr__( 'Find add-on...', 'mainwp' ) . '">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>';
+            $html .= '</div>';
+            $html .= '</div>';
+
+            $html .= '<div class="ui divider"></div>';
+
+            $html .= '<div id="mainwp-extensions-search-results" style="display:none;">';
+            $html .= '<div class="ui middle aligned divided list">';
+            $html .= $grouped_exts['all'];
+            $html .= '</div>';
+            $html .= '</div>';
+
+            foreach ( $all_groups as $gr_id => $gr_name ) {
+                if ( isset( $grouped_exts[ $gr_id ] ) && 'all' !== $gr_id ) {
+                    $html .= '<div class="ui tab" data-tab="' . $gr_id . '">';
+                    $html .= '<div class="ui middle aligned divided list">';
+                    $html .= $grouped_exts[ $gr_id ];
+                    $html .= '</div>';
+                    $html .= '</div>';
+                }
+            }
+
+            if ( isset( $grouped_exts['others'] ) && ! empty( $grouped_exts['others'] ) ) {
+                $html .= '<div class="ui tab" data-tab="other">';
+                $html .= '<div class="ui middle aligned divided list">';
+                $html .= $grouped_exts['others'];
+                $html .= '</div>';
+                $html .= '</div>';
+            }
+        }
+
+        $html .= '<div class="ui hidden divider"></div>';
+
+        $html .= '<div class="ui secondary vertically fitted segment">';
+        $html .= '<div class="ui horizontal mini list">';
+        $html .= '<div class="item"><span class="ui mini green label">FREE</span> ' . esc_html__( 'Free add-on by MainWP', 'mainwp' ) . '</div>';
+        $html .= '<div class="item"><span class="ui mini blue label">PRO</span> ' . esc_html__( 'Premium add-on by MainWP', 'mainwp' ) . '</div>';
+        $html .= '<div class="item"><span class="ui mini grey label">.ORG</span> ' . esc_html__( 'Free add-on by a third party (WP.org)', 'mainwp' ) . '</div>';
+        $html .= '<div class="item"><i class="info circle icon"></i> ' . esc_html__( 'Requires the matching plugin on too.', 'mainwp' ) . '</div>';
+        $html .= '<div class="item"><i class="fingerprint icon"></i> ' . esc_html__( 'Add-on privacy info.', 'mainwp' ) . '</div>';
+        $html .= '</div>';
+        $html .= '</div>';
+
+        $html .= '<script>jQuery( "#mainwp-install-extensions-menu .item" ).tab();</script>';
+        $html .= '<script type="text/javascript">
+        jQuery( document ).ready( function () {
+            let $menu          = jQuery( "#mainwp-install-extensions-menu" );
+            let $modal         = jQuery( "#mainwp-get-purchased-extensions-modal" );
+            let $searchInput   = jQuery( "#mainwp-search-extensions-install-input" );
+            let $searchResults = jQuery( "#mainwp-extensions-search-results" );
+            let $tabsContainer = $modal.find( ".ui.tab[data-tab]" );
+
+            $searchResults.find( "input[type=\"checkbox\"]" ).removeAttr( "status" );
+
+            function syncToTabs( productId, checked ) {
+                $tabsContainer.find( ".extension-to-install[product-id=\"" + productId + "\"] input[type=\"checkbox\"]" ).prop( "checked", checked );
+            }
+
+            function syncToSearch( productId, checked ) {
+                $searchResults.find( ".extension-to-install[product-id=\"" + productId + "\"] input[type=\"checkbox\"]" ).prop( "checked", checked );
+            }
+
+            $searchResults.on( "change", "input[type=\"checkbox\"]", function () {
+                let productId = jQuery( this ).closest( ".extension-to-install" ).attr( "product-id" );
+                syncToTabs( productId, jQuery( this ).prop( "checked" ) );
+            } );
+
+            $tabsContainer.on( "change", "input[type=\"checkbox\"]", function () {
+                let productId = jQuery( this ).closest( ".extension-to-install" ).attr( "product-id" );
+                syncToSearch( productId, jQuery( this ).prop( "checked" ) );
+            } );
+
+            function exitSearchMode() {
+                $searchResults.hide();
+                $searchResults.find( ".item.extension" ).show();
+                $tabsContainer.css( "display", "" );
+                $menu.find( ".item" ).first().trigger( "click" );
+            }
+
+            $searchInput.on( "keyup", function () {
+                let searchQuery = jQuery( this ).val().toLowerCase();
+
+                if ( searchQuery.length > 0 ) {
+                    $menu.find( ".item.active" ).removeClass( "active" );
+                    $tabsContainer.css( "display", "none" );
+                    $searchResults.show();
+                    $searchResults.find( ".item.extension" ).each( function () {
+                        let extensionTitle = jQuery( this ).attr( "software-title" ).toLowerCase();
+                        jQuery( this ).toggle( extensionTitle.indexOf( searchQuery ) > -1 );
+                    } );
+                } else {
+                    exitSearchMode();
+                }
+            } );
+
+            $menu.on( "click", ".item", function () {
+                if ( $searchResults.is( ":visible" ) ) {
+                    $searchInput.val( "" );
+                    $searchResults.hide();
+                    $searchResults.find( ".item.extension" ).show();
+                    $tabsContainer.css( "display", "" );
+                }
+            } );
+            jQuery( "#mainwp-standalone-extensions-filer" ).on( "change", function () {
+                jQuery( "#mainwp-get-purchased-extensions-modal .ui.list .item.extension.addon-extension" ).toggle( 200 );
+            } );
+            jQuery( "#mainwp-api-extensions-filer" ).on( "change", function () {
+                jQuery( "#mainwp-get-purchased-extensions-modal .ui.list .item.extension.addon-integration" ).toggle( 200 );
+            } );
+        } );
+        </script>';
+
+        if ( ! empty( $installing_exts ) ) {
+            $html .= '<p>
+                <span class="extension_api_loading">
+                    <i class="ui active inline loader tiny" style="display: none;"></i><span class="status hidden"></span>
+                </span>
+            </p> ';
+        }
+
+        $html  .= '</div>';
+        $return = array(
+            'result' => 'SUCCESS',
+            'data'   => $html,
+        );
+
+        wp_send_json( $return );
+    }
+
+    /**
+     * Method render_header()
+     *
+     * Render page header.
+     *
+     * @param string $shownPage The page slug shown at this moment.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Deprecated_Hooks::maybe_handle_deprecated_hook()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::render_header()
+     */
+    public static function render_header( $shownPage = '' ) {
+        MainWP_Deprecated_Hooks::maybe_handle_deprecated_hook();
+        MainWP_Extensions_View::render_header( $shownPage );
+    }
+
+    /**
+     * Method render_footer()
+     *
+     * Render page footer.
+     *
+     * @param string $shownPage The page slug shown at this moment.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Deprecated_Hooks::maybe_handle_deprecated_hook()
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::render_footer()
+     */
+    public static function render_footer( $shownPage ) {
+        MainWP_Deprecated_Hooks::maybe_handle_deprecated_hook();
+        MainWP_Extensions_View::render_footer( $shownPage );
+    }
+
+    /**
+     * Method render()
+     *
+     * Render page content.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Extensions_View::render()
+     * @uses \MainWP\Dashboard\MainWP_UI::render_top_header()
+     */
+    public static function render() {
+
+        $params = array(
+            'title' => esc_html__( 'Add-ons', 'mainwp' ),
+        );
+        MainWP_UI::render_top_header( $params );
+
+        MainWP_Extensions_View::render();
+        echo '</div>';
+    }
+
+    /**
+     * Method mainwp_help_content()
+     *
+     * Creates the MainWP Help Documentation List for the help component in the sidebar.
+     */
+    public static function mainwp_help_content() {
+        if ( isset( $_GET['page'] ) && 'Extensions' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            ?>
+            <p><?php esc_html_e( 'If you need help with your MainWP Add-ons, please review following help documents', 'mainwp' ); ?></p>
+            <div class="ui list">
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions" target="_blank"><i class="fa fa-book"></i> What are the MainWP Add-ons</a></div> <?php // NOSONAR - noopener - open safe. ?>
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions#order-add-ons" target="_blank"><i class="fa fa-book"></i> Order Add-on(s)</a></div> <?php // NOSONAR - noopener - open safe. ?>
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions#install-add-ons" target="_blank"><i class="fa fa-book"></i> Install Add-on(s)</a></div> <?php // NOSONAR - noopener - open safe. ?>
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions#activate-add-ons" target="_blank"><i class="fa fa-book"></i> Activate Add-on(s) API</a></div> <?php // NOSONAR - noopener - open safe. ?>
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions#update-add-ons" target="_blank"><i class="fa fa-book"></i> Updating Add-on(s)</a></div> <?php // NOSONAR - noopener - open safe. ?>
+                <div class="item"><i class="external alternate icon"></i> <a href="https://docs.mainwp.com/dashboard/overview/manage-extensions#remove-unneeded-add-ons" target="_blank"><i class="fa fa-book"></i> Remove Add-on(s)</a></div> <?php // NOSONAR - noopener - open safe. ?>
+            </div>
+            <?php
+            /**
+             * Action: mainwp_extensions_help_item
+             *
+             * Fires at the bottom of the help articles list in the Help sidebar on the Extensions page.
+             *
+             * Suggested HTML markup:
+             *
+             * <div class="item"><a href="Your custom URL">Your custom text</a></div>
+             *
+             * @since 5.2
+             */
+            do_action( 'mainwp_extensions_help_item' );
+        }
+    }
+}

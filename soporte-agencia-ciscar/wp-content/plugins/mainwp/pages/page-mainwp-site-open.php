@@ -1,0 +1,380 @@
+<?php
+/**
+ * This Class takes the requested Child Sites,
+ * and then redirects to child site WP Admin.
+ *
+ * @package MainWP/Site_Open
+ */
+
+namespace MainWP\Dashboard;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class MainWP_Site_Open
+ *
+ * @package MainWP\Dashboard
+ */
+class MainWP_Site_Open { // phpcs:ignore Generic.Classes.OpeningBraceSameLine.ContentAfterBrace -- NOSONAR.
+
+    /**
+     * Get Class Name
+     *
+     * @return string __CLASS__
+     */
+    public static function get_class_name() {
+        return __CLASS__;
+    }
+
+    /**
+     * Method get_open_site_admin_link()
+     *
+     * @param  mixed $siteId Site ID.
+     * @param  mixed $prt_content Print url or not.
+     * @param  mixed $newWindow Open in new window.
+     * @param  mixed $opennonce Open nonce.
+     * @param  mixed $addition Additional parameters.
+     *
+     * @return string Link to open site.
+     */
+    public static function get_open_site_admin_link( $siteId, $prt_content = false, $newWindow = true, $opennonce = '', $addition = '' ) {
+
+        /**
+         * Filter: mainwp_open_site_addition_url
+         * Filter additional URL parameters for open site URL.
+         *
+         * @since 6.0
+         */
+        $addition = apply_filters( 'mainwp_open_site_addition_url', $addition, $siteId, $newWindow, $opennonce );
+
+        $url = 'admin.php?page=SiteOpen&newWindow=' . ( $newWindow ? 'yes' : 'no' ) . '&websiteid=' . intval( $siteId ) . '&_opennonce=' . ( empty( $opennonce ) ? esc_attr( wp_create_nonce( 'mainwp-admin-nonce' ) ) : esc_attr( $opennonce ) ) . $addition;
+
+        if ( $prt_content ) {
+            echo esc_url( $url );
+        }
+
+        return $url;
+    }
+
+    /**
+     * Child Site Dashboard Link redirect handler.
+     *
+     * This method checks to see if the current user is allow to access the
+     * Child Site, then grabs the websiteid, location, openurl & passes it onto
+     * either open_site_location or open_site methods.
+     *
+     * @uses \MainWP\Dashboard\MainWP_DB::get_website_by_id()
+     * @uses \MainWP\Dashboard\MainWP_System_Utility::can_edit_website()
+     */
+    public static function render() { // phpcs:ignore -- NOSONAR - complex.
+
+        static::verify_open_nonce();
+
+        if ( ! \mainwp_current_user_can( 'dashboard', 'access_wpadmin_on_child_sites' ) ) {
+            \mainwp_do_not_have_permissions( esc_html__( 'WP-Admin on child sites', 'mainwp' ) );
+
+            return;
+        }
+        // phpcs:disable WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        if ( ! isset( $_GET['websiteid'] ) ) {
+            exit();
+        }
+
+        $id      = intval( $_GET['websiteid'] );
+        $website = MainWP_DB::instance()->get_website_by_id( $id );
+
+        if ( ! MainWP_System_Utility::can_edit_website( $website ) ) {
+            exit();
+        }
+
+        $location = '';
+        if ( isset( $_GET['location'] ) ) {
+            $location = base64_decode( wp_unslash( $_GET['location'] ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions -- base64_decode used for HTTP compatible char.
+        }
+
+        $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+
+        $query = wp_parse_url( $request_uri, PHP_URL_QUERY );
+
+        $add_params = array();
+
+        if ( $query ) {
+            parse_str( $query, $add_params );
+        }
+
+        $exclude_keys = array( 'page', 'websiteid', 'location', '_opennonce', '_opennonce', 'openUrl', 'filedl', 'dirdl', 'closeWindow' );
+
+        if ( isset( $_GET['openUrl'] ) && 'yes' === $_GET['openUrl'] ) {
+
+            $postdata                  = MainWP_Connect::get_get_data_authed( $website, 'index.php', 'where', true );
+            $postdata['open_location'] = $location; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions -- base64_encode used for http encoding compatible.
+            ?>
+            <div class="ui segment" style="padding: 25rem">
+                <div class="ui active dimmer">
+                    <div class="ui massive double text loader"><?php esc_html_e( 'Redirecting...', 'mainwp' ); ?></div>
+                </div>
+                <?php
+                    $url  = ( isset( $website->url ) && '' !== $website->url ? $website->url : $website->siteurl );
+                    $url .= ( '/' !== substr( $url, - 1 ) ? '/' : '' );
+                ?>
+                    <form method="POST" action="<?php echo esc_url( $url ); ?>" id="redirectForm"> <?php // phpcs:ignore -- NOSONAR - dublicate id ok. ?>
+                        <?php MainWP_UI::generate_wp_nonce( 'mainwp-admin-nonce' ); ?>
+                        <?php
+                        foreach ( $postdata as $name => $value ) {
+                            echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+                        }
+
+                        if ( is_array( $add_params ) ) {
+                            foreach ( $add_params as $name => $value ) {
+                                if ( in_array( $name, $exclude_keys, true ) ) {
+                                    continue;
+                                }
+                                echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+                            }
+                        }
+
+                        ?>
+                    </form>
+                </div>
+            <?php
+        } else {
+            $allow_params = array();
+
+            if ( is_array( $add_params ) ) {
+                foreach ( $add_params as $name => $value ) {
+                    if ( in_array( $name, $exclude_keys, true ) ) {
+                        continue;
+                    }
+                    $allow_params[ $name ] = $value;
+                }
+            }
+
+            $allow_vars = array(
+                'filedl',
+                'dirdl',
+            );
+
+            $allow_vars = apply_filters( 'mainwp_open_site_allow_vars', $allow_vars );
+            if ( is_array( $allow_vars ) ) {
+                foreach ( $allow_vars as $var ) {
+                    if ( is_string( $var ) && isset( $_GET[ $var ] ) ) {
+                        $allow_params[ $var ] = $_GET[ $var ]; // phpcs:ignore -- ok.
+                    }
+                }
+            }
+
+            static::open_site( $website, $location, $allow_params );
+        }
+        // phpcs:enable
+    }
+
+    /**
+     * This method opens the requested Child Site Admin.
+     *
+     * @param mixed $website Website ID.
+     * @param mixed $location Website Location.
+     * @param array $params others params.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Connect::get_get_data_authed()
+     */
+    private static function open_site( $website, $location, $params = array() ) {
+        if ( MainWP_Demo_Handle::get_instance()->is_demo_website( $website ) ) {
+            $action = $website->url . 'wp-admin.html';
+        } else {
+            $action = MainWP_Connect::get_get_data_authed( $website, ( null === $location || '' === $location ) ? 'index.php' : $location, 'where', false, $params );
+        }
+        $open_download = ! empty( $params['filedl'] ) ? true : false;
+        $close_window  = ! empty( $_GET['closeWindow'] ) ? true : false; //phpcs:ignore -- ok.
+
+        /**
+         * Action: mainwp_site_go_to_wpadmin
+         *
+         * Fire before go to wp admin child site.
+         *
+         * @since 5.5
+         */
+        do_action( 'mainwp_site_go_to_wpadmin', $website, $location, $params );
+
+        ?>
+        <div class="ui segment">
+            <div class="ui active page dimmer <?php echo $open_download || $close_window ? 'open-site-close-window' : ''; ?>"  style="margin: 0 !important;">
+                <?php
+                if ( $open_download ) {
+                    ?>
+                    <div class="ui double text loader"><?php esc_html_e( 'Downloading...', 'mainwp' ); ?></div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="ui double text loader"><?php esc_html_e( 'Redirecting...', 'mainwp' ); ?></div>
+                    <?php
+                }
+                ?>
+            </div>
+            <form method="POST" action="<?php echo $action; // phpcs:ignore WordPress.Security.EscapeOutput ?>" id="redirectForm">
+                <?php MainWP_UI::generate_wp_nonce( 'mainwp-admin-nonce' ); ?>
+            </form>
+        </div>
+        <?php
+    }
+
+    /**
+     * This renders the method open_site _restore()
+     *
+     * @uses \MainWP\Dashboard\MainWP_DB::get_website_by_id()
+     * @uses \MainWP\Dashboard\MainWP_System_Utility::can_edit_website()
+     */
+    public static function render_restore() {
+
+        static::verify_open_nonce();
+
+        // phpcs:disable WordPress.Security.NonceVerification,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        if ( ! isset( $_GET['websiteid'] ) ) {
+            exit();
+        }
+
+        $id      = intval( $_GET['websiteid'] );
+        $website = MainWP_DB::instance()->get_website_by_id( $id );
+
+        if ( ! MainWP_System_Utility::can_edit_website( $website ) ) {
+            exit();
+        }
+
+        $file = '';
+        if ( isset( $_GET['f'] ) ) {
+            $file = base64_decode( esc_html( wp_unslash( $_GET['f'] ) ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions -- base64_encode used for http encoding compatible.
+        }
+
+        $site = isset( $_GET['size'] ) ? esc_html( wp_unslash( $_GET['size'] ) ) : '';
+        // phpcs:enable
+
+        static::open_site_restore( $website, $file, $site );
+    }
+
+    /**
+     * This opens the site restore.
+     *
+     * @param mixed $website Website ID.
+     * @param mixed $file Restore File.
+     * @param mixed $size Post data size.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Connect::get_get_data_authed()
+     */
+    public static function open_site_restore( $website, $file, $size ) {
+        ?>
+        <div class="ui segment" style="padding: 25rem">
+            <div class="ui active dimmer">
+                <div class="ui massive double text loader"><?php esc_html_e( 'Redirecting...', 'mainwp' ); ?></div>
+            </div>
+            <?php
+
+            $url  = ( isset( $website->url ) && '' !== $website->url ? $website->url : $website->siteurl );
+            $url .= ( '/' !== substr( $url, - 1 ) ? '/' : '' );
+
+            $postdata         = MainWP_Connect::get_get_data_authed( $website, $file, 'f', true );
+            $postdata['size'] = $size;
+            ?>
+            <form method="POST" action="<?php echo esc_url( $url ); ?>" id="redirectForm">
+                <?php MainWP_UI::generate_wp_nonce( 'mainwp-admin-nonce' ); ?>
+                <?php
+                foreach ( $postdata as $name => $value ) {
+                    echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+                }
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+
+    /**
+     * This verify opens the site nonce.
+     */
+    public static function verify_open_nonce() {
+        $nonce = '_opennonce';
+        if ( isset( $_GET[ $nonce ] ) && wp_verify_nonce( sanitize_key( $_GET[ $nonce ] ), 'mainwp-admin-nonce' ) ) {
+            return true;
+        } else {
+            wp_die( esc_html__( 'Unauthorized request. Invalid or missing nonce, be sure you are using the current version of the MainWP Dashboard and Extensions.', 'mainwp' ) );
+        }
+    }
+
+    /**
+     * This opens the site location.
+     *
+     * @outdated
+     *
+     * @param mixed $website Website ID.
+     * @param mixed $open_location Website URL.
+     *
+     * @uses \MainWP\Dashboard\MainWP_Connect::get_get_data_authed()
+     */
+    public static function open_site_location( $website, $open_location ) {
+        ?>
+        <div class="ui segment" style="padding: 25rem">
+            <div class="ui active dimmer">
+                <div class="ui massive double text loader"><?php esc_html_e( 'Redirecting...', 'mainwp' ); ?></div>
+            </div>
+            <?php
+
+            $url  = ( isset( $website->url ) && '' !== $website->url ? $website->url : $website->siteurl );
+            $url .= ( '/' !== substr( $url, - 1 ) ? '/' : '' );
+
+            $postdata                  = MainWP_Connect::get_get_data_authed( $website, 'index.php', 'where', true );
+            $postdata['open_location'] = $open_location; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions -- base64_encode used for http encoding compatible.
+            ?>
+            <form method="POST" action="<?php echo esc_url( $url ); ?>" id="redirectForm">
+                <?php MainWP_UI::generate_wp_nonce( 'mainwp-admin-nonce' ); ?>
+                <?php
+                foreach ( $postdata as $name => $value ) {
+                    echo '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '" />';
+                }
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+
+
+    /**
+     * Method get_open_site_url()
+     *
+     * Render render open site url.
+     *
+     * @param mixed $website Website ID.
+     * @param mixed $location open location.
+     * @param bool  $echo_out Echo or not.
+     *
+     * @return mixed Render modal window for themes selection.
+     */
+    public static function get_open_site_url( $website, $location = '', $echo_out = true ) {
+
+        $site_id = 0;
+
+        if ( is_numeric( $website ) ) {
+            $site_id = $website;
+        } elseif ( is_object( $website ) ) {
+            $site_id = $website->id;
+        } else {
+            return '';
+        }
+
+        $open_url = '';
+
+        if ( MainWP_Demo_Handle::get_instance()->is_demo_website( $site_id ) ) {
+            $open_url = MainWP_Demo_Handle::get_instance()->get_open_site_demo_url( $site_id );
+        } else {
+            $open_url = self::get_open_site_admin_link( $site_id );
+            if ( ! empty( $location ) ) {
+                $open_url .= '&location=' . $location;
+            }
+        }
+
+        if ( $echo_out ) {
+            echo $open_url; //phpcs:ignore WordPress.Security.EscapeOutput
+        }
+
+        return $open_url;
+    }
+}

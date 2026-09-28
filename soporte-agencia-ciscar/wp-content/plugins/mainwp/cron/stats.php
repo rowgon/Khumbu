@@ -1,0 +1,19 @@
+<?php
+/**
+ * MainWP Stats Cron.
+ *
+ * Include cron/bootstrap.php & run mainwp_cronreconnect_action.
+ *
+ * @package MainWP/Stats
+ */
+
+// include cron/bootstrap.php.
+require_once 'bootstrap.php'; // NOSONAR - WP compatible.
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+// fire off mainWP->mainwp_cronreconnect_action.
+$mainWP->mainwp_cronreconnect_action();

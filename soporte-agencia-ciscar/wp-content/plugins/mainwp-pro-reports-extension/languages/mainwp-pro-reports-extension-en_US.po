@@ -1,0 +1,1435 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MainWP Pro Reports Extension\n"
+"POT-Creation-Date: 2022-10-21 17:35+0200\n"
+"PO-Revision-Date: 2022-10-21 17:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: mainwp-pro-reports-extension.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: class/class-mainwp-pro-reports-plugin.php:68
+#: class/class-mainwp-pro-reports-plugin.php:88
+msgid "Site"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:70
+#: class/class-mainwp-pro-reports-plugin.php:90
+msgid "URL"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:71
+#: class/class-mainwp-pro-reports-plugin.php:91
+#: templates/reports/pro-report-basic.php:334
+#: templates/reports/pro-report-basic.php:362
+#: templates/reports/pro-report-default.php:352
+#: templates/reports/pro-report-default.php:380
+#: templates/reports/pro-report-modern.php:362
+#: templates/reports/pro-report-modern.php:390
+msgid "Version"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:72
+#: class/class-mainwp-pro-reports-plugin.php:92
+msgid "Hidden"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:73
+#: class/class-mainwp-pro-reports-plugin.php:93
+msgid "Last Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:74
+#: class/class-mainwp-pro-reports-plugin.php:94
+msgid "Log Start"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:144
+msgid "Click to jump to the site Overview page"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:145
+msgid "Jump to the site WP Admin"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:146
+msgid "Jump to the site front page"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:148
+#: js/mainwp-pro-reports-extension.js:362
+msgid "Yes"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:148
+#: js/mainwp-pro-reports-extension.js:358
+msgid "No"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:160
+msgid "See more options"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:163
+msgid "Overview"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:164
+#: class/class-mainwp-pro-reports.php:3837
+#: class/class-mainwp-pro-reports.php:5269
+msgid "Edit"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:165
+msgid "Open Child Reports"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:167
+msgid "Unhide Plugin"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:169
+msgid "Hide Plugin"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:172
+msgid "Activate Plugin"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:175
+msgid "Update Plugin"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:357
+msgid "Bulk Actions"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:358
+msgid "Activate"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:359
+msgid "Update"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:360
+#: class/class-mainwp-pro-reports.php:4639
+#: class/class-mainwp-pro-reports.php:4650
+#: class/class-mainwp-pro-reports.php:4661
+#: class/class-mainwp-pro-reports.php:4675
+#: class/class-mainwp-pro-reports.php:4690
+#: class/class-mainwp-pro-reports.php:4712
+#: class/class-mainwp-pro-reports.php:4727
+#: class/class-mainwp-pro-reports.php:4742
+#: class/class-mainwp-pro-reports.php:4757
+#: class/class-mainwp-pro-reports.php:4772
+#: class/class-mainwp-pro-reports.php:4787
+#: class/class-mainwp-pro-reports.php:4802
+msgid "Hide"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:361
+msgid "Unhide"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:363
+msgid "Apply"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:368
+msgid "Filter sites: "
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:370
+msgid "All groups"
+msgstr ""
+
+#: class/class-mainwp-pro-reports-plugin.php:385
+msgid "Filter Sites"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2407
+msgid ""
+"Tomorrow, reports will be sent to clients, click %shere% to preview the "
+"report for the past period."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2504
+#: class/class-mainwp-pro-reports.php:2521
+#: class/class-mainwp-pro-reports.php:3562
+msgid "Reports"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2508
+msgid "Client Reports:"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2510
+#: class/class-mainwp-pro-reports.php:2524
+msgid "New Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2522
+msgid "New"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2718
+msgid "Incorrect Email Address in the Send From filed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2770
+msgid "Incorrect Email Address in the Send To field."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2942
+msgid "Report has been saved."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2945
+msgid "Report has been saved without changes."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2995
+msgid "File size too big"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:2997
+msgid "File type are not allowed"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3005
+msgid "Can not copy file"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3065
+msgid "Can not resize the image."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3561
+msgid "Child Reports Dashboard"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3563
+msgid "Create Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3564
+msgid "Tokens"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3680
+#: class/class-mainwp-pro-reports.php:3694
+msgid "Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3681
+#: class/class-mainwp-pro-reports.php:3695
+msgid "Client"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3682
+#: class/class-mainwp-pro-reports.php:3696
+msgid "Send To"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3683
+#: class/class-mainwp-pro-reports.php:3697
+msgid "Last Sent"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3684
+#: class/class-mainwp-pro-reports.php:3698
+msgid "Date Range"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3685
+#: class/class-mainwp-pro-reports.php:3699
+#: class/class-mainwp-pro-reports.php:4279
+msgid "Schedule"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3723
+#: class/class-mainwp-pro-reports.php:4214
+msgid "Daily"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3724
+#: class/class-mainwp-pro-reports.php:4215
+msgid "Weekly"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3725
+#: class/class-mainwp-pro-reports.php:4216
+msgid "Monthly"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3734
+msgid "Manual"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3838
+msgid "Duplicate"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3840
+msgid "Preview"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3841
+#: class/class-mainwp-pro-reports.php:4102
+msgid "Download PDF"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3844
+msgid "Send"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3846
+#: class/class-mainwp-pro-reports.php:5270
+msgid "Delete"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3908
+msgid "Report(s) sent successfully."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3939
+msgid "Generating PDF document(s)."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3980
+msgid "Error report data"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3986
+msgid "Please select a website or group"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:3998
+msgid "Send To Email Address field can not be empty"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4003
+msgid "Scheduled report not sent."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4082
+msgid "Report Settings"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4084
+msgid ""
+"The Create Reports page consists of two major sections the email sending the "
+"report and the PDF report that is attached to that email. "
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4093
+msgid "Select Sites"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4098
+msgid "Preview Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4100
+msgid "Save Draft"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4104
+#: class/class-mainwp-pro-reports.php:4139
+msgid "Send Now"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4105
+msgid "Schedule Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4119
+#: class/class-mainwp-pro-reports.php:4138
+#: class/class-mainwp-pro-reports.php:5134
+#: class/class-mainwp-pro-reports.php:5147
+#: class/class-mainwp-pro-reports.php:5317
+#: class/class-mainwp-pro-reports.php:5337
+msgid "Close"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4126
+msgid "Report Preview"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4220
+msgid "Monday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4221
+msgid "Tuesday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4222
+msgid "Wednesday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4223
+msgid "Thursday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4224
+msgid "Friday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4225
+msgid "Saturday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4226
+msgid "Sunday"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4256
+msgid "This report has been scheduled"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4262
+msgid "Report title"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4263
+msgid "Enter your report title. It is for internal use only."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4269
+msgid "Report type"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4270
+msgid ""
+"If you need to send this report only once, select the \"One-time\" option. "
+"If you want to set automated reports, select \"Recurring\"."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4272
+msgid "One-time"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4273
+msgid "Recurring"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4280
+msgid "Do you want to run Daily, Weekly or Monthly reports?"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4282
+msgid "Off"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4297
+msgid "Send report on"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4298
+#: class/class-mainwp-pro-reports.php:4315
+msgid "When do you want to send the report?"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4314
+msgid "Send on"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4338
+msgid "Report date range"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4339
+msgid "Select the date range for the report?"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4358
+msgid "Additional options"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4360
+msgid ""
+"If selected, report will be sent to you for a review. Once you make sure "
+"that report is ok, you will need to send it to your client."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4361
+msgid "Email me when report is complete so I can review"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4364
+msgid "If selected, report will be sent to your client directly."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4365
+msgid "Automatically email my client the report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4368
+msgid "If selected, report will be sent to your client and you."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4369
+msgid "BCC me on report email"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4382
+msgid "Report Template Selection"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4407
+msgid ""
+"Select one of the available report templates. If needed, you can create a "
+"new custom template from scratch or copy and edit one of the existing "
+"templates."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4408
+msgid ""
+"To create a new template, download the copy of the extension from the My "
+"Account area and copy one of the default template located in the ../plugins/"
+"mainwp-pro-reports-extension/templates/reports/ folder of the extension and "
+"copy it to the ../wp-content/uploads/mainwp/report-templates/ directory and "
+"rename the file. Once copied, you can use your favorite code editor to edit "
+"it."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4414
+msgid "Report template"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4415
+msgid "Select one of the available report templates."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4431
+msgid "Report template info"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4444
+msgid "Template name:"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4445
+msgid "Template author:"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4446
+msgid "Template version:"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4447
+msgid "Description:"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4495
+#: class/class-mainwp-pro-reports.php:4570
+msgid "Website Care Report"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4496
+msgid ""
+"Thank you for trusting us with your website. In this report, you can find a "
+"summary of your website condition and maintenance services provided in the "
+"period of [report.daterange]."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4497
+msgid "If you have any further questions, please feel free to contact us."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4543
+msgid "Report Content & Design Customization"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4548
+msgid "Custom Content"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4552
+msgid "Report Data"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4556
+msgid "Personal Branding"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4560
+msgid "Custom Report Colors"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4565
+msgid "Report heading"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4566
+msgid ""
+"Enter the report heading. It will be displayed in the top of the first page "
+"of the report."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4568
+#: class/class-mainwp-pro-reports.php:4577
+#: class/class-mainwp-pro-reports.php:4600
+#: class/class-mainwp-pro-reports.php:4994
+#: class/class-mainwp-pro-reports.php:5002
+#: class/class-mainwp-pro-reports.php:5024
+#: class/class-mainwp-pro-reports.php:5036
+msgid "Insert tokens"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4574
+msgid "Report introduction message"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4575
+msgid "Optionally, you can add introduction content here."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4596
+msgid "Report closing message"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4598
+msgid "Optionally, you can add closing content here."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4625
+msgid ""
+"If selected \"Show,\" the extension will always show the section in the "
+"report even if there is no recorded data for this section."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4626
+msgid ""
+"If selected \"Hide,\" the section will always be hidden in reports "
+"regardless."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4627
+msgid ""
+"If selected \"Hide if empty,\" the section will be included only in case "
+"there is data to be displayed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4634
+msgid "WordPress updates"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4635
+#: class/class-mainwp-pro-reports.php:4646
+#: class/class-mainwp-pro-reports.php:4657
+#: class/class-mainwp-pro-reports.php:4671
+#: class/class-mainwp-pro-reports.php:4686
+#: class/class-mainwp-pro-reports.php:4708
+#: class/class-mainwp-pro-reports.php:4723
+#: class/class-mainwp-pro-reports.php:4738
+#: class/class-mainwp-pro-reports.php:4753
+#: class/class-mainwp-pro-reports.php:4768
+#: class/class-mainwp-pro-reports.php:4783
+#: class/class-mainwp-pro-reports.php:4798
+msgid "Do you want to show this in the report."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4637
+#: class/class-mainwp-pro-reports.php:4648
+#: class/class-mainwp-pro-reports.php:4659
+#: class/class-mainwp-pro-reports.php:4673
+#: class/class-mainwp-pro-reports.php:4688
+#: class/class-mainwp-pro-reports.php:4710
+#: class/class-mainwp-pro-reports.php:4725
+#: class/class-mainwp-pro-reports.php:4740
+#: class/class-mainwp-pro-reports.php:4755
+#: class/class-mainwp-pro-reports.php:4770
+#: class/class-mainwp-pro-reports.php:4785
+#: class/class-mainwp-pro-reports.php:4800
+msgid "Hide if empty"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4638
+#: class/class-mainwp-pro-reports.php:4649
+#: class/class-mainwp-pro-reports.php:4660
+#: class/class-mainwp-pro-reports.php:4674
+#: class/class-mainwp-pro-reports.php:4689
+#: class/class-mainwp-pro-reports.php:4711
+#: class/class-mainwp-pro-reports.php:4726
+#: class/class-mainwp-pro-reports.php:4741
+#: class/class-mainwp-pro-reports.php:4756
+#: class/class-mainwp-pro-reports.php:4771
+#: class/class-mainwp-pro-reports.php:4786
+#: class/class-mainwp-pro-reports.php:4801
+msgid "Show"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4645
+msgid "Plugins updates"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4656
+msgid "Themes updates"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4670
+msgid "Uptime monitoring"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4685
+#: templates/reports/pro-report-basic.php:263
+#: templates/reports/pro-report-default.php:282
+#: templates/reports/pro-report-modern.php:292
+msgid "Security"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4707
+#: templates/reports/pro-report-basic.php:392
+#: templates/reports/pro-report-default.php:410
+#: templates/reports/pro-report-modern.php:420
+msgid "Backups"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4722
+#: class/class-mainwp-pro-reports.php:4737
+#: templates/reports/pro-report-basic.php:425
+#: templates/reports/pro-report-default.php:443
+#: templates/reports/pro-report-modern.php:453
+msgid "Analytics"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4752
+msgid "PageSpeed"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4767
+#: templates/reports/pro-report-basic.php:483
+#: templates/reports/pro-report-default.php:509
+#: templates/reports/pro-report-modern.php:519
+msgid "Lighthouse"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4782
+#: templates/reports/pro-report-basic.php:510
+#: templates/reports/pro-report-default.php:535
+#: templates/reports/pro-report-modern.php:546
+msgid "Atarim"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4797
+#: templates/reports/pro-report-basic.php:452
+#: templates/reports/pro-report-default.php:476
+#: templates/reports/pro-report-modern.php:486
+msgid "Maintenance"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4811
+msgid "Your logo"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4812
+msgid "Upload your logo here."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4819
+#: class/class-mainwp-pro-reports.php:4832
+msgid "Upload"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4820
+#: class/class-mainwp-pro-reports.php:4833
+msgid "Remove"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4824
+msgid "Header Image"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4825
+msgid ""
+"Upload your custom first page image here or leave blank to use default one."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4839
+msgid "Background color"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4840
+msgid "Set page background color."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4845
+msgid "Text color"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4846
+msgid "Set default text color."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4851
+msgid "Accent color"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4852
+msgid ""
+"Set accent color. It will be applied to links, heading and other important "
+"data."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4938
+msgid ""
+"Hi, here is the website care report for the past month. Find it attached"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4972
+msgid "Email Settings"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4975
+msgid ""
+"If you are having problems with your MainWP Dashboard site not sending "
+"emails, you can consider installing some SMTP plugin that will allow you to "
+"route emails through your favorite SMTP provider."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4980
+msgid "Send email from"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4981
+msgid ""
+"Enter the \"Send from\" email address. Usually, this will be your email "
+"address."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4984
+msgid ""
+"Enter the \"Send from\" name. Usually, this will be your or your company "
+"name."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4990
+msgid "Send email to"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4991
+msgid ""
+"Enter the recipient's email address or use the corresponding token. If "
+"needed, add multiple email addresses separated by a comma."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:4999
+msgid "Enter the recipient's name or use the corresponding token."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5010
+msgid "Reply-to"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5020
+msgid "Subject"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5021
+msgid "Enter the email subject. Tokens are allowed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5032
+msgid "Email message"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5033
+msgid "Enter the email content. Tokens are allowed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5036
+msgid "Preview message"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5061
+msgid ""
+"If needed, you can create a new custom template from scratch or copy and "
+"edit the existing template."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5062
+msgid ""
+"To create a new template, download the copy of the extension from the My "
+"Account area and copy one of the default template located in the /mainwp-pro-"
+"reports-extension/templates/emails/ folder of the extension and copy it to "
+"the ../wp-content/uploads/mainwp/report-email-templates/ directory and "
+"rename the file. Once copied, you can use your favorite code editor to edit "
+"it."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5068
+msgid "Email template"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5069
+msgid "Select one of the available email templates."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5086
+msgid "Email BCC"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5087
+msgid "Optionally, enter the BCC email address."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5093
+msgid "Additional email attachment"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5094
+msgid "Optionally, add another email attachment if needed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5100
+msgid "Delete attached files"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5110
+msgid "Available Tokens"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5113
+msgid ""
+"Tokens let you use client data in your emails. Simply click one below to "
+"insert it."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5139
+msgid "Message Preview"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5244
+msgid ""
+"These tokens will allow you to display data you have set in the Child Site "
+"edit screen. For each child site, go to the site Edit page to set the token "
+"values. Once values are set, you will easily display data for the selected "
+"sites in reports."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5250
+#: class/class-mainwp-pro-reports.php:5307
+#: class/class-mainwp-pro-reports.php:5326
+msgid "Token Name"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5251
+#: class/class-mainwp-pro-reports.php:5311
+#: class/class-mainwp-pro-reports.php:5330
+msgid "Token Description"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5280
+msgid "New Token"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5303
+#: class/class-mainwp-pro-reports.php:5322
+msgid "Custom Token"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5308
+#: class/class-mainwp-pro-reports.php:5327
+msgid "Enter token name (without of square brackets)"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5312
+#: class/class-mainwp-pro-reports.php:5331
+msgid "Enter token description"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5316
+#: class/class-mainwp-pro-reports.php:5336
+msgid "Save Token"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:5366
+msgid "Preview could not be generated. Please try again."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6535
+msgid "Error: No MainWP Client Reports plugin installed."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6560
+msgid "Pro Reports Tokens"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6653
+msgid "Invalid nonce!"
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6686
+#: class/class-mainwp-pro-reports.php:6732
+msgid "Report could not be found."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6688
+msgid ""
+"There are no selected sites for the report. Please select your site(s) first."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6726
+msgid "Invalid data."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6773
+#: class/class-mainwp-pro-reports.php:6778
+msgid "Undefined error. Email could not be sent."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6783
+msgid "Data saved successfully."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6786
+msgid "Invalid Site ID."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6930
+msgid "Token has been saved without changes."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6932
+#: class/class-mainwp-pro-reports.php:6944
+msgid "Token already exists, try different token name."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6955
+#: js/mainwp-pro-reports-extension.js:729
+msgid "Undefined error occurred. Please try again."
+msgstr ""
+
+#: class/class-mainwp-pro-reports.php:6970
+msgid "Invalid report ID. Please, try again."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:197
+msgid "Are you sure you want to delete this token?"
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:207
+msgid "Token has been deleted successfully."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:209
+msgid "Token can not be deleted."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:508
+msgid "Are you sure?"
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:523
+msgid "Title is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:530
+msgid "Date From is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:534
+msgid "Date To is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:543
+#: js/mainwp-pro-reports-extension.js:550
+msgid "Please select websites or groups."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:559
+msgid "Recurring Schedule is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:565
+msgid "Send From email is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:569
+msgid "Send To email is required."
+msgstr ""
+
+#: js/mainwp-pro-reports-extension.js:812
+msgid "Report has been deleted."
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:159
+msgid "Once every 5 minutes"
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:187 mainwp-pro-reports-extension.php:192
+msgid "Site Blacklisted"
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:189
+msgid "Site With Warnings"
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:191
+msgid "Verified Clear"
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:192
+msgid "Trusted"
+msgstr ""
+
+#: mainwp-pro-reports-extension.php:299
+msgid ""
+"requires <a href=\"http://mainwp.com/\" target=\"_blank\">MainWP Dashboard "
+"Plugin</a> to be activated in order to work. Please install and activate <a "
+"href=\"http://mainwp.com/\" target=\"_blank\">MainWP Dashboard Plugin</a> "
+"first."
+msgstr ""
+
+#: templates/emails/pro-report-email-default.php:81
+#: templates/emails/pro-report-email-minimal.php:77
+#: templates/emails/pro-report-email-modern.php:90
+msgid "Have questions? Email us at "
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:176
+#: templates/reports/pro-report-default.php:189
+#: templates/reports/pro-report-modern.php:198
+msgid "Website"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:177
+#: templates/reports/pro-report-default.php:190
+#: templates/reports/pro-report-modern.php:199
+msgid "WordPress Version"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:178
+#: templates/reports/pro-report-default.php:191
+#: templates/reports/pro-report-modern.php:200
+msgid "Active Theme"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:179
+#: templates/reports/pro-report-default.php:192
+#: templates/reports/pro-report-modern.php:201
+msgid "PHP Version"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:180
+#: templates/reports/pro-report-default.php:193
+#: templates/reports/pro-report-modern.php:202
+msgid "MySQL Version"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:184
+#: templates/reports/pro-report-default.php:197
+#: templates/reports/pro-report-modern.php:207
+msgid "Website Uptime"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:190
+#: templates/reports/pro-report-default.php:203
+#: templates/reports/pro-report-modern.php:213
+msgid "Security Scans"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:195
+#: templates/reports/pro-report-default.php:208
+#: templates/reports/pro-report-modern.php:218
+msgid "Plugins Updated"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:199
+#: templates/reports/pro-report-default.php:212
+#: templates/reports/pro-report-modern.php:222
+msgid "Themes Updated"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:204
+#: templates/reports/pro-report-default.php:217
+#: templates/reports/pro-report-modern.php:227
+msgid "Backups Created"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:210
+#: templates/reports/pro-report-default.php:223
+#: templates/reports/pro-report-modern.php:233
+msgid "Database Optimizations"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:216
+#: templates/reports/pro-report-default.php:229
+#: templates/reports/pro-report-modern.php:239
+msgid "Average Pagespeed"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:222
+#: templates/reports/pro-report-default.php:235
+#: templates/reports/pro-report-modern.php:245
+msgid "Lighthouse Performance"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:237
+#: templates/reports/pro-report-default.php:250
+#: templates/reports/pro-report-modern.php:260
+msgid "Uptime Monitoring"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:241
+#: templates/reports/pro-report-default.php:260
+#: templates/reports/pro-report-modern.php:270
+msgid "Overall"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:242
+#: templates/reports/pro-report-default.php:261
+#: templates/reports/pro-report-modern.php:271
+msgid "Last 7 Days"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:243
+#: templates/reports/pro-report-default.php:262
+#: templates/reports/pro-report-modern.php:272
+msgid "Last 15 Days"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:244
+#: templates/reports/pro-report-default.php:263
+#: templates/reports/pro-report-modern.php:273
+msgid "Last 30 Days"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:245
+#: templates/reports/pro-report-default.php:264
+#: templates/reports/pro-report-modern.php:274
+msgid "Last 45 Days"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:246
+#: templates/reports/pro-report-default.php:265
+#: templates/reports/pro-report-modern.php:275
+msgid "Last 60 Days"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:268
+#: templates/reports/pro-report-default.php:287
+#: templates/reports/pro-report-modern.php:297
+msgid "Scanned on"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:269
+#: templates/reports/pro-report-default.php:288
+#: templates/reports/pro-report-modern.php:298
+msgid "Status"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:270
+#: templates/reports/pro-report-default.php:289
+#: templates/reports/pro-report-modern.php:299
+msgid "Webtrust Status"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:300
+#: templates/reports/pro-report-default.php:318
+#: templates/reports/pro-report-modern.php:328
+msgid "WordPress Updates"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:304
+#: templates/reports/pro-report-basic.php:332
+#: templates/reports/pro-report-basic.php:360
+#: templates/reports/pro-report-default.php:322
+#: templates/reports/pro-report-default.php:350
+#: templates/reports/pro-report-default.php:378
+#: templates/reports/pro-report-modern.php:332
+#: templates/reports/pro-report-modern.php:360
+#: templates/reports/pro-report-modern.php:388
+msgid "Updated on"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:305
+#: templates/reports/pro-report-default.php:323
+#: templates/reports/pro-report-modern.php:333
+msgid "Old Version"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:306
+#: templates/reports/pro-report-default.php:324
+#: templates/reports/pro-report-modern.php:334
+msgid "New Version"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:328
+#: templates/reports/pro-report-default.php:346
+#: templates/reports/pro-report-modern.php:356
+msgid "Plugins Updates"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:333
+#: templates/reports/pro-report-default.php:351
+#: templates/reports/pro-report-modern.php:361
+msgid "Plugin"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:356
+#: templates/reports/pro-report-default.php:374
+#: templates/reports/pro-report-modern.php:384
+msgid "Themes Updates"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:361
+#: templates/reports/pro-report-default.php:379
+#: templates/reports/pro-report-modern.php:389
+msgid "Theme"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:397
+#: templates/reports/pro-report-default.php:415
+#: templates/reports/pro-report-modern.php:425
+msgid "Backup Date"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:398
+#: templates/reports/pro-report-default.php:416
+#: templates/reports/pro-report-modern.php:426
+msgid "Backup Type"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:430
+#: templates/reports/pro-report-default.php:454
+#: templates/reports/pro-report-modern.php:464
+msgid "Website Visits"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:431
+#: templates/reports/pro-report-default.php:455
+#: templates/reports/pro-report-modern.php:465
+msgid "Page Views"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:432
+#: templates/reports/pro-report-default.php:456
+#: templates/reports/pro-report-modern.php:466
+msgid "Page Visits"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:433
+#: templates/reports/pro-report-default.php:457
+#: templates/reports/pro-report-modern.php:467
+msgid "Bounce Rate"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:434
+#: templates/reports/pro-report-default.php:458
+#: templates/reports/pro-report-modern.php:468
+msgid "Average Time"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:435
+#: templates/reports/pro-report-default.php:459
+#: templates/reports/pro-report-modern.php:469
+msgid "New Visits"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:457
+#: templates/reports/pro-report-basic.php:515
+#: templates/reports/pro-report-basic.php:528
+#: templates/reports/pro-report-default.php:481
+#: templates/reports/pro-report-default.php:540
+#: templates/reports/pro-report-default.php:553
+#: templates/reports/pro-report-modern.php:491
+#: templates/reports/pro-report-modern.php:551
+#: templates/reports/pro-report-modern.php:564
+msgid "Date"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:458
+#: templates/reports/pro-report-default.php:482
+#: templates/reports/pro-report-modern.php:492
+msgid "Details"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:488
+#: templates/reports/pro-report-default.php:514
+#: templates/reports/pro-report-modern.php:524
+msgid "Performance score"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:489
+#: templates/reports/pro-report-default.php:515
+#: templates/reports/pro-report-modern.php:525
+msgid "Accessibility score"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:490
+#: templates/reports/pro-report-default.php:516
+#: templates/reports/pro-report-modern.php:526
+msgid "Best practices score"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:491
+#: templates/reports/pro-report-default.php:517
+#: templates/reports/pro-report-modern.php:527
+msgid "Seo score"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:492
+#: templates/reports/pro-report-default.php:518
+#: templates/reports/pro-report-modern.php:528
+msgid "Last check Time"
+msgstr ""
+
+#: templates/reports/pro-report-basic.php:516
+#: templates/reports/pro-report-basic.php:529
+#: templates/reports/pro-report-default.php:541
+#: templates/reports/pro-report-default.php:554
+#: templates/reports/pro-report-modern.php:552
+#: templates/reports/pro-report-modern.php:565
+msgid "Task"
+msgstr ""
+
+#: templates/reports/pro-report-default.php:184
+#: templates/reports/pro-report-modern.php:193
+msgid "General Information"
+msgstr ""
+
+#: templates/reports/pro-report-default.php:255
+#: templates/reports/pro-report-modern.php:265
+msgid "Monitoring Period"
+msgstr ""
+
+#: templates/reports/pro-report-default.php:449
+#: templates/reports/pro-report-modern.php:459
+msgid "Analytics Data"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "MainWP Pro Reports Extension"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://mainwp.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"MainWP Pro Reports Extension allows you to generate pro reports for your "
+"child sites. Requires MainWP Dashboard."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "MainWP"
+msgstr ""

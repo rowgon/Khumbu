@@ -1,0 +1,33 @@
+# PHP .gitignore
+vendor/
+composer.lock
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
+*.bak
+
+# Ignorar copias de seguridad de wp
+wp-content/ai1wm-backups/
+wp-content/backups-dup-pro/
+*.wpress
+*.zip
+
+# Ignorar subidas pesadas y multimedia
+wp-content/uploads/
+*/wp-content/uploads/
+
+# Ignorar logs de Wordfence
+*/wp-content/wflogs/
+
+# Ignorar Core de WordPress (solo subimos wp-content)
+*/wp-admin/
+*/wp-includes/
+*/wp-*.php
+!*/wp-config.php
+*/index.php
+*/xmlrpc.php
+*/license.txt
+*/readme.html

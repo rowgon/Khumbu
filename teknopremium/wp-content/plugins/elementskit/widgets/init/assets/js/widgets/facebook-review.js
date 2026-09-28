@@ -1,0 +1,1 @@
+!function(e,i){"use strict";ElementsKit_Helper.registerWidget("elementskit-facebook-review.default",(function(e){ElementsKit_Pro.Social_Review_Slider(e.find(".ekit-review-slider-wrapper-facebook")),ElementsKit_Pro.Handle_Review_More(e)}))}(jQuery,window.elementorFrontend);

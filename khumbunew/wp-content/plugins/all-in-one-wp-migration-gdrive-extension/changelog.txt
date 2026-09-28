@@ -1,0 +1,16 @@
+= 2.102 =
+* Fix browser file upload broken by missing chunked upload handler
+* Fix the "I need help" contact form not opening on the reset and schedules pages
+
+= 2.101 =
+* Add permission check for `admin_post_*`
+
+= 2.100 =
+* Fixed fatal TypeError when activating extensions with Divi 5 active on PHP 8
+* Fixed database instance creation method
+
+= 2.99 =
+* Add support for custom db prefixed tables on export
+
+= 2.98 =
+* Add support for 2025 theme in reset functionality

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wp plugin *)",
+      "Bash(wp option *)",
+      "Bash(wp theme *)",
+      "Bash(wp core *)",
+      "Bash(wp server *)",
+      "Bash(wp post *)",
+      "Bash(mysql -u root khumbunew_db -e \"SELECT ID, post_title, post_type FROM wp_posts WHERE post_type IN \\('page', 'post'\\) AND post_status='publish' LIMIT 10;\")",
+      "Bash(mysql -u root khumbunew_db -e \"SELECT post_content FROM wp_posts WHERE ID=15;\")",
+      "Bash(mysql -u root khumbunew_db -e \"SELECT post_title, post_content FROM wp_posts WHERE post_type='snippet' LIMIT 3;\")",
+      "Bash(mysql -u root khumbunew_db -e \"SELECT option_name FROM wp_options WHERE option_name LIKE '%snippet%' OR option_name LIKE '%khumbu%';\")",
+      "Bash(mysql -u root khumbunew_db -e \"SELECT DISTINCT post_type FROM wp_posts;\")"
+    ]
+  }
+}

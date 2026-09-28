@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proactivo Finance - Financiación con Capital Privado</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        proactivo: {
+                            dark: '#35546d',    /* Header/Footer dark areas */
+                            primary: '#6b92aa', /* Main light blue background */
+                            secondary: '#557c96', /* Darker alternate background */
+                            tertiary: '#f1f5f9', /* Light gray alternate background */
+                            accent: '#fde047',  /* Yellow CTA */
+                            btnBlue: '#1d4ed8'  /* Blue CTA */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for the table to match the image perfectly */
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table th {
+            text-align: left;
+            font-weight: 600;
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-800 antialiased bg-white">
+
+    <!-- HEADER / FAKE MENU -->
+    <header class="bg-[#5a7e98] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex justify-between items-center h-[70px] px-6 bg-[#6c90a9] rounded-xl shadow-sm">
+                <!-- Logo (Recreado basado en la imagen) -->
+                <div class="flex items-center gap-4">
+                    <svg width="44" height="24" viewBox="0 0 44 24" fill="white" xmlns="http://www.w3.org/2000/svg"
+                        class="opacity-95">
+                        <polygon points="12,0 26,0 21,10 7,10" />
+                        <polygon points="28,0 42,0 37,10 23,10" />
+                        <polygon points="6,13 20,13 15,23 1,23" />
+                        <polygon points="22,13 36,13 31,23 17,23" />
+                    </svg>
+                    <span class="font-light text-[22px] tracking-wide text-white">Proactivo Finance</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-7 text-[13px] font-medium text-white">
+                    <a href="#como-funciona" class="hover:text-white/80 transition-colors tracking-wider">CÓMO
+                        FUNCIONA</a>
+                    <a href="#empresas" class="hover:text-white/80 transition-colors tracking-wider">EMPRESAS</a>
+                    <a href="#ventajas" class="hover:text-white/80 transition-colors tracking-wider">VENTAJAS</a>
+                    <a href="#requisitos" class="hover:text-white/80 transition-colors tracking-wider">REQUISITOS</a>
+                    <a href="#contacto"
+                        class="bg-gradient-to-b from-white to-gray-200 text-[#5a7e98] px-5 py-2.5 rounded-lg shadow-md hover:to-gray-300 transition-all tracking-wider ml-2">CONTACTA
+                        CON NOSOTROS</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button class="text-white focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-slate-900 text-white pb-24 pt-32 lg:pt-48 bg-cover bg-center"
+        style="background-image: linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.75)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left">
+            <p class="text-proactivo-accent font-medium tracking-wider mb-2">Financiación alternativa para tu empresa
+            </p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-3xl">
+                Construyendo un futuro financiero más brillante
+            </h1>
+        </div>
+
+        <!-- Overlapping CTA Boxes -->
+        <div class="absolute bottom-0 left-0 w-full translate-y-1/2 px-4 sm:px-6 lg:px-8 z-20">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 shadow-2xl rounded-lg overflow-hidden">
+                <a href="#contacto"
+                    class="bg-proactivo-accent text-slate-900 p-8 flex flex-col justify-center items-center text-center hover:bg-yellow-400 transition-colors block">
+                    <h3 class="font-bold text-xl mb-2">Solicita estudio gratuito</h3>
+                    <p class="text-sm font-medium">Tu respuesta en menos de 24 horas</p>
+                </a>
+                <a href="#contacto"
+                    class="bg-blue-600 text-white p-8 flex flex-col justify-center items-center text-center hover:bg-blue-700 transition-colors block">
+                    <h3 class="font-bold text-xl mb-2">¿Cuánto necesitas?</h3>
+                    <p class="text-blue-100 text-sm">Calcula tu financiación ahora</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPACER FOR OVERLAPPING BOXES -->
+    <div class="h-32 md:h-20 bg-proactivo-primary"></div>
+
+    <!-- SECTION 1: CÓMO FUNCIONA -->
+    <section id="como-funciona" class="bg-proactivo-primary text-white py-16 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16">¿Cómo funciona la financiación privada para empresas?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div
+                        class="bg-white text-proactivo-primary w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg relative">
+                        <i class="ph ph-chats text-4xl"></i>
+                        <div
+                            class="absolute -top-2 -right-2 bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                            01</div>
+                    </div>
+                    <h3 class="font-bold mb-3 uppercase tracking-wider text-sm">Contacto y Análisis</h3>
+                    <p class="text-sm text-blue-100">En menos de 24h entendemos tu caso, urgencia y confirmamos si la
+                        operación tiene sentido empresarial con un inmueble como garantía.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div
+                        class="bg-white text-proactivo-primary w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg relative">
+                        <i class="ph ph-buildings text-4xl"></i>
+                        <div
+                            class="absolute -top-2 -right-2 bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                            02</div>
+                    </div>
+                    <h3 class="font-bold mb-3 uppercase tracking-wider text-sm">Valoración</h3>
+                    <p class="text-sm text-blue-100">Revisamos el inmueble con criterio práctico: titularidad, cargas
+                        registrales, ubicación y margen disponible si ya existe una hipoteca previa.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div
+                        class="bg-white text-proactivo-primary w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg relative">
+                        <i class="ph ph-file-text text-4xl"></i>
+                        <div
+                            class="absolute -top-2 -right-2 bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                            03</div>
+                    </div>
+                    <h3 class="font-bold mb-3 uppercase tracking-wider text-sm">Propuesta</h3>
+                    <p class="text-sm text-blue-100">Definimos el importe, plazos y sistema de amortización (cuotas o
+                        carencia) para que la financiación sea una herramienta útil para tu negocio.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center">
+                    <div
+                        class="bg-white text-proactivo-primary w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg relative">
+                        <i class="ph ph-pen-nib text-4xl"></i>
+                        <div
+                            class="absolute -top-2 -right-2 bg-slate-800 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                            04</div>
+                    </div>
+                    <h3 class="font-bold mb-3 uppercase tracking-wider text-sm">Firma y Fondos</h3>
+                    <p class="text-sm text-blue-100">Formalización ante notario en 48-72h tras la aprobación para que la
+                        empresa disponga del capital y mantenga su actividad sin bloqueos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: QUÉ EMPRESAS PUEDEN ACCEDER -->
+    <section id="empresas" class="bg-proactivo-secondary text-white py-20 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 text-center md:text-left">¿Qué empresas pueden acceder a una
+                financiación con capital privado?</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <p class="text-blue-100 mb-6 leading-relaxed">
+                        La financiación privada es para empresas que tienen una necesidad concreta y pueden respaldarla
+                        con un inmueble, independientemente del sector. Atendemos habitualmente a PYMES y micropymes con
+                        necesidades de circulante o reorganización de deuda, así como a Empresas nuevas con proyectos de
+                        poca antigüedad.
+                    </p>
+                    <p class="text-blue-100 leading-relaxed">
+                        También es una solución para Empresas con deudas o en ASNEF/RAI donde las incidencias bloquean
+                        la banca pero existe un activo sólido. Operamos con constructoras, promotoras, empresas
+                        patrimoniales, industriales y logísticas, e incluso empresas en concurso de acreedores con
+                        garantía inmobiliaria.
+                    </p>
+                </div>
+
+                <div class="bg-white/10 rounded-xl p-6 lg:p-8">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-proactivo-accent text-xl shrink-0 mt-1"></i>
+                            <p><strong class="text-white">PYMES y micropymes:</strong> <span
+                                    class="text-blue-100">Circulante, pagos críticos o reorganización de deuda.</span>
+                            </p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-proactivo-accent text-xl shrink-0 mt-1"></i>
+                            <p><strong class="text-white">Empresas nuevas:</strong> <span
+                                    class="text-blue-100">Proyectos con poca antigüedad.</span></p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-proactivo-accent text-xl shrink-0 mt-1"></i>
+                            <p><strong class="text-white">Empresas con deudas o en ASNEF/RAI:</strong> <span
+                                    class="text-blue-100">Incidencias que bloquean la banca pero tienen activo
+                                    sólido.</span></p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-proactivo-accent text-xl shrink-0 mt-1"></i>
+                            <p><strong class="text-white">Sectores específicos:</strong> <span
+                                    class="text-blue-100">Constructoras (puente de obra), industriales (naves) y
+                                    patrimoniales.</span></p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-proactivo-accent text-xl shrink-0 mt-1"></i>
+                            <p><strong class="text-white">Casos críticos:</strong> <span class="text-blue-100">Empresas
+                                    en concurso de acreedores con garantía inmobiliaria.</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: MID CTA -->
+    <section class="bg-proactivo-dark text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            <h2 class="text-3xl font-bold mb-4">Tu respuesta en menos de 24 Horas</h2>
+            <p class="text-blue-100 mb-10 max-w-2xl mx-auto">
+                No dejes el futuro de tu empresa en pausa. Analizamos tu garantía inmobiliaria y te confirmamos la
+                viabilidad de tu financiación en un solo día, de forma gratuita y sin compromiso.
+            </p>
+            <a href="#contacto"
+                class="bg-white text-proactivo-dark font-bold text-lg md:text-xl py-4 px-10 rounded shadow-[0_4px_14px_0_rgba(255,255,255,0.39)] hover:bg-gray-100 hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] hover:-translate-y-1 transition-all duration-200">
+                HABLAR CON UN ASESOR
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 4: VENTAJAS -->
+    <section id="ventajas" class="bg-proactivo-primary text-white py-20 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Left text -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Ventajas principales de financiación
+                        con capital privado en empresas</h2>
+                    <p class="text-blue-100 mb-8 leading-relaxed">
+                        Nuestro valor reside en resolver lo que la banca no resuelve gracias a una <strong>rapidez real
+                            de 48-72h</strong> y una burocracia mínima basada en documentación útil. La evaluación se
+                        centra en el activo inmobiliario, lo que permite el acceso a financiación <strong>sin aval
+                            personal obligatorio</strong> y sin condicionantes de productos vinculados. Incluso con
+                        incidencias en ASNEF o RAI, el estudio no se bloquea automáticamente.
+                    </p>
+
+                    <ul class="space-y-4 text-blue-50">
+                        <li><strong class="text-white">Rapidez real:</strong> 48-72h frente a semanas.</li>
+                        <li><strong class="text-white">Menos burocracia:</strong> Documentación útil, no carpetas
+                            interminables.</li>
+                        <li><strong class="text-white">Evaluación por activos:</strong> El inmueble pesa más que el
+                            historial.</li>
+                        <li><strong class="text-white">Sin aval personal obligatorio:</strong> El respaldo es el
+                            inmueble, no la nómina del socio.</li>
+                        <li><strong class="text-white">Sin productos vinculados:</strong> No condicionamos la aprobación
+                            a contratar extras.</li>
+                    </ul>
+                </div>
+
+                <!-- Right Table -->
+                <div class="bg-white text-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full comparison-table text-sm md:text-base">
+                            <thead>
+                                <tr class="bg-slate-50 border-b-2 border-slate-200">
+                                    <th class="py-4">Criterio</th>
+                                    <th class="py-4">Banco Tradicional</th>
+                                    <th class="py-4 text-proactivo-dark">Capital Privado (ProActivo)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Tiempo de aprobación</td>
+                                    <td>2-8 semanas</td>
+                                    <td class="font-bold text-proactivo-dark">48-72 horas</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Requisitos</td>
+                                    <td>Scoring, CIRBE, ratios, historial</td>
+                                    <td class="font-bold text-proactivo-dark">Inmueble como garantía</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">ASNEF/RAI</td>
+                                    <td>Rechazado</td>
+                                    <td class="font-bold text-proactivo-dark">Se estudia y puede aceptarse</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Importe</td>
+                                    <td>Variable</td>
+                                    <td class="font-bold text-proactivo-dark">100.000€ - 15.000.000€</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Burocracia</td>
+                                    <td>Alta</td>
+                                    <td class="font-bold text-proactivo-dark">Mínima</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Productos vinculados</td>
+                                    <td>Frecuentes</td>
+                                    <td class="font-bold text-proactivo-dark">No condicionantes</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Evaluación principal</td>
+                                    <td>Historial crediticio</td>
+                                    <td class="font-bold text-proactivo-dark">Valor del activo inmobiliario</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium text-slate-500">Flexibilidad</td>
+                                    <td>Más estándar</td>
+                                    <td class="font-bold text-proactivo-dark">A medida del negocio</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: QUÉ NECESITO -->
+    <section id="requisitos" class="bg-proactivo-tertiary py-20 border-t border-slate-200 scroll-mt-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-10">¿Qué necesito presentar para una
+                financiación?</h2>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-slate-100">
+                <h3 class="text-xl font-bold text-proactivo-dark mb-4">Documentación necesaria para el estudio</h3>
+                <p class="text-slate-600 mb-8">Para agilizar tu solicitud de financiación para empresas con garantía
+                    hipotecaria, normalmente necesitamos:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">Nota simple del inmueble ofrecido como garantía.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">Balance y cuenta de resultados (últimos disponibles o
+                                provisionales).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">CIF de la empresa, escrituras de constitución y poderes de
+                                representación.</span>
+                        </li>
+                    </ul>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">Último Impuesto de Sociedades presentado.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">Certificados de Hacienda y Seguridad Social (al
+                                corriente).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph ph-check text-green-500 text-xl font-bold mt-1"></i>
+                            <span class="text-slate-700">Pool bancario o CIRBE (si lo tienes, acelera el
+                                análisis).</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <p class="text-sm text-slate-600">
+                        <strong class="text-slate-800">Nota importante:</strong> No exigimos aval personal obligatorio,
+                        nóminas de socios ni un scoring perfecto. La clave es la garantía hipotecaria y la coherencia
+                        del plan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: FINAL FOOTER CTA -->
+    <section id="contacto" class="bg-proactivo-dark text-white py-20 scroll-mt-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">¡Solicita tu estudio gratuito!</h2>
+
+            <p class="text-blue-100 mb-4 max-w-3xl">
+                Si tu empresa necesita liquidez y el banco te ha dicho que no (o te está haciendo perder semanas), la
+                financiación para empresas con capital privado puede devolverte el control del calendario.
+            </p>
+            <p class="text-blue-100 mb-12 max-w-3xl">
+                Con un inmueble como garantía, podemos estudiar tu caso con rapidez y proponerte una solución clara, por
+                escrito y sin compromiso.
+            </p>
+
+            <!-- CTA Button matching the middle one perfectly -->
+            <button
+                class="bg-white text-proactivo-dark font-bold text-lg md:text-xl py-4 px-10 rounded shadow-[0_4px_14px_0_rgba(255,255,255,0.39)] hover:bg-gray-100 hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] hover:-translate-y-1 transition-all duration-200 mb-12">
+                ANALIZAR MI CASO AHORA
+            </button>
+
+            <!-- Logos Footer -->
+            <div
+                class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70 grayscale pt-8 border-t border-white/20 w-full">
+                <!-- Simulating logos with text/icons for self-containment -->
+                <div class="flex items-center gap-2">
+                    <i class="ph ph-bank text-3xl"></i>
+                    <div class="text-left leading-tight">
+                        <span class="text-xs block">GOBIERNO DE ESPAÑA</span>
+                        <span class="text-[10px] block">MINISTERIO DE SANIDAD, CONSUMO Y BIENESTAR SOCIAL</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="ph-fill ph-building-columns text-3xl"></i>
+                    <span class="font-bold text-lg tracking-widest">BANCO DE ESPAÑA</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-2xl tracking-tighter">AIF</span>
+                    <span class="text-[10px] text-left leading-tight max-w-[100px] block">ASOCIACIÓN PROFESIONAL DE
+                        ASESORES DE INVERSIÓN, FINANCIACIÓN Y PERITOS JUDICIALES</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

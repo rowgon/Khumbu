@@ -1,0 +1,219 @@
+[
+  {
+    "id": "22f39216",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#000000",
+      "padding": {
+        "unit": "px",
+        "top": "137",
+        "right": "0",
+        "bottom": "100",
+        "left": "0",
+        "isLinked": false
+      },
+      "background_overlay_background": "classic",
+      "background_overlay_color": "#000000",
+      "background_overlay_image": {
+        "url": "https://bigsizemedia.es/wp-content/uploads/2022/12/10476509_788315627890570_8859925541892477906_o.jpg",
+        "id": 172,
+        "alt": "",
+        "source": "library"
+      },
+      "background_overlay_position": "center center",
+      "background_overlay_repeat": "no-repeat",
+      "background_overlay_size": "cover",
+      "background_overlay_opacity": {
+        "unit": "px",
+        "size": 0.21,
+        "sizes": []
+      }
+    },
+    "elements": [
+      {
+        "id": "295067f2",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100,
+          "_inline_size": null
+        },
+        "elements": [
+          {
+            "id": "1cebc601",
+            "elType": "widget",
+            "settings": {
+              "title": "¿Tienes un proyecto?",
+              "title_color": "#FFFFFF",
+              "typography_typography": "custom",
+              "typography_font_family": "Playfair Display",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 57,
+                "sizes": []
+              },
+              "typography_font_weight": "700",
+              "typography_line_height": {
+                "unit": "px",
+                "size": 88,
+                "sizes": []
+              }
+            },
+            "elements": [],
+            "widgetType": "heading"
+          },
+          {
+            "id": "64c71fb4",
+            "elType": "widget",
+            "settings": {
+              "editor": "<p>Aenean eget rutrum ex. Aliquam non libero scelerisque magna convallis semper pulvinar bibendum odio. Nullam vestibulum interdum orci, et viverra sem feugiat ut. Proin sit amet iaculis sem. Ut massa augue, pellentesque auctor dolor eu, viverra accumsan mauris. Sed augue libero, sollicitudin sed ultricies a, dictum a nibh.</p>",
+              "text_color": "#FFFFFF",
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "400",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "text-editor"
+          },
+          {
+            "id": "1a02ae5d",
+            "elType": "widget",
+            "settings": {
+              "width": {
+                "unit": "%",
+                "size": 13,
+                "sizes": []
+              },
+              "align": "center",
+              "text": "Separador",
+              "color": "#C500FF",
+              "weight": {
+                "unit": "px",
+                "size": 10,
+                "sizes": []
+              },
+              "gap": {
+                "unit": "px",
+                "size": 2,
+                "sizes": []
+              },
+              "_margin": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              },
+              "_padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": false
+              }
+            },
+            "elements": [],
+            "widgetType": "divider"
+          },
+          {
+            "id": "53c1d731",
+            "elType": "widget",
+            "settings": {
+              "form_name": "Nuevo formulario",
+              "form_fields": [
+                {
+                  "custom_id": "name",
+                  "placeholder": "Nombre",
+                  "width": "30",
+                  "dynamic": {
+                    "active": true
+                  },
+                  "_id": "9bb2dbf"
+                },
+                {
+                  "custom_id": "email",
+                  "field_type": "email",
+                  "required": "true",
+                  "placeholder": "Correo electrónico",
+                  "width": "30",
+                  "_id": "7418fc2"
+                },
+                {
+                  "_id": "877896b",
+                  "field_type": "checkbox",
+                  "field_options": "He leido y acepto las politicas de privacidad.",
+                  "width": "33",
+                  "custom_id": "field_877896b"
+                }
+              ],
+              "button_width": "30",
+              "step_next_label": "Siguiente",
+              "step_previous_label": "Anterior",
+              "button_text": "SOLICITAR INFORMACIÓN",
+              "email_to": "sebastian@funmark.es",
+              "email_subject": "Nuevo mensaje desde «My blog»",
+              "email_content": "[all-fields]",
+              "email_from": "email@bigsizemedia.es",
+              "email_from_name": "My blog",
+              "email_to_2": "sebastian@funmark.es",
+              "email_subject_2": "Nuevo mensaje desde «My blog»",
+              "email_content_2": "[all-fields]",
+              "email_from_2": "email@bigsizemedia.es",
+              "email_from_name_2": "My blog",
+              "email_reply_to_2": "sebastian@funmark.es",
+              "mailchimp_fields_map": [],
+              "drip_fields_map": [],
+              "activecampaign_fields_map": [],
+              "getresponse_fields_map": [],
+              "convertkit_fields_map": [],
+              "mailerlite_fields_map": [],
+              "success_message": "El formulario se ha enviado correctamente.",
+              "error_message": "Ha ocurrido un error.",
+              "required_field_message": "Este campo es obligatorio.",
+              "invalid_message": "Hay algo que no funciona. El formulario no es válido.",
+              "column_gap": {
+                "unit": "px",
+                "size": 23,
+                "sizes": []
+              },
+              "row_gap": {
+                "unit": "px",
+                "size": 20,
+                "sizes": []
+              },
+              "button_background_color": "#C500FF",
+              "previous_button_background_color": "#C500FF",
+              "button_border_radius": {
+                "unit": "px",
+                "top": "38",
+                "right": "38",
+                "bottom": "38",
+                "left": "38",
+                "isLinked": true
+              }
+            },
+            "elements": [],
+            "widgetType": "form"
+          }
+        ],
+        "isInner": false
+      }
+    ],
+    "isInner": false
+  }
+]

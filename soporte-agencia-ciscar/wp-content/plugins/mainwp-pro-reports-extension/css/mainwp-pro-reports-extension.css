@@ -1,0 +1,17 @@
+#mainwp-pro-reports-menu.mainwp-sub-submenu {
+  margin: 0;
+  border-radius: 0;
+}
+
+#mainwp-pro-reports-menu.mainwp-sub-submenu {
+  margin: 0;
+  border-radius: 0;
+}
+
+.mainwp_page_Extensions-Mainwp-Pro-Reports-Extension #mainwp-page-navigation-wrapper {
+  display: none !important;
+}
+
+.mainwp_page_Extensions-Mainwp-Pro-Reports-Extension #mainwp-site-mode-wrap {
+  width: 100% !important;
+}

@@ -1,0 +1,644 @@
+<?php
+/**
+ * MainWP Database Site Actions
+ *
+ * This file handles all interactions with the Site Actions DB.
+ *
+ * @package MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard\Module\Log;
+
+use MainWP\Dashboard\MainWP_DB;
+use MainWP\Dashboard\MainWP_Utility;
+use MainWP\Dashboard\MainWP_Logger;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class Log_Manager
+ *
+ * @package MainWP\Dashboard
+ */
+class Log_Manager {
+
+    /**
+     * Version
+     *
+     * @const string Plugin version number.
+     * */
+    const VERSION = '5.0.0';
+
+    /**
+     * Log_Admin
+     *
+     * @var \MainWP\Dashboard\Module\Log\Log_Admin Admin class.
+     * */
+    public $admin;
+
+    /**
+     * Holds Instance of settings object
+     *
+     * @var Log_Settings
+     */
+    public $settings;
+
+    /**
+     * Log_Connectors
+     *
+     * @var \MainWP\Dashboard\Module\Log\Log_Connectors Connectors class.
+     * */
+    public $connectors;
+
+    /**
+     * Log_DB
+     *
+     * @var \MainWP\Dashboard\Module\Log\Log_DB DB Class.
+     * */
+    public $db;
+
+    /**
+     * Log
+     *
+     * @var \MainWP\Dashboard\Module\Log\Log Log Class.
+     * */
+    public $log;
+
+    /**
+     * Log_Install class.
+     *
+     * @var \MainWP\Dashboard\Module\Log\Log_Install Install class.
+     * */
+    public $install;
+
+    /**
+     * Holds the last log created time.
+     *
+     * @var array
+     */
+    private static $last_log_created = array();
+
+
+    /**
+     * Locations.
+     *
+     * @var array URLs and Paths used by the plugin.
+     */
+    public $locations = array();
+
+    /**
+     * Protected static variable to hold the single instance of the class.
+     *
+     * @var mixed Default null
+     */
+    protected static $instance = null;
+
+    /**
+     * Return the single instance of the class.
+     *
+     * @return mixed $instance The single instance of the class.
+     */
+    public static function instance() {
+        if ( is_null( static::$instance ) ) {
+            static::$instance = new self();
+        }
+        return static::$instance;
+    }
+
+    /**
+     * Plugin constructor.
+     *
+     * Run each time the class is called.
+     */
+    public function __construct() {
+
+        $mod_log_dir     = MAINWP_MODULES_DIR . 'logs/';
+        $this->locations = array(
+            'dir'       => $mod_log_dir,
+            'url'       => MAINWP_MODULES_URL . 'logs/',
+            'inc_dir'   => $mod_log_dir . 'includes/',
+            'class_dir' => $mod_log_dir . 'classes/',
+        );
+
+        spl_autoload_register( array( $this, 'autoload' ) );
+
+        // Load helper functions.
+        require_once $this->locations['inc_dir'] . 'functions.php'; // NOSONAR - WP compatible.
+
+        $driver         = new Log_DB_Driver_WPDB();
+        $this->db       = new Log_DB( $driver );
+        $this->settings = new Log_Settings( $this );
+
+        // Load logger class.
+        $this->log = new Log( $this );
+
+        // Load settings and connectors after widgets_init and before the default init priority.
+        add_action( 'init', array( $this, 'init' ), 9 );
+
+        // Change DB driver after plugin loaded if any add-ons want to replace.
+        add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 20 );
+
+        add_action( 'mainwp_delete_site', array( $this, 'hook_delete_site' ), 10, 3 );
+
+        // Load admin area classes.
+        if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+            $this->admin = new Log_Admin( $this );
+        } elseif ( defined( 'DOING_CRON' ) && DOING_CRON ) {
+            $this->admin = new Log_Admin( $this, $driver );
+        }
+
+        add_filter( 'mainwp_module_log_enable_insert_log_type', array( $this, 'hook_enable_insert_log_type' ), 10, 2 );
+        add_filter( 'mainwp_get_cron_jobs_init', array( $this, 'hook_get_cron_jobs_init' ), 10, 2 ); // on/off by change status of use wp cron option.
+        add_filter( 'mainwp_module_logs_changes_logs_sync_params', array( $this, 'hook_changes_logs_sync_params' ), 10, 2 ); // on/off by change status of use wp cron option.
+        add_filter( 'mainwp_module_logs_get_log_records', array( $this, 'hook_get_log_records' ), 10, 2 ); // Retrieves MainWP log records based on provided query parameters.
+
+        if ( $this->is_enabled_auto_archive_logs() && ! empty( $this->settings->options['records_logs_ttl'] ) ) {
+            add_action( 'mainwp_module_log_cron_job_auto_archive', array( $this, 'cron_module_log_auto_archive' ) );
+        }
+
+        if ( $this->admin instanceof Log_Admin ) {
+            if ( ! empty( $this->settings->options['enabled'] ) ) {
+                add_action( 'mainwp_module_log_render_db_size_notice', array( $this->admin, 'render_logs_db_notice' ), 10, 1 );
+            }
+            add_action( 'mainwp_module_log_render_db_update_notice', array( $this->admin, 'render_update_db_notice' ), 10, 1 );
+        }
+    }
+
+
+    /**
+     * Autoloader for classes.
+     *
+     * @param string $class_name class name.
+     */
+    public function autoload( $class_name ) {
+
+        if ( ! preg_match( '/^(?P<namespace>.+)\\\\(?P<autoload>[^\\\\]+)$/', $class_name, $matches ) ) {
+            return;
+        }
+
+        static $reflection;
+
+        if ( empty( $reflection ) ) {
+            $reflection = new \ReflectionObject( $this );
+        }
+
+        if ( $reflection->getNamespaceName() !== $matches['namespace'] ) {
+            return;
+        }
+
+        $autoload_name = $matches['autoload'];
+        $autoload_dir  = \trailingslashit( $this->locations['dir'] );
+        $load_dirs     = array(
+            'classes' => 'class',
+            'pages'   => 'page',
+            'widgets' => 'widget',
+        );
+        foreach ( $load_dirs as $dir => $prefix ) {
+            $dir           = $dir . '/';
+            $autoload_path = sprintf( '%s%s%s-%s.php', $autoload_dir, $dir, $prefix, strtolower( str_replace( '_', '-', $autoload_name ) ) );
+            if ( is_readable( $autoload_path ) ) {
+                require_once $autoload_path; // NOSONAR - WP compatible.
+                return;
+            }
+        }
+    }
+
+
+    /**
+     * Get internal connectors.
+     */
+    public function get_internal_connectors() {
+        return array(
+            'compact',
+        );
+    }
+
+    /**
+     * Load Log_Connectors.
+     *
+     * @action init
+     *
+     * @uses \MainWP\Dashboard\Module\Log\Log_Connectors
+     */
+    public function init() {
+        if ( class_exists( '\MainWP\Dashboard\Module\Log\Log_Connectors' ) ) { // to fix fatal error in case class not found.
+            $this->connectors = new Log_Connectors( $this );
+        }
+    }
+
+
+    /**
+     * Getter for the version number.
+     *
+     * @return string
+     */
+    public function get_version() {
+        return static::VERSION;
+    }
+
+    /**
+     * Change plugin database driver in case driver plugin loaded after logs.
+     *
+     * @uses \MainWP\Dashboard\Module\Log\Log_DB
+     * @uses \MainWP\Dashboard\Module\Log\Log_DB_Driver_WPDB
+     */
+    public function plugins_loaded() {
+        // Load DB helper interface/class.
+        $driver_class = '\MainWP\Dashboard\Module\Log\Log_DB_Driver_WPDB';
+
+        if ( class_exists( $driver_class ) ) {
+            $driver   = new $driver_class();
+            $this->db = new Log_DB( $driver );
+        }
+    }
+
+    /**
+     * Method get_sync_actions_last_created().
+     *
+     * Sync site changes logs data.
+     *
+     * @param int $site_id site id.
+     *
+     * @return bool
+     */
+    public function get_sync_actions_last_created( $site_id ) {
+
+        if ( ! isset( static::$last_log_created[ $site_id ] ) ) {
+            $site_opts = MainWP_DB::instance()->get_website_options_array( $site_id, array( 'non_mainwp_changes_sync_last_created' ) );
+
+            if ( ! is_array( $site_opts ) ) {
+                $site_opts = array();
+            }
+
+            static::$last_log_created[ $site_id ] = isset( $site_opts['non_mainwp_changes_sync_last_created'] ) ? $site_opts['non_mainwp_changes_sync_last_created'] : 0;
+
+            // to sure.
+            if ( empty( static::$last_log_created[ $site_id ] ) ) {
+                static::$last_log_created[ $site_id ] = time() - DAY_IN_SECONDS;
+                MainWP_DB::instance()->update_website_option( $site_id, 'non_mainwp_changes_sync_last_created', static::$last_log_created[ $site_id ] );
+            }
+        }
+
+        return static::$last_log_created[ $site_id ];
+    }
+
+
+    /**
+     * Method sync_log_site_actions().
+     *
+     * Sync site actions data.
+     *
+     * @param int    $site_id site id.
+     * @param array  $sync_actions action data.
+     * @param object $website website data.
+     *
+     * @return bool
+     */
+    public function sync_log_site_actions( $site_id, $sync_actions, $website ) { // phpcs:ignore -- NOSONAR - complex.
+
+        if ( empty( $sync_actions ) || ! is_array( $sync_actions ) ) {
+            return false;
+        }
+
+        MainWP_Utility::array_sort_existed_keys( $sync_actions, 'created', SORT_NUMERIC );
+
+        $sync_last_created = (float) $this->get_sync_actions_last_created( $site_id );
+
+        $new_last_created = 0;
+
+        foreach ( $sync_actions as $data ) {
+            if ( ! is_array( $data ) || empty( $data['action_user'] ) || empty( $data['created'] ) ) {
+                continue;
+            }
+
+            $item_created = round( (float) $data['created'], 4 ); // to fix float comparing issue.
+
+            if ( $item_created <= $sync_last_created ) {
+                continue;
+            }
+
+            if ( $new_last_created < $item_created ) {
+                $new_last_created = $item_created;
+            }
+
+            $user_meta  = array();
+            $meta_data  = array();
+            $extra_info = false;
+
+            if ( isset( $data['meta_data'] ) && is_array( $data['meta_data'] ) ) {
+                $meta_data = $data['meta_data'];
+                if ( isset( $meta_data['user_meta'] ) && is_array( $meta_data['user_meta'] ) ) {
+                    $user_meta = $meta_data['user_meta']; // to compatible old user_meta site changes actions data.
+                    unset( $meta_data['user_meta'] );
+                } elseif ( isset( $meta_data['meta_data'] ) && ! empty( $meta_data['meta_data'] ) && is_array( $meta_data['meta_data'] ) ) {
+                    $user_meta = $meta_data['meta_data']; // new meta_data site changes actions.
+                    unset( $meta_data['meta_data'] );
+                }
+                $meta_data['user_meta_json'] = wp_json_encode( $user_meta );
+                if ( isset( $meta_data['extra_info'] ) && is_array( $meta_data['extra_info'] ) ) {
+                    $extra_info = $meta_data['extra_info'];
+                }
+            }
+
+            $user_login = sanitize_text_field( wp_unslash( $data['action_user'] ) );
+
+            $sum = '';
+            if ( false !== $extra_info ) {
+                $meta_data['extra_info'] = wp_json_encode( $extra_info );
+                $sum                    .= ! empty( $extra_info['name'] ) ? esc_html( $extra_info['name'] ) : '';
+            } else {
+                $sum .= ! empty( $meta_data['name'] ) ? esc_html( $meta_data['name'] ) : '';
+            }
+            $sum .= ' ';
+            $sum .= 'wordpress' !== $data['context'] ? esc_html( ucfirst( rtrim( $data['context'], 's' ) ) ) : 'WordPress'; //phpcs:ignore -- wordpress text.
+
+            if ( 'wordpress' === $data['context'] ) {
+                $sum = 'WordPress';
+            }
+
+            if ( isset( $user_meta['wp_user_id'] ) ) {
+                $user_id = ! empty( $user_meta['wp_user_id'] ) ? sanitize_text_field( $user_meta['wp_user_id'] ) : 0;
+            } elseif ( ! empty( $user_meta['user_id'] ) ) { // to compatible with old child actions data.
+                $user_id = sanitize_text_field( $user_meta['user_id'] );
+            } elseif ( isset( $data['user_id'] ) && ! empty( $data['user_id'] ) ) {
+                $user_id = $data['user_id']; // new sync changes logs data.
+            }
+
+            $actions_mapping = array(
+                'installed'   => 'install',
+                'deleted'     => 'delete',
+                'activated'   => 'activate',
+                'deactivated' => 'deactivate',
+            );
+
+            $contexts_mapping = array(
+                'plugins'   => 'plugin',
+                'themes'    => 'theme',
+                'wordpress' => 'core',
+            );
+
+            $action  = isset( $actions_mapping[ $data['action'] ] ) ? $actions_mapping[ $data['action'] ] : $data['action'];
+            $context = isset( $contexts_mapping[ $data['context'] ] ) ? $contexts_mapping[ $data['context'] ] : $data['context'];
+
+            $created = isset( $data['created'] ) ? (float) $data['created'] : microtime( true );
+
+            // to fix missing slug meta for theme context issue.
+            if ( ( 'theme' === $context ) && empty( $meta_data['slug'] ) && is_array( $extra_info ) ) {
+                if ( ! empty( $extra_info['slug'] ) ) {
+                    $meta_data['slug'] = $extra_info['slug'];
+                } elseif ( empty( $meta_data['name'] ) && ! empty( $extra_info['name'] ) ) {
+                    $meta_data['name'] = $extra_info['name'];
+                }
+            }
+
+            $record_mapping = array(
+                'site_id'    => $site_id,
+                'user_id'    => $user_id,
+                'user_login' => $user_login,
+                'created'    => $created,
+                'item'       => $sum,
+                'context'    => $context,
+                'action'     => $action,
+                'state'      => 1,
+                'duration'   => isset( $data['duration'] ) ? sanitize_text_field( $data['duration'] ) : 0, // sanitize_text_field for seconds.
+                'meta'       => $meta_data,
+            );
+
+            do_action( 'mainwp_sync_site_log_install_actions', $website, $record_mapping );
+        }
+
+        if ( $new_last_created ) {
+            MainWP_DB::instance()->update_website_option( $site_id, 'non_mainwp_changes_sync_last_created', $new_last_created );
+        }
+
+        return true;
+    }
+
+    /**
+     * Method is_enabled_auto_archive_logs().
+     *
+     * @return bool True|False Enabled auto archive log or not.
+     */
+    public function is_enabled_auto_archive_logs() {
+        return is_array( $this->settings->options ) && ! empty( $this->settings->options['enabled'] ) && ! empty( $this->settings->options['auto_archive'] ) ? true : false;
+    }
+
+    /**
+     * Method hook_delete_site()
+     *
+     * @param mixed $site site object.
+     *
+     * @return bool result.
+     */
+    public function hook_delete_site( $site ) {
+        if ( empty( $site ) ) {
+            return false;
+        }
+        return Log_DB_Helper::instance()->remove_logs_by( $site->id );
+    }
+
+    /**
+     * Method hook_enable_insert_log_type()
+     *
+     * @param bool  $enabled Enable input value.
+     * @param array $data Log data.
+     *
+     * @return bool True: Enable log.
+     */
+    public function hook_enable_insert_log_type( $enabled, $data ) {
+        if ( is_array( $data ) && ! empty( $data['log_type_id'] ) ) {
+            return Log_Settings::is_action_log_enabled( $data['log_type_id'], 'changeslogs' );
+        } elseif ( is_array( $data ) && isset( $data['connector'] ) && isset( $data['context'] ) && isset( $data['action'] ) ) {
+            if ( 'non-mainwp-changes' === $data['connector'] ) {
+                return Log_Settings::is_action_log_enabled( $data['context'] . '_' . $data['action'], 'nonmainwpchanges' );
+            } elseif ( 'compact' !== $data['connector'] ) {
+                return Log_Settings::is_action_log_enabled( $data['context'] . '_' . $data['action'], 'dashboard' );
+            }
+        }
+        return $enabled;
+    }
+
+    /**
+     * Method hook_get_cron_jobs_init()
+     *
+     * @param array $init_jobs Jobs to init.
+     *
+     * @return array Init Jobs.
+     */
+    public function hook_get_cron_jobs_init( $init_jobs ) {
+        if ( $this->is_enabled_auto_archive_logs() ) {
+            $init_jobs['mainwp_module_log_cron_job_auto_archive'] = 'daily';
+        }
+        return $init_jobs;
+    }
+
+    /**
+     * Method cron_module_log_auto_archive()
+     */
+    public function cron_module_log_auto_archive() {
+        $ttl = 3 * YEAR_IN_SECONDS;
+        if ( is_array( $this->settings->options ) && isset( $this->settings->options['records_logs_ttl'] ) ) {
+            $ttl = intval( $this->settings->options['records_logs_ttl'] );
+        }
+        if ( $ttl ) {
+            do_action( 'mainwp_log_action', 'Module Log :: Archive logs schedule start.', MainWP_Logger::LOGS_AUTO_PURGE_LOG_PRIORITY );
+            $time   = time();
+            $before = $time - $ttl;
+            Log_DB_Archive::instance()->archive_sites_changes( $before );
+            update_option( 'mainwp_module_log_last_time_auto_archive_logs', $time );
+            update_option( 'mainwp_module_log_next_time_auto_archive_logs', $time + $ttl );
+        }
+    }
+
+    /**
+     * Method hook_changes_logs_sync_params()
+     *
+     * @param  string $params Input value.
+     * @param  int    $site_id Site id.
+     * @param  array  $postdata Post data.
+     *
+     * @return string Empty or json encoded value.
+     *
+     * @since 5.5
+     */
+    public function hook_changes_logs_sync_params( $params, $site_id, $postdata = array() ) {
+
+        // if it is not a manual sync data.
+        $sync_logs = isset( $_POST['action'] ) && 'mainwp_syncsites' === $_POST['action'] ? true : false; //phpcs:ignore --ok.
+        $sync_logs = apply_filters( 'mainwp_module_logs_sync_changes_log', $sync_logs );
+
+        if ( ! $sync_logs ) {
+            return $params;
+        }
+
+        $last_created = Log_Changes_Logs_Helper::instance()->get_sync_changes_logs_last_created( $site_id );
+        $events_count = apply_filters( 'mainwp_module_log_changes_logs_sync_count', 100, $site_id, $postdata );
+
+        $disabled_changeslogs       = Log_Settings::get_disabled_logs_type( 'changeslogs' );
+        $disabled_nonmainwp_actions = Log_Settings::get_disabled_logs_type( 'nonmainwpchanges' );
+
+        $log_settings = get_option( 'mainwp_module_log_settings', array() );
+        if ( ! is_array( $log_settings ) ) {
+            $log_settings = array();
+        }
+
+        return array(
+            'newer_than'                    => $last_created,
+            'events_count'                  => $events_count,
+            'ignore_sync_changes_logs'      => ! empty( $disabled_changeslogs ) ? $disabled_changeslogs : -1, // -1 to prevent it removed nested empty array from http query builder.
+            'ignore_sync_nonmainwp_actions' => ! empty( $disabled_nonmainwp_actions ) ? $disabled_nonmainwp_actions : -1,
+            'child_logs_ttl'                => ! empty( $log_settings['child_logs_ttl'] ) ? absint( $log_settings['child_logs_ttl'] ) : 7,
+            'child_logs_enabled'            => ! empty( $log_settings['enabled'] ) ? 1 : 0,
+        );
+    }
+
+    /**
+     * Method hook_get_log_records()
+     *
+     * Retrieves MainWP log records based on provided query parameters.
+     *
+     * Available $params arguments (all optional):
+     *
+     * Default values:
+     * <code>
+     * array(
+     *     // LOG TARGETING
+     *     'log_id' => 0,                 // Specific log ID.
+     *     'wpid' => 0,                   // Site ID or array of site IDs.
+     *
+     *     // ACCESS / VIEW
+     *     'check_access' => true,        // Apply access restrictions.
+     *     'view' => '',                  // View mode: '', 'events_list', 'api-view'.
+     *
+     *     // OPTIMIZATION
+     *     'optimize' => false,           // Enable optimized query.
+     *     'optimize_with_meta' => false, // Fetch meta separately when optimized.
+     *     'with_all_logs_meta' => false, // Load full logs meta.
+     *
+     *     // RESULT MODE
+     *     'count_only' => false,         // Return count only.
+     *     'not_count' => false,          // Skip count query.
+     *
+     *     // SEARCH / FILTERS
+     *     'search' => '',                // Search keyword.
+     *     'dismiss' => null,             // true|false|null.
+     *
+     *     // GROUP / CLIENT FILTERS
+     *     'groups_ids' => array(),       // Filter by group IDs.
+     *     'client_ids' => array(),       // Filter by client IDs.
+     *
+     *     // USER FILTERS
+     *     'usersfilter_sites_ids' => array(), // Format: userId-siteId-isDashboardUser.
+     *     'user_ids' => array(),              // Legacy user filter.
+     *
+     *     // TIME RANGE
+     *     'timestart' => 0,              // Start timestamp (seconds).
+     *     'timestop' => 0,               // End timestamp (seconds).
+     *
+     *     // SOURCE FILTER
+     *     'sources_conds' => '',         // 'wp-admin-only'|'dashboard-only'.
+     *
+     *     // CONTEXT / EVENTS
+     *     'contexts' => '',              // CSV contexts list.
+     *     'sites_ids' => array(),        // Explicit site IDs.
+     *     'events' => array(),           // Actions/events filter.
+     *
+     *     // PAGINATION
+     *     'start' => 0,                  // Offset.
+     *     'records_per_page' => 0,       // LIMIT size (0 = unlimited).
+     *
+     *     // SORTING
+     *     'order' => 'DESC',             // ASC|DESC.
+     *     'orderby' => 'created',        // Sort column.
+     *
+     *     // RECENT EVENTS
+     *     'recent_number' => 0,          // Limit to recent logs.
+     * )
+     * </code>
+     *
+     * @param mixed $input_val Default value.
+     * @param array $params {
+     *     Optional. Log query parameters.
+     * }
+     *
+     * @return array Results.
+     *
+     * @since 6.0.1
+     */
+    public function hook_get_log_records( $input_val, $params = array() ) {
+
+        unset( $input_val ); // not used, just for hook compatibility.
+
+        $defaults = array(
+            // Search param.
+            'search'           => null,
+            'search_field'     => 'item',
+            'records_per_page' => get_option( 'posts_per_page', 20 ),
+            'paged'            => 1,
+            // Order.
+            'order'            => 'desc',
+            'orderby'          => 'date',
+        );
+
+        $args = wp_parse_args( $params, $defaults );
+
+        return (array) $this->db->get_records( $args );
+    }
+
+
+    /**
+     * Method normalize_to_microseconds()
+     *
+     * @param  mixed $time float time value or microsecords to check.
+     *
+     * @return int Normalize microseconds value.
+     *
+     * @since 5.5
+     */
+    public static function normalize_to_microseconds( $time ) {
+        return ( $time < 1e12 ) ? (int) ( $time * 1000000 ) : (int) $time;
+    }
+}

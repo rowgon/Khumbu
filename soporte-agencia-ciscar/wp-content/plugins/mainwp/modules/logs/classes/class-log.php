@@ -1,0 +1,261 @@
+<?php
+/**
+ * MainWP Database Logs.
+ *
+ * This file handles all interactions with the Client DB.
+ *
+ * @package MainWP/Dashboard
+ */
+
+namespace MainWP\Dashboard\Module\Log;
+
+use MainWP\Dashboard\MainWP_Execution_Helper;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+/**
+ * Class Logs
+ */
+class Log {
+
+    /**
+     * Log_Manager
+     *
+     * @var manager Hold Log_Manager class
+     * */
+    public $manager;
+
+    /**
+     * Log constructor.
+     *
+     * Run each time the class is called.
+     *
+     * @param Log_Manager $manager The main manager class.
+     */
+    public function __construct( $manager ) {
+        $this->manager = $manager;
+    }
+
+
+    /**
+     * Log handler.
+     *
+     * @param Connector $connector         Connector responsible for logging the event.
+     * @param string    $message           sprintf-ready error message string.
+     * @param array     $args              sprintf (and extra) arguments to use.
+     * @param int       $site_id  Target site id.
+     * @param string    $context           Context of the event.
+     * @param string    $action            Action of the event.
+     * @param int|null  $state action status: null - N/A, 0 - failed, 1 - success.
+     * @param int       $user_id           User responsible for the event.
+     *
+     * @return bool|WP_Error True if updated, otherwise false|WP_Error
+     */
+    public function log( $connector, $message, $args, $site_id, $context, $action, $state = null, $user_id = null ) { //phpcs:ignore -- NOSONAR - compatible.
+
+        if ( is_null( $user_id ) ) {
+            $user_id = get_current_user_id();
+        }
+
+        if ( is_null( $site_id ) ) {
+            $site_id = 0;
+        }
+
+        $disable_cron_log = apply_filters( 'mainwp_module_log_disable_cron_log', false, $connector, $message, $args, $site_id, $context, $action, $user_id, $state );
+
+        if ( $disable_cron_log && defined( 'DOING_CRON' ) && DOING_CRON ) {
+            return false; // disable log cron tasks.
+        }
+
+        $cron_tracking = apply_filters( 'mainwp_module_log_cron_tracking', true, $connector, $message, $args, $site_id, $context, $action, $user_id, $state );
+
+        $author = new Log_Author( $user_id );
+
+        $agent = $author->get_current_agent();
+
+        // WP Cron tracking requires opt-in and WP Cron to be enabled.
+        if ( ! $cron_tracking && 'wp_cron' === $agent ) {
+                return false;
+        }
+
+        $user       = new \WP_User( $user_id );
+        $user_login = ! empty( $user->user_login ) ? (string) $user->user_login : '';
+
+        $user_meta = array(
+            'user_login' => $user_login,
+            'agent'      => (string) $agent,
+        );
+
+        $system_user = '';
+        if ( 'wp_cli' === $agent ) {
+            $system_user = 'wp_cli';
+            if ( is_callable( 'posix_getuid' ) && is_callable( 'posix_getpwuid' ) ) {
+                $uid       = posix_getuid();
+                $user_info = posix_getpwuid( $uid );
+
+                $user_meta['system_user_id']   = (int) $uid;
+                $user_meta['system_user_name'] = (string) $user_info['name'];
+
+                if ( ! empty( $user_meta['system_user_name'] ) ) {
+                    $system_user = $user_meta['system_user_name'];
+                }
+            }
+        } elseif ( 'wp_cron' === $agent ) {
+            $system_user = 'wp_cron';
+        } elseif ( 'wp_rest_api' === $agent ) {
+            $system_user = 'wp_rest_api';
+        }
+
+        $dura = isset( $args['duration'] ) ? floatval( $args['duration'] ) : MainWP_Execution_Helper::get_run_time();
+
+        if ( isset( $args['duration'] ) ) {
+            unset( $args['duration'] );
+        }
+
+        $dura_bulk = 1;
+        if ( isset( $args['duration_bulk'] ) ) {
+            $dura_bulk = intval( $args['duration_bulk'] );
+            unset( $args['duration_bulk'] );
+        }
+
+        if ( empty( $dura_bulk ) ) {
+            $dura_bulk = 1;
+        }
+
+        $dura = $dura / $dura_bulk;
+
+        $created = microtime( true );
+
+        if ( ! empty( $args['created'] ) ) {
+            $created = (float) $args['created'];
+            unset( $args['created'] );
+        }
+
+        $created = Log_Manager::normalize_to_microseconds( $created ); // Store timestamps (including microseconds) as a BIGINT.
+
+        // Prevent any meta with null values from being logged.
+        $logs_meta = array_filter(
+            $args,
+            function ( $e ) {
+                return ! is_null( $e );
+            }
+        );
+
+        if ( empty( $logs_meta['user_login'] ) ) {
+            if ( ! empty( $user_meta['user_login'] ) ) {
+                $logs_meta['user_login'] = $user_meta['user_login'];
+            } elseif ( ! empty( $system_user ) ) {
+                $logs_meta['user_login'] = $system_user;
+            }
+        }
+
+        // Add user meta to Log meta.
+        $logs_meta['user_meta_json'] = wp_json_encode( $user_meta );
+
+        $recordarr = array(
+            'site_id'    => (int) $site_id,
+            'user_id'    => (int) $user_id,
+            'user_login' => (string) $user_login,
+            'item'       => (string) vsprintf( $message, $args ),
+            'connector'  => (string) $connector,
+            'context'    => (string) $context,
+            'action'     => (string) $action,
+            'duration'   => $dura,
+            'created'    => $created,
+            'state'      => $state,
+            'meta'       => (array) $logs_meta,
+        );
+
+        if ( 0 === $recordarr['site_id'] ) {
+            unset( $recordarr['site_id'] );
+        }
+
+        if ( null === $recordarr['state'] || '' === $recordarr['state'] ) {
+            unset( $recordarr['state'] );
+        }
+        // This is helpful in development environments.
+        // error_log( $this->debug_backtrace( $recordarr ) ); //phpcs:ignore -- development.
+        return $this->log_record( $recordarr );
+    }
+
+    /**
+     * Log record.
+     *
+     * @param array $recordarr sprintf (and extra) arguments to use.
+     *
+     * @return bool|WP_Error True if updated, otherwise false|WP_Error
+     */
+    public function log_record( $recordarr ) { //phpcs:ignore -- NOSONAR - compatible.
+        return $this->manager->db->insert( $recordarr );
+    }
+
+    /**
+     * Helper function to send a full backtrace of calls to the PHP error log for debugging.
+     *
+     * @param array $recordarr Record argument array.
+     *
+     * @return string $output MainWP Pro Reports backtrace.
+     */
+    public function debug_backtrace( $recordarr ) {
+        // Record details.
+        $message   = isset( $recordarr['item'] ) ? $recordarr['item'] : null;
+        $author    = isset( $recordarr['author'] ) ? $recordarr['author'] : null;
+        $connector = isset( $recordarr['connector'] ) ? $recordarr['connector'] : null;
+        $context   = isset( $recordarr['context'] ) ? $recordarr['context'] : null;
+        $action    = isset( $recordarr['action'] ) ? $recordarr['action'] : null;
+
+        // Log meta.
+        $logs_meta = isset( $recordarr['meta'] ) ? $recordarr['meta'] : null;
+
+        unset( $logs_meta['user_meta'] );
+
+        if ( $logs_meta ) {
+            array_walk(
+                $logs_meta,
+                function ( &$value, $key ) {
+                    $value = sprintf( '%s: %s', $key, ( '' === $value ) ? 'null' : $value );
+                }
+            );
+            $logs_meta = implode( ', ', $logs_meta );
+        }
+
+        // User meta.
+        $user_meta = isset( $recordarr['meta']['user_meta'] ) ? $recordarr['meta']['user_meta'] : null;
+
+        if ( $user_meta ) {
+            array_walk(
+                $user_meta,
+                function ( &$value, $key ) {
+                    $value = sprintf( '%s: %s', $key, ( '' === $value ) ? 'null' : $value );
+                }
+            );
+
+            $user_meta = implode( ', ', $user_meta );
+        }
+
+        // Debug backtrace.
+        ob_start();
+
+        // @codingStandardsIgnoreStart
+        debug_print_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ); // Option to ignore args requires PHP 5.3.6
+        // @codingStandardsIgnoreEnd
+
+        $backtrace = ob_get_clean();
+        $backtrace = array_values( array_filter( explode( "\n", $backtrace ) ) );
+
+        return sprintf(
+            "Pro Reports Debug Backtrace\n\n    Summary | %s\n     Author | %s\n  Connector | %s\n    Context | %s\n     Action | %s\nReports Meta | %s\nAuthor Meta | %s\n\n%s\n",
+            $message,
+            $author,
+            $connector,
+            $context,
+            $action,
+            $logs_meta,
+            $user_meta,
+            implode( "\n", $backtrace )
+        );
+    }
+}

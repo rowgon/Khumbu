@@ -1,0 +1,1414 @@
+array (
+  'system_colors' => 
+  array (
+    0 => 
+    array (
+      '_id' => 'primary',
+      'title' => 'Primary',
+      'color' => '#2B2A31',
+    ),
+    1 => 
+    array (
+      '_id' => 'secondary',
+      'title' => 'Secondary',
+      'color' => '#54595F',
+    ),
+    2 => 
+    array (
+      '_id' => 'text',
+      'title' => 'Text',
+      'color' => '#222227',
+    ),
+    3 => 
+    array (
+      '_id' => 'accent',
+      'title' => 'Accent',
+      'color' => '#27262B',
+    ),
+  ),
+  'custom_colors' => 
+  array (
+    0 => 
+    array (
+      '_id' => 'cc00571',
+      'title' => 'Border',
+      'color' => '#FFFFFF30',
+    ),
+    1 => 
+    array (
+      '_id' => '2fea359',
+      'title' => 'Yellow Text BG',
+      'color' => '#EABB61',
+    ),
+    2 => 
+    array (
+      '_id' => 'b478607',
+      'title' => 'White Text',
+      'color' => '#FFFFFF',
+    ),
+    3 => 
+    array (
+      '_id' => 'b9cef93',
+      'title' => 'BG Transparent',
+      'color' => '#1414156E',
+    ),
+    4 => 
+    array (
+      '_id' => '0b4b684',
+      'title' => 'Color Price',
+      'color' => '#8B8B8B',
+    ),
+    5 => 
+    array (
+      '_id' => 'ff6625c',
+      'title' => 'Error',
+      'color' => '#CB5050',
+    ),
+    6 => 
+    array (
+      '_id' => '030a811',
+      'title' => 'Success',
+      'color' => '#50CB64',
+    ),
+    7 => 
+    array (
+      '_id' => '3faa9a0',
+      'title' => 'Secondary Border',
+      'color' => '#7A7A7A',
+    ),
+    8 => 
+    array (
+      '_id' => 'bb2a280',
+      'title' => 'Number Soft Color',
+      'color' => '#FFFFFF12',
+    ),
+  ),
+  'system_typography' => 
+  array (
+    0 => 
+    array (
+      '_id' => 'primary',
+      'title' => 'Primary',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_weight' => '300',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    1 => 
+    array (
+      '_id' => 'secondary',
+      'title' => 'Secondary',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_weight' => '700',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 37,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 35,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 32,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.2,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      '_id' => 'text',
+      'title' => 'Text',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_weight' => '300',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      '_id' => 'accent',
+      'title' => 'Accent',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_weight' => '300',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 13,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+  ),
+  'custom_typography' => 
+  array (
+    0 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+      'typography_text_transform' => 'uppercase',
+      'typography_letter_spacing' => 
+      array (
+        'unit' => 'px',
+        'size' => 3.5,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => '5ff2a9e',
+      'title' => 'Text Button',
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 13,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    1 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+      'typography_text_transform' => 'uppercase',
+      'typography_letter_spacing' => 
+      array (
+        'unit' => 'px',
+        'size' => 2,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => 'c6f149b',
+      'title' => 'Text Menu',
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 11,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    2 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+      'typography_text_transform' => 'uppercase',
+      'typography_letter_spacing' => 
+      array (
+        'unit' => 'px',
+        'size' => 3.5,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => 'ce37b86',
+      'title' => 'Secondary Button',
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 11,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    3 => 
+    array (
+      '_id' => 'c5208da',
+      'title' => 'Text Special Pricing',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 18,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 17,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '500',
+    ),
+    4 => 
+    array (
+      '_id' => 'faae15a',
+      'title' => 'Hero Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 80,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 60,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 50,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '800',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.1,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    5 => 
+    array (
+      '_id' => '95d08a3',
+      'title' => 'Number Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 350,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 250,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 100,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    6 => 
+    array (
+      '_id' => '0c672cc',
+      'title' => 'Text Sale',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 32,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 31,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 30,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    7 => 
+    array (
+      '_id' => 'a929746',
+      'title' => 'Text Funfact',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 35,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 32,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 30,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    8 => 
+    array (
+      '_id' => 'ff2eb4b',
+      'title' => 'Special Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 22,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 21,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 20,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+    ),
+    9 => 
+    array (
+      '_id' => 'bb5a67d',
+      'title' => 'Service Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 23,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 21,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 20,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    10 => 
+    array (
+      '_id' => '88c1d19',
+      'title' => 'Client Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 18,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 17,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+    ),
+    11 => 
+    array (
+      '_id' => '12aa924',
+      'title' => 'Product Title',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 20,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 19,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 18,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+      'typography_line_height_mobile' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.2,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    12 => 
+    array (
+      '_id' => '0917fb2',
+      'title' => 'H5 Alternate',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '600',
+    ),
+    13 => 
+    array (
+      '_id' => 'e926fde',
+      'title' => 'Text Subtitle',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '500',
+      'typography_text_transform' => 'uppercase',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_letter_spacing' => 
+      array (
+        'unit' => 'px',
+        'size' => 3.5,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    14 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '400',
+      '_id' => '8cee111',
+      'title' => 'Text Name',
+    ),
+    15 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+      'old_typography_typography' => 'custom',
+      'old_typography_font_family' => 'Barlow',
+      'old_typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'old_typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'old_typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'old_typography_font_weight' => '300',
+      '_id' => '254ed39',
+      'title' => 'Product Price Title',
+    ),
+    16 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 12,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 11,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+      'typography_text_transform' => 'uppercase',
+      '_id' => '71197c6',
+      'title' => 'Text Sale',
+      'typography_line_height_tablet' => 
+      array (
+        'unit' => 'em',
+        'size' => 4,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_line_height_mobile' => 
+      array (
+        'unit' => 'em',
+        'size' => 4.3,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    17 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 17,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '300',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.5,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => '8fe8b37',
+      'title' => 'Text Testimonial',
+    ),
+    18 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 180,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 150,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 100,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '800',
+      '_id' => '6782ae4',
+      'title' => '404 Title',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1,
+        'sizes' => 
+        array (
+        ),
+      ),
+    ),
+    19 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 60,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 55,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 50,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '800',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.1,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => '7eedd53',
+      'title' => 'Alternate Title',
+    ),
+    20 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 20,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 19,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 18,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '300',
+      '_id' => '8417bd9',
+      'title' => 'Text About',
+    ),
+    21 => 
+    array (
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 60,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 48,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 42,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '400',
+      'typography_line_height' => 
+      array (
+        'unit' => 'em',
+        'size' => 1.1,
+        'sizes' => 
+        array (
+        ),
+      ),
+      '_id' => '4a4a69d',
+      'title' => 'H1 Typography Default',
+    ),
+    22 => 
+    array (
+      '_id' => '31fe727',
+      'title' => 'H1 Typography Default',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 42,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 38,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 36,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    23 => 
+    array (
+      '_id' => '984dd01',
+      'title' => 'H2 Typography Default',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 32,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 31,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 30,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    24 => 
+    array (
+      '_id' => '09a7a54',
+      'title' => 'H3 Typography Default',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 30,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 28,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 26,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    25 => 
+    array (
+      '_id' => '7a9777d',
+      'title' => 'H4 Typography Default',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 24,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 23,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 22,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    26 => 
+    array (
+      '_id' => '51b8984',
+      'title' => 'H5 Typography Default',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 20,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 19,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 18,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+    27 => 
+    array (
+      '_id' => '3a6fd42',
+      'title' => 'H6 Typography Default ',
+      'typography_typography' => 'custom',
+      'typography_font_family' => 'Barlow',
+      'typography_font_size' => 
+      array (
+        'unit' => 'px',
+        'size' => 16,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_tablet' => 
+      array (
+        'unit' => 'px',
+        'size' => 15,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_size_mobile' => 
+      array (
+        'unit' => 'px',
+        'size' => 14,
+        'sizes' => 
+        array (
+        ),
+      ),
+      'typography_font_weight' => '700',
+    ),
+  ),
+  'default_generic_fonts' => 'Sans-serif',
+  'page_title_selector' => 'h1.entry-title',
+  'activeItemIndex' => 1,
+  'viewport_md' => 768,
+  'viewport_lg' => 1025,
+  'button_border_border' => 'solid',
+  'button_border_radius' => 
+  array (
+    'unit' => 'px',
+    'top' => '0',
+    'right' => '0',
+    'bottom' => '0',
+    'left' => '0',
+    'isLinked' => false,
+  ),
+  'button_border_width' => 
+  array (
+    'unit' => 'px',
+    'top' => '0',
+    'right' => '0',
+    'bottom' => '0',
+    'left' => '0',
+    'isLinked' => true,
+  ),
+  'button_padding' => 
+  array (
+    'unit' => 'px',
+    'top' => '15',
+    'right' => '25',
+    'bottom' => '15',
+    'left' => '25',
+    'isLinked' => false,
+  ),
+  'form_field_background_color' => '#02010100',
+  'form_field_border_border' => 'solid',
+  'form_field_border_width' => 
+  array (
+    'unit' => 'px',
+    'top' => '1',
+    'right' => '1',
+    'bottom' => '1',
+    'left' => '1',
+    'isLinked' => true,
+  ),
+  'form_field_border_radius' => 
+  array (
+    'unit' => 'px',
+    'top' => '0',
+    'right' => '0',
+    'bottom' => '0',
+    'left' => '0',
+    'isLinked' => false,
+  ),
+  'form_field_focus_text_color' => '#FFFFFF',
+  'form_field_focus_border_border' => 'solid',
+  'form_field_focus_border_width' => 
+  array (
+    'unit' => 'px',
+    'top' => '1',
+    'right' => '1',
+    'bottom' => '1',
+    'left' => '1',
+    'isLinked' => true,
+  ),
+  'form_field_focus_border_color' => '#FFFFFF2E',
+  '__globals__' => 
+  array (
+    'body_typography_typography' => 'globals/typography?id=primary',
+    'button_typography_typography' => 'globals/typography?id=5ff2a9e',
+    'button_text_color' => 'globals/colors?id=primary',
+    'form_label_typography_typography' => 'globals/typography?id=3a6fd42',
+    'form_field_typography_typography' => 'globals/typography?id=text',
+    'h1_typography_typography' => 'globals/typography?id=31fe727',
+    'h2_typography_typography' => 'globals/typography?id=984dd01',
+    'h3_typography_typography' => 'globals/typography?id=09a7a54',
+    'h4_typography_typography' => 'globals/typography?id=7a9777d',
+    'h5_typography_typography' => 'globals/typography?id=51b8984',
+    'h6_typography_typography' => 'globals/typography?id=3a6fd42',
+    'button_background_color' => 'globals/colors?id=2fea359',
+    'button_hover_background_color' => 'globals/colors?id=b478607',
+    'form_label_color' => 'globals/colors?id=b478607',
+    'form_field_text_color' => 'globals/colors?id=b478607',
+    'form_field_border_color' => 'globals/colors?id=cc00571',
+    'body_background_color' => 'globals/colors?id=primary',
+    'mobile_browser_background' => 'globals/colors?id=primary',
+    'link_normal_color' => 'globals/colors?id=2fea359',
+    'link_hover_color' => 'globals/colors?id=b478607',
+    'h1_color' => 'globals/colors?id=b478607',
+    'h3_color' => 'globals/colors?id=b478607',
+    'h2_color' => 'globals/colors?id=b478607',
+    'h4_color' => 'globals/colors?id=b478607',
+    'h5_color' => 'globals/colors?id=b478607',
+    'h6_color' => 'globals/colors?id=b478607',
+    'body_color' => 'globals/colors?id=b478607',
+    'button_hover_text_color' => 'globals/colors?id=primary',
+  ),
+  'button_text_color' => '#2B2A31',
+  'button_background_color' => '#FFFFFF',
+  'button_hover_background_color' => '#EABB61',
+  'form_label_color' => '#FFFFFF',
+  'form_field_text_color' => '#FFFFFF',
+  'form_field_border_color' => '#FFFFFF12',
+  'body_background_background' => 'classic',
+  'old_form_label_typography_typography' => 'custom',
+  'old_form_label_typography_font_family' => 'Barlow',
+  'old_form_label_typography_font_size' => 
+  array (
+    'unit' => 'px',
+    'size' => 16,
+    'sizes' => 
+    array (
+    ),
+  ),
+  'old_form_label_typography_font_size_tablet' => 
+  array (
+    'unit' => 'px',
+    'size' => 15,
+    'sizes' => 
+    array (
+    ),
+  ),
+  'old_form_label_typography_font_size_mobile' => 
+  array (
+    'unit' => 'px',
+    'size' => 14,
+    'sizes' => 
+    array (
+    ),
+  ),
+  'old_form_label_typography_font_weight' => '300',
+  'body_background_color' => '#2B2A31',
+  'mobile_browser_background' => '#2B2A31',
+  'hello_footer_copyright_text' => 'All rights reserved',
+  'settings_page_transitions_background_background' => '',
+  'hello_footer_logo_display' => '',
+  'hello_footer_tagline_display' => '',
+  'hello_footer_menu_display' => '',
+  'hello_footer_copyright_display' => '',
+  'site_name' => 'Teknopremium - Wellness &amp; Outdoor Living',
+  'site_description' => 'Teknopremium - Wellness &amp; Outdoor Living',
+  'woocommerce_terms_page_id' => '322',
+)
+PHP: 2026-09-01 13:19:04 [notice X 0][/var/www/html/Khumbu/teknopremium/wp-content/plugins/elementor/modules/global-classes/atomic-global-styles.php::410] Elementor\Modules\GlobalClasses\Atomic_Global_Styles::get_cache_root_key(): Implicitly marking parameter $key as nullable is deprecated, the explicit nullable type must be used instead [array (
+  'trace' => '
+#0: Elementor\Core\Logger\Manager -> shutdown()
+',
+)]

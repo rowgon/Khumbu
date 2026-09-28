@@ -1,0 +1,78 @@
+/* Hallmark · tokens V2 — theme: studied-DNA (dark editorial "gallery wall") × Brand Khumbu
+ * void navy-tinted · bone white · acento único naranja #e46a25 · Poppins caps + Playfair italic + Montserrat body */
+:root {
+  /* Surfaces — void con ADN navy de marca */
+  --color-void:       #0a0916;
+  --color-absolute:   #050409;
+  --color-charcoal:   #131124;
+  --color-smoke:      #1c1a30;
+  --color-graphite:   #2a2842;
+  --color-linen:      #f3f1ee;
+
+  /* Ink */
+  --color-bone:       #fcfcfd;
+  --color-ash:        #cfcdd8;
+  --color-pebble:     #8f8da0;
+  --color-iron:       #4b4964;
+  --color-ink-on-linen: #14122a;
+  --color-ink2-on-linen: #4a4860;
+  --color-rule-linen: #d8d5d0;
+
+  /* Acento único — naranja acción del manual */
+  --color-accent:     #e46a25;
+  --color-accent-deep:#c85a1c;
+
+  /* Puntos de datos del ticker (apagados, sobre void) */
+  --color-dot-cyan:   #4fb3dd;
+  --color-dot-amber:  #d9a13c;
+  --color-dot-green:  #5cae8a;
+  --color-dot-pink:   #c97ba4;
+  --color-dot-violet: #8d85d6;
+
+  /* Type */
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Playfair Display", Georgia, serif;
+  --font-body:    "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  /* Scale (ref: 10→160, adaptada con clamp) */
+  --text-caption:    0.625rem;   /* 10px tracked caps */
+  --text-label:      0.75rem;    /* 12px tracked caps */
+  --text-body:       0.875rem;   /* 14px */
+  --text-body-lg:    1rem;
+  --text-subheading: 1.5rem;
+  --text-heading-sm: 2rem;
+  --text-heading:    clamp(1.75rem, 3vw + 0.5rem, 2.625rem);
+  --text-heading-lg: clamp(2.25rem, 4.5vw + 0.5rem, 4rem);
+  --text-display:    clamp(2.75rem, 6.5vw + 0.5rem, 5rem);
+  --text-display-xl: clamp(3rem, 8.6vw + 0.5rem, 8rem);
+
+  /* Tracking — load-bearing */
+  --tracking-caps-out: 0.09em;
+  --tracking-caps-wide: 0.28em;
+  --tracking-display: -0.05em;
+  --tracking-display-xl: -0.075em;
+
+  /* Spacing 8pt */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2rem;
+  --sp-6: 3rem;
+  --sp-7: 3.5rem;
+  --sp-10: 5rem;
+  --sp-14: 7rem;
+  --sp-16: 8rem;
+
+  /* Shape */
+  --radius-nav: 3px;
+  --radius-card: 8px;
+  --radius-lg: 14px;
+  --shadow-inset: rgba(255, 255, 255, 0.14) 0px 2px 5px 0px inset;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-short: 150ms;
+  --dur-med: 300ms;
+
+  --z-nav: 40;
+}
